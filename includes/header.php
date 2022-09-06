@@ -45,7 +45,7 @@
 
         .banner .content {
             position: relative;
-            max-width: 80%;
+            max-width: 750px;
             text-align: center;
         }
 
@@ -56,7 +56,7 @@
 
         .banner .content p {
             color: #fff;
-            font-size: 12px;
+            font-size: 18px;
         }
 
         .banner header {
@@ -120,6 +120,7 @@
             font-size: 16px;
             font-weight: 300;
             letter-spacing: 1px;
+            text-align: left;
         }
 
 
@@ -141,7 +142,7 @@
         .services .container .serviceBx {
             position: relative;
             background: #fff;
-            width: 350px;
+            width: 330px;
             height: 400px;
             display: flex;
             justify-content: center;
@@ -216,6 +217,7 @@
             background: #12222d;
             text-align: center;
         }
+
         .testimonials .container {
             display: flex;
             justify-content: space-between;
@@ -223,6 +225,7 @@
             margin-top: 40px;
             flex-wrap: wrap;
         }
+
         .testimonials .container .contentBx {
             background: #fff;
             padding: 40px 30px;
@@ -231,10 +234,14 @@
             justify-content: center;
             align-items: center;
             text-align: left;
+            margin: 0 auto;
+            margin-top: 5px;
         }
+
         .testimonials .container .contentBx p {
             font-style: italic;
         }
+
         .testimonials .container .contentBx h3 {
             width: 100%;
             text-align: end;
@@ -243,7 +250,7 @@
         }
 
 
-        .contact{
+        .contact {
             padding: 100px;
             background: #162c3b;
             text-align: center;
@@ -253,13 +260,16 @@
             background: url('./assets/img/pexels-expect-best-323780.jpg') no-repeat center/cover;
             width: 50%;
         }
-        .redbg{
-            background: rgba(200,40,40) !important;
+
+        .redbg {
+            background: rgba(200, 40, 40) !important;
         }
-        .form .inputBx{
+
+        .form .inputBx {
             margin-bottom: 30px;
         }
-        .form .inputBx input{
+
+        .form .inputBx input {
             width: 100%;
             background: transparent;
             box-shadow: none;
@@ -271,12 +281,14 @@
             color: #fff;
             border-bottom: 2px solid #fff;
         }
-        .form .inputBx input::placeholder{
+
+        .form .inputBx input::placeholder {
             color: #fff;
             font-style: italic;
             font-weight: 100;
         }
-        .form .inputBx textarea{
+
+        .form .inputBx textarea {
             width: 100%;
             max-width: 100%;
             background: transparent;
@@ -291,12 +303,14 @@
             max-height: 200px;
             border-bottom: 2px solid #fff;
         }
-        .form .inputBx textarea::placeholder{
+
+        .form .inputBx textarea::placeholder {
             color: #fff;
             font-style: italic;
             font-weight: 100;
         }
-        .form .inputBx input[type="submit"]{
+
+        .form .inputBx input[type="submit"] {
             width: 150px;
             background: #fff;
             color: #111;
@@ -305,7 +319,7 @@
         }
 
 
-        .footer{
+        .footer {
             width: 100%;
             background: #162c3b;
             padding: 20px 100px;
@@ -313,22 +327,120 @@
             justify-content: space-between;
             align-items: center;
         }
-        .footer ul{
+
+        .footer ul {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .footer ul li{
+
+        .footer ul li {
             list-style: none;
         }
-        .footer ul li a{
+
+        .footer ul li a {
             text-decoration: none;
             display: inline-block;
             margin: 0 10px;
         }
-        .footer ul li img{
+
+        .footer ul li img {
             /*filter: invert(1);*/
-            max-width:20px;
+            max-width: 20px;
+        }
+
+
+        @media (max-width: 991px) {
+            .banner {
+                padding: 50px;
+            }
+            .banner header {
+                padding: 20px 50px;
+            }
+            .banner .content h2 {
+                font-size: 36px;
+            }
+            .banner .content p {
+                font-size: 16px;
+            }
+
+
+            .about {
+                flex-direction: column;
+            }
+            .about .contentBx,
+            .about .imgBx {
+                width: 100%;
+                padding: 50px;
+                min-height: 400px;
+                text-align: center;
+            }
+            .about .imgBx {
+                position: absolute;
+                opacity: 0.15;
+            }
+
+
+            .services {
+                padding: 50px;
+            }
+            .services .container {
+                justify-content: center;
+                margin-top: 20px;
+            }
+            .services .container .serviceBx {
+                margin: 20px;
+                width: 300px;
+                height: 350px;
+            }
+
+
+            .technology{
+                padding: 50px;
+                padding-top: 300px;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .technology .imgBx{
+                margin-top: 40px;
+                max-width: 250px;
+            }
+
+
+            .client{
+                padding: 50px;
+            }
+            .client .imgBx{
+                justify-content: center;
+            }
+
+
+            .testimonials{
+                padding: 50px;
+            }
+            .testimonials .contentBx{
+                padding: 60px 40px;
+                max-width: 550px;
+                margin-bottom: 40px;
+            }
+            .testimonials .contentBx:last-child{
+                margin-bottom: 0px;
+            }
+
+
+            .contact{
+                padding: 50px;
+            }
+
+
+            .footer{
+                padding: 20px 50px;
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .footer ul{
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
