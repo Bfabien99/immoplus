@@ -19,8 +19,8 @@
             scroll-behavior: smooth;
         }
 
-        body{
-            overflow-x:hidden;
+        body {
+            overflow-x: hidden;
         }
 
         .banner {
@@ -51,12 +51,12 @@
 
         .banner .content h2 {
             color: #fff;
-            font-size: 3vmax;
+            font-size: 60px;
         }
 
         .banner .content p {
             color: #fff;
-            font-size: 1.1vmax;
+            font-size: 12px;
         }
 
         .banner header {
@@ -88,6 +88,7 @@
             cursor: pointer;
         }
 
+
         .about {
             position: relative;
             width: 100%;
@@ -99,6 +100,12 @@
             padding: 100px;
             width: 50%;
         }
+
+        .about .imgBx {
+            background: url('./assets/img/pexels-expect-best-323780.jpg') no-repeat center/cover;
+            width: 50%;
+        }
+
 
         .heading {
             color: #fff;
@@ -115,10 +122,6 @@
             letter-spacing: 1px;
         }
 
-        .about .imgBx {
-            background: url('./assets/img/pexels-expect-best-323780.jpg') no-repeat center/cover;
-            width: 50%;
-        }
 
         .services {
             background-color: #12222f;
@@ -133,7 +136,6 @@
             align-items: center;
             flex-wrap: wrap;
             margin-top: 60px;
-            gap: 5px;
         }
 
         .services .container .serviceBx {
@@ -151,45 +153,155 @@
             max-width: 100px;
         }
 
-        .services .container .serviceBx h2{
+        .services .container .serviceBx h2 {
             font-weight: 500;
             font-size: 20px;
             letter-spacing: 1px;
         }
 
-        .technology{
+
+        .technology {
             background: #3f8ffc;
             width: 100%;
             padding: 100px;
             padding-top: 300px;
             margin-top: -300px;
-            display:flex;
+            display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .technology .contentBx{
+        .technology .contentBx {
             max-width: 800px;
         }
 
-        .technology .imgBx{
+        .technology .imgBx {
             max-width: 250px;
         }
 
-        .technology .imgBx img{
-            width:100%;
+        .technology .imgBx img {
+            max-width: 100%;
         }
 
-        @media screen and (max-width:950px) {
-            .banner .content h2 {
-                color: #fff;
-                font-size: 60px;
-            }
 
-            .banner .content p {
-                color: #fff;
-                font-size: 12px;
-            }
+        .client {
+            background: #162c3b;
+            padding: 100px;
+            text-align: center;
+        }
+
+        .client .imgBx {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .client .imgBx img {
+            max-width: 200px;
+            margin: 20px;
+            opacity: 0.25;
+            cursor: pointer;
+        }
+
+        .client .imgBx img:hover {
+            opacity: 1.0;
+        }
+
+
+        .testimonials {
+            position: relative;
+            padding: 100px;
+            background: #12222d;
+            text-align: center;
+        }
+        .testimonials .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .testimonials .container .contentBx {
+            background: #fff;
+            padding: 40px 30px;
+            width: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+        }
+        .testimonials .container .contentBx p {
+            font-style: italic;
+        }
+        .testimonials .container .contentBx h3 {
+            width: 100%;
+            text-align: end;
+            font-weight: 500;
+            color: #3f8ffc;
+        }
+
+
+        .contact{
+            padding: 100px;
+            background: #162c3b;
+            text-align: center;
+        }
+
+        .imgBx2 {
+            background: url('./assets/img/pexels-expect-best-323780.jpg') no-repeat center/cover;
+            width: 50%;
+        }
+        .redbg{
+            background: rgba(200,40,40) !important;
+        }
+        .form .inputBx{
+            margin-bottom: 30px;
+        }
+        .form .inputBx input{
+            width: 100%;
+            background: transparent;
+            box-shadow: none;
+            border: none;
+            outline: none;
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: 300;
+            color: #fff;
+            border-bottom: 2px solid #fff;
+        }
+        .form .inputBx input::placeholder{
+            color: #fff;
+            font-style: italic;
+            font-weight: 100;
+        }
+        .form .inputBx textarea{
+            width: 100%;
+            max-width: 100%;
+            background: transparent;
+            box-shadow: none;
+            border: none;
+            outline: none;
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: 300;
+            color: #fff;
+            min-height: 150px;
+            max-height: 200px;
+            border-bottom: 2px solid #fff;
+        }
+        .form .inputBx textarea::placeholder{
+            color: #fff;
+            font-style: italic;
+            font-weight: 100;
+        }
+        .form .inputBx input[type="submit"]{
+            width: 150px;
+            background: #fff;
+            color: #111;
+            cursor: pointer;
+            font-weight: 400;
         }
     </style>
 </head>
@@ -249,18 +361,77 @@
 
     <section class="technology">
         <div class="contentBx">
-        <h2 class="heading">100% fiable</h2>
-        <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, voluptates id aperiam repellat est veritatis eveniet culpa eius, iste, dolor sint nostrum delectus amet quos accusantium porro necessitatibus quam sapiente minus fuga magnam libero laudantium! Ea eius fugit hic ex voluptate quidem, expedita quaerat? Cum omnis quos debitis doloribus reiciendis.</p>
+            <h2 class="heading">100% fiable</h2>
+            <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, voluptates id aperiam repellat est veritatis eveniet culpa eius, iste, dolor sint nostrum delectus amet quos accusantium porro necessitatibus quam sapiente minus fuga magnam libero laudantium! Ea eius fugit hic ex voluptate quidem, expedita quaerat? Cum omnis quos debitis doloribus reiciendis.</p>
         </div>
         <div class="imgBx">
-        <img src="./assets/img/pexels-expect-best-323780.jpg">
+            <img src="./assets/img/pexels-expect-best-323780.jpg">
         </div>
     </section>
 
-    <section class="technology">
+    <section class="client">
         <h2 class="heading">Nos partenaires</h2>
         <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, voluptates id aperiam repellat est veritatis eveniet culpa eius, iste, dolor sint nostrum delectus amet quos accusantium porro necessitatibus quam sapiente minus fuga magnam libero laudantium! Ea eius fugit hic ex voluptate quidem, expedita quaerat? Cum omnis quos debitis doloribus reiciendis.</p>
         <div class="imgBx">
-        <img src="./assets/img/pexels-expect-best-323780.jpg">
+            <img src="./assets/img/pexels-expect-best-323780.jpg">
+            <img src="./assets/img/pexels-expect-best-323780.jpg">
+            <img src="./assets/img/pexels-expect-best-323780.jpg">
+            <img src="./assets/img/pexels-expect-best-323780.jpg">
         </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="heading">Ce que nos clients disent</h2>
+        <div class="container">
+            <div class="contentBx">
+                <div>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis minus quisquam inventore vero velit error veritatis quod iure est facere, laborum reprehenderit, quis soluta minima laboriosam dolorum cum vel deserunt odio ipsum officiis aliquid optio, culpa debitis! Ut natus error esse tempore ratione nam libero quasi, distinctio tenetur sunt illum voluptas, repudiandae aliquam illo, odio enim iusto totam consequuntur deserunt.</p>
+                    <h3>Nom & prenoms</h3>
+                </div>
+            </div>
+
+            <div class="contentBx">
+                <div>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis minus quisquam inventore vero velit error veritatis quod iure est facere, laborum reprehenderit, quis soluta minima laboriosam dolorum cum vel deserunt odio ipsum officiis aliquid optio, culpa debitis! Ut natus error esse tempore ratione nam libero quasi, distinctio tenetur sunt illum voluptas, repudiandae aliquam illo, odio enim iusto totam consequuntur deserunt.</p>
+                    <h3>Nom & prenoms</h3>
+                </div>
+            </div>
+
+            <div class="contentBx">
+                <div>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis minus quisquam inventore vero velit error veritatis quod iure est facere, laborum reprehenderit, quis soluta minima laboriosam dolorum cum vel deserunt odio ipsum officiis aliquid optio, culpa debitis! Ut natus error esse tempore ratione nam libero quasi, distinctio tenetur sunt illum voluptas, repudiandae aliquam illo, odio enim iusto totam consequuntur deserunt.</p>
+                    <h3>Nom & prenoms</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2 class="heading">Nous contacter</h2>
+        <p class="text">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt sunt deleniti eligendi numquam iusto repudiandae nisi? Nulla quaerat ducimus assumenda aspernatur omnis deserunt nesciunt tempore dicta laborum, consequatur sapiente fugit.
+        </p>
+    </section>
+
+    <section class="about">
+        <div class="contentBx redbg">
+            <form action="" class="form" autocomplete="off" autocapitalize="on">
+                <div class="inputBx">
+                    <input type="text" name="full_name" placeholder="Nom & prénoms" required maxlength="50" minlength="5">
+                </div>
+                <div class="inputBx">
+                    <input type="tel" name="contact" placeholder="Contact" required maxlength="20" minlength="10">
+                </div>
+                <div class="inputBx">
+                    <input type="email" name="email" placeholder="Email (optionnel)" minlength="5" maxlength="50">
+                </div>
+                <div class="inputBx">
+                    <textarea name="message" id="" placeholder="Ecrivez votre message" required maxlength="200" minlength="5"></textarea>
+                </div>
+                <div class="inputBx">
+                    <input type="submit" name="submit" value="Envoyer">
+                </div>
+            </form>
+        </div>
+        <div class="imgBx2"></div>
     </section>
