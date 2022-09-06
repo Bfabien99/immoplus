@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/img/immoplus.png" type="image/x-icon">
     <title>Immoplus</title>
 
     <style>
@@ -21,6 +22,20 @@
 
         body {
             overflow-x: hidden;
+        }
+
+        a{
+            text-decoration: none;
+            color: #111;
+            padding: 5px;
+            margin: 3px;
+        }
+
+        .btn-link{
+            color: #fff;
+            background: #3475ca;
+            font-weight: 400;
+            margin: 0 auto;
         }
 
         .banner {
@@ -150,6 +165,13 @@
             box-shadow: 0 0 5px #333;
         }
 
+        .services .container .serviceBx div{
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            align-items: center;
+        }
+
         .services .container .serviceBx img {
             max-width: 100px;
         }
@@ -158,6 +180,10 @@
             font-weight: 500;
             font-size: 20px;
             letter-spacing: 1px;
+        }
+
+        .services .container .serviceBx small{
+            color: #444;
         }
 
 
@@ -354,12 +380,15 @@
             .banner {
                 padding: 50px;
             }
+
             .banner header {
                 padding: 20px 50px;
             }
+
             .banner .content h2 {
                 font-size: 36px;
             }
+
             .banner .content p {
                 font-size: 16px;
             }
@@ -368,6 +397,7 @@
             .about {
                 flex-direction: column;
             }
+
             .about .contentBx,
             .about .imgBx {
                 width: 100%;
@@ -375,6 +405,7 @@
                 min-height: 400px;
                 text-align: center;
             }
+
             .about .imgBx {
                 position: absolute;
                 opacity: 0.15;
@@ -384,10 +415,12 @@
             .services {
                 padding: 50px;
             }
+
             .services .container {
                 justify-content: center;
                 margin-top: 20px;
             }
+
             .services .container .serviceBx {
                 margin: 20px;
                 width: 300px;
@@ -395,50 +428,55 @@
             }
 
 
-            .technology{
+            .technology {
                 padding: 50px;
                 padding-top: 300px;
                 justify-content: center;
                 flex-direction: column;
             }
-            .technology .imgBx{
+
+            .technology .imgBx {
                 margin-top: 40px;
                 max-width: 250px;
             }
 
 
-            .client{
+            .client {
                 padding: 50px;
             }
-            .client .imgBx{
+
+            .client .imgBx {
                 justify-content: center;
             }
 
 
-            .testimonials{
+            .testimonials {
                 padding: 50px;
             }
-            .testimonials .contentBx{
+
+            .testimonials .contentBx {
                 padding: 60px 40px;
                 max-width: 550px;
                 margin-bottom: 40px;
             }
-            .testimonials .contentBx:last-child{
+
+            .testimonials .contentBx:last-child {
                 margin-bottom: 0px;
             }
 
 
-            .contact{
+            .contact {
                 padding: 50px;
             }
 
 
-            .footer{
+            .footer {
                 padding: 20px 50px;
                 flex-direction: column-reverse;
                 text-align: center;
             }
-            .footer ul{
+
+            .footer ul {
                 margin-bottom: 20px;
             }
         }
@@ -448,7 +486,9 @@
 <body>
     <div class="banner">
         <header>
-            <a href="./" class="logo">Immoplus</a>
+            <a href="./" class="logo">
+                ImmoPlus
+            </a>
             <div class="toggle"></div>
         </header>
         <img src="./assets/img/pexels-expect-best-323780.jpg">
@@ -480,19 +520,28 @@
             <div class="serviceBx">
                 <div>
                     <img src="./assets/img/pexels-expect-best-323780.jpg">
-                    <h2>Service 1</h2>
+                    <h2>Achat & Location</h2>
+                    <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deserunt commodi fugit, eaque ducimus vel numquam mollitia dolorem qui veritatis!</small>
+                    <br>
+                    <a href="#" class="btn-link">Accéder</a>
                 </div>
             </div>
             <div class="serviceBx">
                 <div>
                     <img src="./assets/img/pexels-expect-best-323780.jpg">
-                    <h2>Service 1</h2>
+                    <h2>Mettre un bien sur le marché</h2>
+                    <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deserunt commodi fugit, eaque ducimus vel numquam mollitia dolorem qui veritatis!</small>
+                    <br>
+                    <a href="#" class="btn-link">Accéder</a>
                 </div>
             </div>
             <div class="serviceBx">
                 <div>
                     <img src="./assets/img/pexels-expect-best-323780.jpg">
-                    <h2>Service 1</h2>
+                    <h2>Aide à la construction de bien</h2>
+                    <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deserunt commodi fugit, eaque ducimus vel numquam mollitia dolorem qui veritatis!</small>
+                    <br>
+                    <a href="#" class="btn-link">Accéder</a>
                 </div>
             </div>
         </div>
@@ -504,7 +553,7 @@
             <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, voluptates id aperiam repellat est veritatis eveniet culpa eius, iste, dolor sint nostrum delectus amet quos accusantium porro necessitatibus quam sapiente minus fuga magnam libero laudantium! Ea eius fugit hic ex voluptate quidem, expedita quaerat? Cum omnis quos debitis doloribus reiciendis.</p>
         </div>
         <div class="imgBx">
-            <img src="./assets/img/pexels-expect-best-323780.jpg">
+            <img src="./assets/img/immoplus.png">
         </div>
     </section>
 
