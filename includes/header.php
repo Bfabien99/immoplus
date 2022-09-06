@@ -303,6 +303,33 @@
             cursor: pointer;
             font-weight: 400;
         }
+
+
+        .footer{
+            width: 100%;
+            background: #162c3b;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer ul{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer ul li{
+            list-style: none;
+        }
+        .footer ul li a{
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .footer ul li img{
+            /*filter: invert(1);*/
+            max-width:20px;
+        }
     </style>
 </head>
 
