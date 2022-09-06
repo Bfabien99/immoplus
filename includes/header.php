@@ -14,6 +14,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            transition: all 0.1s;
         }
 
         html {
@@ -79,7 +80,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 40px 100px;
+            padding: 10px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -95,12 +96,44 @@
             letter-spacing: 1px;
         }
 
+        .banner header nav{
+            float: right
+        }
+
+        .banner header nav ul{
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .banner header nav ul li{
+            list-style: none;
+        }
+
+        .banner header nav ul li a{
+            height: 50px;
+            line-height: 50px;
+            padding: 0 20px;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+        }
+
+        .banner header nav ul li:hover{
+            border-bottom: 1px solid #fff;
+        }
+
+        .banner header nav ul li a:hover{
+            color: #162c3b;
+        }
+
         .banner header .toggle {
-            position: relative;
             width: 36px;
             height: 28px;
             background: url('./assets/img/menu_rounded_100px.png') no-repeat center/cover;
             cursor: pointer;
+            float: right;
+            display: none;
         }
 
 
@@ -382,7 +415,39 @@
             }
 
             .banner header {
-                padding: 20px 50px;
+                padding: 0px 40px;
+            }
+
+            .banner header nav{
+                display: none;
+                position: absolute;
+                width: 100%;
+                height: calc(100vh - 50px);
+                background: #12222d;
+                top: 50px;
+                left: -100%;
+                transition: 0.3s;
+            }
+
+            .banner header nav.active{
+                left: 0;
+            }
+
+            .banner header nav ul{
+                display: block;
+                text-align: center;
+            }
+
+            .banner header nav ul li a{
+                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            }
+
+            .banner header nav ul li a:hover{
+                color: #3f8ffc;
+            }
+
+            .banner header .toggle{
+                display: block;
             }
 
             .banner .content h2 {
@@ -489,18 +554,26 @@
             <a href="./" class="logo">
                 ImmoPlus
             </a>
+            <nav>
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#about">A propos</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#client">Partenaire</a></li>
+                    <li><a href="#testimonials">Avis</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
             <div class="toggle"></div>
         </header>
         <img src="./assets/img/pexels-expect-best-323780.jpg">
         <div class="content">
             <h2>Immo plus</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores vitae impedit sint sapiente quo excepturi dolore sunt aperiam tempora. Eius vel perferendis aspernatur qui rerum nemo corrupti, quisquam odit animi!
-                Sint adipisci nemo perspiciatis dolorum saepe illo quam, placeat doloribus architecto dolor labore voluptatibus ipsam, ea, minus ipsa impedit ad odio nisi dignissimos? Atque fugiat sequi deserunt maxime nostrum molestias?
-                Blanditiis laboriosam doloribus accusantium quaerat asperiores iste itaque dolorem explicabo nulla. Perspiciatis placeat reprehenderit similique amet neque illo, perferendis dicta sunt ad sit, numquam blanditiis commodi exercitationem provident tenetur officia.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores vitae impedit sint sapiente quo excepturi dolore sunt aperiam tempora. Eius vel perferendis aspernatur qui rerum nemo corrupti, quisquam odit animi!</p>
         </div>
     </div>
 
-    <section class="about">
+    <section class="about" id="about">
         <div class="contentBx">
             <h2 class="heading">A propos</h2>
             <p class="text">
@@ -511,7 +584,7 @@
         <div class="imgBx"></div>
     </section>
 
-    <section class="services">
+    <section class="services" id="services">
         <h2 class="heading">Nos services</h2>
         <p class="text">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore maiores quae doloribus quos quibusdam dolorum accusamus dicta excepturi aperiam ducimus placeat sunt ea modi nobis, officia nostrum enim esse sequi!
@@ -547,7 +620,7 @@
         </div>
     </section>
 
-    <section class="technology">
+    <section class="technology" id="technology">
         <div class="contentBx">
             <h2 class="heading">100% fiable</h2>
             <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, voluptates id aperiam repellat est veritatis eveniet culpa eius, iste, dolor sint nostrum delectus amet quos accusantium porro necessitatibus quam sapiente minus fuga magnam libero laudantium! Ea eius fugit hic ex voluptate quidem, expedita quaerat? Cum omnis quos debitis doloribus reiciendis.</p>
@@ -557,7 +630,7 @@
         </div>
     </section>
 
-    <section class="client">
+    <section class="client" id="client">
         <h2 class="heading">Nos partenaires</h2>
         <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, voluptates id aperiam repellat est veritatis eveniet culpa eius, iste, dolor sint nostrum delectus amet quos accusantium porro necessitatibus quam sapiente minus fuga magnam libero laudantium! Ea eius fugit hic ex voluptate quidem, expedita quaerat? Cum omnis quos debitis doloribus reiciendis.</p>
         <div class="imgBx">
@@ -568,7 +641,7 @@
         </div>
     </section>
 
-    <section class="testimonials">
+    <section class="testimonials" id="testimonials">
         <h2 class="heading">Ce que nos clients disent</h2>
         <div class="container">
             <div class="contentBx">
@@ -594,7 +667,7 @@
         </div>
     </section>
 
-    <section class="contact">
+    <section class="contact" id="contact">
         <h2 class="heading">Nous contacter</h2>
         <p class="text">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt sunt deleniti eligendi numquam iusto repudiandae nisi? Nulla quaerat ducimus assumenda aspernatur omnis deserunt nesciunt tempore dicta laborum, consequatur sapiente fugit.

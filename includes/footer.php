@@ -9,4 +9,6 @@
             </ul>
         </section>
     </body>
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/toggle.js"></script>
 </html>
