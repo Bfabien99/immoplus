@@ -430,6 +430,11 @@
             z-index: 1000;
         }
 
+        .show:hover{
+            background: rgba(200, 0, 0, 1);
+            transition: 0.2s;
+        }
+
         @media (max-width: 991px) {
             .banner {
                 padding: 50px;
