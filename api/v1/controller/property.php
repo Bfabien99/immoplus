@@ -49,7 +49,7 @@ if (empty($_GET)) {
             exit();
         } catch (PDOException $ex) {
             error_log("Database query error -" . $ex, 0);
-            $response = new Response(500, false, "Failed to get task");
+            $response = new Response(500, false, "Failed to get Property");
             $response->send();
             exit();
         }
@@ -107,11 +107,11 @@ if (empty($_GET)) {
             }
 
             //On récupère la propriété ajoutée
-            $lastTaskID = $connectDB->lastInsertId();
+            $lastPropertyID = $connectDB->lastInsertId();
 
             $sql = "select * from property where id = :id";
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':id',$lastTaskID, PDO::PARAM_INT);
+            $query->bindValue(':id',$lastPropertyID, PDO::PARAM_INT);
             $query->execute();
 
             $rowCount = $query->rowCount();
@@ -142,7 +142,7 @@ if (empty($_GET)) {
             exit();
         } catch (PDOException $ex) {
             error_log("Database query error -" . $ex, 0);
-            $response = new Response(500, false, "Failed to get task");
+            $response = new Response(500, false, "Failed to post Property");
             $response->send();
             exit();
         }
@@ -188,11 +188,39 @@ if (empty($_GET)) {
             exit();
         } catch (PDOException $ex) {
             error_log("Database query error -" . $ex, 0);
-            $response = new Response(500, false, "Failed to get task");
+            $response = new Response(500, false, "Failed to get Property");
             $response->send();
             exit();
         }
     }if ($_SERVER['REQUEST_METHOD'] == 'DELETE'){
+
+        try{$sql = "delete from property where id = :id";
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id',$property_id, PDO::PARAM_INT);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            $propertyArray = [];
+
+            if ($rowCount === 0) {
+                $response = new Response(404, false, "Property not found");
+                $response->send();
+                exit();
+            }
+
+            $response = new Response(200, true, "Property deleted");
+                $response->send();
+                exit();
+        }catch (PropertyException $ex) {
+                $response = new Response(400, false, $ex->getMessage());
+                $response->send();
+                exit();
+            } catch (PDOException $ex) {
+                error_log("Database query error -" . $ex, 0);
+                $response = new Response(500, false, "Failed to delete Property");
+                $response->send();
+                exit();
+            }
 
     }if ($_SERVER['REQUEST_METHOD'] == 'PATCH'){
 
