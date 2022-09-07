@@ -1,3 +1,25 @@
+<?php
+    $error = false;
+    if(isset($_POST['submit'])){
+        if(empty(trim($_POST['full_name']))){
+            $error = "<h4 class='error'>Veuillez entrer un nom valide</h4>";
+        }else{
+            $full_name = $_POST['full_name'];
+        }
+
+        if(empty(trim($_POST['contact']))){
+            $error = "<h4 class='error'>Veuillez entrer un contact valide</h4>";
+        }else{
+            $contact = $_POST['contact'];
+        }
+
+        if(empty(trim($_POST['message']))){
+            $error = "<h4 class='error'>Veuillez entrer un message valide</h4>";
+        }else{
+            $message = $_POST['message'];
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +30,14 @@
     <link rel="shortcut icon" href="./assets/img/immoplus.png" type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/index.css" type="text/css">
     <title>Immoplus</title>
+    <style>
+        .error{
+            background: red;
+            color: #fff;
+            text-align: center;
+            padding: 0.5em;
+        }
+    </style>
 </head>
 
 <body>
@@ -139,18 +169,19 @@
 
     <section class="about">
         <div class="contentBx redbg">
-            <form action="" class="form" autocomplete="off" autocapitalize="on">
+            <form action="" method="post" class="form" autocomplete="off" autocapitalize="on">
+                <?php echo $error ?? "";?>
                 <div class="inputBx">
-                    <input type="text" name="full_name" placeholder="Nom & prénoms" required maxlength="50" minlength="5">
+                    <input type="text" name="full_name" placeholder="Nom & prénoms" required maxlength="50" value="<?php echo $_POST['full_name'] ?? "" ;?>" minlength="5">
                 </div>
                 <div class="inputBx">
-                    <input type="tel" name="contact" placeholder="Contact" required maxlength="20" minlength="10">
+                    <input type="tel" name="contact" placeholder="Contact" required maxlength="20" value="<?php echo $_POST['contact'] ?? "" ;?>" minlength="10">
                 </div>
                 <div class="inputBx">
-                    <input type="email" name="email" placeholder="Email (optionnel)" minlength="5" maxlength="50">
+                    <input type="email" name="email" placeholder="Email (optionnel)" value="<?php echo $_POST['email'] ?? "" ;?>" minlength="5" maxlength="50">
                 </div>
                 <div class="inputBx">
-                    <textarea name="message" id="" placeholder="Ecrivez votre message" required maxlength="200" minlength="5"></textarea>
+                    <textarea name="message" id="" placeholder="Ecrivez votre message" required maxlength="200" minlength="5"><?php echo $_POST['message'] ?? "" ;?></textarea>
                 </div>
                 <div class="inputBx">
                     <input type="submit" name="submit" value="Envoyer">
