@@ -54,7 +54,7 @@ if (empty($_GET)) {
             exit();
         }
     } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        try{
+        try {
             // On vérifie d'abord que le content type est application/json
             if ($_SERVER["CONTENT_TYPE"] !== "application/json") {
                 $response = new Response(400, false, "Content type header is not set to json");
@@ -82,7 +82,7 @@ if (empty($_GET)) {
                 $response->send();
                 exit();
             }
-            
+
             // On crée une nouvelle propriété
             $newProperty = new Property(null, $jsonData->title, $jsonData->description, $jsonData->type);
 
@@ -90,6 +90,20 @@ if (empty($_GET)) {
             $description = $newProperty->getDescription();
             $type = $newProperty->getType();
             $post_date = $newProperty->getPostDate();
+
+            // On vérifie s'il n'y a pas une propriété avec le m$me titre
+            $sql = "select * from property where title = :title";
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':title', $title, PDO::PARAM_STR);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+
+            if ($rowCount === 1) {
+                $response = new Response(403, false, "Property with the same title exist");
+                $response->send();
+                exit();
+            }
 
             // Insertion de la propriété dans la base de donnée
             $sql = "insert into property (title, description, type) values(:title, :description, :type)";
@@ -111,7 +125,7 @@ if (empty($_GET)) {
 
             $sql = "select * from property where id = :id";
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':id',$lastPropertyID, PDO::PARAM_INT);
+            $query->bindValue(':id', $lastPropertyID, PDO::PARAM_INT);
             $query->execute();
 
             $rowCount = $query->rowCount();
@@ -135,8 +149,7 @@ if (empty($_GET)) {
             $response = new Response(201, true, "Property added successfully", $returnData);
             $response->send();
             exit();
-
-        }catch (PropertyException $ex) {
+        } catch (PropertyException $ex) {
             $response = new Response(400, false, $ex->getMessage());
             $response->send();
             exit();
@@ -154,11 +167,11 @@ if (empty($_GET)) {
 } elseif (array_key_exists("property_id", $_GET)) {
     $property_id = $_GET["property_id"];
 
-    if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         try {
             $sql = "select * from property where id = :id";
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':id',$property_id, PDO::PARAM_INT);
+            $query->bindValue(':id', $property_id, PDO::PARAM_INT);
             $query->execute();
 
             $rowCount = $query->rowCount();
@@ -192,11 +205,13 @@ if (empty($_GET)) {
             $response->send();
             exit();
         }
-    }if ($_SERVER['REQUEST_METHOD'] == 'DELETE'){
+    }
+    if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
-        try{$sql = "delete from property where id = :id";
+        try {
+            $sql = "delete from property where id = :id";
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':id',$property_id, PDO::PARAM_INT);
+            $query->bindValue(':id', $property_id, PDO::PARAM_INT);
             $query->execute();
 
             $rowCount = $query->rowCount();
@@ -209,20 +224,19 @@ if (empty($_GET)) {
             }
 
             $response = new Response(200, true, "Property deleted");
-                $response->send();
-                exit();
-        }catch (PropertyException $ex) {
-                $response = new Response(400, false, $ex->getMessage());
-                $response->send();
-                exit();
-            } catch (PDOException $ex) {
-                error_log("Database query error -" . $ex, 0);
-                $response = new Response(500, false, "Failed to delete Property");
-                $response->send();
-                exit();
-            }
-
-    }if ($_SERVER['REQUEST_METHOD'] == 'PATCH'){
-
+            $response->send();
+            exit();
+        } catch (PropertyException $ex) {
+            $response = new Response(400, false, $ex->getMessage());
+            $response->send();
+            exit();
+        } catch (PDOException $ex) {
+            error_log("Database query error -" . $ex, 0);
+            $response = new Response(500, false, "Failed to delete Property");
+            $response->send();
+            exit();
+        }
+    }
+    if ($_SERVER['REQUEST_METHOD'] == 'PATCH') {
     }
 }
