@@ -245,4 +245,57 @@ if (empty($_GET)) {
     }
     if ($_SERVER['REQUEST_METHOD'] == 'PATCH') {
     }
+}elseif (array_key_exists("property_type", $_GET)) {
+    $property_type = strtolower($_GET["property_type"]);
+
+    if ($property_type !== 'location' && $property_type !== 'vendre') {
+        $response = new Response(400, false, "Property type must be 'location' or 'vendre'");
+        $response->send();
+        exit();
+    }
+
+    // Si la methode est en GET
+    if ($_SERVER["REQUEST_METHOD"] === "GET") {
+
+        try {
+            $query = $connectDB->prepare('select * from property where type = :type');
+            $query->bindParam('type', $property_type, PDO::PARAM_STR);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            $propertyArray = [];
+
+            if ($rowCount === 0) {
+                $response = new Response(404, false, "Property not found");
+                $response->send();
+                exit();
+            }
+
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['post_date']);
+                $propertyArray[] = $property->returnPropertyAsArray();
+            }
+
+            $returnData = array();
+            $returnData['rows_returned'] = $rowCount;
+            $returnData['properties'] = $propertyArray;
+
+            $response = new Response(200, true, "", $returnData);
+            $response->send();
+            exit();
+        } catch (PropertyException $ex) {
+            $response = new Response(400, false, $ex->getMessage());
+            $response->send();
+            exit();
+        } catch (PDOException $ex) {
+            error_log("Database query error -" . $ex, 0);
+            $response = new Response(500, false, "Failed to get property");
+            $response->send();
+            exit();
+        }
+    } else {
+        $response = new Response(405, false, "Request method not allowed");
+        $response->send();
+        exit();
+    }
 }

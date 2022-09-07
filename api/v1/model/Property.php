@@ -141,7 +141,7 @@ class Property
         $property['type'] = $this->getType();
         $property['address'] = $this->getAddress();
         $property['area'] = $this->getArea();
-        $property['price'] = $this->getPrice();
+        $property['price'] = (int) $this->getPrice();
         $property['post_date'] = $this->getPostDate();
 
         return $property;
