@@ -32,7 +32,7 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['post_date']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 
@@ -79,7 +79,7 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['post_date']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 
