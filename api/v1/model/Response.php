@@ -9,6 +9,13 @@ class Response
     private $_data;
     private $_responseData = [];
 
+    public function __construct($httpStatusCode, $success, $message,  $data = null){
+        $this->setHttpStatusCode($httpStatusCode);
+        $this->setSuccess($success);
+        $this->addMessage($message);
+        $this->setData($data);
+    }
+
     public function setSuccess($success)
     {
         $this->_success = $success;

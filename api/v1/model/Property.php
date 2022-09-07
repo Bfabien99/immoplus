@@ -26,4 +26,11 @@ class Property
     {
         return $this->_id;
     }
+
+    public function returnPropertyAsArray(){
+        $property = [];
+        $property['id'] = $this->getID();
+
+        return $property;
+    }
 }

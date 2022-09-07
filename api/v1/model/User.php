@@ -26,4 +26,11 @@ class User
     {
         return $this->_id;
     }
+
+    public function returnUserAsArray(){
+        $user = [];
+        $user['id'] = $this->getID();
+
+        return $user;
+    }
 }
