@@ -32,7 +32,7 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['post_date']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['post_date']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 
@@ -73,7 +73,7 @@ if (empty($_GET)) {
             }
 
             // On vérifie si les champs requis sont présents
-            if (!isset($jsonData->title) || !isset($jsonData->description) || !isset($jsonData->type)) {
+            if (!isset($jsonData->title) || !isset($jsonData->description) || !isset($jsonData->type) || !isset($jsonData->addresse) || !isset($jsonData->area) || !isset($jsonData->price)) {
                 $response = new Response(400, false, "");
                 $response->setSuccess(false);
                 !isset($jsonData->title) ? $response->addMessage("Title field is mandatory and must be provided") : false;
@@ -84,11 +84,14 @@ if (empty($_GET)) {
             }
 
             // On crée une nouvelle propriété
-            $newProperty = new Property(null, $jsonData->title, $jsonData->description, $jsonData->type);
+            $newProperty = new Property(null, $jsonData->title, $jsonData->description, $jsonData->type, $jsonData->address, $jsonData->area, $jsonData->price);
 
             $title = $newProperty->getTitle();
             $description = $newProperty->getDescription();
             $type = $newProperty->getType();
+            $address = $newProperty->getAddress();
+            $area = $newProperty->getArea();
+            $price = $newProperty->getPrice();
             $post_date = $newProperty->getPostDate();
 
             // On vérifie s'il n'y a pas une propriété avec le m$me titre
@@ -106,11 +109,14 @@ if (empty($_GET)) {
             }
 
             // Insertion de la propriété dans la base de donnée
-            $sql = "insert into property (title, description, type) values(:title, :description, :type)";
+            $sql = "insert into property (title, description, type, address, area, price) values(:title, :description, :type, :address, :area, :price)";
             $query = $connectDB->prepare($sql);
             $query->bindValue(':title', $title, PDO::PARAM_STR);
             $query->bindValue(':description', $description, PDO::PARAM_STR);
             $query->bindValue(':type', $type, PDO::PARAM_STR);
+            $query->bindValue(':address', $address, PDO::PARAM_STR);
+            $query->bindValue(':area', $area, PDO::PARAM_INT);
+            $query->bindValue(':price', $price, PDO::PARAM_INT);
             $query->execute();
 
             $rowCount = $query->rowCount();
@@ -138,7 +144,7 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['post_date']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['post_date']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 
@@ -184,7 +190,7 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['post_date']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['post_date']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 
