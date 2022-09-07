@@ -4,8 +4,16 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME}% !-d 
 RewriteCond %{REQUEST_FILENAME}% !-f 
 
+### PROPERTY API ROUTES ###
+#- GET ALL PROPERTY -#
 RewriteRule ^property$ controller/property.php [L]
+
+#- GET ALL PROPERTY BY ID -#
 RewriteRule ^property/([0-9]+)$ controller/property.php?property_id=$1 [L]
+
+#- GET ALL PROPERTY LIMIT BY PAGE -#
 RewriteRule ^property/page/([0-9]+)$ controller/property.php?page=$1 [L]
-RewriteRule ^property/toloan$ controller/property.php?propertycat=loan [L]
-RewriteRule ^property/tosell$ controller/property.php?propertycat=sell [L]
+
+#- GET ALL PROPERTY BY TYPE -#
+RewriteRule ^property/location$ controller/property.php?property_type=location [L]
+RewriteRule ^property/vendre$ controller/property.php?property_type=vendre [L]
