@@ -5,7 +5,7 @@ RewriteCond %{REQUEST_FILENAME}% !-d
 RewriteCond %{REQUEST_FILENAME}% !-f 
 
 RewriteRule ^property$ controller/property.php [L]
-RewriteRule ^property/([0-9]+)$ controller/property.php?propertyid=$1 [L]
+RewriteRule ^property/([0-9]+)$ controller/property.php?property_id=$1 [L]
 RewriteRule ^property/page/([0-9]+)$ controller/property.php?page=$1 [L]
 RewriteRule ^property/toloan$ controller/property.php?propertycat=loan [L]
 RewriteRule ^property/tosell$ controller/property.php?propertycat=sell [L]
