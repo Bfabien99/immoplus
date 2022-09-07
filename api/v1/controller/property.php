@@ -79,6 +79,9 @@ if (empty($_GET)) {
                 !isset($jsonData->title) ? $response->addMessage("Title field is mandatory and must be provided") : false;
                 !isset($jsonData->description) ? $response->addMessage("Description field is mandatory and must be provided") : false;
                 !isset($jsonData->type) ? $response->addMessage("Type field is mandatory and must be provided") : false;
+                !isset($jsonData->address) ? $response->addMessage("Address field is mandatory and must be provided") : false;
+                !isset($jsonData->area) ? $response->addMessage("Area field is mandatory and must be provided") : false;
+                !isset($jsonData->price) ? $response->addMessage("Price field is mandatory and must be provided") : false;
                 $response->send();
                 exit();
             }
