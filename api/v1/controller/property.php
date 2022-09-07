@@ -54,6 +54,54 @@ if (empty($_GET)) {
             exit();
         }
     } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        try{
+            // On vérifie d'abord que le content type est application/json
+            if ($_SERVER["CONTENT_TYPE"] !== "application/json") {
+                $response = new Response(400, false, "Content type header is not set to json");
+                $response->send();
+                exit();
+            }
+
+            // On récupère les données postées
+            $rawPOSTData = file_get_contents('php://input');
+
+            // On vérifie si les données postées sont sous le format json
+            if (!$jsonData = json_decode($rawPOSTData)) {
+                $response = new Response(400, false, "Request body is not a valid JSON");
+                $response->send();
+                exit();
+            }
+
+            // On vérifie si les champs requis sont présents
+            if (!isset($jsonData->title) || !isset($jsonData->description) || !isset($jsonData->type)) {
+                $response = new Response(400, false, "");
+                $response->setSuccess(false);
+                !isset($jsonData->title) ? $response->addMessage("Title field is mandatory and must be provided") : false;
+                !isset($jsonData->description) ? $response->addMessage("Description field is mandatory and must be provided") : false;
+                !isset($jsonData->type) ? $response->addMessage("Type field is mandatory and must be provided") : false;
+                $response->send();
+                exit();
+            }
+            
+            // On crée une nouvelle propriété
+            $newProperty = new Property(null, $jsonData->title, $jsonData->description, $jsonData->type);
+
+            $title = $newProperty->getTitle();
+            $description = $newProperty->getDescription();
+            $type = $newProperty->getType();
+            $post_date = $newProperty->getPostDate();
+
+            var_dump($newProperty);
+        }catch (PropertyException $ex) {
+            $response = new Response(400, false, $ex->getMessage());
+            $response->send();
+            exit();
+        } catch (PDOException $ex) {
+            error_log("Database query error -" . $ex, 0);
+            $response = new Response(500, false, "Failed to get task");
+            $response->send();
+            exit();
+        }
     } else {
         $response = new Response(405, false, "Method Not Allowed");
         $response->send();

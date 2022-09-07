@@ -14,7 +14,7 @@ class Property
     private $_post_date;
 
 
-    public function __construct($id, $title, $description, $type, $post_date){
+    public function __construct($id, $title, $description, $type, $post_date = null){
         $this->setId($id);
         $this->setTitle($title);
         $this->setDescription($description);
@@ -65,7 +65,12 @@ class Property
 
     public function setPostDate($post_date)
     {   
-        $post_date = date("Y-m-d H:i:s");
+        if (($post_date !== null) && date_format(date_create_from_format('Y-m-d H:i:s', $post_date), 'Y-m-d H:i:s') != $post_date) {
+            throw new PropertyException("Property post_date date time error");
+        }elseif($post_date == null){
+            $post_date = date('Y-m-d H:i:s');
+        }
+
         $this->_post_date = $post_date;
     }
 
