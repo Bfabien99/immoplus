@@ -11,14 +11,20 @@ class Property
     private $_title;
     private $_description;
     private $_type;
+    private $_address;
+    private $_area;
+    private $_price;
     private $_post_date;
 
 
-    public function __construct($id, $title, $description, $type, $post_date = null){
+    public function __construct($id, $title, $description, $type, $address, $area, $price, $post_date = null){
         $this->setId($id);
         $this->setTitle($title);
         $this->setDescription($description);
         $this->setType($type);
+        $this->setAddress($address);
+        $this->setArea($area);
+        $this->setPrice($price);
         $this->setPostDate($post_date);
     }
 
@@ -29,7 +35,6 @@ class Property
         }
         $this->_id = $id;
     }
-
     public function getID()
     {
         return $this->_id;
@@ -43,7 +48,6 @@ class Property
 
         $this->_title = $title;
     }
-
     public function getTitle()
     {
         return $this->_title;
@@ -51,16 +55,65 @@ class Property
 
     public function setDescription($description)
     {
-        if (($description !== null)  && (strlen($description) > 16777215)) {
+        if (($description !== null)  && (strlen($description) < 10)) {
             throw new PropertyException("Property Description error");
         }
 
         $this->_description = $description;
     }
-
     public function getDescription()
     {
         return $this->_description;
+    }
+    
+    public function setType($type)
+    {
+        if (strtolower($type) !== 'location' && strtolower($type) !== 'vendre') {
+            throw new PropertyException("property type must be 'location' or 'vendre'");
+        }
+
+        $this->_type = $type;
+    }
+    public function getType()
+    {
+        return $this->_type;
+    }
+
+    public function setAddress($address)
+    {
+        if (($address !== null)  && (strlen($address) < 10)) {
+            throw new PropertyException("Property Address error");
+        }
+
+        $this->_address = $address;
+    }
+    public function getAddress()
+    {
+        return $this->_address;
+    }
+
+    public function setArea($area)
+    {
+        if (($area !== null) && (!is_numeric($area) || $area <= 100)) {
+            throw new PropertyException("Property Area error");
+        }
+        $this->_area = $area;
+    }
+    public function getArea()
+    {
+        return $this->_area;
+    }
+
+    public function setPrice($price)
+    {
+        if (($price !== null) && (!is_numeric($price) || $price <= 100)) {
+            throw new PropertyException("Property Price error");
+        }
+        $this->_price = $price;
+    }
+    public function getPrice()
+    {
+        return $this->_price;
     }
 
     public function setPostDate($post_date)
@@ -73,25 +126,12 @@ class Property
 
         $this->_post_date = $post_date;
     }
-
     public function getPostDate()
     {
         return $this->_post_date;
     }
 
-    public function setType($type)
-    {
-        if (strtolower($type) !== 'location' && strtolower($type) !== 'vendre') {
-            throw new PropertyException("property type must be 'location' or 'vendre'");
-        }
-
-        $this->_type = $type;
-    }
-
-    public function getType()
-    {
-        return $this->_type;
-    }
+    
 
     public function returnPropertyAsArray(){
         $property = [];
