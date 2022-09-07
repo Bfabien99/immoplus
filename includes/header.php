@@ -55,7 +55,7 @@
         <div class="container">
             <div class="serviceBx">
                 <div>
-                    <img src="./assets/img/pexels-expect-best-323780.jpg">
+                    <img src="./assets/img/real_estate_128px.png">
                     <h2>Achat & Location</h2>
                     <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deserunt commodi fugit, eaque ducimus vel numquam mollitia dolorem qui veritatis!</small>
                     <br>
@@ -64,7 +64,7 @@
             </div>
             <div class="serviceBx">
                 <div>
-                    <img src="./assets/img/pexels-expect-best-323780.jpg">
+                    <img src="./assets/img/rent_64px.png">
                     <h2>Mettre un bien sur le marché</h2>
                     <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deserunt commodi fugit, eaque ducimus vel numquam mollitia dolorem qui veritatis!</small>
                     <br>
@@ -73,7 +73,7 @@
             </div>
             <div class="serviceBx">
                 <div>
-                    <img src="./assets/img/pexels-expect-best-323780.jpg">
+                    <img src="./assets/img/loader_60px.png">
                     <h2>Aide à la construction de bien</h2>
                     <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deserunt commodi fugit, eaque ducimus vel numquam mollitia dolorem qui veritatis!</small>
                     <br>
