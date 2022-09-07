@@ -73,7 +73,7 @@ if (empty($_GET)) {
             }
 
             // On vérifie si les champs requis sont présents
-            if (!isset($jsonData->title) || !isset($jsonData->description) || !isset($jsonData->type) || !isset($jsonData->addresse) || !isset($jsonData->area) || !isset($jsonData->price)) {
+            if (!isset($jsonData->title) || !isset($jsonData->description) || !isset($jsonData->type) || !isset($jsonData->address) || !isset($jsonData->area) || !isset($jsonData->price)) {
                 $response = new Response(400, false, "");
                 $response->setSuccess(false);
                 !isset($jsonData->title) ? $response->addMessage("Title field is mandatory and must be provided") : false;

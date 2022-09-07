@@ -81,7 +81,7 @@ class Property
 
     public function setAddress($address)
     {
-        if (($address !== null)  && (strlen($address) < 10)) {
+        if (($address !== null)  && (strlen($address) < 3)) {
             throw new PropertyException("Property Address error");
         }
 
@@ -94,7 +94,7 @@ class Property
 
     public function setArea($area)
     {
-        if (($area !== null) && (!is_numeric($area) || $area <= 100)) {
+        if (($area !== null) && $area <= 100) {
             throw new PropertyException("Property Area error");
         }
         $this->_area = $area;
@@ -106,7 +106,7 @@ class Property
 
     public function setPrice($price)
     {
-        if (($price !== null) && (!is_numeric($price) || $price <= 100)) {
+        if (($price !== null) && $price <= 100) {
             throw new PropertyException("Property Price error");
         }
         $this->_price = $price;
@@ -139,6 +139,9 @@ class Property
         $property['title'] = $this->getTitle();
         $property['description'] = $this->getDescription();
         $property['type'] = $this->getType();
+        $property['address'] = $this->getAddress();
+        $property['area'] = $this->getArea();
+        $property['price'] = $this->getPrice();
         $property['post_date'] = $this->getPostDate();
 
         return $property;
