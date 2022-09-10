@@ -14,13 +14,13 @@ class Property
     private $_address;
     private $_area;
     private $_price;
-    private $_bedroom;// chambre
     private $_shower;// douche
+    private $_bedroom;// chambre
     private $_picture;//
     private $_post_date;
 
 
-    public function __construct($id, $title, $description, $type, $address, $area, $price, $post_date = null){
+    public function __construct($id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture = null, $post_date = null){
         $this->setId($id);
         $this->setTitle($title);
         $this->setDescription($description);
@@ -28,6 +28,9 @@ class Property
         $this->setAddress($address);
         $this->setArea($area);
         $this->setPrice($price);
+        $this->setShower($shower);
+        $this->setBedroom($bedroom);
+        $this->setPicture($picture);
         $this->setPostDate($post_date);
     }
 
@@ -119,18 +122,6 @@ class Property
         return $this->_price;
     }
 
-    public function setBedroom($bedroom)
-    {
-        if (($bedroom !== null) && $bedroom <= 0) {
-            throw new PropertyException("Property bedroom error");
-        }
-        $this->_bedroom = $bedroom;
-    }
-    public function getBedroom()
-    {
-        return $this->_bedroom;
-    }
-
     public function setShower($shower)
     {
         if (($shower !== null) && $shower <= 0) {
@@ -143,10 +134,24 @@ class Property
         return $this->_shower;
     }
 
+    public function setBedroom($bedroom)
+    {
+        if (($bedroom !== null) && $bedroom <= 0) {
+            throw new PropertyException("Property bedroom error");
+        }
+        $this->_bedroom = $bedroom;
+    }
+    public function getBedroom()
+    {
+        return $this->_bedroom;
+    }
+
     public function setPicture($picture)
     {
-        if (!is_file($picture)) {
+        if (($picture !== null) && (!is_file($picture) || !filter_var($picture, FILTER_VALIDATE_URL))) {
             throw new PropertyException("Property picture error");
+        }elseif($picture == null){
+            $picture = "";
         }
         $this->_picture = $picture;
     }
@@ -181,6 +186,9 @@ class Property
         $property['address'] = $this->getAddress();
         $property['area'] = $this->getArea();
         $property['price'] = (int) $this->getPrice();
+        $property['shower'] = (int) $this->getShower();
+        $property['bedroom'] = (int) $this->getBedroom();
+        $property['picture'] = $this->getPicture();
         $property['post_date'] = $this->getPostDate();
 
         return $property;
