@@ -14,6 +14,9 @@ class Property
     private $_address;
     private $_area;
     private $_price;
+    private $_bedroom;// chambre
+    private $_shower;// douche
+    private $_picture;//
     private $_post_date;
 
 
@@ -114,6 +117,42 @@ class Property
     public function getPrice()
     {
         return $this->_price;
+    }
+
+    public function setBedroom($bedroom)
+    {
+        if (($bedroom !== null) && $bedroom <= 0) {
+            throw new PropertyException("Property bedroom error");
+        }
+        $this->_bedroom = $bedroom;
+    }
+    public function getBedroom()
+    {
+        return $this->_bedroom;
+    }
+
+    public function setShower($shower)
+    {
+        if (($shower !== null) && $shower <= 0) {
+            throw new PropertyException("Property shower error");
+        }
+        $this->_shower = $shower;
+    }
+    public function getShower()
+    {
+        return $this->_shower;
+    }
+
+    public function setPicture($picture)
+    {
+        if (!is_file($picture)) {
+            throw new PropertyException("Property picture error");
+        }
+        $this->_picture = $picture;
+    }
+    public function getPicture()
+    {
+        return $this->_picture;
     }
 
     public function setPostDate($post_date)
