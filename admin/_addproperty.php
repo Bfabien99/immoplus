@@ -6,44 +6,98 @@ if (isset($_POST['submit'])) {
 
     if (empty(escape($_POST['title']))) {
         $message .= "<p class='error'>Le titre est obligatoire</p>";
-    } else {
+    }elseif(strlen($_POST['title']) < 6){
+        $message .= "<p class='error'>Le titre doit comporter au moins 6 caractères</p>";
+    } 
+    elseif(!preg_match('/^[a-zA-Z\-\_\ \']+$/', $_POST['title'])){
+        $message .= "<p class='error'>Seul les lettres et les caractères ('),(-),(_) sont admis pour le titre de la propriété</p>";
+    }
+    else {
         $title = $_POST['title'];
     }
+
     if (empty(escape($_POST['description']))) {
         $message .= "<p class='error'>La description est obligatoire</p>";
-    } else {
+    }elseif(strlen($_POST['description']) < 10 || strlen($_POST['description']) > 200){
+        $message .= "<p class='error'>Le titre doit comporter entre 10 et 200 caractères</p>";
+    }  
+    elseif(!preg_match('/^[a-zA-Z0-9]+[a-zA-Z\-\_\ \.\']+$/', $_POST['description'])){
+        $message .= "<p class='error'>Seul les lettres et les caractères ('),(-),(_) sont admis pour la description</p>";
+    }
+    else {
         $description = $_POST['description'];
     }
+
     if (empty(strtolower(escape($_POST['type'])))) {
         $message .= "<p class='error'>Le type est obligatoire</p>";
-    } else {
+    } 
+    elseif(!preg_match('/^[a-z]+$/', $_POST['type'])){
+        $message .= "<p class='error'>Seuls les lettres sont admis pour le type</p>";
+    }
+    else {
         $type = $_POST['type'];
     }
+
     if (empty(escape($_POST['address']))) {
         $message .= "<p class='error'>L'adresse est obligatoire</p>";
-    } else {
+    }elseif(strlen($_POST['description']) < 2 || strlen($_POST['description']) > 200){
+        $message .= "<p class='error'>L'adresse doit comporter entre 2 et 200 caractères</p>";
+    }  
+    elseif(!preg_match('/^[a-zA-Z0-9\-\_\ \,\']+$/', $_POST['address'])){
+        $message .= "<p class='error'>Seul les lettres, les chiffres et les caractères ('),(-),(_),(,) sont admis pour l'adresse</p>";
+    }
+    else {
         $address = $_POST['address'];
     }
+
     if (empty(escape($_POST['area']))) {
         $message .= "<p class='error'>La superficie est obligatoire</p>";
-    } else {
+    }elseif($_POST['area'] < 50 || $_POST['area'] > 1000000000000){
+        $message .= "<p class='error'>La superficie être comprise entre 50m2 et 1000000000000m2</p>";
+    }  
+    elseif(!preg_match('/[0-9]\d+/', $_POST['area'])){
+        $message .= "<p class='error'>Seuls les chiffres sont admis pour la superficie</p>";
+    }
+    else {
         $area = $_POST['area'];
     }
+
     if (empty(escape($_POST['price']))) {
         $message .= "<p class='error'>Le prix est obligatoire</p>";
-    } else {
+    }elseif($_POST['price'] < 5000 || $_POST['price'] > 900000000000){
+        $message .= "<p class='error'>Le prix doit être compris entre 5000 fcfa et 900.000.000.000 fcfa</p>";
+    }  
+    elseif(!preg_match('/[0-9]\d+/', $_POST['price'])){
+        $message .= "<p class='error'>Seuls les chiffres sont admis pour le prix</p>";
+    }
+    else {
         $price = $_POST['price'];
     }
+
     if (empty(escape($_POST['shower']))) {
         $message .= "<p class='error'>Le nombre de douche est obligatoire</p>";
-    } else {
+    }elseif($_POST['shower'] < 1 || $_POST['shower'] > 100){
+        $message .= "<p class='error'>Le nombre de douche doit être compris entre 1 fcfa et 100</p>";
+    }  
+    elseif(!preg_match('/[0-9]\d+/', $_POST['shower'])){
+        $message .= "<p class='error'>Seuls les chiffres sont admis pour le nombre de douche</p>";
+    }
+    else {
         $shower = $_POST['shower'];
     }
+
     if (empty(escape($_POST['bedroom']))) {
         $message .= "<p class='error'>Le nombre de chambre est obligatoire</p>";
-    } else {
+    }elseif($_POST['bedroom'] < 1 || $_POST['bedroom'] > 100){
+        $message .= "<p class='error'>Le nombre de chambre doit être compris entre 1 fcfa et 100</p>";
+    } 
+    elseif(!preg_match('/[0-9]\d+/', $_POST['bedroom'])){
+        $message .= "<p class='error'>Seuls les chiffres sont admis pour le nombre de chambre</p>";
+    }
+    else {
         $bedroom = $_POST['bedroom'];
     }
+
     if (empty($_FILES["image"]["name"])) {
         $message .= "<p class='error'>Selectionnez une image à ajouter</p>";
     } else {
@@ -98,8 +152,9 @@ if (isset($_POST['submit'])) {
             $response = PostToMyApi($data_string, $url);
             // Decode API response to array
             $data = json_decode($response, JSON_UNESCAPED_UNICODE);
-            var_dump($data);
-            if ($data['statusCode'] != 200 && $data['statusCode'] != 201) {
+
+            if (!empty($data)) {
+                if ($data['statusCode'] != 200 && $data['statusCode'] != 201) {
                 foreach ($data['messages'] as $error) {
                     if ($error != "") {
                         $message .= "<p class='error'>$error</p>";
@@ -108,6 +163,10 @@ if (isset($_POST['submit'])) {
             } else {
                 $message .= "<p class='success'>Propriété ajoutée</p>";
             }
+            }else {
+                $message .= "<p class='error'>Désolé, le serveur ne répond pas pour l'instant... Veuillez réessayer plus tard</p>";
+            }
+            
         }
     }
 }
@@ -180,11 +239,11 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="group">
             <label for="shower">Nombre de douche</label>
-            <input type="number" name="shower" value="<?php echo $_POST['shower'] ?? "" ?>" min=0>
+            <input type="number" name="shower" value="<?php echo $_POST['shower'] ?? "" ?>" min=1>
         </div>
         <div class="group">
             <label for="bedroom">Nombre de chambre</label>
-            <input type="number" name="bedroom" value="<?php echo $_POST['bedroom'] ?? "" ?>" min=0>
+            <input type="number" name="bedroom" value="<?php echo $_POST['bedroom'] ?? "" ?>" min=1>
         </div>
         <div class="group">
             <label for="picture">Image de la propriété</label>
