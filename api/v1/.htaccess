@@ -12,7 +12,7 @@ RewriteRule ^property$ controller/property.php [L]
 RewriteRule ^property/([0-9]+)$ controller/property.php?property_id=$1 [L]
 
 #- GET ALL PROPERTY LIMIT BY PAGE -#
-RewriteRule ^property/page/([0-9]+)$ controller/property.php?page=$1 [L]
+#RewriteRule ^property/page/([0-9]+)$ controller/property.php?page=$1 [L]
 
 #- GET ALL PROPERTY BY TYPE -#
 RewriteRule ^property/location$ controller/property.php?property_type=location [L]

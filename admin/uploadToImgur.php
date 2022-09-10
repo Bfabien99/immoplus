@@ -2,9 +2,6 @@
 // Client ID of Imgur App
 $IMGUR_CLIENT_ID = "b126d99ed6ef1d2";
 
-
-$statusMsg = $valErr = '';
-$status = 'danger';
 $imgurData = array();
 
 // If the form is submitted
@@ -29,10 +26,6 @@ if(isset($_POST['submit'])){
             // API post parameters
             $postFields = array('image' => base64_encode($image_source));
 
-            if(!empty($_POST["title"])){
-                $postFields["title"] = $_POST["title"];
-            }
-
             // Post image to Imgur via API
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, 'https://api.imgur.com/3/image');
@@ -49,16 +42,13 @@ if(isset($_POST['submit'])){
             // Check image upload status
             if(!empty($responseArr)){
                 $imgurData = $responseArr;
-
-                $status = 'success';
-                $statusMsg = "Image uploaded to Imgur";
             }else{
-                $statusMsg = "Image not uploaded";
+                $message = "Image not uploaded";
             }
         }else{
-            $statusMsg = "Sorry, only image file is allowed to upload";
+            $message = "Sorry, only image file is allowed to upload";
         }
     }else{
-    $statusMsg = "<p>Fill all the mandatory fields:</p>".trim($valErr, '<br/>');
+    $message = "<p>Fill all the mandatory fields:</p>".trim($valErr, '<br/>');
 }
 }
