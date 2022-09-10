@@ -6,6 +6,7 @@ function escape($data)
     return ucfirst($data);
 }
 
+
 function callApiImgur($postFields)
 {
     // Client ID of Imgur App
@@ -22,6 +23,7 @@ function callApiImgur($postFields)
 
     return $response;
 }
+
 
 function GetDataFromMyApi($url)
 {
