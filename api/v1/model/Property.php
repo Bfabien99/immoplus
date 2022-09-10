@@ -148,11 +148,6 @@ class Property
 
     public function setPicture($picture)
     {
-        if (($picture !== null) && (!is_file($picture) || !filter_var($picture, FILTER_VALIDATE_URL))) {
-            throw new PropertyException("Property picture error");
-        }elseif($picture == null){
-            $picture = "";
-        }
         $this->_picture = $picture;
     }
     public function getPicture()
