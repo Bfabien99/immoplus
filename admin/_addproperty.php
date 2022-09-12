@@ -1,5 +1,5 @@
 <?php
-include_once('functions.php');
+include_once('../_includes/functions.php');
 
 $message = false;
 $errors = false;

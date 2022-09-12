@@ -1,5 +1,5 @@
 <?php
-include_once('../_includes/functions.php');
+include_once('_includes/functions.php');
 
 // MyAPI url
 $url = 'http://localhost/immoplus/api/v1/property';
@@ -17,8 +17,13 @@ if($data){
 }
 
 ?>
-<?php include('includes/header.php'); ?>
-    <title>Document</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROPRIETES</title>
     <style>
         *{
             margin: 0;
@@ -49,7 +54,9 @@ if($data){
             width: 100%;
         }
     </style>
-    <div class="container">
+</head>
+<body>
+<div class="container">
         <?php if(!empty($properties)):?>
             <div class="properties">
             <?php foreach ($properties as $property):?>
@@ -70,4 +77,6 @@ if($data){
             <h4>Aucune propriété pour l'instant</h4>
         <?php endif; ?>
     </div>
-    <?php include('includes/footer.php'); ?>
+</body>
+</html>
+
