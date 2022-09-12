@@ -75,6 +75,7 @@ if (isset($_GET['property_id'])) {
     <?php foreach ($errors as $error) : ?>
         <?php echo $error ?>
     <?php endforeach; ?>
+    <a href=".." class="back">Retour</a>
 <?php else : ?>
     <?php if (!empty($property)) : ?>
         <?php $location = $property['address']; ?>

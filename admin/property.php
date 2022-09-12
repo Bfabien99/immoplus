@@ -18,7 +18,6 @@ if($data){
 
 ?>
 <?php include('includes/header.php'); ?>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&libraries=places&callback=initAutocomplete" async defer></script>
     <title>Document</title>
     <style>
         *{
@@ -62,7 +61,7 @@ if($data){
                     <section class="description">
                         <?php echo $property['description'] ?>
                     </section>
-                    <a href="./_showproperty.php?property_id=<?php echo $property['id'] ?>" class="see">Voir</a>
+                    <a href="./property/view/<?php echo $property['id'] ?>" class="see">Voir</a>
                 </div>
             </div>
             <?php endforeach;?>
