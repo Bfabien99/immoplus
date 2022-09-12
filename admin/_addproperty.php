@@ -2,89 +2,89 @@
 include_once('functions.php');
 
 $message = false;
-$error = false;
+$errors = false;
 if (isset($_POST['submit'])) {
 
     if (empty(escape($_POST['title']))) {
-        $error['title'] = "<p class='error'>Le titre est obligatoire</p>";
+        $errors['title'] = "<p class='error'>Le titre est obligatoire</p>";
     } elseif (strlen($_POST['title']) < 6) {
-        $$error['title'] = "<p class='error'>Le titre doit comporter au moins 6 caractères</p>";
+        $$errors['title'] = "<p class='error'>Le titre doit comporter au moins 6 caractères</p>";
     } elseif (!preg_match('/^[a-zA-Z\-\_\ \']+$/', $_POST['title'])) {
-        $error['title'] = "<p class='error'>Seul les lettres et les caractères ('),(-),(_) sont admis pour le titre de la propriété</p>";
+        $errors['title'] = "<p class='error'>Seul les lettres et les caractères ('),(-),(_) sont admis pour le titre de la propriété</p>";
     } else {
         $title = $_POST['title'];
     }
 
     if (empty(escape($_POST['description']))) {
-        $error['description'] = "<p class='error'>La description est obligatoire</p>";
+        $errors['description'] = "<p class='error'>La description est obligatoire</p>";
     } elseif (strlen($_POST['description']) < 10 || strlen($_POST['description']) > 200) {
-        $error['description'] = "<p class='error'>Le titre doit comporter entre 10 et 200 caractères</p>";
+        $errors['description'] = "<p class='error'>Le titre doit comporter entre 10 et 200 caractères</p>";
     } elseif (!preg_match('/^[a-zA-Z0-9]+[a-zA-Z\-\_\ \.\']+$/', $_POST['description'])) {
-        $error['description'] = "<p class='error'>Seul les lettres et les caractères ('),(-),(_) sont admis pour la description</p>";
+        $errors['description'] = "<p class='error'>Seul les lettres et les caractères ('),(-),(_) sont admis pour la description</p>";
     } else {
         $description = $_POST['description'];
     }
 
     if (empty(strtolower(escape($_POST['type'])))) {
-        $error['type'] = "<p class='error'>Le type est obligatoire</p>";
+        $errors['type'] = "<p class='error'>Le type est obligatoire</p>";
     } elseif (!preg_match('/^[a-z]+$/', $_POST['type'])) {
-        $error['type'] = "<p class='error'>Seuls les lettres sont admis pour le type</p>";
+        $errors['type'] = "<p class='error'>Seuls les lettres sont admis pour le type</p>";
     } else {
         $type = $_POST['type'];
     }
 
     if (empty(escape($_POST['address']))) {
-        $error['address'] = "<p class='error'>L'adresse est obligatoire</p>";
+        $errors['address'] = "<p class='error'>L'adresse est obligatoire</p>";
     } elseif (strlen($_POST['description']) < 2 || strlen($_POST['description']) > 200) {
-        $error['address'] = "<p class='error'>L'adresse doit comporter entre 2 et 200 caractères</p>";
+        $errors['address'] = "<p class='error'>L'adresse doit comporter entre 2 et 200 caractères</p>";
     } elseif (!preg_match('/^[a-zA-Z0-9\-\_\ \,\']+$/', $_POST['address'])) {
-        $error['address'] = "<p class='error'>Seul les lettres, les chiffres et les caractères ('),(-),(_),(,) sont admis pour l'adresse</p>";
+        $errors['address'] = "<p class='error'>Seul les lettres, les chiffres et les caractères ('),(-),(_),(,) sont admis pour l'adresse</p>";
     } else {
         $address = $_POST['address'];
     }
 
     if (empty(escape($_POST['area']))) {
-        $error['area'] = "<p class='error'>La superficie est obligatoire</p>";
+        $errors['area'] = "<p class='error'>La superficie est obligatoire</p>";
     } elseif ($_POST['area'] < 50 || $_POST['area'] > 1000000000000) {
-        $error['area'] = "<p class='error'>La superficie être comprise entre 50m2 et 1000000000000m2</p>";
+        $errors['area'] = "<p class='error'>La superficie être comprise entre 50m2 et 1000000000000m2</p>";
     } elseif (!preg_match('/[0-9]\d+/', $_POST['area'])) {
-        $error['area'] = "<p class='error'>Seuls les chiffres sont admis pour la superficie</p>";
+        $errors['area'] = "<p class='error'>Seuls les chiffres sont admis pour la superficie</p>";
     } else {
         $area = $_POST['area'];
     }
 
     if (empty(escape($_POST['price']))) {
-        $error['price'] = "<p class='error'>Le prix est obligatoire</p>";
+        $errors['price'] = "<p class='error'>Le prix est obligatoire</p>";
     } elseif ($_POST['price'] < 5000 || $_POST['price'] > 900000000000) {
-        $error['price'] = "<p class='error'>Le prix doit être compris entre 5000 fcfa et 900.000.000.000 fcfa</p>";
+        $errors['price'] = "<p class='error'>Le prix doit être compris entre 5000 fcfa et 900.000.000.000 fcfa</p>";
     } elseif (!preg_match('/[0-9]\d+/', $_POST['price'])) {
-        $error['price'] = "<p class='error'>Seuls les chiffres sont admis pour le prix</p>";
+        $errors['price'] = "<p class='error'>Seuls les chiffres sont admis pour le prix</p>";
     } else {
         $price = $_POST['price'];
     }
 
     if (empty(escape($_POST['shower']))) {
-        $error['shower'] = "<p class='error'>Le nombre de douche est obligatoire</p>";
+        $errors['shower'] = "<p class='error'>Le nombre de douche est obligatoire</p>";
     } elseif ($_POST['shower'] < 1 || $_POST['shower'] > 100) {
-        $error['shower'] = "<p class='error'>Le nombre de douche doit être compris entre 1 fcfa et 100</p>";
+        $errors['shower'] = "<p class='error'>Le nombre de douche doit être compris entre 1 fcfa et 100</p>";
     } elseif (!preg_match('/[0-9]\d+/', $_POST['shower'])) {
-        $error['shower'] = "<p class='error'>Seuls les chiffres sont admis pour le nombre de douche</p>";
+        $errors['shower'] = "<p class='error'>Seuls les chiffres sont admis pour le nombre de douche</p>";
     } else {
         $shower = $_POST['shower'];
     }
 
     if (empty(escape($_POST['bedroom']))) {
-        $error['bedroom'] = "<p class='error'>Le nombre de chambre est obligatoire</p>";
+        $errors['bedroom'] = "<p class='error'>Le nombre de chambre est obligatoire</p>";
     } elseif ($_POST['bedroom'] < 1 || $_POST['bedroom'] > 100) {
-        $error['bedroom'] = "<p class='error'>Le nombre de chambre doit être compris entre 1 fcfa et 100</p>";
+        $errors['bedroom'] = "<p class='error'>Le nombre de chambre doit être compris entre 1 fcfa et 100</p>";
     } elseif (!preg_match('/[0-9]\d+/', $_POST['bedroom'])) {
-        $error['bedroom'] = "<p class='error'>Seuls les chiffres sont admis pour le nombre de chambre</p>";
+        $errors['bedroom'] = "<p class='error'>Seuls les chiffres sont admis pour le nombre de chambre</p>";
     } else {
         $bedroom = $_POST['bedroom'];
     }
 
     if (empty($_FILES["image"]["name"])) {
-        $error['image'] = "<p class='error'>Selectionnez une image à ajouter</p>";
+        $errors['image'] = "<p class='error'>Selectionnez une image à ajouter</p>";
     } else {
         // Get file info
         $fileName = basename($_FILES["image"]["name"]);
@@ -108,10 +108,10 @@ if (isset($_POST['submit'])) {
             if (!empty($responseArr)) {
                 $imgurData = $responseArr;
             } else {
-                $error['image'] = "<p class='error'>L'image n'a pas pu être téléchargé</p>";
+                $errors['image'] = "<p class='error'>L'image n'a pas pu être téléchargé</p>";
             }
         } else {
-            $error['image'] = "<p class='error'>Désolé, seule les images png, jpeg, jpg sont acceptées</p>";
+            $errors['image'] = "<p class='error'>Désolé, seule les images png, jpeg, jpg sont acceptées</p>";
         }
 
         if (!empty($title) && !empty($description) && !empty($type) && !empty($address) && !empty($area) && !empty($price) && !empty($shower) && !empty($bedroom) && !empty($imgurData)) {
@@ -142,22 +142,23 @@ if (isset($_POST['submit'])) {
                 if ($data['statusCode'] != 200 && $data['statusCode'] != 201) {
                     foreach ($data['messages'] as $error) {
                         if ($error != "") {
-                            $error['api'] = "<p class='error'>$error</p>";
+                            $errors['api'] = "<p class='error'>$error</p>";
                         }
                     }
                 } else {
-                    $error['api'] = "<p class='success'>Propriété ajoutée</p>";
+                    $errors['api'] = "<p class='success'>Propriété ajoutée</p>";
                 }
             } else {
-                $error['api'] = "<p class='error'>Désolé, le serveur ne répond pas pour l'instant... Veuillez réessayer plus tard</p>";
+                $errors['api'] = "<p class='error'>Désolé, le serveur ne répond pas pour l'instant... Veuillez réessayer plus tard</p>";
             }
         }
     }
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<?php include('includes/header.php'); ?>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&libraries=places&callback=initAutocomplete" async defer>
+</script>
 <style>
     .error,
     .success {
@@ -178,29 +179,17 @@ if (isset($_POST['submit'])) {
         background-color: greenyellow;
     }
 </style>
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&libraries=places&callback=initAutocomplete" async defer>
-    </script>
-
-    <title>ADMIN</title>
-</head>
-
-<body>
-    <?php echo $error['api'] ?? "" ?>
+    <?php echo $errors['api'] ?? "" ?>
     <form method="post" enctype="multipart/form-data" id="myForm">
         <div class="group">
             <label for="title">Titre</label>
             <input type="text" name="title" value="<?php echo $_POST['title'] ?? "" ?>">
-            <?php echo $error['title'] ?? "" ?>
+            <?php echo $errors['title'] ?? "" ?>
         </div>
         <div class="group">
             <label for="title">Description</label>
             <input type="text" name="description" value="<?php echo $_POST['description'] ?? "" ?>">
-            <?php echo $error['description'] ?? "" ?>
+            <?php echo $errors['description'] ?? "" ?>
         </div>
         <div class="group">
             <label for="type">Type</label>
@@ -208,37 +197,37 @@ if (isset($_POST['submit'])) {
                 <option value="location">En Location</option>
                 <option value="vendre">En Vente</option>
             </select>
-            <?php echo $error['type'] ?? "" ?>
+            <?php echo $errors['type'] ?? "" ?>
         </div>
         <div class="group">
             <label for="address">Adresse</label>
             <input type="text" id="address" name="address" value="<?php echo $_POST['address'] ?? "" ?>">
-            <?php echo $error['address'] ?? "" ?>
+            <?php echo $errors['address'] ?? "" ?>
         </div>
         <div class="group">
             <label for="area">Superficie en m2</label>
             <input type="number" name="area" value="<?php echo $_POST['area'] ?? "" ?>" min=50>
-            <?php echo $error['area'] ?? "" ?>
+            <?php echo $errors['area'] ?? "" ?>
         </div>
         <div class="group">
             <label for="price">Prix</label>
             <input type="number" name="price" value="<?php echo $_POST['price'] ?? "" ?>" min=5000>
-            <?php echo $error['price'] ?? "" ?>
+            <?php echo $errors['price'] ?? "" ?>
         </div>
         <div class="group">
             <label for="shower">Nombre de douche</label>
             <input type="number" name="shower" value="<?php echo $_POST['shower'] ?? "" ?>" min=1>
-            <?php echo $error['shower'] ?? "" ?>
+            <?php echo $errors['shower'] ?? "" ?>
         </div>
         <div class="group">
             <label for="bedroom">Nombre de chambre</label>
             <input type="number" name="bedroom" value="<?php echo $_POST['bedroom'] ?? "" ?>" min=1>
-            <?php echo $error['bedroom'] ?? "" ?>
+            <?php echo $errors['bedroom'] ?? "" ?>
         </div>
         <div class="group">
             <label for="picture">Image de la propriété</label>
             <input type="file" name="image">
-            <?php echo $error['image'] ?? "" ?>
+            <?php echo $errors['image'] ?? "" ?>
         </div>
         <?php if (!empty($imgurData)) : ?>
             <img src="<?php echo $imgurData->data->link; ?>" alt="">
@@ -248,7 +237,6 @@ if (isset($_POST['submit'])) {
         <input type="submit" value="Enregistrer" name="submit" id="submit">
     </form>
     <div id="map"></div>
-</body>
 <script>
     let autocomplete;
 
@@ -265,7 +253,7 @@ if (isset($_POST['submit'])) {
     }
 </script>
 <script>
-    // Initialize and add the map
+// Initialize and add the map
 function initMap() {
   // The location of Uluru
   const uluru = { lat: -25.344, lng: 131.031 };
@@ -283,4 +271,4 @@ function initMap() {
 
 window.initMap = initMap;
 </script>
-</html>
+<?php include('includes/footer.php'); ?>

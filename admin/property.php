@@ -17,14 +17,7 @@ if($data){
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+<?php include('includes/header.php'); ?>
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&libraries=places&callback=initAutocomplete" async defer></script>
     <title>Document</title>
     <style>
@@ -57,8 +50,6 @@ if($data){
             width: 100%;
         }
     </style>
-</head>
-<body>
     <div class="container">
         <?php if(!empty($properties)):?>
             <div class="properties">
@@ -71,6 +62,7 @@ if($data){
                     <section class="description">
                         <?php echo $property['description'] ?>
                     </section>
+                    <a href="./_showproperty.php?property_id=<?php echo $property['id'] ?>" class="see">Voir</a>
                 </div>
             </div>
             <?php endforeach;?>
@@ -79,5 +71,4 @@ if($data){
             <h4>Aucune propriété pour l'instant</h4>
         <?php endif; ?>
     </div>
-</body>
-</html>
+    <?php include('includes/footer.php'); ?>
