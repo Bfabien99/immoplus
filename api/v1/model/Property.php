@@ -16,11 +16,12 @@ class Property
     private $_price;
     private $_shower;// douche
     private $_bedroom;// chambre
-    private $_picture;//
+    private $_picture;// image
     private $_post_date;
+    private $_etat;
 
 
-    public function __construct($id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture = null, $post_date = null){
+    public function __construct(int $id, $title, $description, $type, $address,int $area,int $price,int $shower,int $bedroom, $picture = null, $post_date = null, int $etat = 0){
         $this->setId($id);
         $this->setTitle($title);
         $this->setDescription($description);
@@ -32,6 +33,7 @@ class Property
         $this->setBedroom($bedroom);
         $this->setPicture($picture);
         $this->setPostDate($post_date);
+        $this->setEtat($etat);
     }
 
     public function setID($id)
@@ -170,6 +172,20 @@ class Property
         return $this->_post_date;
     }
 
+    public function setEtat($etat)
+    {
+        if (($etat !== null) && $etat !== 0 && $etat !== 1) {
+            throw new PropertyException("property etat must be 0  or 1");
+        }elseif($etat == null){
+            $etat = 0;
+        }
+
+        $this->_etat = $etat;
+    }
+    public function getEtat()
+    {
+        return $this->_etat;
+    }
     
 
     public function returnPropertyAsArray(){
