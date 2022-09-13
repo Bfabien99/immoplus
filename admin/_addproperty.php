@@ -1,3 +1,4 @@
+<?php include('includes/header.php'); ?>
 <?php
 include_once('../_includes/functions.php');
 
@@ -156,29 +157,9 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
-<?php include('includes/header.php'); ?>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&libraries=places&callback=initAutocomplete" async defer>
 </script>
-<style>
-    .error,
-    .success {
-        padding: 5px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: fit-content;
-        color: #fff;
-    }
 
-    .error {
-        background-color: red;
-    }
-
-    .success {
-        background-color: greenyellow;
-    }
-</style>
     <?php echo $errors['api'] ?? "" ?>
     <form method="post" enctype="multipart/form-data" id="myForm">
         <div class="group">
@@ -237,6 +218,7 @@ if (isset($_POST['submit'])) {
         <input type="submit" value="Enregistrer" name="submit" id="submit">
     </form>
     <div id="map"></div>
+
 <script>
     let autocomplete;
 
@@ -252,6 +234,7 @@ if (isset($_POST['submit'])) {
 
     }
 </script>
+
 <script>
 // Initialize and add the map
 function initMap() {
@@ -268,7 +251,7 @@ function initMap() {
     map: map,
   });
 }
-
 window.initMap = initMap;
 </script>
+
 <?php include('includes/footer.php'); ?>

@@ -1,6 +1,5 @@
+<?php include('includes/header.php'); ?>
 <?php
-include_once('../_includes/functions.php');
-
 $errors = [];
 $data = [];
 if (isset($_GET['property_id'])) {
@@ -33,44 +32,6 @@ if (isset($_GET['property_id'])) {
 }
 ?>
 
-<?php include('includes/header.php'); ?>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        overflow-x: hidden;
-    }
-
-    .properties {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 0.5em;
-        padding: 10px;
-        border-radius: 3px;
-    }
-
-    .property {
-        padding: 5px;
-        box-shadow: 0px 2px 5px #ccc;
-    }
-
-    .property .imgBx {
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        height: 200px;
-        width: 100%;
-    }
-
-    #map {
-        width: 300px;
-        height: 300px;
-    }
-</style>
 <?php if (!empty($errors)) : ?>
     <?php foreach ($errors as $error) : ?>
         <?php echo $error ?>

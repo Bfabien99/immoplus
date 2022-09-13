@@ -21,7 +21,7 @@ class Property
     private $_etat;
 
 
-    public function __construct(int $id, $title, $description, $type, $address,int $area,int $price,int $shower,int $bedroom, $picture = null, $post_date = null, int $etat = 0){
+    public function __construct( $id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture = null, $post_date = null,$etat = null){
         $this->setId($id);
         $this->setTitle($title);
         $this->setDescription($description);
@@ -201,6 +201,7 @@ class Property
         $property['bedroom'] = (int) $this->getBedroom();
         $property['picture'] = $this->getPicture();
         $property['post_date'] = $this->getPostDate();
+        $property['etat'] = $this->getEtat();
 
         return $property;
     }
