@@ -81,14 +81,20 @@ if($data){
             grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             padding: 20px 15px;
             list-style: none;
-            grid-gap: 1em;
         }
 
-        nav ul li{
+        nav ul li {
             text-align: center;
+            padding: 5px;
+            margin: 0.2em;
         }
 
-        nav ul li a{
+        nav ul li:hover {
+            background: #081117;
+            transition: ease-in-out 0.2s;
+        }
+
+        nav ul li a {
             text-decoration: none;
             color: #fff;
         }
@@ -327,11 +333,11 @@ if($data){
         <nav>
             <ul>
                 <li><a href="">Accueil</a></li>
-                <li><a href="">Location</a></li>
-                <li><a href="">En vente</a></li>
-                <li><a href="">A propos</a></li>
-                <li><a href="">Services</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="../loan">Location</a></li>
+                <li><a href="../buy">En vente</a></li>
+                <li><a href="../about">A propos</a></li>
+                <li><a href="../service">Services</a></li>
+                <li><a href="../contact">Contact</a></li>
             </ul>
         </nav>
         <div id="searchbox">

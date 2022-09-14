@@ -66,7 +66,7 @@ if (isset($_GET['property_id'])) {
             position: relative;
             width: 100%;
             height: 600px;
-            background: url('<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>') no-repeat center/cover;
+            background: url('<?php echo $property['picture'] ?? '../../assets/img/pexels-expect-best-323780.jpg' ?>') no-repeat center/cover;
             padding: 15px 20px;
             display: flex;
             justify-content: center;
@@ -210,7 +210,7 @@ if (isset($_GET['property_id'])) {
 
         .property_details {
             padding: 30px 10px;
-            background: url('<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>') no-repeat bottom/cover;
+            background: url('<?php echo $property['picture'] ?? '../../assets/img/pexels-expect-best-323780.jpg' ?>') no-repeat bottom/cover;
             margin: 0 auto;
             display: flex;
             justify-content: space-evenly;
@@ -339,12 +339,12 @@ if (isset($_GET['property_id'])) {
         </div>
         <nav>
             <ul>
-                <li><a href="">Accueil</a></li>
-                <li><a href="">Location</a></li>
-                <li><a href="">En vente</a></li>
-                <li><a href="">A propos</a></li>
-                <li><a href="">Services</a></li>
-                <li><a href="">Contact</a></li>
+                <li><a href="../../property">Accueil</a></li>
+                <li><a href="../loan">Location</a></li>
+                <li><a href="../buy">En vente</a></li>
+                <li><a href="../about">A propos</a></li>
+                <li><a href="../service">Services</a></li>
+                <li><a href="../contact">Contact</a></li>
             </ul>
         </nav>
         <div id="searchbox">
@@ -369,7 +369,7 @@ if (isset($_GET['property_id'])) {
         <?php if (!empty($property)) : ?>
             <div class="container">
                 <?php $location = $property['address']; ?>
-                <img class="property_background_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete">
+                <img class="property_background_picture" src="<?php echo $property['picture'] ?? '../../assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete">
                 <div class="property">
                     <div class="property_details">
                         <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
@@ -379,8 +379,8 @@ if (isset($_GET['property_id'])) {
 
                     <div class="property_informations">
                         <div class="imgBx">
-                            <img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete">
-                            <p class="property_address">A<?php echo $property['address'] ?></p>
+                            <img class="property_picture" src="<?php echo $property['picture'] ?? '../../assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete">
+                            <p class="property_address"><?php echo $property['address'] ?></p>
                         </div>
                         <div class="content">
                             <h4 class="property_title">Titre propriété</h4>
