@@ -66,7 +66,7 @@ if (isset($_GET['property_id'])) {
             position: relative;
             width: 100%;
             height: 600px;
-            background: url('<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg'?>') no-repeat center/cover;
+            background: url('<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>') no-repeat center/cover;
             padding: 15px 20px;
             display: flex;
             justify-content: center;
@@ -210,7 +210,7 @@ if (isset($_GET['property_id'])) {
 
         .property_details {
             padding: 30px 10px;
-            background: url('<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg'?>') no-repeat bottom/cover;
+            background: url('<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>') no-repeat bottom/cover;
             margin: 0 auto;
             display: flex;
             justify-content: space-evenly;
@@ -297,6 +297,10 @@ if (isset($_GET['property_id'])) {
             font-size: 1.5rem;
         }
 
+        .details .property_type {
+            text-transform: capitalize;
+        }
+
         .details p span {
             font-weight: bold;
             font-size: 1rem;
@@ -365,30 +369,28 @@ if (isset($_GET['property_id'])) {
         <?php if (!empty($property)) : ?>
             <div class="container">
                 <?php $location = $property['address']; ?>
-                <img class="property_background_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg'?>" alt="image_propriete">
+                <img class="property_background_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete">
                 <div class="property">
                     <div class="property_details">
-                        <p class="property_bedroom">3 chambres</p>
-                        <p class="property_shower">3 douches</p>
-                        <p class="property_area">300 m2</p>
+                        <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
+                        <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
+                        <p class="property_area"><?php echo number_format($property['area'], 0, ',', '.') ?> m2</p>
                     </div>
 
                     <div class="property_informations">
                         <div class="imgBx">
-                            <img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg'?>" alt="image_propriete">
-                            <p class="property_address">Abobo, Côte d'ivoire</p>
+                            <img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete">
+                            <p class="property_address">A<?php echo $property['address'] ?></p>
                         </div>
                         <div class="content">
                             <h4 class="property_title">Titre propriété</h4>
                             <p class="property_description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, minima asperiores ullam aliquid eius sit odit dolore aliquam quasi deleniti cupiditate, laudantium, culpa assumenda repellat. Ut at sunt quia, saepe dicta perspiciatis dolorum deleniti? Laborum doloremque dolores animi aliquam! Corrupti culpa explicabo, quia obcaecati tempora tenetur unde ab ipsam sapiente!
-                                <br>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor nostrum fuga excepturi impedit fugit, vero ex recusandae quis ab animi.
+                                <?php echo nl2br($property['description']) ?>
                             </p>
                             <div class="details">
-                                <p class="property_price"><span>Prix :</span> 400.000 FCFA</p>
-                                <p class="property_type"><span>Type :</span> Location</p>
-                                <p class="property_date"><span>Date :</span> Il y à 2 jours</p>
+                                <p class="property_price"><span>Prix :</span> <?php echo number_format($property['price'], 0, ',', '.') ?> FCFA</p>
+                                <p class="property_type"><span>Type :</span> <?php echo $property['type'] ?></p>
+                                <p class="property_date"><span>Date :</span><?php echo $property['post_date'] ?></p>
                             </div>
                         </div>
 
@@ -397,12 +399,14 @@ if (isset($_GET['property_id'])) {
                     <div id="map">
                         <p>Impossible de charger la map</p>
                     </div>
+
                 </div>
             </div>
         <?php else : ?>
             <h4>Aucune propriété pour l'instant</h4>
         <?php endif; ?>
     <?php endif; ?>
+    <?php include('_includes/footer.php'); ?>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&callback=initMap&v=weekly" defer></script>
     <?php
 
@@ -466,4 +470,3 @@ if (isset($_GET['property_id'])) {
     <?php }
     }
     ?>
-    <?php include('_includes/footer.php'); ?>

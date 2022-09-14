@@ -419,7 +419,7 @@ if($data){
                     <div class="property_detail">
                         <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
                         <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
-                        <p class="property_area">3<?php echo number_format($property['area'],0,',','.') ?> m2</p>
+                        <p class="property_area"><?php echo number_format($property['area'],0,',','.') ?> m2</p>
                     </div>
                 </div>
             </div>
