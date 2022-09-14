@@ -50,7 +50,7 @@ if($data){
             position: relative;
             width: 100%;
             height: 600px;
-            background: url('pexels-expect-best-323780.jpg') no-repeat center/cover;
+            background: url('./assets/img/pexels-expect-best-323780.jpg') no-repeat center/cover;
             padding: 15px 20px;
             display: flex;
             justify-content: center;
@@ -212,6 +212,13 @@ if($data){
             overflow: hidden;
         }
 
+        .property_header a{
+            display: inline-block;
+            min-width: 300px;
+            max-width: 100%;
+            height: 500px;
+        }
+
         .property_picture{
             width: 100%;
             height: 100%;
@@ -285,6 +292,7 @@ if($data){
             text-align: justify;
             text-transform:initial;
             font-size: 1.2rem;
+            min-height: 78px;
         }
 
         .property_detail{
@@ -401,17 +409,17 @@ if($data){
                 <?php else: ?>
                     <h3 class="property_type location">Location</h3>
                 <?php endif; ?>
-                <h4 class="property_price"><?php echo $property['price'] ?> fcfa</h4>
+                <h4 class="property_price"><?php echo number_format($property['price'],0,',','.')  ?> fcfa</h4>
                 </div>
                 <div class="property_informations">
                     <h5 class="property_address"><?php echo $property['address'] ?></h5>
                     <div class="property_description">
-                        <p><?php echo $property['description'] ?></p>
+                        <p><?php echo nl2br($property['description']) ?></p>
                     </div>
                     <div class="property_detail">
                         <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
                         <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
-                        <p class="property_area">3<?php echo $property['area'] ?> m2</p>
+                        <p class="property_area">3<?php echo number_format($property['area'],0,',','.') ?> m2</p>
                     </div>
                 </div>
             </div>
@@ -421,6 +429,5 @@ if($data){
             <h4>Aucune propriété pour l'instant</h4>
         <?php endif; ?>
     </div>
-</body>
-</html>
+<?php include('_includes/footer.php');?>
 
