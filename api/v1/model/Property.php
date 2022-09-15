@@ -19,6 +19,7 @@ class Property
     private $_picture;// image
     private $_post_date;
     private $_etat;
+    private $_view;
 
 
     public function __construct( $id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture = null, $post_date = null,$etat = null){
@@ -34,6 +35,11 @@ class Property
         $this->setPicture($picture);
         $this->setPostDate($post_date);
         $this->setEtat($etat);
+    }
+
+    public function getView()
+    {
+        return $this->_view;
     }
 
     public function setID($id)
@@ -202,6 +208,7 @@ class Property
         $property['picture'] = $this->getPicture();
         $property['post_date'] = $this->getPostDate();
         $property['etat'] = $this->getEtat();
+        $property['view'] = $this->getView();
 
         return $property;
     }
