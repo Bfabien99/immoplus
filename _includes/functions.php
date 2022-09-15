@@ -82,6 +82,31 @@ function datediff($date)
     }
     $diff = date_diff($date2, $date1);
 
+    if ($diff->y > 0) {
+        if ($diff->y == 1) {
+            $date = "Il y a 1 an";
+            return $date;
+            exit();
+        } else {
+            $date = "Il y a $diff->y ans";
+            return $date;
+            exit();
+        }
+    }
+
+    if ($diff->m > 0) {
+        if ($diff->m == 1) {
+            $date = "Il y a 1 mois";
+            return $date;
+            exit();
+        } else {
+            $date = "Il y a $diff->m mois";
+            return $date;
+            exit();
+        }
+    }
+
+
     if ($diff->d > 0) {
         if ($diff->d == 1) {
             $date = "Il y a 1 jour";
