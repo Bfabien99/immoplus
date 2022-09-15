@@ -32,7 +32,8 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view'], $row['_userId'], $row['raison']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['_userId'], $row['raison']);
+                $property->setView($row['view']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 
@@ -159,7 +160,8 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view'], $row['_userId'], $row['raison']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['_userId'], $row['raison']);
+                $property->setView($row['view']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 
@@ -205,7 +207,8 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view'], $row['_userId'], $row['raison']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['_userId'], $row['raison']);
+                $property->setView($row['view']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 
@@ -287,7 +290,8 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view'], $row['_userId'], $row['raison']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['_userId'], $row['raison']);
+                $property->setView($row['view']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 

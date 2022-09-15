@@ -14,9 +14,9 @@ class Property
     private $_address;
     private $_area;
     private $_price;
-    private $_shower;// douche
-    private $_bedroom;// chambre
-    private $_picture;// image
+    private $_shower; // douche
+    private $_bedroom; // chambre
+    private $_picture; // image
     private $_post_date;
     private $_etat;
     private $_view;
@@ -24,7 +24,8 @@ class Property
     private $_raison;
 
 
-    public function __construct( $id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture = null, $post_date = null,$etat = null, $userId = null, $raison = null){
+    public function __construct($id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture = null, $post_date = null, $etat = null, $userId = null, $raison = null)
+    {
         $this->setId($id);
         $this->setTitle($title);
         $this->setDescription($description);
@@ -41,6 +42,10 @@ class Property
         $this->setRaison($raison);
     }
 
+    public function setView($view)
+    {
+        $this->_view = $view;
+    }
     public function getView()
     {
         return $this->_view;
@@ -83,7 +88,7 @@ class Property
     {
         return $this->_description;
     }
-    
+
     public function setType($type)
     {
         if (strtolower($type) !== 'location' && strtolower($type) !== 'vendre') {
@@ -168,10 +173,10 @@ class Property
     }
 
     public function setPostDate($post_date)
-    {   
+    {
         if (($post_date !== null) && date_format(date_create_from_format('Y-m-d H:i:s', $post_date), 'Y-m-d H:i:s') != $post_date) {
             throw new PropertyException("Property post_date date time error");
-        }elseif($post_date == null){
+        } elseif ($post_date == null) {
             $post_date = date('Y-m-d H:i:s');
         }
 
@@ -186,7 +191,7 @@ class Property
     {
         if (($etat !== null) && $etat !== 0 && $etat !== 1) {
             throw new PropertyException("property etat must be 0  or 1");
-        }elseif($etat == null){
+        } elseif ($etat == null) {
             $etat = 0;
         }
 
@@ -197,11 +202,19 @@ class Property
         return $this->_etat;
     }
 
+    public function setUserId($userId)
+    {
+        
+        $this->_userId = $userId;
+    }
+    public function getUserId()
+    {
+        return $this->_userId;
+    }
+
     public function setRaison($raison)
     {
-        if (($raison !== null)  && (strlen($raison) < 10)) {
-            throw new PropertyException("Property Raison error");
-        }
+        
 
         $this->_raison = $raison;
     }
@@ -210,21 +223,9 @@ class Property
         return $this->_raison;
     }
 
-    public function setUserId($userId)
-    {
-        if (($userId !== null) && $userId < 1) {
-            throw new PropertyException("Property userId error");
-        }
-        $this->_userId = $userId;
-        
-    }
-    public function getUserId()
-    {
-        return $this->_userId;
-    }
-    
 
-    public function returnPropertyAsArray(){
+    public function returnPropertyAsArray()
+    {
         $property = [];
         $property['id'] = $this->getID();
         $property['title'] = $this->getTitle();
