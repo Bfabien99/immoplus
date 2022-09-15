@@ -32,7 +32,7 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view'], $row['_userId'], $row['raison']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 
@@ -89,7 +89,7 @@ if (empty($_GET)) {
             }
 
             // On crée une nouvelle propriété
-            $newProperty = new Property(null, $jsonData->title, $jsonData->description, $jsonData->type, $jsonData->address, $jsonData->area, $jsonData->price, $jsonData->shower, $jsonData->bedroom,$jsonData->picture);
+            $newProperty = new Property(null, $jsonData->title, $jsonData->description, $jsonData->type, $jsonData->address, $jsonData->area, $jsonData->price, $jsonData->shower, $jsonData->bedroom,$jsonData->picture,$jsonData->userId,$jsonData->raison);
 
             $title = $newProperty->getTitle();
             $description = $newProperty->getDescription();
@@ -101,6 +101,8 @@ if (empty($_GET)) {
             $bedroom = $newProperty->getBedroom();
             $picture = $newProperty->getpicture();
             $post_date = $newProperty->getPostDate();
+            $userId = $newProperty->getUserId();
+            $raison = $newProperty->getRaison();
 
             // On vérifie s'il n'y a pas une propriété avec le m$me titre
             $sql = "select * from property where title = :title";
@@ -117,7 +119,7 @@ if (empty($_GET)) {
             }
 
             // Insertion de la propriété dans la base de donnée
-            $sql = "insert into property (title, description, type, address, area, price, shower, bedroom, picture) values(:title, :description, :type, :address, :area, :price, :shower, :bedroom, :picture)";
+            $sql = "insert into property (title, description, type, address, area, price, shower, bedroom, picture, _userId, raison) values(:title, :description, :type, :address, :area, :price, :shower, :bedroom, :picture, :userId, :raison)";
             $query = $connectDB->prepare($sql);
             $query->bindValue(':title', $title, PDO::PARAM_STR);
             $query->bindValue(':description', $description, PDO::PARAM_STR);
@@ -128,6 +130,8 @@ if (empty($_GET)) {
             $query->bindValue(':shower', $shower, PDO::PARAM_INT);
             $query->bindValue(':bedroom', $bedroom, PDO::PARAM_INT);
             $query->bindValue(':picture', $picture, PDO::PARAM_STR);
+            $query->bindValue(':userId', $userId, PDO::PARAM_INT);
+            $query->bindValue(':raison', $raison, PDO::PARAM_STR);
             $query->execute();
 
             $rowCount = $query->rowCount();
@@ -155,7 +159,7 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view'], $row['_userId'], $row['raison']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 
@@ -201,7 +205,7 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view'], $row['_userId'], $row['raison']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 
@@ -283,7 +287,7 @@ if (empty($_GET)) {
             }
 
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view']);
+                $property = new Property($row['id'], $row['title'], $row['description'], $row['type'], $row['address'], $row['area'], $row['price'], $row['shower'], $row['bedroom'], $row['picture'], $row['post_date'], $row['etat'], $row['view'], $row['_userId'], $row['raison']);
                 $propertyArray[] = $property->returnPropertyAsArray();
             }
 

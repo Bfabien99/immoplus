@@ -20,9 +20,11 @@ class Property
     private $_post_date;
     private $_etat;
     private $_view;
+    private $_userId;
+    private $_raison;
 
 
-    public function __construct( $id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture = null, $post_date = null,$etat = null){
+    public function __construct( $id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture = null, $post_date = null,$etat = null, $userId = null, $raison = null){
         $this->setId($id);
         $this->setTitle($title);
         $this->setDescription($description);
@@ -35,6 +37,8 @@ class Property
         $this->setPicture($picture);
         $this->setPostDate($post_date);
         $this->setEtat($etat);
+        $this->setUserId($userId);
+        $this->setRaison($raison);
     }
 
     public function getView()
@@ -192,6 +196,32 @@ class Property
     {
         return $this->_etat;
     }
+
+    public function setRaison($raison)
+    {
+        if (($raison !== null)  && (strlen($raison) < 10)) {
+            throw new PropertyException("Property Raison error");
+        }
+
+        $this->_raison = $raison;
+    }
+    public function getRaison()
+    {
+        return $this->_raison;
+    }
+
+    public function setUserId($userId)
+    {
+        if (($userId !== null) && $userId < 1) {
+            throw new PropertyException("Property userId error");
+        }
+        $this->_userId = $userId;
+        
+    }
+    public function getUserId()
+    {
+        return $this->_userId;
+    }
     
 
     public function returnPropertyAsArray(){
@@ -208,7 +238,9 @@ class Property
         $property['picture'] = $this->getPicture();
         $property['post_date'] = $this->getPostDate();
         $property['etat'] = $this->getEtat();
-        $property['view'] = $this->getView();
+        $property['view'] = (int) $this->getView();
+        $property['_userId'] = $this->getUserId();
+        $property['raison'] = $this->getRaison();
 
         return $property;
     }
