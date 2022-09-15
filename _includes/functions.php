@@ -69,3 +69,58 @@ function PostToMyApi($data, $url)
 
     return $response;
 }
+
+function datediff($date)
+{
+    date_default_timezone_set('UTC');
+    $date1 = new DateTime($date);
+    $date2 = new DateTime();
+
+    if ($date1 > $date2) {
+        return "Erreur sur la date";
+        exit();
+    }
+    $diff = date_diff($date2, $date1);
+
+    if ($diff->d > 0) {
+        if ($diff->d == 1) {
+            $date = "Il y a 1 jour";
+            return $date;
+            exit();
+        } else {
+            $date = "Il y a $diff->d jours";
+            return $date;
+            exit();
+        }
+    }
+
+    if ($diff->h > 0) {
+        if ($diff->h == 1) {
+            $date = "Il y a 1 heure";
+            return $date;
+            exit();
+        } else {
+            $date = "Il y a $diff->h heures";
+            return $date;
+            exit();
+        }
+    }
+
+    if ($diff->i > 0) {
+        if ($diff->i == 1) {
+            $date = "Il y a 1 minute";
+            return $date;
+            exit();
+        } else {
+            $date = "Il y a $diff->i minutes";
+            return $date;
+            exit();
+        }
+    }
+
+    if ($diff->d == 0 && $diff->h == 0 && $diff->i == 0) {
+        $date = "Maintenant";
+    }
+
+    return $date;
+}

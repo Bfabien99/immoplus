@@ -390,7 +390,7 @@ if (isset($_GET['property_id'])) {
                             <div class="details">
                                 <p class="property_price"><span>Prix :</span> <?php echo number_format($property['price'], 0, ',', '.') ?> FCFA</p>
                                 <p class="property_type"><span>Type :</span> <?php echo $property['type'] ?></p>
-                                <p class="property_date"><span>Date :</span><?php echo $property['post_date'] ?></p>
+                                <p class="property_date"><span>Date :</span><?php echo datediff($property['post_date']) ?></p>
                             </div>
                         </div>
 
