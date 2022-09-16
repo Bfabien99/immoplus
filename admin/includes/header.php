@@ -198,7 +198,7 @@
         }
         .cardBox .card .numbers{
             position: relative;
-            font-weight: 500;
+            font-weight: bold;
             font-size: 2.5rem;
             color: var(--blue);
         }
@@ -234,10 +234,10 @@
             /* margin-top: 10px; */
         }
 
-        .recentOrders{
+        .recentOrders, .recentCustomers{
             position: relative;
             display: grid;
-            min-height: 500px;
+            min-height: 200px;
             background-color: var(--white);
             padding: 20px;
             box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
@@ -283,7 +283,7 @@
         .details .recentOrders table tr:last-child{
             border-bottom: none;
         }
-        .details .recentOrders table tbody tr:hover{
+        .details .recentOrders table tbody tr:hover, .recentCustomers table tr:hover{
             background: var(--blue);
             color: var(--white);
         }
@@ -302,13 +302,16 @@
             text-align: center;
         }
 
+        .details .recentOrders table tr td,.details .recentCustomers table tr td{
+            padding: 12px 10px;
+        }
         .status.attente{
             padding: 2px 4px;
             background-color: #f9ca3f;
             color: var(--white);
             border-radius: 4px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: bold;
         }
 
         .status.confirmer{
@@ -317,7 +320,39 @@
             color: var(--white);
             border-radius: 4px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: bold;
+        }
+
+        .recentCustomers .imgBx{
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .recentCustomers .imgBx img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .recentCustomers table tr td h4{
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.2em;
+        }
+
+        .recentCustomers table tr td span{
+            font-size: 14px;
+            color: var(--black2);
+        }
+
+        .recentCustomers table tr:hover span{
+            color: var(--white);
         }
     </style>
 </head>
