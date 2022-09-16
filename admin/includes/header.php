@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-weight: 100;
         }
 
         :root {
@@ -178,7 +179,9 @@
         main{
             padding: 30px 20px;
             background-color: var(--grey);
-            min-height: 90vh;
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .cardBox{
@@ -359,8 +362,9 @@
         .recentCustomers table tr:hover span{
             color: var(--white);
         }
-        /* ## DASHBOARD ## */
-        /* ##### - ## - #####*/
+        /* ## @DASHBOARD ## */
+        /* ##############################################################*/
+        /* ##############################################################*/
 
         main .container{
             display: flex;
@@ -396,6 +400,7 @@
             text-transform: uppercase;
         }
         #postForm .group input{
+            font-style: italic;
             height: 40px;
             text-transform: capitalize;
         }
@@ -410,7 +415,7 @@
         }
 
         #postForm .group input:focus, #postForm .group select:focus, #postForm .group textarea:focus{
-            border: 1px solid var(--blue);
+            border: 1.5px solid var(--blue);
             box-shadow: 0 7px 25px rgba(0, 0, 0, 0.1);
         }
 
@@ -443,6 +448,19 @@
         #submit:hover{
             background-color: var(--blue);
         }
+        /* ## @ADD PROPERTY FORM ## */
+        /* ##############################################################*/
+        /* ##############################################################*/
+
+        .footer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        /* ## @FOOTER ## */
+        /* ##############################################################*/
+        /* ##############################################################*/
         /* responsive */
 
         @media (max-width:991px){
@@ -556,6 +574,30 @@
                     <a href="./maps">
                         <span class="icon"><i>&circlearrowleft;</i></span>
                         <span class="title">Carte</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./maps">
+                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="title">Messages</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./maps">
+                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="title">Agents</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./maps">
+                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="title">Profil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./maps">
+                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="title">Déconnexion</span>
                     </a>
                 </li>
             </ul>

@@ -1,4 +1,7 @@
 <?php include('includes/header.php'); ?>
+
+<h3 style="text-align: center;margin:1em;color:var(--black2)">Tableau de bord</h3>
+
 <div class="cardBox">
   <div class="card">
     <div>
