@@ -411,8 +411,9 @@
             }
             .toggle{
                 z-index: 10001;
-                background-color: var(--white);
-                border-radius: 50%;
+            }
+            .toggle.active{
+                filter: invert(1);
             }
         }
     </style>

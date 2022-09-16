@@ -16,6 +16,7 @@
     toggle.onclick = function() {
         navigation.classList.toggle('active');
         main.classList.toggle('active');
+        toggle.classList.toggle('active');
     }
 
     // add hovered class on selected list item
