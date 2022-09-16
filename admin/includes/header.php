@@ -223,6 +223,47 @@
         .cardBox .card:hover .iconBx{
             color: var(--white);
         }
+
+        .details{
+            position: relative;
+            width: 100%;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-gap: 30px;
+            /* margin-top: 10px; */
+        }
+
+        .recentOrders{
+            position: relative;
+            display: grid;
+            min-height: 500px;
+            background-color: var(--white);
+            padding: 20px;
+            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+        }
+
+        .cardHeader{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .cardHeader h2{
+            font-weight: 600;
+            color: var(--green);
+            text-transform: capitalize;
+        }
+
+        .btn{
+            position: relative;
+            padding: 5px 10px;
+            background: var(--blue);
+            text-decoration: none;
+            color: var(--white);
+            border-radius: 6px;
+        }
     </style>
 </head>
 
