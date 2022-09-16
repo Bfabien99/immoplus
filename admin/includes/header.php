@@ -181,6 +181,14 @@
             padding: 20px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
+            grid-gap: 30px;
+        }
+
+        .cardBox .card{
+            position: relative;
+            background-color: var(--white);
+            padding: 30px;
+            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
         }
     </style>
 </head>
