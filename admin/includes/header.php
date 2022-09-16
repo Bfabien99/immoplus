@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <title>Admin</title>
     <style>
         * {
@@ -15,98 +14,207 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --blue: #287bff;
+            --white: #fff;
+            --grey: #f5f5f5;
+            --black1: #222;
+            --black2: #999;
+        }
+
         body {
+            min-height: 100vh;
             overflow-x: hidden;
-            width: 100vw;
         }
 
-        .properties {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 0.5em;
-            padding: 10px;
-            border-radius: 3px;
-        }
-
-        .property {
-            padding: 5px;
-            box-shadow: 0px 2px 5px #ccc;
-        }
-
-        .property .imgBx {
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            height: 200px;
+        .container {
+            position: relative;
             width: 100%;
         }
 
-        #map {
-            width: 300px;
-            height: 300px;
-        }
-
-        .error,
-        .success {
-            padding: 5px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: fit-content;
-            color: #fff;
-        }
-
-        .error {
-            background-color: red;
-        }
-
-        .success {
-            background-color: greenyellow;
-        }
-
-        .doublescreen{
-            display: flex;
-            height: 100vh;
-            position: relative;
-        }
-
-        .doublescreen nav{
-            background-color: #333;
-            color: #fff;
-            padding: 10px 15px;
-            height: 100%;
+        .navigation {
             position: fixed;
             width: 300px;
+            height: 100%;
+            background: var(--blue);
+            border-left: 10px solid var(--blue);
+            transition: 0.5s;
+            overflow: hidden;
+        }
+
+        .navigation.active {
+            width: 80px;
+        }
+
+        .navigation ul {
+            position: absolute;
             top: 0;
+            left: 0;
+            width: 100%;
         }
 
-        .doublescreen nav ul{
+        .navigation ul li {
+            position: relative;
+            width: 200%;
             list-style: none;
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+        }
+
+        .navigation ul li:hover,
+        .navigation ul li.hovered {
+            background-color: var(--white);
+        }
+
+        .navigation ul li:nth-child(1) {
+            margin-bottom: 40px;
+            pointer-events: none;
+        }
+
+        .navigation ul li a {
+            position: relative;
+            display: block;
+            width: 100%;
             display: flex;
-            flex-direction: column;
-            gap: 0.3em;
-        }
-
-        .doublescreen nav ul li a{
             text-decoration: none;
-            color: white;
-            font-style: 'Poppins';
-            text-align: center;
-            font-size: 1.4em;
+            color: var(--white);
         }
 
-        .doublescreen nav
+        .navigation ul li:hover a,
+        .navigation ul li.hovered a {
+            color: var(--blue);
+        }
+
+        .navigation ul li a .icon {
+            position: relative;
+            display: block;
+            min-width: 60px;
+            height: 60px;
+            line-height: 70px;
+            text-align: center;
+        }
+
+        .navigation ul li a .icon i {
+            font-size: 1.75rem;
+        }
+
+        .navigation ul li a .title {
+            position: relative;
+            display: block;
+            padding: 0 10px;
+            height: 60px;
+            line-height: 60px;
+            text-align: start;
+            white-space: nowrap;
+        }
+
+        .main {
+            position: absolute;
+            width: calc(100% - 300px);
+            left: 300px;
+            min-height: 100vh;
+            background-color: var(--white);
+            transition: 0.5s;
+        }
+
+        .main.active {
+            width: calc(100% - 80px);
+            left: 80px;
+        }
+
+        .topbar {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .toggle {
+            position: relative;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+
+        .name {
+            position: relative;
+            width: 400px;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .user {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .user img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         main{
-            position: relative;
-            left: 300px;
-            display: grid;
-            grid-template-columns: 1fr;
-            width: calc(100%-300px);
+            padding: 30px 20px;
+            background-color: var(--grey);
+            min-height: 90vh;
         }
     </style>
 </head>
 
 <body>
-    
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="">
+                        <span class="icon"><i>&copy;</i></span>
+                        <span class="title">Brznd Name</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="icon"><i>&copysr;</i></span>
+                        <span class="title">Link1</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="title">Link1</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <i>&leftarrow;</i>
+                </div>
+
+
+                <div class="name">
+                    <h4>Admin</h4>
+                </div>
+
+                <div class="user">
+                    <img src="./pexels-expect-best-323780.jpg" alt="">
+                </div>
+            </div>
+            <main>
