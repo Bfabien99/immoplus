@@ -301,6 +301,24 @@
         .details .recentOrders table tr td:nth-child(4){
             text-align: center;
         }
+
+        .status.attente{
+            padding: 2px 4px;
+            background-color: #f9ca3f;
+            color: var(--white);
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status.confirmer{
+            padding: 2px 4px;
+            background-color: #8de02c;
+            color: var(--white);
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
     </style>
 </head>
 
