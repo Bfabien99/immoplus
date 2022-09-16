@@ -37,4 +37,30 @@
     </div>
   </div>
 </div>
+
+<div class="details">
+  <div class="recentOrders">
+    <div class="cardHeader">
+      <h2>Propriétés recentes</h2>
+      <a href="" class="btn">Tout voir</a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <td>Titre</td>
+          <td>Prix</td>
+          <td>Type</td>
+          <td>Date</td>
+        </tr>
+      </thead><tbody>
+        <tr>
+          <td>propriété1</td>
+          <td>10000</td>
+          <td>Location</td>
+          <td>Il y a 2 jours</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <?php include('includes/footer.php'); ?>
