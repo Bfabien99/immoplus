@@ -142,6 +142,11 @@
             align-items: center;
             font-size: 2.5rem;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .main.active .toggle{
+            rotate: 180deg;
         }
 
         .name {
@@ -390,6 +395,10 @@
             main{
                 padding: 0;
             }
+            .toggle{
+                z-index: 10001;
+                transform: rotateY(180deg);
+            }
             .cardBox{
                 grid-template-columns: repeat(1,1fr);
             }
@@ -409,12 +418,11 @@
                 width: 100%;
                 left: 0;
             }
-            .toggle{
-                z-index: 10001;
-            }
-            .toggle.active{
+            .main.active .toggle{
                 filter: invert(1);
+                rotate: 180deg !important;
             }
+         
         }
     </style>
 </head>
