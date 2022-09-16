@@ -51,7 +51,7 @@
           <td>Prix</td>
           <td>Type</td>
           <td>Date</td>
-          <td>Etat</td>
+          <td>Status</td>
         </tr>
       </thead>
       <tbody>
@@ -60,14 +60,14 @@
           <td>10000</td>
           <td>Location</td>
           <td>Il y a 2 jours</td>
-          <td><i>red</i></td>
+          <td><span class="status attente">En attente</span></td>
         </tr>
         <tr>
           <td>propriété2</td>
           <td>10000</td>
           <td>Vente</td>
           <td>Il y a 2 mois</td>
-          <td><i>green</i></td>
+          <td><span class="status confirmer">Confirmer</span></td>
         </tr>
       </tbody>
     </table>
