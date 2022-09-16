@@ -16,6 +16,7 @@
 
         :root {
             --blue: #287bff;
+            --green: #162c3bf9;
             --white: #fff;
             --grey: #f5f5f5;
             --black1: #222;
@@ -36,8 +37,8 @@
             position: fixed;
             width: 300px;
             height: 100%;
-            background: var(--blue);
-            border-left: 10px solid var(--blue);
+            background: var(--green);
+            border-left: 10px solid var(--green);
             transition: 0.5s;
             overflow: hidden;
         }
@@ -82,7 +83,7 @@
 
         .navigation ul li:hover a,
         .navigation ul li.hovered a {
-            color: var(--blue);
+            color: var(--green);
         }
 
         .navigation ul li a .icon {
@@ -188,7 +189,39 @@
             position: relative;
             background-color: var(--white);
             padding: 30px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
             box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+            transition: 0.2s;
+        }
+        .cardBox .card .numbers{
+            position: relative;
+            font-weight: 500;
+            font-size: 2.5rem;
+            color: var(--blue);
+        }
+
+        .cardBox .card .cardName{
+            color: var(--black2);
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        .cardBox .card .iconBx{
+            font-size: 3.5em;
+            color: var(--green);
+        }
+
+        .cardBox .card:hover{
+            background-color: var(--green);
+        }
+
+        .cardBox .card:hover .numbers,
+        .cardBox .card:hover .cardName,
+        .cardBox .card:hover .iconBx{
+            color: var(--white);
         }
     </style>
 </head>
