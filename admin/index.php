@@ -76,7 +76,6 @@
   <div class="recentCustomers">
   <div class="cardHeader">
       <h2>Utilisateurs recents</h2>
-      <a href="" class="btn">Tout voir</a>
     </div>
     <table>
       <tr>
