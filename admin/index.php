@@ -72,5 +72,22 @@
       </tbody>
     </table>
   </div>
+
+  <div class="recentCustomers">
+  <div class="cardHeader">
+      <h2>Utilisateurs recents</h2>
+      <a href="" class="btn">Tout voir</a>
+    </div>
+    <table>
+      <tr>
+        <td width="60px"><div class="imgBx"><img src="/pexels-expect-best-323780.jpg" alt=""></div></td>
+        <td><h4>user1</h4><span>Il y a 2 jours</span></td>
+    </tr>
+    <tr>
+        <td width="60px"><div class="imgBx"><img src="/pexels-expect-best-323780.jpg" alt=""></div></td>
+        <td><h4>user2</h4><span>Il y a 2 mois</span></td>
+    </tr>
+    </table>
+  </div>
 </div>
 <?php include('includes/footer.php'); ?>
