@@ -1,21 +1,40 @@
 <?php include('includes/header.php'); ?>
-<script>
-    // Initialize and add the map
-function initMap() {
-  // The location of Uluru
-  const uluru = { lat: -25.344, lng: 131.031 };
-  // The map, centered at Uluru
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: uluru,
-  });
-  // The marker, positioned at Uluru
-  const marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
-  });
-}
-
-window.initMap = initMap;
-</script>
+<div class="cardBox">
+  <div class="card">
+    <div>
+      <div class="numbers">1000</div>
+      <div class="cardName">Utilisateurs</div>
+    </div>
+    <div class="iconBx">
+      <i>&emptyset;</i>
+    </div>
+  </div>
+  <div class="card">
+    <div>
+      <div class="numbers">1000</div>
+      <div class="cardName">Propriétés</div>
+    </div>
+    <div class="iconBx">
+      <i>&emptyset;</i>
+    </div>
+  </div>
+  <div class="card">
+    <div>
+      <div class="numbers">1000</div>
+      <div class="cardName">Messages</div>
+    </div>
+    <div class="iconBx">
+      <i>&emptyset;</i>
+    </div>
+  </div>
+  <div class="card">
+    <div>
+      <div class="numbers">1000</div>
+      <div class="cardName">Agents</div>
+    </div>
+    <div class="iconBx">
+      <i>&emptyset;</i>
+    </div>
+  </div>
+</div>
 <?php include('includes/footer.php'); ?>

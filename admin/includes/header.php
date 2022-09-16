@@ -174,6 +174,14 @@
             background-color: var(--grey);
             min-height: 90vh;
         }
+
+        .cardBox{
+            position: relative;
+            width: 100%;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
     </style>
 </head>
 
@@ -188,15 +196,27 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
-                        <span class="icon"><i>&copysr;</i></span>
-                        <span class="title">Link1</span>
+                    <a href="./">
+                        <span class="icon"><i>&af;</i></span>
+                        <span class="title">Tableau de bord</span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="./property">
+                        <span class="icon"><i>&copysr;</i></span>
+                        <span class="title">Propriétés</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./user">
                         <span class="icon"><i>&circlearrowleft;</i></span>
-                        <span class="title">Link1</span>
+                        <span class="title">Utilisateurs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./maps">
+                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="title">Carte</span>
                     </a>
                 </li>
             </ul>
