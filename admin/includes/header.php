@@ -359,7 +359,90 @@
         .recentCustomers table tr:hover span{
             color: var(--white);
         }
+        /* ## DASHBOARD ## */
+        /* ##### - ## - #####*/
 
+        main .container{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #postForm{
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 30px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        #postForm .group{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
+        }
+
+        #postForm .group label{
+            font-weight: bold;
+            font-size: 1rem;
+            padding: 5px 0;
+            border-top: 1px solid var(--green);
+            display: flex;
+            align-items: center;
+            margin-right: 2em;
+            text-transform: uppercase;
+        }
+        #postForm .group input{
+            height: 40px;
+            text-transform: capitalize;
+        }
+        #postForm .group input, #postForm .group select, #postForm .group textarea{
+            padding: 5px;
+            outline: none;
+            border: 1px solid var(--green);
+            background-color: var(--white);
+            text-align: justify;
+            border-radius: 5px;
+            transition: 0.2s;
+        }
+
+        #postForm .group input:focus, #postForm .group select:focus, #postForm .group textarea:focus{
+            border: 1px solid var(--blue);
+            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        #postForm .group .error{
+            background-color: #f22;
+            margin: auto 1.2em;
+            padding: 10px;
+            text-align: center;
+            height: fit-content;
+            color: var(--white);
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #submit{
+            width: 100%;
+            max-width: 200px;
+            padding: 5px;
+            background-color: var(--green);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            transition: 0.2s;
+            cursor: pointer;
+            height: 40px;
+        }
+
+        #submit:hover{
+            background-color: var(--blue);
+        }
         /* responsive */
 
         @media (max-width:991px){
@@ -394,6 +477,20 @@
         @media (max-width: 480px){
             main{
                 padding: 0;
+            }
+
+            main .container{
+                padding: 20px;
+            }
+            #postForm .group{
+                grid-template-columns: 1fr;
+                grid-gap: 10px;
+            }
+            #postForm .group label{
+                justify-content: center;
+            }
+            #postForm .group .error{
+                text-align: center;
             }
             .toggle{
                 z-index: 10001;

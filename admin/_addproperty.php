@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
     if (empty(escape($_POST['shower']))) {
         $errors['shower'] = "<p class='error'>Le nombre de douche est obligatoire</p>";
     } elseif ($_POST['shower'] < 1 || $_POST['shower'] > 100) {
-        $errors['shower'] = "<p class='error'>Le nombre de douche doit être compris entre 1 fcfa et 100</p>";
+        $errors['shower'] = "<p class='error'>Le nombre de douche doit être compris entre 1 et 100</p>";
     } elseif (!preg_match('/[0-9]\d+/', $_POST['shower'])) {
         $errors['shower'] = "<p class='error'>Seuls les chiffres sont admis pour le nombre de douche</p>";
     } else {
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
     if (empty(escape($_POST['bedroom']))) {
         $errors['bedroom'] = "<p class='error'>Le nombre de chambre est obligatoire</p>";
     } elseif ($_POST['bedroom'] < 1 || $_POST['bedroom'] > 100) {
-        $errors['bedroom'] = "<p class='error'>Le nombre de chambre doit être compris entre 1 fcfa et 100</p>";
+        $errors['bedroom'] = "<p class='error'>Le nombre de chambre doit être compris entre 1 et 100</p>";
     } elseif (!preg_match('/[0-9]\d+/', $_POST['bedroom'])) {
         $errors['bedroom'] = "<p class='error'>Seuls les chiffres sont admis pour le nombre de chambre</p>";
     } else {
@@ -159,22 +159,23 @@ if (isset($_POST['submit'])) {
 ?>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&libraries=places&callback=initAutocomplete" async defer>
 </script>
-
+<div class="container">
     <?php echo $errors['api'] ?? "" ?>
-    <form method="post" enctype="multipart/form-data" id="myForm">
+    <form method="post" enctype="multipart/form-data" id="postForm">
         <div class="group">
             <label for="title">Titre</label>
-            <input type="text" name="title" value="<?php echo $_POST['title'] ?? "" ?>">
+            <input required placeholder="Entrer un titre" type="text" name="title" value="<?php echo $_POST['title'] ?? "" ?>">
             <?php echo $errors['title'] ?? "" ?>
         </div>
         <div class="group">
             <label for="title">Description</label>
-            <input type="text" name="description" value="<?php echo $_POST['description'] ?? "" ?>">
+            <textarea name="description" cols="30" rows="10" placeholder="Entrer les descriptions de la propriété"><?php echo $_POST['description'] ?? "" ?></textarea>
             <?php echo $errors['description'] ?? "" ?>
         </div>
         <div class="group">
             <label for="type">Type</label>
-            <select name="type" id="type">
+            <select name="type" id="type" required>
+                <option value="">Veuillez choisir le type</option>
                 <option value="location">En Location</option>
                 <option value="vendre">En Vente</option>
             </select>
@@ -182,32 +183,32 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="group">
             <label for="address">Adresse</label>
-            <input type="text" id="address" name="address" value="<?php echo $_POST['address'] ?? "" ?>">
+            <input required placeholder="Entrer l'adresse géographique de la propriété" type="text" id="address" name="address" value="<?php echo $_POST['address'] ?? "" ?>">
             <?php echo $errors['address'] ?? "" ?>
         </div>
         <div class="group">
             <label for="area">Superficie en m2</label>
-            <input type="number" name="area" value="<?php echo $_POST['area'] ?? "" ?>" min=50>
+            <input required placeholder="Entrer la superficie de la propriété" type="number" name="area" value="<?php echo $_POST['area'] ?? "" ?>" min=50>
             <?php echo $errors['area'] ?? "" ?>
         </div>
         <div class="group">
             <label for="price">Prix</label>
-            <input type="number" name="price" value="<?php echo $_POST['price'] ?? "" ?>" min=5000>
+            <input required placeholder="Entrer le prix de la propriété" type="number" name="price" value="<?php echo $_POST['price'] ?? "" ?>" min=5000>
             <?php echo $errors['price'] ?? "" ?>
         </div>
         <div class="group">
             <label for="shower">Nombre de douche</label>
-            <input type="number" name="shower" value="<?php echo $_POST['shower'] ?? "" ?>" min=1>
+            <input required placeholder="Le nombre de douche est compris entre 1 et 100" type="number" name="shower" value="<?php echo $_POST['shower'] ?? "" ?>" min=1 max=100>
             <?php echo $errors['shower'] ?? "" ?>
         </div>
         <div class="group">
             <label for="bedroom">Nombre de chambre</label>
-            <input type="number" name="bedroom" value="<?php echo $_POST['bedroom'] ?? "" ?>" min=1>
+            <input required placeholder="Le nombre de chambre est compris entre 1 et 100" type="number" name="bedroom" value="<?php echo $_POST['bedroom'] ?? "" ?>" min=1 max=100>
             <?php echo $errors['bedroom'] ?? "" ?>
         </div>
         <div class="group">
-            <label for="picture">Image de la propriété</label>
-            <input type="file" name="image">
+            <label for="picture">Choisir l'image de la propriété</label>
+            <input required type="file" name="image">
             <?php echo $errors['image'] ?? "" ?>
         </div>
         <?php if (!empty($imgurData)) : ?>
@@ -218,6 +219,7 @@ if (isset($_POST['submit'])) {
         <input type="submit" value="Enregistrer" name="submit" id="submit">
     </form>
     <div id="map"></div>
+</div>
 
 <script>
     let autocomplete;

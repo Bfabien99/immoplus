@@ -17,6 +17,7 @@ if ($data) {
 
 ?>
 <div class="container">
+    <a href="./property/add" class="btn">Ajouter </a>
     <?php if (!empty($properties)) : ?>
         <div class="properties">
             <?php foreach ($properties as $property) : ?>
