@@ -376,6 +376,45 @@
                 grid-template-columns: repeat(2,1fr);
             }
         }
+        
+        @media (max-width: 768px){
+            .details{
+                grid-template-columns: repeat(1,1fr);
+            }
+            .recentOrders{
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 480px){
+            main{
+                padding: 0;
+            }
+            .cardBox{
+                grid-template-columns: repeat(1,1fr);
+            }
+            .cardHeader h2{
+                font-size: 20px;
+            }
+            .user{
+                min-width: 40px;
+            }
+            .navigation{
+                width: 100%;
+                left: -100%;
+                z-index: 1000;
+                background-color: #162c3bff;
+            }
+            .navigation.active{
+                width: 100%;
+                left: 0;
+            }
+            .toggle{
+                z-index: 10001;
+                background-color: var(--white);
+                border-radius: 50%;
+            }
+        }
     </style>
 </head>
 
