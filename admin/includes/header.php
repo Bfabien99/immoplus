@@ -354,6 +354,28 @@
         .recentCustomers table tr:hover span{
             color: var(--white);
         }
+
+        /* responsive */
+
+        @media (max-width:991px){
+            .navigation{
+                left: -300px;
+            }
+            .navigation.active{
+                width: 300px;
+                left: 0;
+            }
+            .main{
+                width: 100%;
+                left: 0;
+            }
+            .main.active{
+                left: 300px;
+            }
+            .cardBox{
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
     </style>
 </head>
 
