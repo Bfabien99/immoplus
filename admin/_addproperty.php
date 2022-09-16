@@ -160,6 +160,7 @@ if (isset($_POST['submit'])) {
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&libraries=places&callback=initAutocomplete" async defer>
 </script>
 <div class="container">
+<h3 style="text-align: center;margin:1em;color:var(--black2)">Ajouter une nouvelle propriété</h3>
     <?php echo $errors['api'] ?? "" ?>
     <form method="post" enctype="multipart/form-data" id="postForm">
         <div class="group">

@@ -17,6 +17,7 @@ if ($data) {
 
 ?>
 <div class="container">
+<h3 style="text-align: center;margin:1em;color:var(--black2)">Toutes les propriétés</h3>
     <a href="./property/add" class="btn">Ajouter </a>
     <?php if (!empty($properties)) : ?>
         <div class="properties">

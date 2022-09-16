@@ -1,4 +1,4 @@
-<?php include_once('../_includes/functions.php'); ?>
+<?php include_once('../_includes/functions.php');?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -553,25 +553,25 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./">
+                    <a href="/immoplus/admin/">
                         <span class="icon"><i>&af;</i></span>
                         <span class="title">Tableau de bord</span>
                     </a>
                 </li>
                 <li>
-                    <a href="./property">
+                    <a href="/immoplus/admin/property">
                         <span class="icon"><i>&copysr;</i></span>
                         <span class="title">Propriétés</span>
                     </a>
                 </li>
                 <li>
-                    <a href="./user">
+                    <a href="/immoplus/admin/user">
                         <span class="icon"><i>&circlearrowleft;</i></span>
                         <span class="title">Utilisateurs</span>
                     </a>
                 </li>
                 <li>
-                    <a href="./maps">
+                    <a href="/immoplus/admin/maps">
                         <span class="icon"><i>&circlearrowleft;</i></span>
                         <span class="title">Carte</span>
                     </a>
@@ -583,19 +583,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./maps">
+                    <a href="/immoplus/admin/agent">
                         <span class="icon"><i>&circlearrowleft;</i></span>
                         <span class="title">Agents</span>
                     </a>
                 </li>
                 <li>
-                    <a href="./maps">
+                    <a href="/immoplus/admin/profil">
                         <span class="icon"><i>&circlearrowleft;</i></span>
                         <span class="title">Profil</span>
                     </a>
                 </li>
                 <li>
-                    <a href="./maps">
+                    <a href="/immoplus/admin/logout">
                         <span class="icon"><i>&circlearrowleft;</i></span>
                         <span class="title">Déconnexion</span>
                     </a>
