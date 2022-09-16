@@ -279,6 +279,28 @@
             color: var(--black1);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
+
+        .details .recentOrders table tr:last-child{
+            border-bottom: none;
+        }
+        .details .recentOrders table tbody tr:hover{
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .details .recentOrders table tr td:last-child{
+            text-align: end;
+        }
+
+        .details .recentOrders table tr td:nth-child(2){
+            text-align: center;
+        }
+        .details .recentOrders table tr td:nth-child(3){
+            text-align: center;
+        }
+        .details .recentOrders table tr td:nth-child(4){
+            text-align: center;
+        }
     </style>
 </head>
 
