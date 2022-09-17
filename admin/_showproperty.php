@@ -56,7 +56,7 @@ if (isset($_GET['property_id'])) {
         <h4>Aucune propriété pour l'instant</h4>
     <?php endif; ?>
 <?php endif; ?>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&callback=initMap&v=weekly" defer></script>
+
 <?php
 
 if (!empty($location)) {
@@ -115,6 +115,7 @@ if (!empty($location)) {
 
             window.initMap = initMap;
         </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&callback=initMap&v=weekly" defer></script>
 
 <?php }
 }

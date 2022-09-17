@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/1f88d87af5.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/1f88d87af5.js" crossorigin="anonymous"></script> -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <title>Admin</title>
     <style>
         * {
@@ -560,55 +562,55 @@
             <ul>
                 <li>
                     <a href="">
-                        <span class="icon"><i>&copy;</i></span>
-                        <span class="title">Brznd Name</span>
+                        <span class="icon"><ion-icon name="key"></ion-icon></span>
+                        <span class="title">Immoplus</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/">
-                        <span class="icon"><i>&af;</i></span>
+                        <span class="icon"><ion-icon name="time"></ion-icon></span>
                         <span class="title">Tableau de bord</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/property">
-                        <span class="icon"><i>&copysr;</i></span>
+                        <span class="icon"><ion-icon name="home"></ion-icon></span>
                         <span class="title">Propriétés</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/user">
-                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="icon"><ion-icon name="people"></ion-icon></span>
                         <span class="title">Utilisateurs</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/maps">
-                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="icon"><ion-icon name="map"></ion-icon></span>
                         <span class="title">Carte</span>
                     </a>
                 </li>
                 <li>
                     <a href="./maps">
-                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="icon"><ion-icon name="send"></ion-icon></span>
                         <span class="title">Messages</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/agent">
-                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="icon"><ion-icon name="globe"></ion-icon></span>
                         <span class="title">Agents</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/profil">
-                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="icon"><ion-icon name="cog"></ion-icon></span>
                         <span class="title">Profil</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/logout">
-                        <span class="icon"><i>&circlearrowleft;</i></span>
+                        <span class="icon"><ion-icon name="log-out"></ion-icon></span>
                         <span class="title">Déconnexion</span>
                     </a>
                 </li>

@@ -420,7 +420,7 @@ if($data){
                 <div class="property_informations">
                     <h5 class="property_address"><?php echo $property['address'] ?></h5>
                     <div class="property_description">
-                        <p><?php echo nl2br($property['description']) ?></p>
+                        <p><?php echo substr(nl2br($property['description']),0,100).'...' ?></p>
                     </div>
                     <div class="property_detail">
                         <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>

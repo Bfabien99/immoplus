@@ -9,7 +9,7 @@
       <div class="cardName">Utilisateurs</div>
     </div>
     <div class="iconBx">
-      <i>&emptyset;</i>
+      <ion-icon name="people"></ion-icon>
     </div>
   </div>
   <div class="card">
@@ -18,7 +18,7 @@
       <div class="cardName">Propriétés</div>
     </div>
     <div class="iconBx">
-      <i>&emptyset;</i>
+      <ion-icon name="home"></ion-icon>
     </div>
   </div>
   <div class="card">
@@ -27,7 +27,7 @@
       <div class="cardName">Messages</div>
     </div>
     <div class="iconBx">
-      <i>&emptyset;</i>
+      <ion-icon name="send"></ion-icon>
     </div>
   </div>
   <div class="card">
@@ -36,7 +36,7 @@
       <div class="cardName">Agents</div>
     </div>
     <div class="iconBx">
-      <i>&emptyset;</i>
+      <ion-icon name="globe"></ion-icon>
     </div>
   </div>
 </div>
