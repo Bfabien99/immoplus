@@ -407,7 +407,7 @@ if (isset($_GET['property_id'])) {
         <?php endif; ?>
     <?php endif; ?>
     <?php include('_includes/footer.php'); ?>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&callback=initMap&v=weekly" defer></script>
+    
     <?php
 
     if (!empty($location)) {
@@ -466,7 +466,7 @@ if (isset($_GET['property_id'])) {
 
                 window.initMap = initMap;
             </script>
-
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&callback=initMap&v=weekly" defer></script>
     <?php }
     }
     ?>

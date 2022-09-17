@@ -420,19 +420,6 @@
             box-shadow: 0 7px 25px rgba(0, 0, 0, 0.1);
         }
 
-        #postForm .group .error{
-            background-color: #f22;
-            margin: auto 1.2em;
-            padding: 10px;
-            text-align: center;
-            height: fit-content;
-            color: var(--white);
-            letter-spacing: 2px;
-            text-align: justify;
-            font-weight: bold;
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-        }
-
         #submit{
             width: 100%;
             max-width: 200px;
@@ -462,6 +449,30 @@
         /* ## @FOOTER ## */
         /* ##############################################################*/
         /* ##############################################################*/
+        .error{
+            background-color: #f22;
+            margin: auto 1.2em;
+            padding: 10px;
+            text-align: center;
+            height: fit-content;
+            color: var(--white);
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+        .success{
+            background-color: green;
+            margin: auto 1.2em;
+            padding: 10px;
+            text-align: center;
+            height: fit-content;
+            color: var(--white);
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
         /* responsive */
 
         @media (max-width:991px){

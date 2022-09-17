@@ -5,51 +5,41 @@ include_once('../_includes/functions.php');
 $message = false;
 $errors = false;
 if (isset($_POST['submit'])) {
-
+    
     if (empty(escape($_POST['title']))) {
         $errors['title'] = "<p class='error'>Le titre est obligatoire</p>";
     } elseif (strlen($_POST['title']) < 6) {
         $$errors['title'] = "<p class='error'>Le titre doit comporter au moins 6 caractères</p>";
-    } elseif (!preg_match('/^[a-zA-Z\-\_\ \']+$/', $_POST['title'])) {
-        $errors['title'] = "<p class='error'>Seul les lettres et les caractères ('),(-),(_) sont admis pour le titre de la propriété</p>";
     } else {
         $title = $_POST['title'];
     }
 
     if (empty(escape($_POST['description']))) {
         $errors['description'] = "<p class='error'>La description est obligatoire</p>";
-    } elseif (strlen($_POST['description']) < 10 || strlen($_POST['description']) > 200) {
-        $errors['description'] = "<p class='error'>Le titre doit comporter entre 10 et 200 caractères</p>";
-    } elseif (!preg_match('/^[a-zA-Z0-9]+[a-zA-Z\-\_\ \.\']+$/', $_POST['description'])) {
-        $errors['description'] = "<p class='error'>Seul les lettres et les caractères ('),(-),(_) sont admis pour la description</p>";
+    } elseif (strlen($_POST['description']) < 10 || strlen($_POST['description']) > 500) {
+        $errors['description'] = "<p class='error'>La description doit comporter entre 10 et 500 caractères</p>";
     } else {
         $description = $_POST['description'];
     }
 
     if (empty(strtolower(escape($_POST['type'])))) {
         $errors['type'] = "<p class='error'>Le type est obligatoire</p>";
-    } elseif (!preg_match('/^[a-z]+$/', $_POST['type'])) {
-        $errors['type'] = "<p class='error'>Seuls les lettres sont admis pour le type</p>";
     } else {
         $type = $_POST['type'];
     }
 
     if (empty(escape($_POST['address']))) {
         $errors['address'] = "<p class='error'>L'adresse est obligatoire</p>";
-    } elseif (strlen($_POST['description']) < 2 || strlen($_POST['description']) > 200) {
+    } elseif (strlen($_POST['address']) < 2 || strlen($_POST['address']) > 200) {
         $errors['address'] = "<p class='error'>L'adresse doit comporter entre 2 et 200 caractères</p>";
-    } elseif (!preg_match('/^[a-zA-Z0-9\-\_\ \,\']+$/', $_POST['address'])) {
-        $errors['address'] = "<p class='error'>Seul les lettres, les chiffres et les caractères ('),(-),(_),(,) sont admis pour l'adresse</p>";
     } else {
         $address = $_POST['address'];
     }
 
     if (empty(escape($_POST['area']))) {
         $errors['area'] = "<p class='error'>La superficie est obligatoire</p>";
-    } elseif ($_POST['area'] < 50 || $_POST['area'] > 1000000000000) {
-        $errors['area'] = "<p class='error'>La superficie être comprise entre 50m2 et 1000000000000m2</p>";
-    } elseif (!preg_match('/[0-9]\d+/', $_POST['area'])) {
-        $errors['area'] = "<p class='error'>Seuls les chiffres sont admis pour la superficie</p>";
+    } elseif ($_POST['area'] < 50 || $_POST['area'] > 100000000) {
+        $errors['area'] = "<p class='error'>La superficie être comprise entre 50m2 et 100000000m2</p>";
     } else {
         $area = $_POST['area'];
     }
@@ -58,8 +48,6 @@ if (isset($_POST['submit'])) {
         $errors['price'] = "<p class='error'>Le prix est obligatoire</p>";
     } elseif ($_POST['price'] < 5000 || $_POST['price'] > 900000000000) {
         $errors['price'] = "<p class='error'>Le prix doit être compris entre 5000 fcfa et 900.000.000.000 fcfa</p>";
-    } elseif (!preg_match('/[0-9]\d+/', $_POST['price'])) {
-        $errors['price'] = "<p class='error'>Seuls les chiffres sont admis pour le prix</p>";
     } else {
         $price = $_POST['price'];
     }
@@ -68,8 +56,6 @@ if (isset($_POST['submit'])) {
         $errors['shower'] = "<p class='error'>Le nombre de douche est obligatoire</p>";
     } elseif ($_POST['shower'] < 1 || $_POST['shower'] > 100) {
         $errors['shower'] = "<p class='error'>Le nombre de douche doit être compris entre 1 et 100</p>";
-    } elseif (!preg_match('/[0-9]\d+/', $_POST['shower'])) {
-        $errors['shower'] = "<p class='error'>Seuls les chiffres sont admis pour le nombre de douche</p>";
     } else {
         $shower = $_POST['shower'];
     }
@@ -78,8 +64,6 @@ if (isset($_POST['submit'])) {
         $errors['bedroom'] = "<p class='error'>Le nombre de chambre est obligatoire</p>";
     } elseif ($_POST['bedroom'] < 1 || $_POST['bedroom'] > 100) {
         $errors['bedroom'] = "<p class='error'>Le nombre de chambre doit être compris entre 1 et 100</p>";
-    } elseif (!preg_match('/[0-9]\d+/', $_POST['bedroom'])) {
-        $errors['bedroom'] = "<p class='error'>Seuls les chiffres sont admis pour le nombre de chambre</p>";
     } else {
         $bedroom = $_POST['bedroom'];
     }
@@ -100,22 +84,25 @@ if (isset($_POST['submit'])) {
             // API post parameters
             $postFields = array('image' => base64_encode($image_source));
 
-            // Post image to Imgur via API
+            if(!$errors){
+                // Post image to Imgur via API
             $response = callApiImgur($postFields);
             // Decode API response to array
             $responseArr = json_decode($response);
-
             // Check image upload status
             if (!empty($responseArr)) {
                 $imgurData = $responseArr;
             } else {
                 $errors['image'] = "<p class='error'>L'image n'a pas pu être téléchargé</p>";
             }
+            }
+            
         } else {
             $errors['image'] = "<p class='error'>Désolé, seule les images png, jpeg, jpg sont acceptées</p>";
         }
 
-        if (!empty($title) && !empty($description) && !empty($type) && !empty($address) && !empty($area) && !empty($price) && !empty($shower) && !empty($bedroom) && !empty($imgurData)) {
+
+        if ((!$errors) && !empty($title) && !empty($description) && !empty($type) && !empty($address) && !empty($area) && !empty($price) && !empty($shower) && !empty($bedroom) && !empty($imgurData)) {
 
             // get Posted data and transform to json
             $data = array(
@@ -127,6 +114,8 @@ if (isset($_POST['submit'])) {
                 "price" => $price,
                 "shower" => $shower,
                 "bedroom" => $bedroom,
+                "userId" => null,
+                "raison" => null,
                 "picture" => $imgurData->data->link
             );
             $data_string = json_encode($data);
@@ -212,11 +201,6 @@ if (isset($_POST['submit'])) {
             <input required type="file" name="image">
             <?php echo $errors['image'] ?? "" ?>
         </div>
-        <?php if (!empty($imgurData)) : ?>
-            <img src="<?php echo $imgurData->data->link; ?>" alt="">
-            <p>Title = <?php echo $imgurData->data->description; ?></p>
-            <p><b>Imgur URL:</b> <a href="<?php echo $imgurData->data->link; ?>" target="_blank"><?php echo $imgurData->data->link; ?></a></p>
-        <?php endif; ?>
         <input type="submit" value="Enregistrer" name="submit" id="submit">
     </form>
     <div id="map"></div>
