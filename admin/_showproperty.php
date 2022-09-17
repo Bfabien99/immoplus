@@ -32,6 +32,7 @@ if (isset($_GET['property_id'])) {
 }
 ?>
 <div class="container">
+
     <?php if (!empty($errors)) : ?>
         <?php foreach ($errors as $error) : ?>
             <?php echo $error ?>
@@ -40,18 +41,33 @@ if (isset($_GET['property_id'])) {
     <?php else : ?>
         <?php if (!empty($property)) : ?>
             <?php $location = $property['address']; ?>
-            <div class="property">
-                <div class="imgBx" style="background-image:url('<?php echo $property['picture'] ?? 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=1100&q=60' ?>')">
+            <div id="propertyBx">
+                <img class="property_background_picture" src="<?php echo $property['picture'] ?>" alt="image_propriete">
+                <div class="property">
+                    <div class="imgBx">
+                        <img src="<?php echo $property['picture'] ?>" alt="">
+                    </div>
+                    <div class="contentBx">
+                        <div class="details">
+                            <p><?php echo $property['shower']?> douche(s)</p>
+                            <p><?php echo $property['bedroom']?> chambre(s)</p>
+                            <p><?php echo $property['area']?> m2</p>
+                        </div>
+                        <div class="value">
+                            <?php echo $property['type'] == 'location' ? "<p>En location</p>" : "<p>En vente</p>"?>
+                            <p><?php echo number_format($property['price'],0,',','.')?> Fcfa</p>
+                        </div>
+                        <div class="informations">
+                            <h3 class="title"><?php echo $property['title']?></h3>
+                            <p class="description">
+                            <?php echo nl2br($property['description'])?>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="contentBx">
-                    <h3 class="title"><?php echo $property['title'] ?></h3>
-                    <section class="description">
-                        <?php echo $property['description'] ?>
-                    </section>
-                </div>
-            </div>
+            
 
-            <div id="map"></div>
+            <div id="map"></div></div>
         <?php else : ?>
             <h4>Aucune propriété pour l'instant</h4>
         <?php endif; ?>

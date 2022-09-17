@@ -9,8 +9,11 @@ if (isset($_POST['submit'])) {
     if (empty(escape($_POST['title']))) {
         $errors['title'] = "<p class='error'>Le titre est obligatoire</p>";
     } elseif (strlen($_POST['title']) < 6) {
-        $$errors['title'] = "<p class='error'>Le titre doit comporter au moins 6 caractères</p>";
-    } else {
+        $errors['title'] = "<p class='error'>Le titre doit comporter au moins 6 caractères</p>";
+    }elseif (!ctype_alpha(str_replace(' ','',$_POST['title']))){
+        $errors['title'] = "<p class='error'>Le titre ne doit comporter que des lettres</p>";
+    } 
+    else {
         $title = $_POST['title'];
     }
 
