@@ -56,12 +56,18 @@ if (isset($_GET['property_id'])) {
                         <div class="value">
                             <?php echo $property['type'] == 'location' ? "<p>En location</p>" : "<p>En vente</p>"?>
                             <p><?php echo number_format($property['price'],0,',','.')?> Fcfa</p>
+                            <?php echo ($property['etat'] == 0) ? "<span class='status attente'>En attente</span>" : "<span class='status confirmer'>En attente</span>"?>
                         </div>
                         <div class="informations">
                             <h3 class="title"><?php echo $property['title']?></h3>
                             <p class="description">
                             <?php echo nl2br($property['description'])?>
                             </p>
+                        </div>
+                        <div class="actions">
+                            <a href="" class="edit">Modifier</a>
+                            <a href="" class="del">Supprimer</a>
+                            <?php echo ($property['etat'] == 0) ? "<a href='' class='publish'>Publier</a>" : ""?>
                         </div>
                     </div>
                 </div>

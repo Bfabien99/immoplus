@@ -564,7 +564,7 @@
             gap: 1em;
         }
 
-        #propertyBx .property .contentBx .details{
+        #propertyBx .property .contentBx .details,#propertyBx .property .contentBx .value,#propertyBx .property .contentBx .actions{
             width: 100%;
             max-width: 700px;
             display: flex;
@@ -572,6 +572,37 @@
             align-items: center;
             text-align: center;
             background-color: var(--white);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.08);
+        }
+
+        #propertyBx .property .contentBx .actions{
+            background:none;
+        }
+
+        .edit, .del, .publish{
+            padding: 10px;
+            text-align: center;
+            max-width: 200px;
+            text-decoration: none;
+            color: var(--white);
+            border-radius: 5px;
+            background-color: var(--blue);
+        }
+
+        .edit{
+            background-color: var(--green);
+        }
+.del{
+    background-color: #f22;
+}
+        #propertyBx .property .contentBx .value p:nth-child(1){
+            text-transform: uppercase;
+        }
+
+        #propertyBx .property .contentBx .value p:nth-child(2){
+            font-size: 1.6rem;
         }
 
         #propertyBx .property .contentBx .informations{
@@ -582,6 +613,8 @@
             text-align: center;
             background-color: var(--white);
             padding: 10px;
+            border-radius: 5px 15px;
+            box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.03);
         }
 
         #propertyBx .property .contentBx .title{
