@@ -66,8 +66,7 @@ if (isset($_GET['property_id'])) {
                         </div>
                         <div class="actions">
                             <a href="" class="edit">Modifier</a>
-                            <a href="" class="del">Supprimer</a>
-                            <?php echo ($property['etat'] == 0) ? "<a href='' class='publish'>Publier</a>" : ""?>
+                            <?php echo ($property['etat'] == 0) ? "<a href='' class='cancel'>Annuler</a><a href='' class='publish'>Publier</a>" : "<a href='' class='del'>Supprimer</a>"?>
                         </div>
                     </div>
                 </div>

@@ -587,7 +587,7 @@
             background:none;
         }
 
-        .edit, .del, .publish{
+        .edit, .del, .publish, .cancel{
             padding: 10px;
             text-align: center;
             max-width: 200px;
@@ -602,6 +602,9 @@
         }
 .del{
     background-color: #f22;
+}
+.cancel{
+    background-color: #f9ca3f;
 }
         #propertyBx .property .contentBx .value p:nth-child(1){
             text-transform: uppercase;
