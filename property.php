@@ -1,5 +1,10 @@
 <?php
 include_once('_includes/functions.php');
+include_once('class/Properties.php');
+
+$_properties = new Properties();
+$recent_properties = $_properties->getRecent_properties_home();
+$mostView_properties = $_properties->getMostView_properties();
 
 // MyAPI url
 $url = 'http://localhost/immoplus/api/v1/property';
@@ -177,7 +182,7 @@ if($data){
             display: grid;
             grid-template-columns: 1fr;
             padding: 10px;
-            grid-gap: 0.2em;
+            grid-gap: 2em;
             background-color: rgba(232, 229, 229, 0.497);
         }
 
@@ -189,6 +194,7 @@ if($data){
             font-family: cursive;
             border-top: 3px solid #162c3bc8;
             padding: 2px 0px;
+            margin-top: 3em;
         }
 
         .heading::first-letter{
@@ -202,6 +208,7 @@ if($data){
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             grid-gap: 2em;
             margin-bottom: 2em;
+            padding: 10px;
         }
 
         .property{
@@ -236,7 +243,7 @@ if($data){
             transition: ease-in-out 5s;
         }
 
-        .property_title, .property_type , .property_price{
+        .property_title, .property_type , .property_price, .property_view{
             position: absolute;
             color: #fff;
             text-transform: uppercase;
@@ -259,6 +266,16 @@ if($data){
             font-weight: 200;
             padding: 5px;
             font-style: italic;
+        }
+
+        .property_view{
+            bottom: 50px;
+            right: 10px;
+            background-color: #444;
+            color: #fff;
+            font-weight: 200;
+            padding: 5px;
+            font-size:1.4rem;
         }
 
         .location{
@@ -357,52 +374,62 @@ if($data){
         <?php if(!empty($properties)):?>
             <h3 class="heading">Propriétés Recentes</h3>
         <section id="recent_property">
+        <?php foreach ($recent_properties as $property):?>
             <div class="property">
                 <div class="property_header">
-                <a href=""><img class="property_picture" src="pexels-expect-best-323780.jpg" alt="image_propriete"></a>
-                <h3 class="property_title">Titre Propriété</h3>
-                <h3 class="property_type vente">Vente</h3>
-                <h4 class="property_price">400.000 fcfa</h4>
+                <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg'?>" alt="image_propriete"></a>
+                <h3 class="property_title"><?php echo $property['title'] ?></h3>
+                <?php if($property['type'] == 'location'): ?>
+                    <h3 class="property_type location">Location</h3>
+                <?php else: ?>
+                    <h3 class="property_type vente">En vente</h3>
+                <?php endif; ?>
+                <h6 class="property_view"><?php echo number_format($property['view'],0,',','.')  ?></h6>
+                <h4 class="property_price"><?php echo number_format($property['price'],0,',','.')  ?> fcfa</h4>
                 </div>
                 <div class="property_informations">
-                    <h5 class="property_address">Abobo, Côte d'ivoire</h5>
+                    <h5 class="property_address"><?php echo $property['address'] ?></h5>
                     <div class="property_description">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam doloremque saepe a pariatur
-                            libero expedita numquam porro, aliquid harum, eum, sed asperiores quisquam cupiditate
-                            doloribus. Vero tenetur at nulla eius!</p>
+                        <p><?php echo substr(nl2br($property['description']),0,100).'...' ?></p>
                     </div>
                     <div class="property_detail">
-                        <p class="property_bedroom">3 chambres</p>
-                        <p class="property_shower">3 douches</p>
-                        <p class="property_area">300 m2</p>
+                        <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
+                        <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
+                        <p class="property_area"><?php echo number_format($property['area'],0,',','.') ?> m2</p>
                     </div>
                 </div>
             </div>
+            <?php endforeach;?>
         </section>
 
         <h3 class="heading">Les Plus Vues</h3>
         <section id="mostview_property">
+        <?php foreach ($mostView_properties as $property):?>
             <div class="property">
                 <div class="property_header">
-                <a href=""><img class="property_picture" src="pexels-expect-best-323780.jpg" alt="image_propriete"></a>
-                <h3 class="property_title">Titre Propriété</h3>
-                <h3 class="property_type location">Location</h3>
-                <h4 class="property_price">400.000 fcfa</h4>
+                <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg'?>" alt="image_propriete"></a>
+                <h3 class="property_title"><?php echo $property['title'] ?></h3>
+                <?php if($property['type'] == 'location'): ?>
+                    <h3 class="property_type location">Location</h3>
+                <?php else: ?>
+                    <h3 class="property_type vente">En vente</h3>
+                <?php endif; ?>
+                <h6 class="property_view"><?php echo number_format($property['view'],0,',','.')  ?></h6>
+                <h4 class="property_price"><?php echo number_format($property['price'],0,',','.')  ?> fcfa</h4>
                 </div>
                 <div class="property_informations">
-                    <h5 class="property_address">Abobo, Côte d'ivoire</h5>
+                    <h5 class="property_address"><?php echo $property['address'] ?></h5>
                     <div class="property_description">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam doloremque saepe a pariatur
-                            libero expedita numquam porro, aliquid harum, eum, sed asperiores quisquam cupiditate
-                            doloribus. Vero tenetur at nulla eius!</p>
+                        <p><?php echo substr(nl2br($property['description']),0,100).'...' ?></p>
                     </div>
                     <div class="property_detail">
-                        <p class="property_bedroom">3 chambres</p>
-                        <p class="property_shower">3 douches</p>
-                        <p class="property_area">300 m2</p>
+                        <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
+                        <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
+                        <p class="property_area"><?php echo number_format($property['area'],0,',','.') ?> m2</p>
                     </div>
                 </div>
             </div>
+            <?php endforeach;?>
         </section>
 
         <h3 class="heading">Toutes Les Propriétés</h3>
@@ -417,6 +444,7 @@ if($data){
                 <?php else: ?>
                     <h3 class="property_type vente">En vente</h3>
                 <?php endif; ?>
+                <h6 class="property_view"><?php echo number_format($property['view'],0,',','.')  ?></h6>
                 <h4 class="property_price"><?php echo number_format($property['price'],0,',','.')  ?> fcfa</h4>
                 </div>
                 <div class="property_informations">

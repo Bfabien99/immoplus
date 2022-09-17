@@ -63,8 +63,50 @@ class Properties
         
     }
 
+    public function getRecent_properties_home()
+    {
+        try{
+            $connectDB = self::connectDB();
+            $sql = 'select * from property order by post_date DESC limit 6';
+        $query = $connectDB->prepare($sql);
+        $query->execute();
+        $datas = [];
+        
+        $rowCount = $query->rowCount();
+        if($rowCount === 0){
+            return false;
+            exit();
+        }
+
+        $datas = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $datas;
+
+        }catch(PDOException $ex){
+            return $ex->getMessage();
+        }
+    }
+
     public function getMostView_properties()
     {
+        try{
+            $connectDB = self::connectDB();
+            $sql = 'select * from property order by view DESC limit 6';
+        $query = $connectDB->prepare($sql);
+        $query->execute();
+        $datas = [];
+        
+        $rowCount = $query->rowCount();
+        if($rowCount === 0){
+            return false;
+            exit();
+        }
+
+        $datas = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $datas;
+
+        }catch(PDOException $ex){
+            return $ex->getMessage();
+        }
     }
 
     public function incrementView($property_id){
