@@ -1,4 +1,6 @@
 <?php include_once('../_includes/functions.php');?>
+<?php include_once('../class/Properties.php');?>
+<?php include_once('../class/Users.php');?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -368,7 +370,10 @@
         /* ## @DASHBOARD ## */
         /* ##############################################################*/
         /* ##############################################################*/
-
+        #map{
+            width: 100%;
+            height: 80vh;
+        }
         main .container{
             display: flex;
             flex-direction: column;
@@ -439,6 +444,81 @@
             background-color: var(--blue);
         }
         /* ## @ADD PROPERTY FORM ## */
+        /* ##############################################################*/
+        /* ##############################################################*/
+
+        main .container .properties{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 300px);
+            justify-content: center;
+            grid-gap: 30px;
+        }
+
+        .properties .property{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 5px;
+        }
+
+        .properties .property .imgBx{
+            max-width: 300px;
+            height: 400px;
+            overflow: hidden;
+            box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
+            transition: 0.2s;
+        }
+
+        .properties .property .imgBx .type{
+            position: absolute;
+            color: var(--white);
+            padding: 10px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .type.location{
+            background: var(--green);
+        }
+
+        .type.vente{
+            background-color: var(--blue);
+        }
+
+        .properties .property .imgBx:hover{
+            box-shadow: 7px 7px 2px rgba(0, 0, 0, 0.3);
+            border-radius: 15px 7px;
+            margin-bottom: 5px;
+        }
+
+        .properties .property .imgBx img{
+            width: 100%;
+            object-fit: cover;
+            height: 400px;
+
+        }
+
+        .properties .property .contentBx{
+            background-color: var(--white);
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: -200px;
+            transition: 0.3s;
+        }
+
+        .properties .property.active .contentBx{
+            background-color: var(--white);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 0;
+            transition: 0.3s;
+        }
+        /* ## @SHOW ALL PROPERTIES ## */
         /* ##############################################################*/
         /* ##############################################################*/
 
@@ -620,7 +700,7 @@
         <div class="main">
             <div class="topbar">
                 <div class="toggle">
-                    <i>&leftarrow;</i>
+                <ion-icon name="caret-back-circle-outline"></ion-icon>
                 </div>
 
 
@@ -632,4 +712,9 @@
                     <img src="./pexels-expect-best-323780.jpg" alt="">
                 </div>
             </div>
+            <script>
+                // setInterval(function(){
+                //     window.location.reload()
+                // },2000)
+            </script>
             <main>

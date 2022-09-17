@@ -1,5 +1,7 @@
 <?php
 include_once('_includes/functions.php');
+include_once('class/Properties.php');
+$properties = new Properties();
 
 $errors = [];
 $data = [];
@@ -25,6 +27,7 @@ if (isset($_GET['property_id'])) {
                 }
             } else {
                 $property = $data['data']['properties'][0];
+                $properties->incrementView($_GET['property_id']);
             }
         } else {
             $error['api'] = "<p class='error'>Désolé, le serveur ne répond pas pour l'instant... Veuillez réessayer plus tard</p>";
@@ -383,7 +386,7 @@ if (isset($_GET['property_id'])) {
                             <p class="property_address"><?php echo $property['address'] ?></p>
                         </div>
                         <div class="content">
-                            <h4 class="property_title">Titre propriété</h4>
+                            <h4 class="property_title"><?php echo $property['title'] ?></h4>
                             <p class="property_description">
                                 <?php echo nl2br($property['description']) ?>
                             </p>

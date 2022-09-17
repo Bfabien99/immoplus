@@ -28,6 +28,17 @@
     }
     list.forEach((item) =>
         item.addEventListener('mouseover', activeLink))
+
+    // add hovered class on selected list item
+    let properties = document.querySelectorAll('.property');
+    properties.forEach((item)=>{
+        item.addEventListener('mouseover',function(){
+            this.classList.toggle('active')
+        })
+        item.addEventListener('mouseout',function(){
+            this.classList.toggle('active')
+        })
+    })
 </script>
 
 </html>

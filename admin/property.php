@@ -23,14 +23,18 @@ if ($data) {
         <div class="properties">
             <?php foreach ($properties as $property) : ?>
                 <div class="property">
-                    <div class="imgBx" style="background-image:url('<?php echo $property['picture'] ?? 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=1100&q=60' ?>')">
+                    <div class="imgBx">
+                    <?php echo $property['type'] == 'location' ? "<span class='type location'>En location</span>" : "<span class='type vente'>En vente</span>";?>
+                    <a href="./property/view/<?php echo $property['id'] ?>"><img src="<?php echo $property['picture']?>" alt=""></a>
                     </div>
                     <div class="contentBx">
                         <h3 class="title"><?php echo $property['title'] ?></h3>
-                        <section class="description">
-                            <?php echo $property['description'] ?>
-                        </section>
-                        <a href="./property/view/<?php echo $property['id'] ?>" class="see">Voir</a>
+                        <p class="price">
+                            <?php echo number_format($property['price'],0,',','.') ?> FCFA
+                        </p>
+                        <p>
+                        <?php echo datediff($property['post_date']) ?>
+                        </p>
                     </div>
                 </div>
             <?php endforeach; ?>

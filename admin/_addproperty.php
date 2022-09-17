@@ -16,8 +16,8 @@ if (isset($_POST['submit'])) {
 
     if (empty(escape($_POST['description']))) {
         $errors['description'] = "<p class='error'>La description est obligatoire</p>";
-    } elseif (strlen($_POST['description']) < 10 || strlen($_POST['description']) > 500) {
-        $errors['description'] = "<p class='error'>La description doit comporter entre 10 et 500 caractères</p>";
+    } elseif (strlen($_POST['description']) < 10 || strlen($_POST['description']) > 3000) {
+        $errors['description'] = "<p class='error'>La description doit comporter entre 10 et 3000 caractères</p>";
     } else {
         $description = $_POST['description'];
     }

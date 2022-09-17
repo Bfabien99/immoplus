@@ -31,32 +31,32 @@ if (isset($_GET['property_id'])) {
     }
 }
 ?>
-
-<?php if (!empty($errors)) : ?>
-    <?php foreach ($errors as $error) : ?>
-        <?php echo $error ?>
-    <?php endforeach; ?>
-    <a href=".." class="back">Retour</a>
-<?php else : ?>
-    <?php if (!empty($property)) : ?>
-        <?php $location = $property['address']; ?>
-        <div class="property">
-            <div class="imgBx" style="background-image:url('<?php echo $property['picture'] ?? 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=1100&q=60' ?>')">
-            </div>
-            <div class="contentBx">
-                <h3 class="title"><?php echo $property['title'] ?></h3>
-                <section class="description">
-                    <?php echo $property['description'] ?>
-                </section>
-            </div>
-        </div>
-        </div>
-        <div id="map"></div>
+<div class="container">
+    <?php if (!empty($errors)) : ?>
+        <?php foreach ($errors as $error) : ?>
+            <?php echo $error ?>
+        <?php endforeach; ?>
+        <a href=".." class="back">Retour</a>
     <?php else : ?>
-        <h4>Aucune propriété pour l'instant</h4>
-    <?php endif; ?>
-<?php endif; ?>
+        <?php if (!empty($property)) : ?>
+            <?php $location = $property['address']; ?>
+            <div class="property">
+                <div class="imgBx" style="background-image:url('<?php echo $property['picture'] ?? 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=1100&q=60' ?>')">
+                </div>
+                <div class="contentBx">
+                    <h3 class="title"><?php echo $property['title'] ?></h3>
+                    <section class="description">
+                        <?php echo $property['description'] ?>
+                    </section>
+                </div>
+            </div>
 
+            <div id="map"></div>
+        <?php else : ?>
+            <h4>Aucune propriété pour l'instant</h4>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>
 <?php
 
 if (!empty($location)) {
@@ -106,11 +106,11 @@ if (!empty($location)) {
                     title: "<?php echo $property['title']; ?>",
                 });
 
-                marker.addListener("click", function(){
+                marker.addListener("click", function() {
                     infoWindow.open(map.gMap, marker)
                 })
 
-                
+
             }
 
             window.initMap = initMap;
