@@ -412,10 +412,10 @@ if($data){
                 <div class="property_header">
                 <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg'?>" alt="image_propriete"></a>
                 <h3 class="property_title"><?php echo $property['title'] ?></h3>
-                <?php if($property['type'] == 'vente'): ?>
-                    <h3 class="property_type vente">Vente</h3>
-                <?php else: ?>
+                <?php if($property['type'] == 'location'): ?>
                     <h3 class="property_type location">Location</h3>
+                <?php else: ?>
+                    <h3 class="property_type vente">En vente</h3>
                 <?php endif; ?>
                 <h4 class="property_price"><?php echo number_format($property['price'],0,',','.')  ?> fcfa</h4>
                 </div>

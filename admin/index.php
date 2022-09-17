@@ -73,7 +73,7 @@
           <td><?php echo number_format($property['price'],0,',','.') ?></td>
           <td><?php echo $property['type'] ?></td>
           <td><?php echo datediff($property['post_date']) ?></td>
-          <td><?php echo ($property['etat'] == 0) ? "<span class='status attente'>En attente</span>" : "<span class='status confirmer'>En attente</span>"?></td>
+          <td><?php echo ($property['etat'] == 0) ? "<span class='status attente'>En attente</span>" : "<span class='status confirmer'>Confirmer</span>"?></td>
         </tr>
         <?php endforeach; ?>
         <?php else:?>

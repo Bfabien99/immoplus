@@ -472,7 +472,7 @@
             transition: 0.2s;
         }
 
-        .properties .property .imgBx .type{
+        .properties .property .imgBx .type,.properties .property .imgBx .status{
             position: absolute;
             color: var(--white);
             padding: 10px;
@@ -486,6 +486,10 @@
 
         .type.vente{
             background-color: var(--blue);
+        }
+
+        .properties .property .imgBx .status{
+            right: 0px;
         }
 
         .properties .property .imgBx:hover{

@@ -56,7 +56,7 @@ if (isset($_GET['property_id'])) {
                         <div class="value">
                             <?php echo $property['type'] == 'location' ? "<p>En location</p>" : "<p>En vente</p>"?>
                             <p><?php echo number_format($property['price'],0,',','.')?> Fcfa</p>
-                            <?php echo ($property['etat'] == 0) ? "<span class='status attente'>En attente</span>" : "<span class='status confirmer'>En attente</span>"?>
+                            <?php echo ($property['etat'] == 0) ? "<span class='status attente'>En attente</span>" : "<span class='status confirmer'>Confirmer</span>"?>
                         </div>
                         <div class="informations">
                             <h3 class="title"><?php echo $property['title']?></h3>

@@ -25,6 +25,7 @@ if ($data) {
                 <div class="property">
                     <div class="imgBx">
                     <?php echo $property['type'] == 'location' ? "<span class='type location'>En location</span>" : "<span class='type vente'>En vente</span>";?>
+                    <?php echo $property['etat'] == 0 ? "<span class='status attente'>En attente</span>" : "<span class='status confirmer'>Confirmer</span>";?>
                     <a href="./property/view/<?php echo $property['id'] ?>"><img src="<?php echo $property['picture']?>" alt=""></a>
                     </div>
                     <div class="contentBx">
