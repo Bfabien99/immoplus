@@ -32,6 +32,7 @@ if($data){
             padding: 0;
             box-sizing: border-box;
             user-select: none;
+            font-family: 'Rajdhani', 'Poppins';
         }
 
         body {
@@ -198,9 +199,8 @@ if($data){
 
         #recent_property, #mostview_property, #all_property{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            grid-gap: 1em;
-            margin:0 auto;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            grid-gap: 2em;
             margin-bottom: 2em;
         }
 
@@ -299,7 +299,8 @@ if($data){
             text-align: justify;
             text-transform:initial;
             font-size: 1.2rem;
-            min-height: 78px;
+            height: 78px;
+            overflow: hidden;
         }
 
         .property_detail{

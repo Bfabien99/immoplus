@@ -19,6 +19,7 @@
             padding: 0;
             box-sizing: border-box;
             font-weight: 100;
+            font-family: 'Rajdhani','Poppins';
         }
 
         :root {
