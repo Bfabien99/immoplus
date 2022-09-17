@@ -375,6 +375,11 @@
         #map{
             width: 100%;
             height: 80vh;
+            background-color: var(--black2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f22;
         }
         main .container{
             display: flex;

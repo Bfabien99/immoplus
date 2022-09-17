@@ -72,7 +72,11 @@ if (isset($_GET['property_id'])) {
                 </div>
             
 
-            <div id="map"></div></div>
+            <div id="map">
+            <p><ion-icon name="alert-circle"></ion-icon></p>
+                <h3>Impossible de charger la map</h3>
+            </div>
+        </div>
         <?php else : ?>
             <h4>Aucune propriété pour l'instant</h4>
         <?php endif; ?>
