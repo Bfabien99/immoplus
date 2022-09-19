@@ -17,120 +17,136 @@ class Properties
 
     public function getAll_properties()
     {
-        try{
+        try {
             $connectDB = self::connectDB();
             $sql = 'select * from property order by post_date DESC';
-        $query = $connectDB->prepare($sql);
-        $query->execute();
-        $datas = [];
-        
-        $rowCount = $query->rowCount();
-        if($rowCount === 0){
-            return false;
-            exit();
-        }
+            $query = $connectDB->prepare($sql);
+            $query->execute();
+            $datas = [];
 
-        $datas = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $datas;
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
 
-        }catch(PDOException $ex){
+            $datas = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
             return $ex->getMessage();
         }
-        
     }
 
     public function getRecent_properties()
     {
-        try{
+        try {
             $connectDB = self::connectDB();
             $sql = 'select * from property order by post_date DESC limit 10';
-        $query = $connectDB->prepare($sql);
-        $query->execute();
-        $datas = [];
-        
-        $rowCount = $query->rowCount();
-        if($rowCount === 0){
-            return false;
-            exit();
-        }
+            $query = $connectDB->prepare($sql);
+            $query->execute();
+            $datas = [];
 
-        $datas = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $datas;
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
 
-        }catch(PDOException $ex){
+            $datas = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
             return $ex->getMessage();
         }
-        
     }
 
     public function getRecent_properties_home()
     {
-        try{
+        try {
             $connectDB = self::connectDB();
             $sql = 'select * from property order by post_date DESC limit 6';
-        $query = $connectDB->prepare($sql);
-        $query->execute();
-        $datas = [];
-        
-        $rowCount = $query->rowCount();
-        if($rowCount === 0){
-            return false;
-            exit();
-        }
+            $query = $connectDB->prepare($sql);
+            $query->execute();
+            $datas = [];
 
-        $datas = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $datas;
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
 
-        }catch(PDOException $ex){
+            $datas = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
             return $ex->getMessage();
         }
     }
 
     public function getMostView_properties()
     {
-        try{
+        try {
             $connectDB = self::connectDB();
             $sql = 'select * from property order by view DESC limit 6';
-        $query = $connectDB->prepare($sql);
-        $query->execute();
-        $datas = [];
-        
-        $rowCount = $query->rowCount();
-        if($rowCount === 0){
-            return false;
-            exit();
-        }
+            $query = $connectDB->prepare($sql);
+            $query->execute();
+            $datas = [];
 
-        $datas = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $datas;
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
 
-        }catch(PDOException $ex){
+            $datas = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
             return $ex->getMessage();
         }
     }
 
-    public function incrementView($property_id){
-        try{
+    public function incrementView($property_id)
+    {
+        try {
             $connectDB = self::connectDB();
             $sql = 'update property set view = view + 1 where id = :id';
-        $query = $connectDB->prepare($sql);
-        $query->bindValue(':id',$property_id,PDO::PARAM_INT);
-        $query->execute();
-        
-        $rowCount = $query->rowCount();
-        if($rowCount === 0){
-            return false;
-            exit();
-        }
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id', $property_id, PDO::PARAM_INT);
+            $query->execute();
 
-        return true;
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
 
-        }catch(PDOException $ex){
+            return true;
+        } catch (PDOException $ex) {
             return $ex->getMessage();
         }
     }
 
     public function publishProperties()
     {
+    }
+
+
+    public function getSearched_properties($sql)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $query = $connectDB->prepare($sql);
+            $query->execute();
+            $datas = [];
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            $datas = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
     }
 }

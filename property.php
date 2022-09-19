@@ -21,6 +21,30 @@ if($data){
     }
 }
 
+if(isset($_POST['search'])){
+    $sql = "select * from property where";
+    if(!empty(trim(strip_tags($_POST['searchprice'])))){
+        $sql .= " price <= ".$_POST['searchprice']." AND";
+    }
+    if(!empty(trim(strip_tags($_POST['searcharea'])))){
+        $sql .= " area <= ".$_POST['searcharea']." AND";
+    }
+    if(!empty(trim(strip_tags($_POST['searchaddress'])))){
+        $sql .= " address like '%".$_POST['searchaddress']."%' AND";
+    }
+
+    if(!empty($_POST['searchprice']) || !empty($_POST['searcharea']) || !empty($_POST['searchaddress'])){
+       $sql = substr($sql,0,-3);
+    $sql = rtrim($sql);
+    echo $sql;
+    $results = $_properties->getSearched_properties($sql);
+    if(!$results){
+        $error = "<p class='error'>Aucun resultat trouvé</p>";
+    }
+    }
+    
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -361,12 +385,13 @@ if($data){
         </nav>
         <div id="searchbox">
             <h5>Faire une recherche</h5>
-            <form action="property.html" method="get">
-                <input type="number" name="searchprice" id="searchprice" placeholder="Rechercher par prix" min=5000>
-                <input type="number" name="searcharea" id="searcharea" placeholder="Rechercher par superficie" min=50>
+            <form action="" method="post">
+                <input type="number" name="searchprice" id="searchprice" placeholder="Rechercher par prix inférieur ou égale à" min=5000>
+                <input type="number" name="searcharea" id="searcharea" placeholder="Rechercher par superficie inférieure ou égale à" min=50>
                 <input type="text" name="searchaddress" id="searchaddress" placeholder="Rechercher par localité">
-                <button type="submit">Recherche</button>
+                <button type="submit" name="search">Recherche</button>
             </form>
+            <?php echo $error ?? "";?>
         </div>
         <h3 class="slogan">Immoplus... 100% fiable</h3>
     </header>
