@@ -803,7 +803,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./maps">
+                    <a href="/immoplus/admin//maps">
                         <span class="icon"><ion-icon name="send"></ion-icon></span>
                         <span class="title">Messages</span>
                     </a>

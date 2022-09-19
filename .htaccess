@@ -10,3 +10,5 @@ RewriteRule ^property$ property.php [L]
 
 #- PROPERTY BY ID -#
 RewriteRule ^property/view/([0-9]+)$ showproperty.php?property_id=$1 [L]
+RewriteRule ^property/location$ property_type.php?property_type=location [L]
+RewriteRule ^property/vente$ property_type.php?property_type=vente [L]

@@ -42,9 +42,10 @@ if (isset($_GET['property_id'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Property</title>
+    <title>Propriété <?php echo $property['id'] ?? ""?></title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -61,7 +62,6 @@ if (isset($_GET['property_id'])) {
         header {
             position: relative;
             width: 100%;
-            min-height: 100vh;
             padding-bottom: 3em;
             background-color: #162c3bf9;
             z-index: 10001;
@@ -344,12 +344,12 @@ if (isset($_GET['property_id'])) {
         </div>
         <nav>
             <ul>
-                <li><a href="../../property">Accueil</a></li>
-                <li><a href="../loan">Location</a></li>
-                <li><a href="../buy">En vente</a></li>
-                <li><a href="../about">A propos</a></li>
-                <li><a href="../service">Services</a></li>
-                <li><a href="../contact">Contact</a></li>
+                <li><a href="/immoplus/property">Accueil</a></li>
+                <li><a href="/immoplus/property/location">Location</a></li>
+                <li><a href="/immoplus/property/vente">En vente</a></li>
+                <li><a href="/immoplus/about">A propos</a></li>
+                <li><a href="/immoplus/service">Services</a></li>
+                <li><a href="/immoplus/contact">Contact</a></li>
             </ul>
         </nav>
         <div id="searchbox">
@@ -369,7 +369,7 @@ if (isset($_GET['property_id'])) {
         <?php foreach ($errors as $error) : ?>
             <?php echo $error ?>
         <?php endforeach; ?>
-        <a href=".." class="back">Retour</a>
+        <a href="/immoplus/property" class="back">Retour</a>
     <?php else : ?>
         <?php if (!empty($property)) : ?>
             <div class="container">
@@ -394,7 +394,7 @@ if (isset($_GET['property_id'])) {
                             </p>
                             <div class="details">
                                 <p class="property_price"><span>Prix :</span> <?php echo number_format($property['price'], 0, ',', '.') ?> FCFA</p>
-                                <p class="property_type"><span>Type :</span> <?php echo ($property['type'] == "location") ? 'A Louer':'En Vente' ?></p>
+                                <p class="property_type"><span>Type :</span> <?php echo ($property['type'] == "location") ? 'A Louer' : 'En Vente' ?></p>
                                 <p class="property_date"><span>Date :</span><?php echo datediff($property['post_date']) ?></p>
                             </div>
                         </div>
@@ -412,7 +412,7 @@ if (isset($_GET['property_id'])) {
         <?php endif; ?>
     <?php endif; ?>
     <?php include('_includes/footer.php'); ?>
-    
+
     <?php
 
     if (!empty($location)) {

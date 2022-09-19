@@ -29,7 +29,7 @@ if($data){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Property</title>
+    <title>Toutes les propriétés</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
         * {
@@ -48,7 +48,6 @@ if($data){
         header{
             position: relative;
             width: 100%;
-            min-height: 100vh;
             padding-bottom: 3em;
             background-color: #162c3bf9;
         }
@@ -57,7 +56,7 @@ if($data){
             position: relative;
             width: 100%;
             height: 600px;
-            background: url('./assets/img/pexels-expect-best-323780.jpg') no-repeat center/cover;
+            background: url('/immoplus/assets/img/pexels-expect-best-323780.jpg') no-repeat center/cover;
             padding: 15px 20px;
             display: flex;
             justify-content: center;
@@ -218,6 +217,7 @@ if($data){
             box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
             margin: 0 auto;
             background-color: #162c3bf9;
+            max-height: 670px;
         }
 
         .property_header{
@@ -351,12 +351,12 @@ if($data){
         </div>
         <nav>
             <ul>
-                <li><a href="">Accueil</a></li>
-                <li><a href="../loan">Location</a></li>
-                <li><a href="../buy">En vente</a></li>
-                <li><a href="../about">A propos</a></li>
-                <li><a href="../service">Services</a></li>
-                <li><a href="../contact">Contact</a></li>
+                <li><a href="/immoplus/property">Accueil</a></li>
+                <li><a href="/immoplus/property/location">Location</a></li>
+                <li><a href="/immoplus/property/vente">En vente</a></li>
+                <li><a href="/immoplus/about">A propos</a></li>
+                <li><a href="/immoplus/service">Services</a></li>
+                <li><a href="/immoplus/contact">Contact</a></li>
             </ul>
         </nav>
         <div id="searchbox">

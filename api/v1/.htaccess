@@ -16,4 +16,4 @@ RewriteRule ^property/([0-9]+)$ controller/property.php?property_id=$1 [L]
 
 #- GET ALL PROPERTY BY TYPE -#
 RewriteRule ^property/location$ controller/property.php?property_type=location [L]
-RewriteRule ^property/vendre$ controller/property.php?property_type=vendre [L]
+RewriteRule ^property/vente$ controller/property.php?property_type=vendre [L]
