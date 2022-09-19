@@ -14,35 +14,35 @@ $response = GetDataFromMyApi($url);
 // Decode API response to array
 $data = json_decode($response, JSON_UNESCAPED_UNICODE);
 $properties = [];
-if($data){
-    if($data['statusCode'] == 200)
-    foreach ($data['data']['properties'] as $property) {
-        $properties [] = $property;
-    }
+if ($data) {
+    if ($data['statusCode'] == 200)
+        foreach ($data['data']['properties'] as $property) {
+            $properties[] = $property;
+        }
 }
 
-if(isset($_POST['search'])){
+$results = false;
+if (isset($_POST['search'])) {
     $sql = "select * from property where";
-    if(!empty(trim(strip_tags($_POST['searchprice'])))){
-        $sql .= " price <= ".$_POST['searchprice']." AND";
+    if (!empty(trim(strip_tags($_POST['searchprice'])))) {
+        $sql .= " price <= " . $_POST['searchprice'] . " AND";
     }
-    if(!empty(trim(strip_tags($_POST['searcharea'])))){
-        $sql .= " area <= ".$_POST['searcharea']." AND";
+    if (!empty(trim(strip_tags($_POST['searcharea'])))) {
+        $sql .= " area <= " . $_POST['searcharea'] . " AND";
     }
-    if(!empty(trim(strip_tags($_POST['searchaddress'])))){
-        $sql .= " address like '%".$_POST['searchaddress']."%' AND";
+    if (!empty(trim(strip_tags($_POST['searchaddress'])))) {
+        $sql .= " address like '%" . $_POST['searchaddress'] . "%' AND";
     }
 
-    if(!empty($_POST['searchprice']) || !empty($_POST['searcharea']) || !empty($_POST['searchaddress'])){
-       $sql = substr($sql,0,-3);
-    $sql = rtrim($sql);
-    echo $sql;
-    $results = $_properties->getSearched_properties($sql);
-    if(!$results){
-        $error = "<p class='error'>Aucun resultat trouvé</p>";
+    if (!empty($_POST['searchprice']) || !empty($_POST['searcharea']) || !empty($_POST['searchaddress'])) {
+        $sql = substr($sql, 0, -3);
+        $sql = rtrim($sql);
+        echo $sql;
+        $results = $_properties->getSearched_properties($sql);
+        if (!$results) {
+            $error = "<p class='error'>Aucun resultat trouvé</p>";
+        }
     }
-    }
-    
 }
 
 ?>
@@ -56,6 +56,7 @@ if(isset($_POST['search'])){
     <title>Toutes les propriétés</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -69,14 +70,14 @@ if(isset($_POST['search'])){
             overflow-x: hidden;
         }
 
-        header{
+        header {
             position: relative;
             width: 100%;
             padding-bottom: 3em;
             background-color: #162c3bf9;
         }
 
-        #banner{
+        #banner {
             position: relative;
             width: 100%;
             height: 600px;
@@ -87,7 +88,7 @@ if(isset($_POST['search'])){
             align-items: center;
         }
 
-        #banner p{
+        #banner p {
             margin-top: 2em;
             max-width: 500px;
             text-align: justify;
@@ -95,7 +96,7 @@ if(isset($_POST['search'])){
             font-size: 1.4rem;
         }
 
-        nav{
+        nav {
             position: absolute;
             width: 100%;
             top: 10px;
@@ -103,7 +104,7 @@ if(isset($_POST['search'])){
             justify-content: center;
         }
 
-        nav ul{
+        nav ul {
             background-color: #162c3bf9;
             width: 80%;
             max-width: 800px;
@@ -129,7 +130,7 @@ if(isset($_POST['search'])){
             color: #fff;
         }
 
-        #searchbox{
+        #searchbox {
             position: relative;
             display: flex;
             flex-direction: column;
@@ -137,22 +138,22 @@ if(isset($_POST['search'])){
             align-items: center;
             width: 90%;
             max-width: 700px;
-            margin:auto;
+            margin: auto;
             margin-top: -4em;
-            padding:10px 5px;
+            padding: 10px 5px;
             box-shadow: 2px 2px 2px rgba(16, 16, 16, 0.762);
             z-index: 1000;
             background-color: #fff;
         }
 
-        #searchbox h5{
+        #searchbox h5 {
             font-size: 1.3rem;
             text-transform: uppercase;
             font-weight: 100;
             color: #444;
         }
 
-        #searchbox form{
+        #searchbox form {
             width: 100%;
             max-width: 500px;
             display: grid;
@@ -160,7 +161,7 @@ if(isset($_POST['search'])){
             padding: 20px 0;
         }
 
-        #searchbox form input{
+        #searchbox form input {
             height: 35px;
             padding: 5px;
             text-align: center;
@@ -170,12 +171,12 @@ if(isset($_POST['search'])){
             color: #162c3bf9;
         }
 
-        #searchbox form input:focus{
+        #searchbox form input:focus {
             border: 2px solid #112430;
             transition: ease-in-out 0.3s;
         }
 
-        #searchbox form button{
+        #searchbox form button {
             height: 35px;
             border: none;
             padding: 5px;
@@ -185,12 +186,12 @@ if(isset($_POST['search'])){
             border-radius: 5px;
         }
 
-        #searchbox form button:hover{
+        #searchbox form button:hover {
             transition: ease-in-out 0.3s;
             background-color: #112430;
         }
 
-        .slogan{
+        .slogan {
             text-align: center;
             margin-top: 1.5em;
             color: #fff;
@@ -199,7 +200,7 @@ if(isset($_POST['search'])){
             letter-spacing: 0.3rem;
         }
 
-        .container{
+        .container {
             position: relative;
             min-height: 100vh;
             display: grid;
@@ -209,7 +210,7 @@ if(isset($_POST['search'])){
             background-color: rgba(232, 229, 229, 0.497);
         }
 
-        .heading{
+        .heading {
             width: fit-content;
             color: #162c3bc8;
             font-weight: 100;
@@ -220,13 +221,15 @@ if(isset($_POST['search'])){
             margin-top: 3em;
         }
 
-        .heading::first-letter{
+        .heading::first-letter {
             font-size: 1.3em;
             font-weight: bold;
             color: #3f8ffc;
         }
 
-        #recent_property, #mostview_property, #all_property{
+        #recent_property,
+        #mostview_property,
+        #all_property {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
             grid-gap: 2em;
@@ -234,7 +237,7 @@ if(isset($_POST['search'])){
             padding: 10px;
         }
 
-        .property{
+        .property {
             position: relative;
             display: flex;
             flex-direction: column;
@@ -244,30 +247,33 @@ if(isset($_POST['search'])){
             max-height: 670px;
         }
 
-        .property_header{
+        .property_header {
             position: relative;
             height: 500px;
             overflow: hidden;
         }
 
-        .property_header a{
+        .property_header a {
             display: inline-block;
             min-width: 300px;
             max-width: 100%;
             height: 500px;
         }
 
-        .property_picture{
+        .property_picture {
             width: 100%;
             height: 100%;
         }
 
-        .property_picture:hover{
+        .property_picture:hover {
             scale: 2;
             transition: ease-in-out 5s;
         }
 
-        .property_title, .property_type , .property_price, .property_view{
+        .property_title,
+        .property_type,
+        .property_price,
+        .property_view {
             position: absolute;
             color: #fff;
             text-transform: uppercase;
@@ -275,7 +281,7 @@ if(isset($_POST['search'])){
             letter-spacing: 1px;
         }
 
-        .property_title{
+        .property_title {
             top: 10px;
             left: 10px;
             background-color: rgba(4, 3, 3, 0.663);
@@ -283,7 +289,7 @@ if(isset($_POST['search'])){
             font-style: italic;
         }
 
-        .property_type{
+        .property_type {
             bottom: 10px;
             right: 10px;
             color: #fff;
@@ -292,35 +298,35 @@ if(isset($_POST['search'])){
             font-style: italic;
         }
 
-        .property_view{
+        .property_view {
             bottom: 50px;
             right: 10px;
             background-color: #444;
             color: #fff;
             font-weight: 200;
             padding: 5px;
-            font-size:1.4rem;
+            font-size: 1.4rem;
         }
 
-        .location{
+        .location {
             background-color: #3f8ffc;
         }
 
-        .vente{
+        .vente {
             background-color: #ca2d22;
         }
 
-        .property_price{
+        .property_price {
             bottom: 10px;
             left: 10px;
             background-color: #162c3bc8;
             color: #fff;
             font-weight: 200;
             padding: 5px;
-            font-size:1.4rem;
+            font-size: 1.4rem;
         }
 
-        .property_informations{
+        .property_informations {
             padding: 10px 5px;
             color: #444;
             display: flex;
@@ -331,32 +337,32 @@ if(isset($_POST['search'])){
             background-color: #fff;
         }
 
-        .property_address{
+        .property_address {
             text-align: center;
             font-style: italic;
         }
 
-        .property_description{
+        .property_description {
             text-align: justify;
-            text-transform:initial;
+            text-transform: initial;
             font-size: 1.2rem;
             height: 78px;
             overflow: hidden;
         }
 
-        .property_detail{
+        .property_detail {
             display: flex;
             justify-content: space-evenly;
             font-weight: bold;
         }
 
-        .property_detail p{
+        .property_detail p {
             background-color: lightgray;
             padding: 5px;
             border-radius: 5px;
         }
 
-        footer{
+        footer {
             position: relative;
             padding: 20px 10px;
             background-color: #162c3bf9;
@@ -391,104 +397,136 @@ if(isset($_POST['search'])){
                 <input type="text" name="searchaddress" id="searchaddress" placeholder="Rechercher par localité">
                 <button type="submit" name="search">Recherche</button>
             </form>
-            <?php echo $error ?? "";?>
+            <?php echo $error ?? ""; ?>
         </div>
         <h3 class="slogan">Immoplus... 100% fiable</h3>
     </header>
-<div class="container">
-        <?php if(!empty($properties)):?>
-            <h3 class="heading">Propriétés Recentes</h3>
-        <section id="recent_property">
-        <?php foreach ($recent_properties as $property):?>
-            <div class="property">
-                <div class="property_header">
-                <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg'?>" alt="image_propriete"></a>
-                <h3 class="property_title"><?php echo $property['title'] ?></h3>
-                <?php if($property['type'] == 'location'): ?>
-                    <h3 class="property_type location">A Louer</h3>
-                <?php else: ?>
-                    <h3 class="property_type vente">En vente</h3>
-                <?php endif; ?>
-                <h6 class="property_view"><?php echo number_format($property['view'],0,',','.')  ?></h6>
-                <h4 class="property_price"><?php echo number_format($property['price'],0,',','.')  ?> fcfa</h4>
-                </div>
-                <div class="property_informations">
-                    <h5 class="property_address"><?php echo $property['address'] ?></h5>
-                    <div class="property_description">
-                        <p><?php echo substr(nl2br($property['description']),0,100).'...' ?></p>
-                    </div>
-                    <div class="property_detail">
-                        <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
-                        <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
-                        <p class="property_area"><?php echo number_format($property['area'],0,',','.') ?> m2</p>
-                    </div>
-                </div>
-            </div>
-            <?php endforeach;?>
-        </section>
+    <div class="container">
+        <?php if (!$results) : ?>
+            <?php if (!empty($properties)) : ?>
+                <h3 class="heading">Propriétés Recentes</h3>
+                <section id="recent_property">
+                    <?php foreach ($recent_properties as $property) : ?>
+                        <div class="property">
+                            <div class="property_header">
+                                <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete"></a>
+                                <h3 class="property_title"><?php echo $property['title'] ?></h3>
+                                <?php if ($property['type'] == 'location') : ?>
+                                    <h3 class="property_type location">A Louer</h3>
+                                <?php else : ?>
+                                    <h3 class="property_type vente">En vente</h3>
+                                <?php endif; ?>
+                                <h6 class="property_view"><?php echo number_format($property['view'], 0, ',', '.')  ?></h6>
+                                <h4 class="property_price"><?php echo number_format($property['price'], 0, ',', '.')  ?> fcfa</h4>
+                            </div>
+                            <div class="property_informations">
+                                <h5 class="property_address"><?php echo $property['address'] ?></h5>
+                                <div class="property_description">
+                                    <p><?php echo substr(nl2br($property['description']), 0, 100) . '...' ?></p>
+                                </div>
+                                <div class="property_detail">
+                                    <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
+                                    <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
+                                    <p class="property_area"><?php echo number_format($property['area'], 0, ',', '.') ?> m2</p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </section>
 
-        <h3 class="heading">Les Plus Vues</h3>
-        <section id="mostview_property">
-        <?php foreach ($mostView_properties as $property):?>
-            <div class="property">
-                <div class="property_header">
-                <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg'?>" alt="image_propriete"></a>
-                <h3 class="property_title"><?php echo $property['title'] ?></h3>
-                <?php if($property['type'] == 'location'): ?>
-                    <h3 class="property_type location">A Louer</h3>
-                <?php else: ?>
-                    <h3 class="property_type vente">En vente</h3>
-                <?php endif; ?>
-                <h6 class="property_view"><?php echo number_format($property['view'],0,',','.')  ?></h6>
-                <h4 class="property_price"><?php echo number_format($property['price'],0,',','.')  ?> fcfa</h4>
-                </div>
-                <div class="property_informations">
-                    <h5 class="property_address"><?php echo $property['address'] ?></h5>
-                    <div class="property_description">
-                        <p><?php echo substr(nl2br($property['description']),0,100).'...' ?></p>
-                    </div>
-                    <div class="property_detail">
-                        <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
-                        <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
-                        <p class="property_area"><?php echo number_format($property['area'],0,',','.') ?> m2</p>
-                    </div>
-                </div>
-            </div>
-            <?php endforeach;?>
-        </section>
+                <h3 class="heading">Les Plus Vues</h3>
+                <section id="mostview_property">
+                    <?php foreach ($mostView_properties as $property) : ?>
+                        <div class="property">
+                            <div class="property_header">
+                                <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete"></a>
+                                <h3 class="property_title"><?php echo $property['title'] ?></h3>
+                                <?php if ($property['type'] == 'location') : ?>
+                                    <h3 class="property_type location">A Louer</h3>
+                                <?php else : ?>
+                                    <h3 class="property_type vente">En vente</h3>
+                                <?php endif; ?>
+                                <h6 class="property_view"><?php echo number_format($property['view'], 0, ',', '.')  ?></h6>
+                                <h4 class="property_price"><?php echo number_format($property['price'], 0, ',', '.')  ?> fcfa</h4>
+                            </div>
+                            <div class="property_informations">
+                                <h5 class="property_address"><?php echo $property['address'] ?></h5>
+                                <div class="property_description">
+                                    <p><?php echo substr(nl2br($property['description']), 0, 100) . '...' ?></p>
+                                </div>
+                                <div class="property_detail">
+                                    <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
+                                    <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
+                                    <p class="property_area"><?php echo number_format($property['area'], 0, ',', '.') ?> m2</p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </section>
 
-        <h3 class="heading">Toutes Les Propriétés</h3>
-        <section id="all_property">
-        <?php foreach ($properties as $property):?>
-            <div class="property">
-                <div class="property_header">
-                <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg'?>" alt="image_propriete"></a>
-                <h3 class="property_title"><?php echo $property['title'] ?></h3>
-                <?php if($property['type'] == 'location'): ?>
-                    <h3 class="property_type location">A Louer</h3>
-                <?php else: ?>
-                    <h3 class="property_type vente">En vente</h3>
-                <?php endif; ?>
-                <h6 class="property_view"><?php echo number_format($property['view'],0,',','.')  ?></h6>
-                <h4 class="property_price"><?php echo number_format($property['price'],0,',','.')  ?> fcfa</h4>
-                </div>
-                <div class="property_informations">
-                    <h5 class="property_address"><?php echo $property['address'] ?></h5>
-                    <div class="property_description">
-                        <p><?php echo substr(nl2br($property['description']),0,100).'...' ?></p>
+                <h3 class="heading">Toutes Les Propriétés</h3>
+                <section id="all_property">
+                    <?php foreach ($properties as $property) : ?>
+                        <div class="property">
+                            <div class="property_header">
+                                <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete"></a>
+                                <h3 class="property_title"><?php echo $property['title'] ?></h3>
+                                <?php if ($property['type'] == 'location') : ?>
+                                    <h3 class="property_type location">A Louer</h3>
+                                <?php else : ?>
+                                    <h3 class="property_type vente">En vente</h3>
+                                <?php endif; ?>
+                                <h6 class="property_view"><?php echo number_format($property['view'], 0, ',', '.')  ?></h6>
+                                <h4 class="property_price"><?php echo number_format($property['price'], 0, ',', '.')  ?> fcfa</h4>
+                            </div>
+                            <div class="property_informations">
+                                <h5 class="property_address"><?php echo $property['address'] ?></h5>
+                                <div class="property_description">
+                                    <p><?php echo substr(nl2br($property['description']), 0, 100) . '...' ?></p>
+                                </div>
+                                <div class="property_detail">
+                                    <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
+                                    <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
+                                    <p class="property_area"><?php echo number_format($property['area'], 0, ',', '.') ?> m2</p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </section>
+            <?php else : ?>
+                <h4>Aucune propriété pour l'instant</h4>
+            <?php endif; ?>
+            <!-- resultats de la recherche -->
+        <?php else : ?>
+            <h3 class="heading">Résultats de la recherche: <?php echo count($results)?> propriété(s) trouvée(s)</h3>
+            <section id="all_property">
+                <?php foreach ($results as $result) : ?>
+                    <div class="property">
+                        <div class="property_header">
+                            <a href="property/view/<?php echo $result['id'] ?>"><img class="property_picture" src="<?php echo $result['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete"></a>
+                            <h3 class="property_title"><?php echo $result['title'] ?></h3>
+                            <?php if ($result['type'] == 'location') : ?>
+                                <h3 class="property_type location">A Louer</h3>
+                            <?php else : ?>
+                                <h3 class="property_type vente">En vente</h3>
+                            <?php endif; ?>
+                            <h6 class="property_view"><?php echo number_format($result['view'], 0, ',', '.')  ?></h6>
+                            <h4 class="property_price"><?php echo number_format($result['price'], 0, ',', '.')  ?> fcfa</h4>
+                        </div>
+                        <div class="property_informations">
+                            <h5 class="property_address"><?php echo $result['address'] ?></h5>
+                            <div class="property_description">
+                                <p><?php echo substr(nl2br($result['description']), 0, 100) . '...' ?></p>
+                            </div>
+                            <div class="property_detail">
+                                <p class="property_bedroom"><?php echo $result['bedroom'] ?> chambres</p>
+                                <p class="property_shower"><?php echo $result['shower'] ?> douches</p>
+                                <p class="property_area"><?php echo number_format($result['area'], 0, ',', '.') ?> m2</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="property_detail">
-                        <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
-                        <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
-                        <p class="property_area"><?php echo number_format($property['area'],0,',','.') ?> m2</p>
-                    </div>
-                </div>
-            </div>
-            <?php endforeach;?>
-        </section>
-        <?php else :?>
-            <h4>Aucune propriété pour l'instant</h4>
+                <?php endforeach; ?>
+            </section>
         <?php endif; ?>
     </div>
-<?php include('_includes/footer.php');?>
-
+    <?php include('_includes/footer.php'); ?>
