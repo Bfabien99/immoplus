@@ -205,7 +205,7 @@ if($data){
 
         #recent_property, #mostview_property, #all_property{
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
             grid-gap: 2em;
             margin-bottom: 2em;
             padding: 10px;

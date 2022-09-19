@@ -31,7 +31,7 @@ foreach ($all_properties as $property) {
         }
         $datas = json_decode($datas, true);
 
-        $locations[] = ['address' =>$property['address'],'price' =>$property['price'],'picture' =>$property['picture'],'lat' => $datas['results'][0]["geometry"]["location"]["lat"], 'lng' => $datas['results'][0]["geometry"]["location"]["lng"]];
+        $locations[] = ['address' =>$property['address'],'price' =>$property['price'],'picture' =>$property['picture'],'lat' => $datas['results'][0]["geometry"]["location"]["lat"] ?? 0, 'lng' => $datas['results'][0]["geometry"]["location"]["lng"] ?? 0];
 }
 
 ?>

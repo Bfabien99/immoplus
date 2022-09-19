@@ -278,6 +278,8 @@
             text-decoration: none;
             color: var(--white);
             border-radius: 6px;
+            max-width: 200px;
+            text-align: center;
         }
 
         .details table{
