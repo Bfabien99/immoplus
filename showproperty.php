@@ -352,15 +352,6 @@ if (isset($_GET['property_id'])) {
                 <li><a href="/immoplus/contact">Contact</a></li>
             </ul>
         </nav>
-        <div id="searchbox">
-            <h5>Faire une recherche</h5>
-            <form action="property.html" method="get">
-                <input type="number" name="searchprice" id="searchprice" placeholder="Rechercher par prix" min=5000>
-                <input type="number" name="searcharea" id="searcharea" placeholder="Rechercher par superficie" min=50>
-                <input type="text" name="searchaddress" id="searchaddress" placeholder="Rechercher par localité">
-                <button type="submit">Recherche</button>
-            </form>
-        </div>
         <h3 class="slogan">Immoplus... 100% fiable</h3>
     </header>
 

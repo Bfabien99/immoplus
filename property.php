@@ -37,7 +37,7 @@ if (isset($_POST['search'])) {
     if (!empty($_POST['searchprice']) || !empty($_POST['searcharea']) || !empty($_POST['searchaddress'])) {
         $sql = substr($sql, 0, -3);
         $sql = rtrim($sql);
-        echo $sql;
+        $sql .= " order by price DESC";
         $results = $_properties->getSearched_properties($sql);
         if (!$results) {
             $error = "<p class='error'>Aucun resultat trouvé</p>";
