@@ -19,3 +19,5 @@ RewriteRule ^property/location$ property_type.php?property_type=location [L]
 RewriteRule ^service$ services.php
 RewriteRule ^about$ about.php
 RewriteRule ^contact$ contact.php
+RewriteRule ^login$ login.php
+RewriteRule ^register$ register.php
