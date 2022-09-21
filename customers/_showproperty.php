@@ -24,7 +24,10 @@ if (isset($_GET['property_id'])) {
                 }
             } else {
                 $property = $data['data']['properties'][0];
-                
+                if ($property['etat'] == 0) {
+                    $property = false;
+                    $errors['property'] = "<p class='error'>Désolé, aucune propriété ne correspond</p>";
+                }
             }
         } else {
             $error['api'] = "<p class='error'>Désolé, le serveur ne répond pas pour l'instant... Veuillez réessayer plus tard</p>";

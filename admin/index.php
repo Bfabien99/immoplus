@@ -93,8 +93,8 @@
     <?php if($recent_users):?>
           <?php foreach($recent_users as $user):?>
     <tr>
-        <td width="60px"><div class="imgBx"><img src="<?php echo $user['picture']?>" alt=""></div></td>
-        <td><h4><?php echo $user['fullname']?></h4><span><?php echo datediff($user['inscrit_date']) ?></span></td>
+        <td width="60px"><div class="imgBx"><img src="<?php echo $user['picture'] ?? ""?>" alt=""></div></td>
+        <td><h4><?php echo $user['fullname']?></h4><span><?php echo datediff($user['insert_date']) ?></span></td>
     </tr>
     <?php endforeach; ?>
         <?php else:?>

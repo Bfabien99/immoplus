@@ -1,0 +1,18 @@
+php_flag display_errors on
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME}% !-d 
+RewriteCond %{REQUEST_FILENAME}% !-f 
+
+### PROPERTY API ROUTES ###
+#- GET ALL PROPERTY -#
+RewriteRule ^property$ property.php [L]
+
+#- PROPERTY BY ID -#
+RewriteRule ^property/view/([0-9]+)$ _showproperty.php?property_id=$1 [L]
+
+#- ADD NEW PROPERTY -#
+RewriteRule ^property/add$ _addproperty.php [L]
+
+#- SHOW MAPS -#
+RewriteRule ^maps$ _maps.php [L]
