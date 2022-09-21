@@ -1,27 +1,109 @@
 <?php
-    include_once('_includes/functions.php');
-    include_once('class/Users.php');
-    
-    $error = false;
-    $users = new Users();
-    // $users->insertUsers()
-    
-    if(isset($_POST['inscrire'])){
-        if(empty(escape($_POST['fullname']))){
-            $error['fullname'] = "<p class='error'>Veuillez entrer votre nom complet</p>";
-        }elseif (strlen(escape($_POST['fullname'])) < 5) {
-            $error['fullname'] = "<p class='error'>Le nom doit comporter au moins 5 caractères</p>";
-        }elseif (!ctype_alpha(str_replace(' ','',trim($_POST['fullname'])))){
-            $error['fullname'] = "<p class='error'>Le titre ne doit comporter que des lettres</p>";
-        } 
-        else {
-            $fullname = escape($_POST['fullname']);
+include_once('_includes/functions.php');
+include_once('class/Users.php');
+
+$error = false;
+$users = new Users();
+
+if (isset($_POST['inscrire'])) {
+    if (empty(escape($_POST['fullname']))) {
+        $error['fullname'] = "<p class='error'>Veuillez entrer votre nom complet</p>";
+    } elseif (strlen(escape($_POST['fullname'])) < 5) {
+        $error['fullname'] = "<p class='error'>Le nom doit comporter au moins 5 caractères</p>";
+    } elseif (!ctype_alpha(str_replace(' ', '', escape($_POST['fullname'])))) {
+        $error['fullname'] = "<p class='error'>Le titre ne doit comporter que des lettres</p>";
+    } else {
+        $fullname = escape(mb_strtoupper($_POST['fullname']));
+    }
+
+    if (isset($_POST['gender'])) {
+        if (empty(escape($_POST['gender']))) {
+            $error['gender'] = "<p class='error'>Veuillez choisir votre genre</p>";
+        } elseif (escape($_POST['gender']) != "m" && escape($_POST['gender']) != "f") {
+            $error['gender'] = "<p class='error'>Le genre n'est pas reconnu</p>";
+        } else {
+            $gender = escape(strtolower($_POST['gender']));
         }
     }
+
+
+    if (empty(escape($_POST['birth']))) {
+        $error['birth'] = "<p class='error'>Veuillez entrer votre date de naissance</p>";
+    } else {
+        $birth = escape($_POST['birth']);
+    }
+
+    if (empty(escape($_POST['description']))) {
+        $error['description'] = "<p class='error'>Veuillez entrer votre description</p>";
+    } elseif (strlen(escape($_POST['description'])) < 10 || strlen(escape($_POST['description'])) > 200) {
+        $error['description'] = "<p class='error'>La description est comprise entre 10 et 200 caractères</p>";
+    } else {
+        $description = escape($_POST['description']);
+    }
+
+    if (empty(escape($_POST['contact']))) {
+        $error['contact'] = "<p class='error'>Veuillez entrer votre contact</p>";
+    } elseif (!preg_match('/^[-+0-9]+$/', escape($_POST['contact']))) {
+        $error['contact'] = "<p class='error'>Le contact n'est pas valide</p>";
+    } elseif (strlen(str_replace(['+', '-'], ['', ''], escape($_POST['contact']))) < 10) {
+        $error['contact'] = "<p class='error'>Le contact doit contenir au moins dix chiffres</p>";
+    } else {
+        $contact = escape($_POST['contact']);
+    }
+
+    if (empty(escape($_POST['email']))) {
+        $error['email'] = "<p class='error'>Veuillez entrer votre Email</p>";
+    } elseif (!filter_var(escape($_POST['email']), FILTER_VALIDATE_EMAIL)) {
+        $error['email'] = "<p class='error'>L'email n'est pas valide</p>";
+    } else {
+        $email = escape(mb_strtolower($_POST['email']));
+        if($users->isEmail($email)){
+            $error['email'] = "<p class='error'>L'Email existe déja!</p>";
+        }
+    }
+
+    if (empty(escape($_POST['pseudo']))) {
+        $error['pseudo'] = "<p class='error'>Veuillez entrer votre pseudonyme</p>";
+    } elseif (strlen(escape($_POST['pseudo'])) < 5) {
+        $error['pseudo'] = "<p class='error'>Le pseudonyme doit comporter au moins 5 caractères</p>";
+    } elseif (!preg_match('/^[a-zA-Z_0-9]+$/', escape($_POST['pseudo']))) {
+        $error['pseudo'] = "<p class='error'>Le pseudonyme ne doit comporter que des lettres et/ou des chiffres</p>";
+    } else {
+        $pseudo = escape(mb_strtolower($_POST['pseudo']));
+        if($users->isPseudo($pseudo)){
+            $error['pseudo'] = "<p class='error'>Le pseudonyme existe déja!</p>";
+        }
+    }
+
+    if (empty(escape($_POST['password']))) {
+        $error['password'] = "<p class='error'>Veuillez entrer votre mot de passe</p>";
+    } elseif (strlen(escape($_POST['password'])) < 6) {
+        $error['password'] = "<p class='error'>Le mot de passe doit comporter au moins 6 caractères</p>";
+    } else {
+        $password = escape($_POST['password']);
+    }
+
+    if (empty(escape($_POST['cpassword']))) {
+        $error['cpassword'] = "<p class='error'>Veuillez confirmer votre mot de passe</p>";
+    } elseif (!empty($_POST['cpassword']) && escape($_POST['cpassword']) != escape($_POST['password'])) {
+        $error['cpassword'] = "<p class='error'>Le mot de passe ne correspond pas</p>";
+    } else {
+        $cpassword = escape($_POST['cpassword']);
+    }
+
+    if (!$error && !empty($fullname) && !empty($gender) && !empty($birth) && !empty($description) && !empty($contact) && !empty($email) && !empty($pseudo) && !empty($password)) {
+        if ($users->insertUsers($fullname, $gender, $birth, $description, $contact, $email, $pseudo, md5($password))) {
+            $error['result'] = "<p class='success'>Inscription réussie</p>";
+        } else {
+            $error['result'] = "<p class='error'>Inscription échoué, veuillez reéssayer plus tard</p>";
+        }
+    }
+}
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,9 +115,10 @@
             padding: 0;
             box-sizing: border-box;
             font-weight: 100;
-            font-family: 'Rajdhani','Poppins';
+            font-family: 'Rajdhani', 'Poppins';
             color: #444;
         }
+
         body {
             min-height: 100vh;
             overflow-x: hidden;
@@ -49,13 +132,15 @@
             flex-direction: column;
             gap: 1em;
         }
-        .heading{
+
+        .heading {
             text-align: center;
             padding: 15px;
             background: #162c3bff;
             color: #fff;
         }
-        .urgent{
+
+        .urgent {
             text-align: center;
             color: #f11;
             font-weight: bold;
@@ -63,101 +148,193 @@
             font-size: 1.3rem;
             letter-spacing: 2px;
         }
-        #contentBx{
+
+        #contentBx {
             display: flex;
             flex-direction: column;
             padding: 10px;
             gap: 1em;
             margin: 0.2em auto;
+            width: 100%;
+            max-width: 800px;
         }
 
-        .step{
-            display: flex;
-            flex-direction: column;
-            gap: 0.2em;
-            text-align: justify;
-            padding: 5px;
+        #postForm {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 30px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
             border-radius: 5px;
-            box-shadow: 5px 7px 2px rgba(0, 0, 0, 0.08);
-            border-top: 1px solid #444;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.08);
         }
-        .step p{
-            font-size: 1.3rem;
+
+        #postForm .group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         }
-        .step a{
-            color: #f11;
-            font-weight: 500;
-        }
-        .step i{
-            font-weight: 500;
-        }
-        .step:hover .num{
-            color: tomato;
-        }
-        .num{
-            font-family: 'Poppins';
+
+        #postForm .group label {
             font-weight: bold;
-            font-size: 2rem;
-            color: #162c3bff;
+            font-size: 1rem;
+            padding: 5px 0;
+            border-top: 1px solid #444;
+            display: flex;
+            align-items: center;
+            margin-right: 2em;
+            text-transform: uppercase;
+        }
+
+        #postForm .group input {
+            font-style: italic;
+            height: 40px;
+            text-transform: capitalize;
+        }
+
+        .radio p {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            gap: 0.2em;
+        }
+
+        #postForm .group input,
+        #postForm .group textarea {
+            padding: 5px;
+            outline: none;
+            border: 1px solid #444;
+            background-color: #fff;
+            text-align: justify;
+            border-radius: 5px;
+            transition: 0.2s;
+        }
+
+        #postForm .group input:focus,
+        #postForm .group textarea:focus {
+            border: 1.5px solid #fc8d59;
+            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        #submit {
+            width: 100%;
+            max-width: 200px;
+            padding: 5px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: 0.2s;
+            cursor: pointer;
+            height: 40px;
+        }
+
+        #submit:hover {
+            background-color: #fc8d59;
+        }
+
+        .error {
+            background-color: #f22;
+            margin: auto 1.2em;
+            padding: 10px;
+            text-align: center;
+            height: fit-content;
+            width: fit-content;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .success {
+            background-color: green;
+            margin: auto 1.2em;
+            padding: 10px;
+            text-align: center;
+            height: fit-content;
+            width: fit-content;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1 class="heading">Inscription</h1>
         <p class="urgent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat inventore eum doloremque dolores praesentium a nulla minima hic omnis. Amet.</p>
         <div id="contentBx">
-            <form action="" method="post">
+            <?php echo $error['result'] ?? "" ?>
+            <form action="" method="post" id="postForm">
                 <div class="group">
                     <label for="fullname">Nom & Prénoms</label>
-                    <input type="text" name="fullname" required placeholder="Jhon Doe">
-                    <?php echo $error['fullname'] ?? ""?>
+                    <input type="text" name="fullname" placeholder="Jhon Doe" value="<?php echo $_POST['fullname'] ?? '' ?>" >
+                    <?php echo $error['fullname'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="gender">Genre</label>
-                    <p><input type="radio" name="gender" value="m" required>Homme</p>
-                    <p><input type="radio" name="gender" value="f" required>Femme</p>
-                    <?php echo $error['gender'] ?? ""?>
+                    <div class="radio">
+                        <p><input type="radio" name="gender" value="m">Homme</p>
+                        <p><input type="radio" name="gender" value="f">Femme</p>
+                    </div>
+
+                    <?php echo $error['gender'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="birth">Date de naissance</label>
-                    <input type="date" name="birth" required>
-                    <?php echo $error['birth'] ?? ""?>
+                    <input type="date" name="birth" value="<?php echo $_POST['birth'] ?? '' ?>" >
+                    <?php echo $error['birth'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="description">Comment vous décririez-vous ?</label>
-                    <textarea name="description" id="" cols="30" rows="10" placeholder="sincère..."></textarea>
-                    <?php echo $error['description'] ?? ""?>
+                    <textarea name="description" id="" cols="30" rows="10" placeholder="sincère..."><?php echo $_POST['description'] ?? '' ?></textarea>
+                    <?php echo $error['description'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="contact">Votre contact</label>
-                    <input type="tel" name="contact" required placeholder="002250101010101">
-                    <?php echo $error['contact'] ?? ""?>
+                    <input type="tel" name="contact" placeholder="002250101010101" value="<?php echo $_POST['contact'] ?? '' ?>" >
+                    <?php echo $error['contact'] ?? "" ?>
                 </div>
                 <hr>
                 <div class="group">
                     <label for="email">Votre adresse E-mail</label>
-                    <input type="email" name="email" required placeholder="Jhon-Doe@mail.org">
-                    <?php echo $error['email'] ?? ""?>
+                    <input type="email" name="email" placeholder="Jhon-Doe@mail.org" value="<?php echo $_POST['email'] ?? '' ?>" >
+                    <?php echo $error['email'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="pseudo">Veuillez choisir un pseudonyme</label>
-                    <input type="text" name="pseudo" required placeholder="Jhon_Doe">
-                    <?php echo $error['pseudo'] ?? ""?>
+                    <input type="text" name="pseudo" placeholder="Jhon_Doe" value="<?php echo $_POST['pseudo'] ?? '' ?>" >
+                    <?php echo $error['pseudo'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="password">Veuillez entrer un mot de passe</label>
-                    <input type="password" name="password" required placeholder="******">
+                    <input type="password" name="password" placeholder="******" id="password">
+                    <?php echo $error['password'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="cpassword">Confirmer votre mot de passe</label>
-                    <input type="password" name="cpassword" required placeholder="******">
-                    <?php echo $error['password'] ?? ""?>
+                    <input type="password" name="cpassword" placeholder="******">
+                    <?php echo $error['cpassword'] ?? "" ?>
                 </div>
-                <input type="submit" value="S'inscrire" name="inscrire">
+                <input type="submit" value="S'inscrire" name="inscrire" id="submit">
             </form>
-    <a href="./" class="back">Retour</a>
+            <a href="./" class="back">Retour</a>
         </div>
     </div>
 </body>
+<script>
+    var pass = document.querySelector('#password');
+    pass.addEventListener('dblclick', function(){
+        if(pass.getAttribute('type') == 'password'){
+            pass.setAttribute('type','text')
+        }else{
+            pass.setAttribute('type','password')
+        }
+    })
+</script>
 </html>

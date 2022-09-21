@@ -63,8 +63,50 @@ class Users
     {
     }
 
-    public function isUser($email, $pseudo)
+    public function isPseudo($pseudo)
     {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'select * from users where pseudo = :pseudo';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':pseudo',$pseudo,PDO::PARAM_STR);
+            $query->execute();
+            $datas = [];
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            $datas = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function isEmail($email)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'select * from users where email = :email';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':email',$email,PDO::PARAM_STR);
+            $query->execute();
+            $datas = [];
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            $datas = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function usersLogin($identifiant, $password)
