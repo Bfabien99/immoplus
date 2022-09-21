@@ -71,8 +71,34 @@ class Users
     {
     }
 
-    public function insertUsers($fullname, $contact, $email, $pseudo, $password)
+    public function insertUsers($fullname, $gender, $birth, $description, $contact, $email, $pseudo, $password)
     {
+        try {
+            $connectDB = self::connectDB();
+            $sql = "insert into users(fullname, gender, birth, description, contact, email, pseudo, password) VALUES (:fullname, :gender, :birth, :description, :contact, :email, :pseudo, :password)";
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':fullname', $fullname, PDO::PARAM_STR);
+            $query->bindValue(':gender', $gender, PDO::PARAM_STR);
+            $query->bindValue(':birth', $birth, PDO::PARAM_STR);
+            $query->bindValue(':description', $description, PDO::PARAM_STR);
+            $query->bindValue(':contact', $contact, PDO::PARAM_STR);
+            $query->bindValue(':email', $email, PDO::PARAM_STR);
+            $query->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+            $query->bindValue(':password', $password, PDO::PARAM_STR);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+        
+
     }
 
     public function updateUsers($fullname, $contact, $email, $pseudo, $password)
