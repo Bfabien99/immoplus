@@ -368,8 +368,35 @@ if (isset($_POST['search'])) {
             background-color: #162c3bf9;
             color: #fff;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            gap: 0.3em;
+        }
+
+        #footernav{
+            width: 100%;
+            padding: 5px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #footernav ul{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+
+        #footernav ul li a{
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #footernav ul li a:hover{
+            text-decoration: underline;
+            color: #ccc;
         }
 
         .error{
