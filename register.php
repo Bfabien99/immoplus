@@ -2,10 +2,22 @@
     include_once('_includes/functions.php');
     include_once('class/Users.php');
     
+    $error = false;
     $users = new Users();
     // $users->insertUsers()
     
-
+    if(isset($_POST['inscrire'])){
+        if(empty(escape($_POST['fullname']))){
+            $error['fullname'] = "<p class='error'>Veuillez entrer votre nom complet</p>";
+        }elseif (strlen(escape($_POST['fullname'])) < 5) {
+            $error['fullname'] = "<p class='error'>Le nom doit comporter au moins 5 caractères</p>";
+        }elseif (!ctype_alpha(str_replace(' ','',trim($_POST['fullname'])))){
+            $error['fullname'] = "<p class='error'>Le titre ne doit comporter que des lettres</p>";
+        } 
+        else {
+            $fullname = escape($_POST['fullname']);
+        }
+    }
 
 ?>
 <!DOCTYPE html>
@@ -99,31 +111,39 @@
                 <div class="group">
                     <label for="fullname">Nom & Prénoms</label>
                     <input type="text" name="fullname" required placeholder="Jhon Doe">
+                    <?php echo $error['fullname'] ?? ""?>
                 </div>
                 <div class="group">
                     <label for="gender">Genre</label>
                     <p><input type="radio" name="gender" value="m" required>Homme</p>
                     <p><input type="radio" name="gender" value="f" required>Femme</p>
+                    <?php echo $error['gender'] ?? ""?>
                 </div>
                 <div class="group">
                     <label for="birth">Date de naissance</label>
                     <input type="date" name="birth" required>
+                    <?php echo $error['birth'] ?? ""?>
                 </div>
                 <div class="group">
                     <label for="description">Comment vous décririez-vous ?</label>
                     <textarea name="description" id="" cols="30" rows="10" placeholder="sincère..."></textarea>
+                    <?php echo $error['description'] ?? ""?>
                 </div>
                 <div class="group">
                     <label for="contact">Votre contact</label>
                     <input type="tel" name="contact" required placeholder="002250101010101">
+                    <?php echo $error['contact'] ?? ""?>
                 </div>
+                <hr>
                 <div class="group">
                     <label for="email">Votre adresse E-mail</label>
                     <input type="email" name="email" required placeholder="Jhon-Doe@mail.org">
+                    <?php echo $error['email'] ?? ""?>
                 </div>
                 <div class="group">
                     <label for="pseudo">Veuillez choisir un pseudonyme</label>
                     <input type="text" name="pseudo" required placeholder="Jhon_Doe">
+                    <?php echo $error['pseudo'] ?? ""?>
                 </div>
                 <div class="group">
                     <label for="password">Veuillez entrer un mot de passe</label>
@@ -132,6 +152,7 @@
                 <div class="group">
                     <label for="cpassword">Confirmer votre mot de passe</label>
                     <input type="password" name="cpassword" required placeholder="******">
+                    <?php echo $error['password'] ?? ""?>
                 </div>
                 <input type="submit" value="S'inscrire" name="inscrire">
             </form>

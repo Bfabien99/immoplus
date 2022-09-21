@@ -3,7 +3,7 @@
 function escape($data)
 {
     $data = strip_tags(trim($data));
-    return ucfirst($data);
+    return $data;
 }
 
 
