@@ -21,3 +21,4 @@ RewriteRule ^about$ about.php
 RewriteRule ^contact$ contact.php
 RewriteRule ^login$ login.php
 RewriteRule ^register$ register.php
+RewriteRule ^sell$ sell.php
