@@ -179,7 +179,7 @@
 <body>
     <header>
         <div id="banner">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus repellat, ut animi voluptates praesentium iste porro, a perspiciatis architecto obcaecati, impedit sed amet veniam ducimus libero! Optio et saepe nesciunt sapiente magni odit, ad commodi obcaecati velit deserunt error sunt?</p>
+            <p>Nos differents services</p>
         </div>
         <nav>
             <ul>
@@ -196,5 +196,13 @@
     </header>
     <div class="container">
         <h2 class="title">Nos services</h2>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum praesentium nostrum veniam provident molestiae incidunt, possimus magnam. Amet, totam, doloremque eos magni deleniti nemo deserunt est, molestias ducimus nihil quibusdam recusandae perspiciatis! Id molestias nulla error praesentium eum iste numquam ad ullam, unde aspernatur adipisci! Excepturi consectetur quasi esse officia.
+        </p>
+        <div class="section">
+            <a href="">Vente de bien</a>
+            <a href="">Gestion de bien</a>
+            <a href="">Construction de bien</a>
+            <a href="">Promotion de bien</a>
+        </div>
     </div>
     <?php include('_includes/footer.php'); ?>

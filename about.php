@@ -179,7 +179,7 @@
 <body>
     <header>
         <div id="banner">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus repellat, ut animi voluptates praesentium iste porro, a perspiciatis architecto obcaecati, impedit sed amet veniam ducimus libero! Optio et saepe nesciunt sapiente magni odit, ad commodi obcaecati velit deserunt error sunt?</p>
+            <p>Qui sommes nous et que faisons nous?</p>
         </div>
         <nav>
             <ul>
@@ -196,5 +196,21 @@
     </header>
     <div class="container">
         <h2 class="title">Qui sommes nous ?</h2>
+        <section>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
+        </section>
+
+        <section>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
+        </section>
+
+        <section>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
+        </section>
     </div>
     <?php include('_includes/footer.php'); ?>

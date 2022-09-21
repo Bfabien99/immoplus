@@ -16,12 +16,11 @@ $properties = [];
 if ($data) {
     if ($data['statusCode'] == 200)
         foreach ($data['data']['properties'] as $property) {
-            if($property['etat'] == 1){
+            if ($property['etat'] == 1) {
                 $properties[] = $property;
-            }else{
+            } else {
                 $properties = false;
             }
-            
         }
 }
 
@@ -384,7 +383,11 @@ if ($data) {
 <body>
     <header>
         <div id="banner">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus repellat, ut animi voluptates praesentium iste porro, a perspiciatis architecto obcaecati, impedit sed amet veniam ducimus libero! Optio et saepe nesciunt sapiente magni odit, ad commodi obcaecati velit deserunt error sunt?</p>
+        <?php if ($property_type == 'location') : ?>
+            <p>Voir Toutes Les Propriétés A Louer</p>
+        <?php else : ?>
+            <p>Voir Toutes Les Propriétés En Vente</p>
+        <?php endif; ?>
         </div>
         <nav>
             <ul>
@@ -400,11 +403,11 @@ if ($data) {
         <h3 class="slogan">Immoplus... 100% fiable</h3>
     </header>
     <div class="container">
-    <?php if ($property_type == 'location') : ?>
-                <h3 class="heading">Toutes Les Propriétés A Louer</h3>
-            <?php else : ?>
-                <h3 class="heading">Toutes Les Propriétés En Vente</h3>
-            <?php endif; ?>
+        <?php if ($property_type == 'location') : ?>
+            <h3 class="heading">Toutes Les Propriétés A Louer</h3>
+        <?php else : ?>
+            <h3 class="heading">Toutes Les Propriétés En Vente</h3>
+        <?php endif; ?>
         <?php if (!empty($properties)) : ?>
             <section id="all_property">
                 <?php foreach ($properties as $property) : ?>

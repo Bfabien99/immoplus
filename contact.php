@@ -179,7 +179,7 @@
 <body>
     <header>
         <div id="banner">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus repellat, ut animi voluptates praesentium iste porro, a perspiciatis architecto obcaecati, impedit sed amet veniam ducimus libero! Optio et saepe nesciunt sapiente magni odit, ad commodi obcaecati velit deserunt error sunt?</p>
+            <p>Nous contacter</p>
         </div>
         <nav>
             <ul>
@@ -195,6 +195,14 @@
         <h3 class="slogan">Immoplus... 100% fiable</h3>
     </header>
     <div class="container">
-        <h2 class="title">Nous contacter</h2>
+        <h2 class="title">Contact</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, omnis officiis architecto quisquam dolor reprehenderit et labore aut dolorum quibusdam molestiae fugit, consequuntur incidunt ut sed, adipisci tempore quo facere commodi reiciendis eum ipsum tenetur. Impedit voluptate illo ad recusandae.</p>
+        <hr>
+        <section>
+        <p>Adresse et contact et email</p>
+        </section>
+        <section>
+        <p>formulaire de contact</p>
+        </section>
     </div>
     <?php include('_includes/footer.php'); ?>
