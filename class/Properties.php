@@ -63,7 +63,7 @@ class Properties
     {
         try {
             $connectDB = self::connectDB();
-            $sql = 'select * from property order by post_date DESC limit 6';
+            $sql = 'select * from property where etat = 1 order by post_date DESC limit 6';
             $query = $connectDB->prepare($sql);
             $query->execute();
             $datas = [];
@@ -85,7 +85,7 @@ class Properties
     {
         try {
             $connectDB = self::connectDB();
-            $sql = 'select * from property order by view DESC limit 6';
+            $sql = 'select * from property where etat = 1 order by view DESC limit 6';
             $query = $connectDB->prepare($sql);
             $query->execute();
             $datas = [];
@@ -107,7 +107,7 @@ class Properties
     {
         try {
             $connectDB = self::connectDB();
-            $sql = 'update property set view = view + 1 where id = :id';
+            $sql = 'update property set view = view + 1 where id = :id AND etat = 1';
             $query = $connectDB->prepare($sql);
             $query->bindValue(':id', $property_id, PDO::PARAM_INT);
             $query->execute();
@@ -124,8 +124,25 @@ class Properties
         }
     }
 
-    public function publishProperties()
+    public function publishProperties($property_id)
     {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'update property set etat = 1 where id = :id';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id', $property_id, PDO::PARAM_INT);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
     }
 
 

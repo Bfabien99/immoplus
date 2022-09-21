@@ -27,10 +27,16 @@ if (isset($_GET['property_id'])) {
                 }
             } else {
                 $property = $data['data']['properties'][0];
-                $properties->incrementView($_GET['property_id']);
+                if ($property['etat'] == 0) {
+                    $property = false;
+                    $errors['property'] = "<p class='error'>Désolé, aucune propriété ne correspond</p>";
+                }else{
+                   $properties->incrementView($_GET['property_id']); 
+                }
+                
             }
         } else {
-            $error['api'] = "<p class='error'>Désolé, le serveur ne répond pas pour l'instant... Veuillez réessayer plus tard</p>";
+            $errors['api'] = "<p class='error'>Désolé, le serveur ne répond pas pour l'instant... Veuillez réessayer plus tard</p>";
         }
     }
 }
@@ -334,6 +340,53 @@ if (isset($_GET['property_id'])) {
             justify-content: center;
             align-items: center;
         }
+
+        .errorbox{
+            display: flex;
+            flex-direction: column;
+            gap: 0.2em;
+            padding: 5px 0;
+        }
+        .error{
+            background-color: #f22;
+            margin: auto 1.2em;
+            padding: 10px;
+            text-align: center;
+            height: fit-content;
+            width: fit-content;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+        .success{
+            background-color: green;
+            margin: auto 1.2em;
+            padding: 10px;
+            text-align: center;
+            height: fit-content;
+            width: fit-content;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+        .back{
+            background-color: #444;
+            margin: 2em 1.2em;
+            padding: 5px;
+            border-radius: 5px;
+            text-align: center;
+            height: fit-content;
+            width: fit-content;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 
@@ -357,10 +410,12 @@ if (isset($_GET['property_id'])) {
 
 
     <?php if (!empty($errors)) : ?>
+        <div class="errorbox">
         <?php foreach ($errors as $error) : ?>
             <?php echo $error ?>
         <?php endforeach; ?>
         <a href="/immoplus/property" class="back">Retour</a>
+        </div>
     <?php else : ?>
         <?php if (!empty($property)) : ?>
             <div class="container">

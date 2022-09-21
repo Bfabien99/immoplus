@@ -37,7 +37,7 @@ if (isset($_POST['search'])) {
     if (!empty($_POST['searchprice']) || !empty($_POST['searcharea']) || !empty($_POST['searchaddress'])) {
         $sql = substr($sql, 0, -3);
         $sql = rtrim($sql);
-        $sql .= " order by price DESC";
+        $sql .= " AND etat = 1 order by price ASC";
         $results = $_properties->getSearched_properties($sql);
         if (!$results) {
             $error = "<p class='error'>Aucun resultat trouvé</p>";
@@ -371,6 +371,31 @@ if (isset($_POST['search'])) {
             justify-content: center;
             align-items: center;
         }
+
+        .error{
+            background-color: #f22;
+            margin: auto 1.2em;
+            padding: 10px;
+            text-align: center;
+            height: fit-content;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+        .success{
+            background-color: green;
+            margin: auto 1.2em;
+            padding: 10px;
+            text-align: center;
+            height: fit-content;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 
@@ -406,91 +431,97 @@ if (isset($_POST['search'])) {
             <?php if (!empty($properties)) : ?>
                 <h3 class="heading">Propriétés Recentes</h3>
                 <section id="recent_property">
-                    <?php foreach ($recent_properties as $property) : ?>
-                        <div class="property">
-                            <div class="property_header">
-                                <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete"></a>
-                                <h3 class="property_title"><?php echo $property['title'] ?></h3>
-                                <?php if ($property['type'] == 'location') : ?>
-                                    <h3 class="property_type location">A Louer</h3>
-                                <?php else : ?>
-                                    <h3 class="property_type vente">En vente</h3>
-                                <?php endif; ?>
-                                <h6 class="property_view"><?php echo number_format($property['view'], 0, ',', '.')  ?></h6>
-                                <h4 class="property_price"><?php echo number_format($property['price'], 0, ',', '.')  ?> fcfa</h4>
-                            </div>
-                            <div class="property_informations">
-                                <h5 class="property_address"><?php echo $property['address'] ?></h5>
-                                <div class="property_description">
-                                    <p><?php echo substr(nl2br($property['description']), 0, 100) . '...' ?></p>
+                    <?php if ($recent_properties) : ?>
+                        <?php foreach ($recent_properties as $property) : ?>
+                            <div class="property">
+                                <div class="property_header">
+                                    <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete"></a>
+                                    <h3 class="property_title"><?php echo $property['title'] ?></h3>
+                                    <?php if ($property['type'] == 'location') : ?>
+                                        <h3 class="property_type location">A Louer</h3>
+                                    <?php else : ?>
+                                        <h3 class="property_type vente">En vente</h3>
+                                    <?php endif; ?>
+                                    <h6 class="property_view"><?php echo number_format($property['view'], 0, ',', '.')  ?></h6>
+                                    <h4 class="property_price"><?php echo number_format($property['price'], 0, ',', '.')  ?> fcfa</h4>
                                 </div>
-                                <div class="property_detail">
-                                    <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
-                                    <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
-                                    <p class="property_area"><?php echo number_format($property['area'], 0, ',', '.') ?> m2</p>
+                                <div class="property_informations">
+                                    <h5 class="property_address"><?php echo $property['address'] ?></h5>
+                                    <div class="property_description">
+                                        <p><?php echo substr(nl2br($property['description']), 0, 100) . '...' ?></p>
+                                    </div>
+                                    <div class="property_detail">
+                                        <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
+                                        <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
+                                        <p class="property_area"><?php echo number_format($property['area'], 0, ',', '.') ?> m2</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </section>
 
                 <h3 class="heading">Les Plus Vues</h3>
                 <section id="mostview_property">
-                    <?php foreach ($mostView_properties as $property) : ?>
-                        <div class="property">
-                            <div class="property_header">
-                                <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete"></a>
-                                <h3 class="property_title"><?php echo $property['title'] ?></h3>
-                                <?php if ($property['type'] == 'location') : ?>
-                                    <h3 class="property_type location">A Louer</h3>
-                                <?php else : ?>
-                                    <h3 class="property_type vente">En vente</h3>
-                                <?php endif; ?>
-                                <h6 class="property_view"><?php echo number_format($property['view'], 0, ',', '.')  ?></h6>
-                                <h4 class="property_price"><?php echo number_format($property['price'], 0, ',', '.')  ?> fcfa</h4>
-                            </div>
-                            <div class="property_informations">
-                                <h5 class="property_address"><?php echo $property['address'] ?></h5>
-                                <div class="property_description">
-                                    <p><?php echo substr(nl2br($property['description']), 0, 100) . '...' ?></p>
+                    <?php if ($mostView_properties) : ?>
+                        <?php foreach ($mostView_properties as $property) : ?>
+                            <div class="property">
+                                <div class="property_header">
+                                    <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete"></a>
+                                    <h3 class="property_title"><?php echo $property['title'] ?></h3>
+                                    <?php if ($property['type'] == 'location') : ?>
+                                        <h3 class="property_type location">A Louer</h3>
+                                    <?php else : ?>
+                                        <h3 class="property_type vente">En vente</h3>
+                                    <?php endif; ?>
+                                    <h6 class="property_view"><?php echo number_format($property['view'], 0, ',', '.')  ?></h6>
+                                    <h4 class="property_price"><?php echo number_format($property['price'], 0, ',', '.')  ?> fcfa</h4>
                                 </div>
-                                <div class="property_detail">
-                                    <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
-                                    <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
-                                    <p class="property_area"><?php echo number_format($property['area'], 0, ',', '.') ?> m2</p>
+                                <div class="property_informations">
+                                    <h5 class="property_address"><?php echo $property['address'] ?></h5>
+                                    <div class="property_description">
+                                        <p><?php echo substr(nl2br($property['description']), 0, 100) . '...' ?></p>
+                                    </div>
+                                    <div class="property_detail">
+                                        <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
+                                        <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
+                                        <p class="property_area"><?php echo number_format($property['area'], 0, ',', '.') ?> m2</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </section>
 
                 <h3 class="heading">Toutes Les Propriétés</h3>
                 <section id="all_property">
                     <?php foreach ($properties as $property) : ?>
-                        <div class="property">
-                            <div class="property_header">
-                                <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete"></a>
-                                <h3 class="property_title"><?php echo $property['title'] ?></h3>
-                                <?php if ($property['type'] == 'location') : ?>
-                                    <h3 class="property_type location">A Louer</h3>
-                                <?php else : ?>
-                                    <h3 class="property_type vente">En vente</h3>
-                                <?php endif; ?>
-                                <h6 class="property_view"><?php echo number_format($property['view'], 0, ',', '.')  ?></h6>
-                                <h4 class="property_price"><?php echo number_format($property['price'], 0, ',', '.')  ?> fcfa</h4>
-                            </div>
-                            <div class="property_informations">
-                                <h5 class="property_address"><?php echo $property['address'] ?></h5>
-                                <div class="property_description">
-                                    <p><?php echo substr(nl2br($property['description']), 0, 100) . '...' ?></p>
+                        <?php if ($property['etat'] == 1) : ?>
+                            <div class="property">
+                                <div class="property_header">
+                                    <a href="property/view/<?php echo $property['id'] ?>"><img class="property_picture" src="<?php echo $property['picture'] ?? './assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete"></a>
+                                    <h3 class="property_title"><?php echo $property['title'] ?></h3>
+                                    <?php if ($property['type'] == 'location') : ?>
+                                        <h3 class="property_type location">A Louer</h3>
+                                    <?php else : ?>
+                                        <h3 class="property_type vente">En vente</h3>
+                                    <?php endif; ?>
+                                    <h6 class="property_view"><?php echo number_format($property['view'], 0, ',', '.')  ?></h6>
+                                    <h4 class="property_price"><?php echo number_format($property['price'], 0, ',', '.')  ?> fcfa</h4>
                                 </div>
-                                <div class="property_detail">
-                                    <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
-                                    <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
-                                    <p class="property_area"><?php echo number_format($property['area'], 0, ',', '.') ?> m2</p>
+                                <div class="property_informations">
+                                    <h5 class="property_address"><?php echo $property['address'] ?></h5>
+                                    <div class="property_description">
+                                        <p><?php echo substr(nl2br($property['description']), 0, 100) . '...' ?></p>
+                                    </div>
+                                    <div class="property_detail">
+                                        <p class="property_bedroom"><?php echo $property['bedroom'] ?> chambres</p>
+                                        <p class="property_shower"><?php echo $property['shower'] ?> douches</p>
+                                        <p class="property_area"><?php echo number_format($property['area'], 0, ',', '.') ?> m2</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </section>
             <?php else : ?>
@@ -498,7 +529,7 @@ if (isset($_POST['search'])) {
             <?php endif; ?>
             <!-- resultats de la recherche -->
         <?php else : ?>
-            <h3 class="heading">Résultats de la recherche: <?php echo count($results)?> propriété(s) trouvée(s)</h3>
+            <h3 class="heading">Résultats de la recherche: <?php echo count($results) ?> propriété(s) trouvée(s)</h3>
             <section id="all_property">
                 <?php foreach ($results as $result) : ?>
                     <div class="property">

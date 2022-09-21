@@ -16,7 +16,12 @@ $properties = [];
 if ($data) {
     if ($data['statusCode'] == 200)
         foreach ($data['data']['properties'] as $property) {
-            $properties[] = $property;
+            if($property['etat'] == 1){
+                $properties[] = $property;
+            }else{
+                $properties = false;
+            }
+            
         }
 }
 
@@ -28,11 +33,11 @@ if ($data) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php if($property_type == 'location'):?>
-    <title>Propriétés à louer</title>
-    <?php else:?>
+    <?php if ($property_type == 'location') : ?>
+        <title>Propriétés à louer</title>
+    <?php else : ?>
         <title>Propriétés en vente</title>
-    <?php endif;?>
+    <?php endif; ?>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
 
@@ -347,6 +352,32 @@ if ($data) {
             justify-content: center;
             align-items: center;
         }
+
+        .error {
+            background-color: #f22;
+            margin: auto 1.2em;
+            padding: 10px;
+            text-align: center;
+            height: fit-content;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .success {
+            background-color: green;
+            margin: auto 1.2em;
+            padding: 10px;
+            text-align: center;
+            height: fit-content;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 
@@ -369,13 +400,12 @@ if ($data) {
         <h3 class="slogan">Immoplus... 100% fiable</h3>
     </header>
     <div class="container">
+    <?php if ($property_type == 'location') : ?>
+                <h3 class="heading">Toutes Les Propriétés A Louer</h3>
+            <?php else : ?>
+                <h3 class="heading">Toutes Les Propriétés En Vente</h3>
+            <?php endif; ?>
         <?php if (!empty($properties)) : ?>
-
-            <?php if($property_type == 'location'):?>
-    <h3 class="heading">Toutes Les Propriétés A Louer</h3>
-    <?php else:?>
-        <h3 class="heading">Toutes Les Propriétés En Vente</h3>
-    <?php endif;?>
             <section id="all_property">
                 <?php foreach ($properties as $property) : ?>
                     <div class="property">
