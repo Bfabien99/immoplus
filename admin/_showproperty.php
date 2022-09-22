@@ -52,7 +52,7 @@ if(isset($_POST['publish'])){
         <?php foreach ($errors as $error) : ?>
             <?php echo $error ?>
         <?php endforeach; ?>
-        <a href=".." class="back">Retour</a>
+        <a href="./../../property" class="back">Retour</a>
     <?php else : ?>
         <?php if (!empty($property)) : ?>
             <?php $location = $property['address']; ?>
@@ -80,7 +80,7 @@ if(isset($_POST['publish'])){
                             </p>
                         </div>
                         <div class="actions">
-                            <a href="" class="edit">Modifier</a>
+                            <a href="./../../property/edit/<?php echo $property['id']?>" class="edit">Modifier</a>
                             <?php echo ($property['etat'] == 0) ? "<a href='' class='cancel'>Annuler</a><form method='post'><input hidden type='number' name='property_id' value='{$property['id']}'><input type='submit' value='publier' class='publish' name='publish'></form>" : "<a href='' class='del'>Supprimer</a>"?>
                         </div>
                     </div>
