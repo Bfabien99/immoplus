@@ -14,5 +14,8 @@ RewriteRule ^property/view/([0-9]+)$ _showproperty.php?property_id=$1 [L]
 #- ADD NEW PROPERTY -#
 RewriteRule ^property/add$ _addproperty.php [L]
 
+#- EDIT PROPERTY BY ID -#
+RewriteRule ^property/edit/([0-9]+)$ _editproperty.php?property_id=$1 [L]
+
 #- SHOW MAPS -#
 RewriteRule ^maps$ _maps.php [L]

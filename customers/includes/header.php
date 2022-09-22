@@ -1,18 +1,18 @@
-<?php 
+<?php
 session_start();
 include_once('../_includes/functions.php'); ?>
 <?php include_once('../class/Properties.php'); ?>
 <?php include_once('../class/Users.php'); ?>
 <?php
-    $users = new Users();
-    if(!empty($_SESSION['immoplus_userPseudo'])){
-        $user = $users->getUserByPseudo($_SESSION['immoplus_userPseudo']);
-        if(!$user){
-            header('location:/immoplus/login');
-        }
-    }else{
+$users = new Users();
+if (!empty($_SESSION['immoplus_userPseudo'])) {
+    $user = $users->getUserByPseudo($_SESSION['immoplus_userPseudo']);
+    if (!$user) {
         header('location:/immoplus/login');
     }
+} else {
+    header('location:/immoplus/login');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +24,7 @@ include_once('../_includes/functions.php'); ?>
     <!-- <script src="https://kit.fontawesome.com/1f88d87af5.js" crossorigin="anonymous"></script> -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <title>Users</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
@@ -32,7 +33,7 @@ include_once('../_includes/functions.php'); ?>
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins','Rajdhani',serif ;
+            font-family: 'Poppins', 'Rajdhani', serif;
         }
 
         :root {
@@ -49,14 +50,14 @@ include_once('../_includes/functions.php'); ?>
             overflow-x: hidden;
         }
 
-        .navigation{
+        .navigation {
             display: flex;
             justify-content: space-evenly;
             align-items: center;
             background-color: #287bff;
         }
 
-        .navigation ul{
+        .navigation ul {
             display: flex;
             justify-content: space-around;
             gap: 0.5em;
@@ -64,16 +65,23 @@ include_once('../_includes/functions.php'); ?>
             width: 70%;
         }
 
-        .navigation ul li a{
+        .navigation ul li a {
             text-decoration: none;
             color: #fff;
             font-weight: 500;
             transition: all 0.2s;
         }
 
-        .navigation ul li a:hover{
+        .navigation ul li a:hover {
             text-decoration: underline;
             color: #ccc;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            max-width: 300px;
         }
 
         .container {
@@ -85,7 +93,7 @@ include_once('../_includes/functions.php'); ?>
             position: relative;
             width: 400px;
             margin: 0 10px;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             text-align: center;
         }
 
@@ -107,7 +115,7 @@ include_once('../_includes/functions.php'); ?>
             object-fit: cover;
         }
 
-        main{
+        main {
             padding: 30px 20px;
             background-color: var(--grey);
             min-height: 85vh;
@@ -115,7 +123,7 @@ include_once('../_includes/functions.php'); ?>
             flex-direction: column;
         }
 
-        .cardBox{
+        .cardBox {
             position: relative;
             width: 100%;
             padding: 20px;
@@ -124,7 +132,7 @@ include_once('../_includes/functions.php'); ?>
             grid-gap: 30px;
         }
 
-        .cardBox .card{
+        .cardBox .card {
             position: relative;
             background-color: var(--white);
             padding: 30px;
@@ -135,35 +143,36 @@ include_once('../_includes/functions.php'); ?>
             box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
             transition: 0.2s;
         }
-        .cardBox .card .numbers{
+
+        .cardBox .card .numbers {
             position: relative;
             font-weight: bold;
             font-size: 2.5rem;
             color: var(--blue);
         }
 
-        .cardBox .card .cardName{
+        .cardBox .card .cardName {
             color: var(--black2);
             font-size: 1.1em;
             margin-top: 5px;
         }
 
-        .cardBox .card .iconBx{
+        .cardBox .card .iconBx {
             font-size: 3.5em;
             color: var(--green);
         }
 
-        .cardBox .card:hover{
+        .cardBox .card:hover {
             background-color: var(--green);
         }
 
         .cardBox .card:hover .numbers,
         .cardBox .card:hover .cardName,
-        .cardBox .card:hover .iconBx{
+        .cardBox .card:hover .iconBx {
             color: var(--white);
         }
 
-        .details{
+        .details {
             position: relative;
             width: 100%;
             padding: 20px;
@@ -173,7 +182,8 @@ include_once('../_includes/functions.php'); ?>
             /* margin-top: 10px; */
         }
 
-        .recentOrders, .recentCustomers{
+        .recentOrders,
+        .recentCustomers {
             position: relative;
             display: grid;
             min-height: 200px;
@@ -183,19 +193,19 @@ include_once('../_includes/functions.php'); ?>
             border-radius: 20px;
         }
 
-        .cardHeader{
+        .cardHeader {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
         }
 
-        .cardHeader h2{
+        .cardHeader h2 {
             font-weight: 600;
             color: var(--green);
             text-transform: capitalize;
         }
 
-        .btn{
+        .btn {
             position: relative;
             padding: 5px 10px;
             background: var(--blue);
@@ -206,47 +216,53 @@ include_once('../_includes/functions.php'); ?>
             text-align: center;
         }
 
-        .details table{
+        .details table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
         }
 
-        .details table thead td{
+        .details table thead td {
             font-weight: 600;
         }
 
-        .details .recentOrders table tr{
+        .details .recentOrders table tr {
             color: var(--black1);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        .details .recentOrders table tr:last-child{
+        .details .recentOrders table tr:last-child {
             border-bottom: none;
         }
-        .details .recentOrders table tbody tr:hover, .recentCustomers table tr:hover{
+
+        .details .recentOrders table tbody tr:hover,
+        .recentCustomers table tr:hover {
             background: var(--blue);
             color: var(--white);
         }
 
-        .details .recentOrders table tr td:last-child{
+        .details .recentOrders table tr td:last-child {
             text-align: end;
         }
 
-        .details .recentOrders table tr td:nth-child(2){
-            text-align: center;
-        }
-        .details .recentOrders table tr td:nth-child(3){
-            text-align: center;
-        }
-        .details .recentOrders table tr td:nth-child(4){
+        .details .recentOrders table tr td:nth-child(2) {
             text-align: center;
         }
 
-        .details .recentOrders table tr td,.details .recentCustomers table tr td{
+        .details .recentOrders table tr td:nth-child(3) {
+            text-align: center;
+        }
+
+        .details .recentOrders table tr td:nth-child(4) {
+            text-align: center;
+        }
+
+        .details .recentOrders table tr td,
+        .details .recentCustomers table tr td {
             padding: 12px 10px;
         }
-        .status.attente{
+
+        .status.attente {
             padding: 2px 4px;
             background-color: #f9ca3f;
             color: var(--white);
@@ -255,7 +271,7 @@ include_once('../_includes/functions.php'); ?>
             font-weight: bold;
         }
 
-        .status.confirmer{
+        .status.confirmer {
             padding: 2px 4px;
             background-color: #8de02c;
             color: var(--white);
@@ -264,7 +280,7 @@ include_once('../_includes/functions.php'); ?>
             font-weight: bold;
         }
 
-        .recentCustomers .imgBx{
+        .recentCustomers .imgBx {
             position: relative;
             width: 40px;
             height: 40px;
@@ -272,7 +288,7 @@ include_once('../_includes/functions.php'); ?>
             overflow: hidden;
         }
 
-        .recentCustomers .imgBx img{
+        .recentCustomers .imgBx img {
             position: absolute;
             top: 0;
             left: 0;
@@ -281,18 +297,18 @@ include_once('../_includes/functions.php'); ?>
             object-fit: cover;
         }
 
-        .recentCustomers table tr td h4{
+        .recentCustomers table tr td h4 {
             font-size: 16px;
             font-weight: bold;
             line-height: 1.2em;
         }
 
-        .recentCustomers table tr td span{
+        .recentCustomers table tr td span {
             font-size: 14px;
             color: var(--black2);
         }
 
-        .recentCustomers table tr:hover span{
+        .recentCustomers table tr:hover span {
             color: var(--white);
         }
 
@@ -593,7 +609,7 @@ include_once('../_includes/functions.php'); ?>
         /* ##############################################################*/
         /* ##############################################################*/
 
-        .footer {
+        footer {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -629,7 +645,7 @@ include_once('../_includes/functions.php'); ?>
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
 
-        .back{
+        .back {
             background-color: #444;
             margin: 2em 1.2em;
             padding: 5px;
@@ -695,9 +711,17 @@ include_once('../_includes/functions.php'); ?>
 <body>
     <div class="container">
         <div class="navigation">
+            <div class="topbar">
+                <div class="user">
+                    <img src="" alt="">
+                </div>
+                <div class="name">
+                    <h4><?php echo $user['fullname']; ?></h4>
+                </div>
+            </div>
             <ul>
                 <li>
-                    <a href="">
+                    <a href="/immoplus/">
                         <span class="icon">
                             <ion-icon name="key"></ion-icon>
                         </span>
@@ -718,15 +742,6 @@ include_once('../_includes/functions.php'); ?>
                             <ion-icon name="home"></ion-icon>
                         </span>
                         <span class="title">Propriétés</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/immoplus/customers/maps">
-                        <span class="icon">
-                            <ion-icon name="map"></ion-icon>
-                        </span>
-                        <span class="title">Carte</span>
                     </a>
                 </li>
                 <li>
@@ -755,20 +770,6 @@ include_once('../_includes/functions.php'); ?>
                     </a>
                 </li>
             </ul>
-            <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="caret-back-circle-outline"></ion-icon>
-                </div>
-
-
-                <div class="name">
-                    <h4><?php echo $user['fullname']; ?></h4>
-                </div>
-
-                <div class="user">
-                    <img src="" alt="">
-                </div>
-            </div>
         </div>
 
         <div class="main">
