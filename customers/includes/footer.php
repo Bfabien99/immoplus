@@ -25,4 +25,14 @@
             this.classList.toggle('active')
         })
     })
+
+    //see password on double click
+    var pass = document.querySelector('#password');
+    pass.addEventListener('dblclick', function(){
+        if(pass.getAttribute('type') == 'password'){
+            pass.setAttribute('type','text')
+        }else{
+            pass.setAttribute('type','password')
+        }
+    })
 </script>
