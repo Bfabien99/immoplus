@@ -84,7 +84,7 @@ if(isset($_POST['publish'])){
                         </div>
                         <div class="actions">
                             <a href="./../../property/edit/<?php echo $property['id']?>" class="edit">Modifier</a>
-                            <a href='' class='del'>Supprimer</a>
+                            <i onclick="del(<?php echo $property['id']?>)" class='del'>Supprimer</i>
                         </div>
                     </div>
                 </div>
@@ -163,4 +163,27 @@ if (!empty($location)) {
 <?php }
 }
 ?>
+<script>
+    function del(id) {
+        var input = id;
+
+        if (input != "") {
+            $.ajax({
+                url: "/immoplus/customers/_deleteproperty.php",
+                method: "POST",
+                data: {
+                    input: input,
+                },
+                success: function(data) {
+                    if (data) {
+                        window.location.href = '/immoplus/customers/property'
+                    }
+
+                }
+            })
+        } else {
+            window.location.reload()
+        }
+    }
+</script>
 <?php include('includes/footer.php'); ?>

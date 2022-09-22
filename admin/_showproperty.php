@@ -81,7 +81,7 @@ if(isset($_POST['publish'])){
                         </div>
                         <div class="actions">
                             <a href="./../../property/edit/<?php echo $property['id']?>" class="edit">Modifier</a>
-                            <?php echo ($property['etat'] == 0) ? "<a href='' class='cancel'>Annuler</a><form method='post'><input hidden type='number' name='property_id' value='{$property['id']}'><input type='submit' value='publier' class='publish' name='publish'></form>" : "<a href='' class='del'>Supprimer</a>"?>
+                            <?php echo ($property['etat'] == 0) ? "<a href='' class='cancel'>Annuler</a><form method='post'><input hidden type='number' name='property_id' value='{$property['id']}'><input type='submit' value='publier' class='publish' name='publish'></form>" : "<i onclick='del({$property['id']})' class='del'>Supprimer</i>"?>
                         </div>
                     </div>
                 </div>
@@ -160,4 +160,27 @@ if (!empty($location)) {
 <?php }
 }
 ?>
+<script>
+    function del(id) {
+        var input = id;
+
+        if (input != "") {
+            $.ajax({
+                url: "/immoplus/admin/_deleteproperty.php",
+                method: "POST",
+                data: {
+                    input: input,
+                },
+                success: function(data) {
+                    if (data) {
+                        window.location.href = '/immoplus/admin/property'
+                    }
+
+                }
+            })
+        } else {
+            window.location.reload()
+        }
+    }
+</script>
 <?php include('includes/footer.php'); ?>

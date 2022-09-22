@@ -19,9 +19,9 @@ class Properties
     {
         try {
             $connectDB = self::connectDB();
-            if(is_numeric($id) && $id > 0){
+            if (is_numeric($id) && $id > 0) {
                 $sql = "select * from property where _userId = $id order by post_date DESC";
-            }else{
+            } else {
                 $sql = 'select * from property order by post_date DESC';
             }
 
@@ -42,13 +42,38 @@ class Properties
         }
     }
 
+    public function getPropertiesById($id)
+    {
+        try {
+            $connectDB = self::connectDB();
+
+            $sql = "select * from property where id = $id";
+
+
+            $query = $connectDB->prepare($sql);
+            $query->execute();
+            $datas = [];
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            $datas = $query->fetch(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
+
     public function getRecent_properties($id = null)
     {
         try {
             $connectDB = self::connectDB();
-            if(is_numeric($id) && $id > 0){
+            if (is_numeric($id) && $id > 0) {
                 $sql = "select * from property where _userId = $id order by post_date DESC limit 10";
-            }else{
+            } else {
                 $sql = "select * from property order by post_date DESC limit 10";
             }
             $query = $connectDB->prepare($sql);
@@ -176,7 +201,7 @@ class Properties
         }
     }
 
-    public function updateProperties($property_id,$title,$description,$type,$address,$area,$price,$shower,$bedroom,$picture)
+    public function updateProperties($property_id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture)
     {
         try {
             $connectDB = self::connectDB();
@@ -192,6 +217,27 @@ class Properties
             $query->bindValue(':shower', $shower, PDO::PARAM_INT);
             $query->bindValue(':bedroom', $bedroom, PDO::PARAM_INT);
             $query->bindValue(':picture', $picture, PDO::PARAM_STR);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function deleteProperties($property_id)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'delete from property where id = :id';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id', $property_id, PDO::PARAM_INT);
             $query->execute();
 
             $rowCount = $query->rowCount();
