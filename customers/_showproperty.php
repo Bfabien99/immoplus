@@ -24,7 +24,7 @@ if (isset($_GET['property_id'])) {
                 }
             } else {
                 $property = $data['data']['properties'][0];
-                if ($property['etat'] == 0) {
+                if ($property['_userId'] != $user['id']) {
                     $property = false;
                     $errors['property'] = "<p class='error'>Désolé, aucune propriété ne correspond</p>";
                 }
@@ -55,7 +55,7 @@ if(isset($_POST['publish'])){
         <?php foreach ($errors as $error) : ?>
             <?php echo $error ?>
         <?php endforeach; ?>
-        <a href=".." class="back">Retour</a>
+        <a href="/immoplus/customers/property" class="back">Retour</a>
     <?php else : ?>
         <?php if (!empty($property)) : ?>
             <?php $location = $property['address']; ?>

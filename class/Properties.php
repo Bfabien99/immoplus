@@ -15,11 +15,16 @@ class Properties
         return self::$DBConnection;
     }
 
-    public function getAll_properties()
+    public function getAll_properties($id = null)
     {
         try {
             $connectDB = self::connectDB();
-            $sql = 'select * from property order by post_date DESC';
+            if(is_numeric($id) && $id > 0){
+                $sql = "select * from property where _userId = $id order by post_date DESC";
+            }else{
+                $sql = 'select * from property order by post_date DESC';
+            }
+
             $query = $connectDB->prepare($sql);
             $query->execute();
             $datas = [];
@@ -37,11 +42,15 @@ class Properties
         }
     }
 
-    public function getRecent_properties()
+    public function getRecent_properties($id = null)
     {
         try {
             $connectDB = self::connectDB();
-            $sql = 'select * from property order by post_date DESC limit 10';
+            if(is_numeric($id) && $id > 0){
+                $sql = "select * from property where _userId = $id order by post_date DESC limit 10";
+            }else{
+                $sql = "select * from property order by post_date DESC limit 10";
+            }
             $query = $connectDB->prepare($sql);
             $query->execute();
             $datas = [];

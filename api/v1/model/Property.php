@@ -117,7 +117,7 @@ class Property
 
     public function setArea($area)
     {
-        if (($area !== null) && $area <= 100) {
+        if (($area !== null) && $area < 50) {
             throw new PropertyException("Property Area error");
         }
         $this->_area = $area;

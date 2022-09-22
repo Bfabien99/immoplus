@@ -61,6 +61,48 @@ class Users
 
     public function getUserById($id)
     {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'select * from users where id = :id';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id',$id,PDO::PARAM_INT);
+            $query->execute();
+            $datas = [];
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            $datas = $query->fetch(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function getUserByPseudo($pseudo)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'select * from users where pseudo = :pseudo';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':pseudo',$pseudo,PDO::PARAM_STR);
+            $query->execute();
+            $datas = [];
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            $datas = $query->fetch(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function isPseudo($pseudo)
@@ -111,6 +153,49 @@ class Users
 
     public function usersLogin($identifiant, $password)
     {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'select * from users where pseudo = :identifiant and password = :password';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':identifiant',$identifiant,PDO::PARAM_STR);
+            $query->bindValue(':password',$password,PDO::PARAM_STR);
+            $query->execute();
+            $datas = [];
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+            }
+
+            $datas = $query->fetch(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage().$ex->getLine();
+        }
+    }
+
+    public function adminLogin($identifiant, $password)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'select * from admin where pseudo = :identifiant and password = :password';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':identifiant',$identifiant,PDO::PARAM_STR);
+            $query->bindValue(':password',$password,PDO::PARAM_STR);
+            $query->execute();
+            $datas = [];
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            $datas = $query->fetch(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function insertUsers($fullname, $gender, $birth, $description, $contact, $email, $pseudo, $password)

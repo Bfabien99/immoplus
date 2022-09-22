@@ -69,6 +69,12 @@ if (isset($_POST['submit'])) {
         $bedroom = $_POST['bedroom'];
     }
 
+    if (!empty(escape($_POST['raison'])) && (strlen($_POST['description']) < 10 || strlen($_POST['description']) > 2000)) {
+        $errors['raison'] = "<p class='error'>La raison doit comporter entre 10 et 2000 caractères</p>";
+    }else {
+        $raison = $_POST['raison'] ?? "";
+    }
+
     if (empty($_FILES["image"]["name"])) {
         $errors['image'] = "<p class='error'>Selectionnez une image à ajouter</p>";
     } else {
@@ -115,8 +121,8 @@ if (isset($_POST['submit'])) {
                 "price" => $price,
                 "shower" => $shower,
                 "bedroom" => $bedroom,
-                "userId" => null,
-                "raison" => null,
+                "userId" => $user['id'],
+                "raison" => $raison,
                 "picture" => $imgurData->data->link
             );
             $data_string = json_encode($data);
@@ -198,6 +204,10 @@ if (isset($_POST['submit'])) {
             <?php echo $errors['bedroom'] ?? "" ?>
         </div>
         <div class="group">
+            <label for="raison">Pourquoi voulez vous vendre la propriété ?</label>
+            <textarea name="raison" id="" cols="30" rows="10"><?php echo $_POST['raison'] ?? "" ?></textarea>
+        </div>
+        <div class="group">
             <label for="picture">Choisir l'image de la propriété</label>
             <input required type="file" name="image">
             <?php echo $errors['image'] ?? "" ?>
@@ -222,24 +232,4 @@ if (isset($_POST['submit'])) {
 
     }
 </script>
-
-<script>
-// Initialize and add the map
-function initMap() {
-  // The location of Uluru
-  const uluru = { lat: -25.344, lng: 131.031 };
-  // The map, centered at Uluru
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: uluru,
-  });
-  // The marker, positioned at Uluru
-  const marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
-  });
-}
-window.initMap = initMap;
-</script>
-
 <?php include('includes/footer.php'); ?>

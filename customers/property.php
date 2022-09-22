@@ -1,20 +1,7 @@
 <?php include('includes/header.php'); ?>
 <?php
-// MyAPI url
-$url = 'http://localhost/immoplus/api/v1/property';
-
-// Get Data from Api
-$response = GetDataFromMyApi($url);
-// Decode API response to array
-$data = json_decode($response, JSON_UNESCAPED_UNICODE);
-$properties = [];
-if ($data) {
-    if ($data['statusCode'] == 200)
-        foreach ($data['data']['properties'] as $property) {
-            $properties[] = $property;
-        }
-}
-
+$properties = new Properties();
+$properties = $properties->getAll_properties($user['id']);
 ?>
 <div class="container">
 <h3 style="text-align: center;margin:1em;color:var(--black2)">Toutes les propriétés</h3>
