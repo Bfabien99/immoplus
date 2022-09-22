@@ -28,11 +28,33 @@
 
     //see password on double click
     var pass = document.querySelector('#password');
-    pass.addEventListener('dblclick', function(){
-        if(pass.getAttribute('type') == 'password'){
-            pass.setAttribute('type','text')
-        }else{
-            pass.setAttribute('type','password')
+    if(pass != null){
+        pass.addEventListener('dblclick', function() {
+        if (pass.getAttribute('type') == 'password') {
+            pass.setAttribute('type', 'text')
+        } else {
+            pass.setAttribute('type', 'password')
         }
+    })
+    }
+    
+
+    //logout
+    var logout = document.querySelector('#logout');
+    console.log(logout);
+    $('#logout').on('click',function(){
+        $.ajax({
+                url: "/immoplus/customers/_logout.php",
+                method: "POST",
+                data: {
+                    input: true,
+                },
+                success: function(data) {
+                    if (data) {
+                        window.location.href = '/immoplus/customers'
+                    }
+
+                }
+            })
     })
 </script>

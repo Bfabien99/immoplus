@@ -914,7 +914,7 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="/immoplus/admin/logout">
+                    <a href="" id="logout">
                         <span class="icon"><ion-icon name="log-out"></ion-icon></span>
                         <span class="title">Déconnexion</span>
                     </a>

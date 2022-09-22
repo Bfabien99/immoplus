@@ -851,7 +851,7 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="/immoplus/customers/logout">
+                    <a href="" id="logout">
                         <span class="icon">
                             <ion-icon name="log-out"></ion-icon>
                         </span>
