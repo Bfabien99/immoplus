@@ -261,6 +261,39 @@ if (isset($_POST['inscrire'])) {
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
+        .back{
+            background-color: #444;
+            margin: 2em 1.2em;
+            padding: 5px;
+            border-radius: 5px;
+            text-align: center;
+            height: fit-content;
+            width: fit-content;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+        /* responsive */
+        @media (max-width: 650px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            #postForm .group {
+                grid-template-columns: 1fr;
+                grid-gap: 10px;
+            }
+
+            #postForm .group label {
+                justify-content: center;
+            }
+
+            #postForm .group .error {
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
@@ -273,57 +306,57 @@ if (isset($_POST['inscrire'])) {
             <form action="" method="post" id="postForm">
                 <div class="group">
                     <label for="fullname">Nom & Prénoms</label>
-                    <input type="text" name="fullname" placeholder="Jhon Doe" value="<?php echo $_POST['fullname'] ?? '' ?>" >
+                    <input type="text" name="fullname" placeholder="Jhon Doe" value="<?php echo $_POST['fullname'] ?? '' ?>" required>
                     <?php echo $error['fullname'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="gender">Genre</label>
                     <div class="radio">
-                        <p><input type="radio" name="gender" value="m">Homme</p>
-                        <p><input type="radio" name="gender" value="f">Femme</p>
+                        <p><input required type="radio" name="gender" value="m">Homme</p>
+                        <p><input required type="radio" name="gender" value="f">Femme</p>
                     </div>
 
                     <?php echo $error['gender'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="birth">Date de naissance</label>
-                    <input type="date" name="birth" value="<?php echo $_POST['birth'] ?? '' ?>" >
+                    <input type="date" name="birth" value="<?php echo $_POST['birth'] ?? '' ?>" required>
                     <?php echo $error['birth'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="description">Comment vous décririez-vous ?</label>
-                    <textarea name="description" id="" cols="30" rows="10" placeholder="sincère..."><?php echo $_POST['description'] ?? '' ?></textarea>
+                    <textarea name="description" id="" cols="30" rows="10" placeholder="sincère..." required><?php echo $_POST['description'] ?? '' ?></textarea>
                     <?php echo $error['description'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="contact">Votre contact</label>
-                    <input type="tel" name="contact" placeholder="002250101010101" value="<?php echo $_POST['contact'] ?? '' ?>" >
+                    <input type="tel" name="contact" placeholder="002250101010101" value="<?php echo $_POST['contact'] ?? '' ?>" required>
                     <?php echo $error['contact'] ?? "" ?>
                 </div>
                 <hr>
                 <div class="group">
                     <label for="email">Votre adresse E-mail</label>
-                    <input type="email" name="email" placeholder="Jhon-Doe@mail.org" value="<?php echo $_POST['email'] ?? '' ?>" >
+                    <input type="email" name="email" placeholder="Jhon-Doe@mail.org" value="<?php echo $_POST['email'] ?? '' ?>" required>
                     <?php echo $error['email'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="pseudo">Veuillez choisir un pseudonyme</label>
-                    <input type="text" name="pseudo" placeholder="Jhon_Doe" value="<?php echo $_POST['pseudo'] ?? '' ?>" >
+                    <input type="text" name="pseudo" placeholder="Jhon_Doe" value="<?php echo $_POST['pseudo'] ?? '' ?>" required>
                     <?php echo $error['pseudo'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="password">Veuillez entrer un mot de passe</label>
-                    <input type="password" name="password" placeholder="******" id="password">
+                    <input type="password" name="password" placeholder="******" id="password" required>
                     <?php echo $error['password'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="cpassword">Confirmer votre mot de passe</label>
-                    <input type="password" name="cpassword" placeholder="******">
+                    <input type="password" name="cpassword" placeholder="******" required>
                     <?php echo $error['cpassword'] ?? "" ?>
                 </div>
                 <input type="submit" value="S'inscrire" name="inscrire" id="submit">
             </form>
-            <a href="./" class="back">Retour</a>
+            <a href="<?php echo $_SERVER['HTTP_REFERER']?>" class="back">Retour</a>
         </div>
     </div>
 </body>
