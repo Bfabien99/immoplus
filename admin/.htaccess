@@ -19,3 +19,6 @@ RewriteRule ^property/edit/([0-9]+)$ _editproperty.php?property_id=$1 [L]
 
 #- SHOW MAPS -#
 RewriteRule ^maps$ _maps.php [L]
+
+#- OTHER ROUTES -#
+RewriteRule ^profil$ profil.php [L]

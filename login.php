@@ -14,9 +14,7 @@ if (isset($_POST['login'])) {
 
     if (empty(escape($_POST['password']))) {
         $errors['password'] = "<p class='error'>Le mot de passe est obligatoire</p>";
-    } elseif (strlen($_POST['password']) < 6) {
-        $errors['password'] = "<p class='error'>Le mot de passe doit comporter au moins 6 caractères</p>";
-    } else {
+    }else {
         $password = md5($_POST['password']);
     }
 
@@ -24,9 +22,11 @@ if (isset($_POST['login'])) {
         if ($users->adminLogin($identifiant, $password)) {
             $user = $users->adminLogin($identifiant, $password);
             $_SESSION['immoplus_adminPseudo'] = $user['pseudo'];
+            header('location:/immoplus/admin');
         } elseif ($users->usersLogin($identifiant, $password)) {
             $user = $users->usersLogin($identifiant, $password);
             $_SESSION['immoplus_userPseudo'] = $user['pseudo'];
+            header('location:/immoplus/customers');
         }else{
             $errors['result'] = "<p class='error'>Utilisateur inconnu</p>";
         }

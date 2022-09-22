@@ -1,6 +1,18 @@
+<?php session_start()?>
 <?php include_once('../_includes/functions.php');?>
 <?php include_once('../class/Properties.php');?>
 <?php include_once('../class/Users.php');?>
+<?php
+$users = new Users();
+if (!empty($_SESSION['immoplus_userPseudo'])) {
+    $admin = $users->getAdminByPseudo($_SESSION['immoplus_adminPseudo']);
+    if (!$admin) {
+        header('location:/immoplus/login');
+    }
+} else {
+    header('location:/immoplus/login');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -701,6 +713,72 @@
             text-align: justify;
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #editprofil{
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+            width: 100%;
+            max-width: 700px;
+            padding: 5px;
+            margin: 0 auto;
+        }
+
+        #editprofil form{
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.3em;
+            padding: 10px;
+            box-shadow: 0px 7px 2px rgba(0, 0, 0, 0.03);
+            background-color: #fff;
+            border-radius: 5px;
+            margin: 0 auto;
+        }
+
+        #editprofil form input{
+            outline: none;
+            border: 1px solid #162c3bff;
+        }
+
+        #editprofil form input[type='submit']{
+            border: none;
+            background: #162c3bf9;
+            padding: 5px;
+            max-width: 300px;
+            font-size: 1.2rem;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+
+        #editprofil form input[type='submit']:hover{
+            border: none;
+            background: var(--blue);
+        }
+
+        #editprofil form .group{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.3em;
+            padding: 10px;
+        }
+
+        #editprofil form .group label{
+            width: fit-content;
+            align-self: center;
+            font-weight: bold;
+            border-top: 1px solid #444;
+        }
+
+        #editprofil form .group input{
+            height: 35px;
+            padding: 5px;
+            border-radius: 5px;
         }
         /* responsive */
 

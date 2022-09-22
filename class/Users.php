@@ -105,6 +105,29 @@ class Users
         }
     }
 
+    public function getAdminByPseudo($pseudo)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'select * from admin where pseudo = :pseudo';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':pseudo',$pseudo,PDO::PARAM_STR);
+            $query->execute();
+            $datas = [];
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            $datas = $query->fetch(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
+
     public function isPseudo($pseudo)
     {
         try {
@@ -228,11 +251,97 @@ class Users
 
     }
 
-    public function updateUsers($fullname, $contact, $email, $pseudo, $password)
+    public function updateUsers($id, $fullname, $contact, $email, $pseudo)
     {
+        try {
+            $connectDB = self::connectDB();
+            $sql ="update users set fullname = :fullname, contact = :contact, email = :email, pseudo = :pseudo where id = :id";
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id', $id, PDO::PARAM_INT);
+            $query->bindValue(':fullname', $fullname, PDO::PARAM_STR);
+            $query->bindValue(':contact', $contact, PDO::PARAM_STR);
+            $query->bindValue(':email', $email, PDO::PARAM_STR);
+            $query->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function updateUsersPass($id, $password)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql ="update users set password = :password where id = :id";
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id', $id, PDO::PARAM_INT);
+            $query->bindValue(':password', $password, PDO::PARAM_STR);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function deleteUsers($id)
     {
+    }
+
+    public function updateAdmin($fullname,$pseudo)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql ="update admin set fullname = :fullname, pseudo = :pseudo";
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':fullname', $fullname, PDO::PARAM_STR);
+            $query->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function updateAdminPass($password)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql ="update admin set password = :password";
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':password', $password, PDO::PARAM_STR);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
     }
 }
