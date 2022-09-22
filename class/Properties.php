@@ -175,4 +175,34 @@ class Properties
             return $ex->getMessage();
         }
     }
+
+    public function updateProperties($property_id,$title,$description,$type,$address,$area,$price,$shower,$bedroom,$picture)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'update property set title = :title, description = :description, type = :type, address = :address, area = :area, price = :price, shower = :shower, bedroom = :bedroom, picture = :picture where id = :id';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id', $property_id, PDO::PARAM_INT);
+            $query->bindValue(':title', $title, PDO::PARAM_STR);
+            $query->bindValue(':description', $description, PDO::PARAM_STR);
+            $query->bindValue(':type', $type, PDO::PARAM_STR);
+            $query->bindValue(':address', $address, PDO::PARAM_STR);
+            $query->bindValue(':area', $area, PDO::PARAM_INT);
+            $query->bindValue(':price', $price, PDO::PARAM_INT);
+            $query->bindValue(':shower', $shower, PDO::PARAM_INT);
+            $query->bindValue(':bedroom', $bedroom, PDO::PARAM_INT);
+            $query->bindValue(':picture', $picture, PDO::PARAM_STR);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
 }
