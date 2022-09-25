@@ -62,7 +62,7 @@ if($all_properties){
     <div class="recentOrders">
         <div class="cardHeader">
             <h2>Propriétés recentes</h2>
-            <a href="" class="btn">Tout voir</a>
+            <a href="./property" class="btn">Tout voir</a>
         </div>
         <table>
             <thead>

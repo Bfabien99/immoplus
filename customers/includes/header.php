@@ -797,20 +797,16 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
     <div class="container">
         <div class="navigation">
         <div class="topbar">
-                <div class="user">
-                    <img src="" alt="">
-                </div>
                 <div class="name">
                     <h4><?php echo $user['fullname']; ?></h4>
                 </div>
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
+                <div class="toggle" style="border: 1Px solid black;">
+                    <ion-icon name="menu-outline" style="font-size: 1.2rem;"></ion-icon>
                 </div>
-                
             </div>
             <ul>
                 <li>
-                    <a href="/immoplus/">
+                    <a href="/immoplus/property">
                         <span class="icon">
                             <ion-icon name="key"></ion-icon>
                         </span>
@@ -831,6 +827,14 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
                             <ion-icon name="home"></ion-icon>
                         </span>
                         <span class="title">Propriétés</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/immoplus/customers/property/add">
+                        <span class="icon">
+                            <ion-icon name="home"></ion-icon>
+                        </span>
+                        <span class="title">Poster un bien</span>
                     </a>
                 </li>
                 <li>

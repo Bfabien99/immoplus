@@ -7,6 +7,7 @@
   $users = new Users();
   $recent_users = $users->getRecent_users();
   $all_users = $users->getAll_users();
+  $all_messages = $users->getAll_messages();
 ?>
 <h3 style="text-align: center;margin:1em;color:var(--black2)">Tableau de bord</h3>
 
@@ -31,20 +32,11 @@
   </div>
   <div class="card">
     <div>
-      <div class="numbers">1000</div>
+      <div class="numbers"><?php echo $all_messages ? number_format(count($all_messages),0,',','.') : 0;?></div>
       <div class="cardName">Messages</div>
     </div>
     <div class="iconBx">
       <ion-icon name="send"></ion-icon>
-    </div>
-  </div>
-  <div class="card">
-    <div>
-      <div class="numbers">1000</div>
-      <div class="cardName">Agents</div>
-    </div>
-    <div class="iconBx">
-      <ion-icon name="globe"></ion-icon>
     </div>
   </div>
 </div>

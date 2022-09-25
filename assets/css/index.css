@@ -426,6 +426,32 @@ a {
     transition: 0.2s;
 }
 
+.error {
+    background-color: #f22;
+    margin: auto 1.2em;
+    padding: 10px;
+    text-align: center;
+    height: fit-content;
+    color: #fff;
+    letter-spacing: 2px;
+    text-align: justify;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.success {
+    background-color: green;
+    margin: auto 1.2em;
+    padding: 10px;
+    text-align: center;
+    height: fit-content;
+    color: #fff;
+    letter-spacing: 2px;
+    text-align: justify;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
 @media (max-width: 991px) {
     .banner {
         padding: 50px;

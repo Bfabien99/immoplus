@@ -164,6 +164,46 @@
             background-color: rgba(232, 229, 229, 0.497);
         }
 
+        #contentBx{
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            gap: 1em;
+            margin: 0.2em auto;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            text-align: justify;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 5px 7px 2px rgba(0, 0, 0, 0.08);
+        }
+
+        section .heading{
+            text-transform: uppercase;
+            color: #162c3bff;
+        }
+
+        section p {
+            font-size: 1.3rem;
+        }
+
+        section a {
+            color: #f11;
+            font-weight: 500;
+        }
+
+        .moreBx{
+            display: none;
+        }
+
+        .moreBx.active{
+            display: block;
+        }
+
         footer {
             position: relative;
             padding: 20px 10px;
@@ -176,27 +216,27 @@
             gap: 0.3em;
         }
 
-        #footernav{
+        #footernav {
             width: 100%;
             padding: 5px;
             display: flex;
             justify-content: space-around;
         }
 
-        #footernav ul{
+        #footernav ul {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
         }
 
-        #footernav ul li a{
+        #footernav ul li a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             transition: all 0.3s;
         }
 
-        #footernav ul li a:hover{
+        #footernav ul li a:hover {
             text-decoration: underline;
             color: #ccc;
         }
@@ -222,14 +262,57 @@
         <h3 class="slogan">Immoplus... 100% fiable</h3>
     </header>
     <div class="container">
-        <h2 class="title">Nos services</h2>
+        <h1 class="title">Nos services</h1>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum praesentium nostrum veniam provident molestiae incidunt, possimus magnam. Amet, totam, doloremque eos magni deleniti nemo deserunt est, molestias ducimus nihil quibusdam recusandae perspiciatis! Id molestias nulla error praesentium eum iste numquam ad ullam, unde aspernatur adipisci! Excepturi consectetur quasi esse officia.
         </p>
-        <div class="section">
-            <a href="">Vente de bien</a>
-            <a href="">Gestion de bien</a>
-            <a href="">Construction de bien</a>
-            <a href="">Promotion de bien</a>
+        <div class="contentBx">
+        <section>
+            <h3 class="heading">Vente de bien</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima consequatur similique veritatis quasi adipisci modi repellendus aperiam mollitia pariatur nesciunt est maxime, porro et molestias vero beatae quam provident excepturi!</p>
+            <a href="" class="show">voir</a>
+            <div class="moreBx">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
+            </div>
+        </section>
+        <section>
+            <h3 class="heading">Gestion de bien</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, quaerat.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae eveniet laborum sint consequatur, architecto corrupti tempora dolores iste dolor voluptatem!</p>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <a href="" class="show">voir</a>
+            <div class="moreBx">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
+            </div>
+        </section>
+        <section>
+            <h3 class="heading">Construction de bien</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt dolor provident magni, laudantium earum facilis. Aliquid molestiae quis accusantium! Corrupti ab repellat veritatis sint ipsam doloremque eligendi magnam ad impedit!</p>
+            <br>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum itaque corrupti veniam a soluta, amet necessitatibus expedita dolorem placeat officiis?</p>
+            <a href="" class="show">voir</a>
+            <div class="moreBx">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
+            </div>
+        </section>
+        <section>
+            <h3 class="heading">Promotion de bien</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At error eos dicta perspiciatis amet voluptate ab incidunt rem tenetur labore, molestias enim, eius ea quasi excepturi magnam, iste perferendis vel!</p>
+            <a href="" class="show">voir</a>
+            <div class="moreBx">
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
+            </div>
+        </section>
         </div>
+        
     </div>
+
+    <script>
+        let moreBx = document.querySelectorAll('.show');
+    moreBx.forEach((item)=>{
+        item.addEventListener('click',function(e){
+            e.preventDefault()
+            this.parentElement.lastElementChild.classList.toggle('active')
+        })
+    })
+    </script>
     <?php include('_includes/footer.php'); ?>

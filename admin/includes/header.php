@@ -209,7 +209,7 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
             width: 100%;
             padding: 20px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             grid-gap: 30px;
         }
 
@@ -899,12 +899,6 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
                     <a href="/immoplus/admin//maps">
                         <span class="icon"><ion-icon name="send"></ion-icon></span>
                         <span class="title">Messages</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/immoplus/admin/agent">
-                        <span class="icon"><ion-icon name="globe"></ion-icon></span>
-                        <span class="title">Agents</span>
                     </a>
                 </li>
                 <li>

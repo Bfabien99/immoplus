@@ -1,22 +1,48 @@
 <?php
+include('_includes/functions.php');
+include('class/Users.php');
 $error = false;
+$success = false;
 if (isset($_POST['submit'])) {
-    if (empty(trim($_POST['full_name']))) {
-        $error = "<h4 class='error'>Veuillez entrer un nom valide</h4>";
+    if (empty(escape($_POST['fullname']))) {
+        $error = "Veuillez entrer un nom valide";
+    } elseif (strlen(escape($_POST['fullname'])) < 5) {
+        $error = "Le nom doit comporter au moins 5 caractères";
+    } elseif (!ctype_alpha(str_replace(' ', '', escape($_POST['fullname'])))) {
+        $error = "Le titre ne doit comporter que des lettres";
     } else {
-        $full_name = $_POST['full_name'];
+        $fullname = $_POST['fullname'];
     }
 
-    if (empty(trim($_POST['contact']))) {
-        $error = "<h4 class='error'>Veuillez entrer un contact valide</h4>";
+    if (empty(escape($_POST['contact']))) {
+        $error = "Veuillez entrer un contact valide";
+    } elseif (!preg_match('/^[-+0-9]+$/', escape($_POST['contact']))) {
+        $error = "Le contact n'est pas valide";
+    } elseif (strlen(str_replace(['+', '-'], ['', ''], escape($_POST['contact']))) < 10) {
+        $error = "Le contact doit contenir au moins dix chiffres";
     } else {
         $contact = $_POST['contact'];
     }
 
-    if (empty(trim($_POST['message']))) {
-        $error = "<h4 class='error'>Veuillez entrer un message valide</h4>";
+    if (!empty(escape($_POST['email']))) {
+        if (!filter_var(escape($_POST['email']), FILTER_VALIDATE_EMAIL)) {
+            $error = "L'email n'est pas valide";
+        } else {
+            $email = escape(mb_strtolower($_POST['email']));
+        }
+    }
+
+    if (empty(escape($_POST['message']))) {
+        $error = "Veuillez entrer un message valide";
     } else {
         $message = $_POST['message'];
+    }
+
+    if (!$error && !empty($fullname) && !empty($contact) && !empty($message)) {
+        $user = new Users();
+        if ($user->insertMessages($fullname, $contact, $email ?? "", $message)) {
+            $success = true;
+        }
     }
 }
 ?>
@@ -30,18 +56,10 @@ if (isset($_POST['submit'])) {
     <link rel="shortcut icon" href="assets/img/immoplus.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/index.css" type="text/css">
     <title>Immoplus</title>
-    <style>
-        .error {
-            background: red;
-            color: #fff;
-            text-align: center;
-            padding: 0.5em;
-        }
-    </style>
 </head>
 
 <body>
-<a href="#banner" class="defile">^</a>
+    <a href="#banner" class="defile">^</a>
     <div class="banner" id="banner">
         <header>
             <a href="./" class="logo">
@@ -168,11 +186,27 @@ if (isset($_POST['submit'])) {
     </section>
 
     <section class="about">
+        <?php if ($error) : ?>
+            <script>
+                alert("<?php echo $error; ?>");
+                location.href = "#Contactform"
+            </script>
+        <?php elseif($success) : ?>
+            <script>
+                alert("Message Envoyé");
+                location.href = "#Contactform"
+            </script>
+        <?php endif; ?>
         <div class="contentBx redbg">
             <form action="" method="post" class="form" autocomplete="off" autocapitalize="on">
-                <?php echo $error ?? ""; ?>
+                <p id="Contactform"></p>
+                <?php if ($error) : ?>
+                    <p class="error"><?php echo $error; ?></p>
+                <?php elseif($success) : ?>
+                    <p class="success">Message envoyé</p>
+                <?php endif; ?>
                 <div class="inputBx">
-                    <input type="text" name="full_name" placeholder="Nom & prénoms" required maxlength="50" value="<?php echo $_POST['full_name'] ?? ""; ?>" minlength="5">
+                    <input type="text" name="fullname" placeholder="Nom & prénoms" required maxlength="50" value="<?php echo $_POST['fullname'] ?? ""; ?>" minlength="5">
                 </div>
                 <div class="inputBx">
                     <input type="tel" name="contact" placeholder="Contact" required maxlength="20" value="<?php echo $_POST['contact'] ?? ""; ?>" minlength="10">
@@ -192,15 +226,16 @@ if (isset($_POST['submit'])) {
     </section>
 
     <section class="footer">
-            <p class="text">&copy2022 - BatiPlus/ImmoPlus NAN PROJECT - bfabienn99</p>
-            <ul>
-                <p class="text">Suivez nous: </p>
-                <li><a href="#"><img src="./assets/img/facebook_96px.png" alt="facebook"></a></li>
-                <li><a href="#"><img src="./assets/img/twitter_circled_100px.png" alt="twitter"></a></li>
-                <li><a href="#"><img src="./assets/img/whatsapp_100px.png" alt="whatsapp"></a></li>
-            </ul>
-        </section>
-    </body>
-    <script src="./assets/js/jquery.js"></script>
-    <script src="./assets/js/toggle.js"></script>
+        <p class="text">&copy2022 - BatiPlus/ImmoPlus NAN PROJECT - bfabienn99</p>
+        <ul>
+            <p class="text">Suivez nous: </p>
+            <li><a href="#"><img src="./assets/img/facebook_96px.png" alt="facebook"></a></li>
+            <li><a href="#"><img src="./assets/img/twitter_circled_100px.png" alt="twitter"></a></li>
+            <li><a href="#"><img src="./assets/img/whatsapp_100px.png" alt="whatsapp"></a></li>
+        </ul>
+    </section>
+</body>
+<script src="./assets/js/jquery.js"></script>
+<script src="./assets/js/toggle.js"></script>
+
 </html>

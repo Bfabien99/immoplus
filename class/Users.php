@@ -344,4 +344,52 @@ class Users
             return $ex->getMessage();
         }
     }
+
+    public function insertMessages($fullname, $contact, $email, $message)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql = "insert into messages(fullname, contact, email, message) VALUES (:fullname, :contact, :email, :message)";
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':fullname', $fullname, PDO::PARAM_STR);
+            $query->bindValue(':contact', $contact, PDO::PARAM_STR);
+            $query->bindValue(':email', $email, PDO::PARAM_STR);
+            $query->bindValue(':message', $message, PDO::PARAM_STR);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+        
+
+    }
+
+    public function getAll_messages()
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'select * from messages order by date DESC';
+            $query = $connectDB->prepare($sql);
+            $query->execute();
+            $datas = [];
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            $datas = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
 }

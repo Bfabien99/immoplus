@@ -2,26 +2,26 @@
 include_once('_includes/functions.php');
 include_once('class/Properties.php');
 
+$properties = [];
 // MyAPI url
 if (isset($_GET['property_type'])) {
     $property_type = $_GET['property_type'];
     $url = 'http://localhost/immoplus/api/v1/property/' . $property_type;
-}
 
-// Get Data from Api
-$response = GetDataFromMyApi($url);
-// Decode API response to array
-$data = json_decode($response, JSON_UNESCAPED_UNICODE);
-$properties = [];
-if ($data) {
-    if ($data['statusCode'] == 200)
-        foreach ($data['data']['properties'] as $property) {
-            if ($property['etat'] == 1) {
-                $properties[] = $property;
-            } else {
-                $properties = false;
+
+    // Get Data from Api
+    $response = GetDataFromMyApi($url);
+    // Decode API response to array
+    $data = json_decode($response, JSON_UNESCAPED_UNICODE);
+    if ($data) {
+        if ($data['statusCode'] == 200) {
+            foreach ($data['data']['properties'] as $property) {
+                if ($property['etat'] == 1) {
+                    $properties[] = $property;
+                }
             }
         }
+    }
 }
 
 ?>
@@ -354,27 +354,27 @@ if ($data) {
             gap: 0.3em;
         }
 
-        #footernav{
+        #footernav {
             width: 100%;
             padding: 5px;
             display: flex;
             justify-content: space-around;
         }
 
-        #footernav ul{
+        #footernav ul {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
         }
 
-        #footernav ul li a{
+        #footernav ul li a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             transition: all 0.3s;
         }
 
-        #footernav ul li a:hover{
+        #footernav ul li a:hover {
             text-decoration: underline;
             color: #ccc;
         }
@@ -410,11 +410,11 @@ if ($data) {
 <body>
     <header>
         <div id="banner">
-        <?php if ($property_type == 'location') : ?>
-            <p>Voir Toutes Les Propriétés A Louer</p>
-        <?php else : ?>
-            <p>Voir Toutes Les Propriétés En Vente</p>
-        <?php endif; ?>
+            <?php if ($property_type == 'location') : ?>
+                <p>Voir Toutes Les Propriétés A Louer</p>
+            <?php else : ?>
+                <p>Voir Toutes Les Propriétés En Vente</p>
+            <?php endif; ?>
         </div>
         <nav>
             <ul>

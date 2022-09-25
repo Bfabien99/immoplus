@@ -218,7 +218,7 @@ if (isset($_POST['login'])) {
 
 <body>
     <div class="container">
-        <h1 class="heading">Inscription</h1>
+        <h1 class="heading">Connexion</h1>
         <p class="urgent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat inventore eum doloremque dolores praesentium a nulla minima hic omnis. Amet.</p>
         <div class="contentBx">
         <?php echo $errors['result'] ?? ""?>
@@ -235,7 +235,7 @@ if (isset($_POST['login'])) {
                 </div>
                 <input type="submit" value="Se connecter" name="login" id="submit">
             </form>
-            <a href="<?php echo $_SERVER['HTTP_REFERER']?>" class="back">Retour</a>
+            <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/property"?>" class="back">Retour</a>
         </div>
     </div>
 </body>

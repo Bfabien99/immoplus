@@ -356,7 +356,7 @@ if (isset($_POST['inscrire'])) {
                 </div>
                 <input type="submit" value="S'inscrire" name="inscrire" id="submit">
             </form>
-            <a href="<?php echo $_SERVER['HTTP_REFERER']?>" class="back">Retour</a>
+            <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/property"?>" class="back">Retour</a>
         </div>
     </div>
 </body>

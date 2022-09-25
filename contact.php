@@ -1,4 +1,50 @@
 <?php
+include('_includes/functions.php');
+include('class/Users.php');
+$error = false;
+$success = false;
+if (isset($_POST['submit'])) {
+    if (empty(escape($_POST['fullname']))) {
+        $error = "Veuillez entrer un nom valide";
+    } elseif (strlen(escape($_POST['fullname'])) < 5) {
+        $error = "Le nom doit comporter au moins 5 caractères";
+    } elseif (!ctype_alpha(str_replace(' ', '', escape($_POST['fullname'])))) {
+        $error = "Le titre ne doit comporter que des lettres";
+    } else {
+        $fullname = $_POST['fullname'];
+    }
+
+    if (empty(escape($_POST['contact']))) {
+        $error = "Veuillez entrer un contact valide";
+    } elseif (!preg_match('/^[-+0-9]+$/', escape($_POST['contact']))) {
+        $error = "Le contact n'est pas valide";
+    } elseif (strlen(str_replace(['+', '-'], ['', ''], escape($_POST['contact']))) < 10) {
+        $error = "Le contact doit contenir au moins dix chiffres";
+    } else {
+        $contact = $_POST['contact'];
+    }
+
+    if (!empty(escape($_POST['email']))) {
+        if (!filter_var(escape($_POST['email']), FILTER_VALIDATE_EMAIL)) {
+            $error = "L'email n'est pas valide";
+        } else {
+            $email = escape(mb_strtolower($_POST['email']));
+        }
+    }
+
+    if (empty(escape($_POST['message']))) {
+        $error = "Veuillez entrer un message valide";
+    } else {
+        $message = $_POST['message'];
+    }
+
+    if (!$error && !empty($fullname) && !empty($contact) && !empty($message)) {
+        $user = new Users();
+        if ($user->insertMessages($fullname, $contact, $email ?? "", $message)) {
+            $success = true;
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +53,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/index.css" type="text/css">
     <title>Nos Contacts</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
@@ -176,27 +223,27 @@
             gap: 0.3em;
         }
 
-        #footernav{
+        #footernav {
             width: 100%;
             padding: 5px;
             display: flex;
             justify-content: space-around;
         }
 
-        #footernav ul{
+        #footernav ul {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
         }
 
-        #footernav ul li a{
+        #footernav ul li a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             transition: all 0.3s;
         }
 
-        #footernav ul li a:hover{
+        #footernav ul li a:hover {
             text-decoration: underline;
             color: #ccc;
         }
@@ -226,10 +273,46 @@
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, omnis officiis architecto quisquam dolor reprehenderit et labore aut dolorum quibusdam molestiae fugit, consequuntur incidunt ut sed, adipisci tempore quo facere commodi reiciendis eum ipsum tenetur. Impedit voluptate illo ad recusandae.</p>
         <hr>
         <section>
-        <p>Adresse et contact et email</p>
+            <p>Adresse et contact et email</p>
         </section>
-        <section>
-        <p>formulaire de contact</p>
+        <section class="about">
+            <?php if ($error) : ?>
+                <script>
+                    alert("<?php echo $error; ?>");
+                    location.href = "#Contactform"
+                </script>
+            <?php elseif($success) : ?>
+                <script>
+                    alert("Message Envoyé");
+                    location.href = "#Contactform"
+                </script>
+            <?php endif; ?>
+            <div class="contentBx redbg">
+                <form action="" method="post" class="form" autocomplete="off" autocapitalize="on">
+                    <p id="Contactform"></p>
+                    <?php if ($error) : ?>
+                        <p class="error"><?php echo $error; ?></p>
+                    <?php elseif($success) : ?>
+                        <p class="success">Message envoyé</p>
+                    <?php endif; ?>
+                    <div class="inputBx">
+                        <input type="text" name="fullname" placeholder="Nom & prénoms" required maxlength="50" value="<?php echo $_POST['fullname'] ?? ""; ?>" minlength="5">
+                    </div>
+                    <div class="inputBx">
+                        <input type="tel" name="contact" placeholder="Contact" required maxlength="20" value="<?php echo $_POST['contact'] ?? ""; ?>" minlength="10">
+                    </div>
+                    <div class="inputBx">
+                        <input type="email" name="email" placeholder="Email (optionnel)" value="<?php echo $_POST['email'] ?? ""; ?>" minlength="5" maxlength="50">
+                    </div>
+                    <div class="inputBx">
+                        <textarea name="message" id="" placeholder="Ecrivez votre message" required maxlength="200" minlength="5"><?php echo $_POST['message'] ?? ""; ?></textarea>
+                    </div>
+                    <div class="inputBx">
+                        <input type="submit" name="submit" value="Envoyer">
+                    </div>
+                </form>
+            </div>
+            <div class="imgBx2"></div>
         </section>
     </div>
     <?php include('_includes/footer.php'); ?>
