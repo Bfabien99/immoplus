@@ -34,6 +34,8 @@ if (isset($_POST['submit'])) {
 
     if (empty(escape($_POST['message']))) {
         $error = "Veuillez entrer un message valide";
+    }elseif (strlen(escape($_POST['message'])) < 20) {
+        $error = "Le message doit comporter au moins 20 caractères";
     } else {
         $message = $_POST['message'];
     }
@@ -55,6 +57,7 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/img/immoplus.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/index.css" type="text/css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Immoplus</title>
 </head>
 
@@ -188,13 +191,29 @@ if (isset($_POST['submit'])) {
     <section class="about">
         <?php if ($error) : ?>
             <script>
-                alert("<?php echo $error; ?>");
-                location.href = "#Contactform"
+                Swal.fire({
+  icon: 'error',
+  title: 'Erreur',
+  confirmButtonText: 'OK',
+  text: "<?php echo $error?>",
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    location.href = "#Contactform"
+  }})
             </script>
         <?php elseif($success) : ?>
             <script>
-                alert("Message Envoyé");
-                location.href = "#Contactform"
+                Swal.fire({
+  icon: 'success',
+  title: 'Super!',
+  confirmButtonText: 'OK',
+  text: 'Message Envoyé',
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    location.href = "#Contactform"
+  }})
             </script>
         <?php endif; ?>
         <div class="contentBx redbg">

@@ -93,9 +93,9 @@ if (isset($_POST['inscrire'])) {
 
     if (!$error && !empty($fullname) && !empty($gender) && !empty($birth) && !empty($description) && !empty($contact) && !empty($email) && !empty($pseudo) && !empty($password)) {
         if ($users->insertUsers($fullname, $gender, $birth, $description, $contact, $email, $pseudo, md5($password))) {
-            $error['result'] = "<p class='success'>Inscription réussie</p>";
+            $error['success'] = "Inscription réussie";
         } else {
-            $error['result'] = "<p class='error'>Inscription échoué, veuillez reéssayer plus tard</p>";
+            $error['error'] = "Inscription échoué, veuillez reéssayer plus tard";
         }
     }
 }
@@ -108,6 +108,7 @@ if (isset($_POST['inscrire'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>S'inscrire</title>
     <style>
         * {
@@ -302,7 +303,33 @@ if (isset($_POST['inscrire'])) {
         <h1 class="heading">Inscription</h1>
         <p class="urgent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat inventore eum doloremque dolores praesentium a nulla minima hic omnis. Amet.</p>
         <div id="contentBx">
-            <?php echo $error['result'] ?? "" ?>
+        <?php if (isset($error['error'])) : ?>
+            <script>
+                Swal.fire({
+  icon: 'error',
+  title: 'Erreur',
+  confirmButtonText: 'OK',
+  text: "<?php echo $error['error']?>",
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    location.href = "#Contactform"
+  }})
+            </script>
+        <?php elseif(isset($error['success'])) : ?>
+            <script>
+                Swal.fire({
+  icon: 'success',
+  title: 'Super!',
+  confirmButtonText: 'OK',
+  text: "<?php echo $error['success']?>",
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    location.href = "#Contactform"
+  }})
+            </script>
+        <?php endif; ?>
             <form action="" method="post" id="postForm">
                 <div class="group">
                     <label for="fullname">Nom & Prénoms</label>

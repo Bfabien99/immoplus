@@ -1,7 +1,7 @@
-<?php session_start()?>
-<?php include_once('../_includes/functions.php');?>
-<?php include_once('../class/Properties.php');?>
-<?php include_once('../class/Users.php');?>
+<?php session_start() ?>
+<?php include_once('../_includes/functions.php'); ?>
+<?php include_once('../class/Properties.php'); ?>
+<?php include_once('../class/Users.php'); ?>
 <?php
 $users = new Users();
 if (!empty($_SESSION['immoplus_adminPseudo'])) {
@@ -22,18 +22,19 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <script src="https://kit.fontawesome.com/1f88d87af5.js" crossorigin="anonymous"></script> -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Admin</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-weight: 100;
-            font-family: 'Rajdhani','Poppins';
+            font-family: 'Rajdhani', 'Poppins';
         }
 
         :root {
@@ -167,7 +168,7 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             transition: all 0.2s;
         }
 
-        .main.active .toggle{
+        .main.active .toggle {
             rotate: 180deg;
         }
 
@@ -197,7 +198,7 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             object-fit: cover;
         }
 
-        main{
+        main {
             padding: 30px 20px;
             background-color: var(--grey);
             min-height: 85vh;
@@ -205,7 +206,7 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             flex-direction: column;
         }
 
-        .cardBox{
+        .cardBox {
             position: relative;
             width: 100%;
             padding: 20px;
@@ -214,7 +215,7 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             grid-gap: 30px;
         }
 
-        .cardBox .card{
+        .cardBox .card {
             position: relative;
             background-color: var(--white);
             padding: 30px;
@@ -225,35 +226,36 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
             transition: 0.2s;
         }
-        .cardBox .card .numbers{
+
+        .cardBox .card .numbers {
             position: relative;
             font-weight: bold;
             font-size: 2.5rem;
             color: var(--blue);
         }
 
-        .cardBox .card .cardName{
+        .cardBox .card .cardName {
             color: var(--black2);
             font-size: 1.1em;
             margin-top: 5px;
         }
 
-        .cardBox .card .iconBx{
+        .cardBox .card .iconBx {
             font-size: 3.5em;
             color: var(--green);
         }
 
-        .cardBox .card:hover{
+        .cardBox .card:hover {
             background-color: var(--green);
         }
 
         .cardBox .card:hover .numbers,
         .cardBox .card:hover .cardName,
-        .cardBox .card:hover .iconBx{
+        .cardBox .card:hover .iconBx {
             color: var(--white);
         }
 
-        .details{
+        .details {
             position: relative;
             width: 100%;
             padding: 20px;
@@ -263,7 +265,8 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             /* margin-top: 10px; */
         }
 
-        .recentOrders, .recentCustomers{
+        .recentOrders,
+        .recentCustomers {
             position: relative;
             display: grid;
             min-height: 200px;
@@ -273,19 +276,19 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             border-radius: 20px;
         }
 
-        .cardHeader{
+        .cardHeader {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
         }
 
-        .cardHeader h2{
+        .cardHeader h2 {
             font-weight: 600;
             color: var(--green);
             text-transform: capitalize;
         }
 
-        .btn{
+        .btn {
             position: relative;
             padding: 5px 10px;
             background: var(--blue);
@@ -296,47 +299,53 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             text-align: center;
         }
 
-        .details table{
+        .details table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
         }
 
-        .details table thead td{
+        .details table thead td {
             font-weight: 600;
         }
 
-        .details .recentOrders table tr{
+        .details .recentOrders table tr {
             color: var(--black1);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        .details .recentOrders table tr:last-child{
+        .details .recentOrders table tr:last-child {
             border-bottom: none;
         }
-        .details .recentOrders table tbody tr:hover, .recentCustomers table tr:hover{
+
+        .details .recentOrders table tbody tr:hover,
+        .recentCustomers table tr:hover {
             background: var(--blue);
             color: var(--white);
         }
 
-        .details .recentOrders table tr td:last-child{
+        .details .recentOrders table tr td:last-child {
             text-align: end;
         }
 
-        .details .recentOrders table tr td:nth-child(2){
-            text-align: center;
-        }
-        .details .recentOrders table tr td:nth-child(3){
-            text-align: center;
-        }
-        .details .recentOrders table tr td:nth-child(4){
+        .details .recentOrders table tr td:nth-child(2) {
             text-align: center;
         }
 
-        .details .recentOrders table tr td,.details .recentCustomers table tr td{
+        .details .recentOrders table tr td:nth-child(3) {
+            text-align: center;
+        }
+
+        .details .recentOrders table tr td:nth-child(4) {
+            text-align: center;
+        }
+
+        .details .recentOrders table tr td,
+        .details .recentCustomers table tr td {
             padding: 12px 10px;
         }
-        .status.attente{
+
+        .status.attente {
             padding: 2px 4px;
             background-color: #f9ca3f;
             color: var(--white);
@@ -345,7 +354,7 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             font-weight: bold;
         }
 
-        .status.confirmer{
+        .status.confirmer {
             padding: 2px 4px;
             background-color: #8de02c;
             color: var(--white);
@@ -354,7 +363,7 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             font-weight: bold;
         }
 
-        .recentCustomers .imgBx{
+        .recentCustomers .imgBx {
             position: relative;
             width: 40px;
             height: 40px;
@@ -362,7 +371,7 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             overflow: hidden;
         }
 
-        .recentCustomers .imgBx img{
+        .recentCustomers .imgBx img {
             position: absolute;
             top: 0;
             left: 0;
@@ -371,24 +380,25 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             object-fit: cover;
         }
 
-        .recentCustomers table tr td h4{
+        .recentCustomers table tr td h4 {
             font-size: 16px;
             font-weight: bold;
             line-height: 1.2em;
         }
 
-        .recentCustomers table tr td span{
+        .recentCustomers table tr td span {
             font-size: 14px;
             color: var(--black2);
         }
 
-        .recentCustomers table tr:hover span{
+        .recentCustomers table tr:hover span {
             color: var(--white);
         }
+
         /* ## @DASHBOARD ## */
         /* ##############################################################*/
         /* ##############################################################*/
-        #map{
+        #map {
             width: 100%;
             height: 80vh;
             background-color: var(--black2);
@@ -397,13 +407,14 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             justify-content: center;
             color: #f22;
         }
-        main .container{
+
+        main .container {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        #postForm{
+        #postForm {
             display: grid;
             grid-template-columns: 1fr;
             grid-gap: 30px;
@@ -415,12 +426,12 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             box-shadow: 0 7px 25px rgba(0, 0, 0, 0.1);
         }
 
-        #postForm .group{
+        #postForm .group {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         }
 
-        #postForm .group label{
+        #postForm .group label {
             font-weight: bold;
             font-size: 1rem;
             padding: 5px 0;
@@ -430,12 +441,16 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             margin-right: 2em;
             text-transform: uppercase;
         }
-        #postForm .group input{
+
+        #postForm .group input {
             font-style: italic;
             height: 40px;
             text-transform: capitalize;
         }
-        #postForm .group input, #postForm .group select, #postForm .group textarea{
+
+        #postForm .group input,
+        #postForm .group select,
+        #postForm .group textarea {
             padding: 5px;
             outline: none;
             border: 1px solid var(--green);
@@ -445,12 +460,14 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             transition: 0.2s;
         }
 
-        #postForm .group input:focus, #postForm .group select:focus, #postForm .group textarea:focus{
+        #postForm .group input:focus,
+        #postForm .group select:focus,
+        #postForm .group textarea:focus {
             border: 1.5px solid var(--blue);
             box-shadow: 0 7px 25px rgba(0, 0, 0, 0.1);
         }
 
-        #submit{
+        #submit {
             width: 100%;
             max-width: 200px;
             padding: 5px;
@@ -463,21 +480,22 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             height: 40px;
         }
 
-        #submit:hover{
+        #submit:hover {
             background-color: var(--blue);
         }
+
         /* ## @ADD PROPERTY FORM ## */
         /* ##############################################################*/
         /* ##############################################################*/
 
-        main .container .properties{
+        main .container .properties {
             display: grid;
             grid-template-columns: repeat(auto-fit, 300px);
             justify-content: center;
             grid-gap: 30px;
         }
 
-        .properties .property{
+        .properties .property {
             position: relative;
             display: flex;
             flex-direction: column;
@@ -485,7 +503,7 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             padding: 5px;
         }
 
-        .properties .property .imgBx{
+        .properties .property .imgBx {
             max-width: 300px;
             height: 400px;
             overflow: hidden;
@@ -493,7 +511,8 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             transition: 0.2s;
         }
 
-        .properties .property .imgBx .type,.properties .property .imgBx .status{
+        .properties .property .imgBx .type,
+        .properties .property .imgBx .status {
             position: absolute;
             color: var(--white);
             padding: 10px;
@@ -501,32 +520,32 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             font-style: italic;
         }
 
-        .type.location{
+        .type.location {
             background: var(--green);
         }
 
-        .type.vente{
+        .type.vente {
             background-color: var(--blue);
         }
 
-        .properties .property .imgBx .status{
+        .properties .property .imgBx .status {
             right: 0px;
         }
 
-        .properties .property .imgBx:hover{
+        .properties .property .imgBx:hover {
             box-shadow: 7px 7px 2px rgba(0, 0, 0, 0.3);
             border-radius: 15px 7px;
             margin-bottom: 5px;
         }
 
-        .properties .property .imgBx img{
+        .properties .property .imgBx img {
             width: 100%;
             object-fit: cover;
             height: 400px;
 
         }
 
-        .properties .property .contentBx{
+        .properties .property .contentBx {
             background-color: var(--white);
             padding: 10px;
             display: none;
@@ -536,7 +555,7 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             transition: 0.3s;
         }
 
-        .properties .property.active .contentBx{
+        .properties .property.active .contentBx {
             background-color: var(--white);
             padding: 10px;
             display: flex;
@@ -545,21 +564,22 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             margin-top: 0;
             transition: 0.3s;
         }
+
         /* ## @SHOW ALL PROPERTIES ## */
         /* ##############################################################*/
         /* ##############################################################*/
-        main .container #propertyBx .property{
+        main .container #propertyBx .property {
             position: relative;
             z-index: 10;
         }
 
-        #propertyBx{
+        #propertyBx {
             display: flex;
             flex-direction: column;
             gap: 2em;
         }
 
-        #propertyBx .property{
+        #propertyBx .property {
             display: flex;
             flex-direction: column;
             gap: 1em;
@@ -567,31 +587,33 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             padding: 20px;
         }
 
-        #propertyBx .property *{
+        #propertyBx .property * {
             margin: 0 auto;
         }
 
-        #propertyBx .property .imgBx{
+        #propertyBx .property .imgBx {
             width: 100%;
             max-width: 700px;
             height: 400px;
             overflow: hidden;
         }
 
-        #propertyBx .property .imgBx img{
+        #propertyBx .property .imgBx img {
             width: 100%;
             height: 400px;
             object-fit: cover;
         }
 
-        #propertyBx .property .contentBx{
+        #propertyBx .property .contentBx {
             display: flex;
             flex-direction: column;
             padding: 10px;
             gap: 1em;
         }
 
-        #propertyBx .property .contentBx .details,#propertyBx .property .contentBx .value,#propertyBx .property .contentBx .actions{
+        #propertyBx .property .contentBx .details,
+        #propertyBx .property .contentBx .value,
+        #propertyBx .property .contentBx .actions {
             width: 100%;
             max-width: 700px;
             display: flex;
@@ -604,11 +626,14 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.08);
         }
 
-        #propertyBx .property .contentBx .actions{
-            background:none;
+        #propertyBx .property .contentBx .actions {
+            background: none;
         }
 
-        .edit, .del, .publish, .cancel{
+        .edit,
+        .del,
+        .publish,
+        .cancel {
             padding: 10px;
             text-align: center;
             max-width: 200px;
@@ -618,24 +643,27 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             background-color: var(--blue);
         }
 
-        .edit{
+        .edit {
             background-color: var(--green);
         }
-.del{
-    background-color: #f22;
-}
-.cancel{
-    background-color: #f9ca3f;
-}
-        #propertyBx .property .contentBx .value p:nth-child(1){
+
+        .del {
+            background-color: #f22;
+        }
+
+        .cancel {
+            background-color: #f9ca3f;
+        }
+
+        #propertyBx .property .contentBx .value p:nth-child(1) {
             text-transform: uppercase;
         }
 
-        #propertyBx .property .contentBx .value p:nth-child(2){
+        #propertyBx .property .contentBx .value p:nth-child(2) {
             font-size: 1.6rem;
         }
 
-        #propertyBx .property .contentBx .informations{
+        #propertyBx .property .contentBx .informations {
             width: 100%;
             max-width: 1000px;
             display: flex;
@@ -647,12 +675,12 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.03);
         }
 
-        #propertyBx .property .contentBx .title{
+        #propertyBx .property .contentBx .title {
             text-align: center;
             text-transform: uppercase;
         }
 
-        #propertyBx .property .contentBx .description{
+        #propertyBx .property .contentBx .description {
             text-align: justify;
         }
 
@@ -664,20 +692,22 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             opacity: 0.25;
             filter: grayscale(100);
         }
+
         /* ## @SHOW PROPERTIE ## */
         /* ##############################################################*/
         /* ##############################################################*/
 
-        .footer{
+        .footer {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
+
         /* ## @FOOTER ## */
         /* ##############################################################*/
         /* ##############################################################*/
-        .error{
+        .error {
             background-color: #f22;
             margin: auto 1.2em;
             padding: 10px;
@@ -689,7 +719,8 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
-        .success{
+
+        .success {
             background-color: green;
             margin: auto 1.2em;
             padding: 10px;
@@ -701,7 +732,8 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
-        .back{
+
+        .back {
             background-color: #444;
             margin: 2em 1.2em;
             padding: 5px;
@@ -716,7 +748,11 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
 
-        #editprofil{
+        /* ## @message ## */
+        /* ##############################################################*/
+        /* ##############################################################*/
+
+        #editprofil {
             display: flex;
             flex-direction: column;
             gap: 2em;
@@ -726,7 +762,7 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             margin: 0 auto;
         }
 
-        #editprofil form{
+        #editprofil form {
             width: 100%;
             max-width: 500px;
             display: flex;
@@ -739,12 +775,12 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             margin: 0 auto;
         }
 
-        #editprofil form input{
+        #editprofil form input {
             outline: none;
             border: 1px solid #162c3bff;
         }
 
-        #editprofil form input[type='submit']{
+        #editprofil form input[type='submit'] {
             border: none;
             background: #162c3bf9;
             padding: 5px;
@@ -756,12 +792,12 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             transition: all 0.2s;
         }
 
-        #editprofil form input[type='submit']:hover{
+        #editprofil form input[type='submit']:hover {
             border: none;
             background: var(--blue);
         }
 
-        #editprofil form .group{
+        #editprofil form .group {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -769,95 +805,241 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             padding: 10px;
         }
 
-        #editprofil form .group label{
+        #editprofil form .group label {
             width: fit-content;
             align-self: center;
             font-weight: bold;
             border-top: 1px solid #444;
         }
 
-        #editprofil form .group input{
+        #editprofil form .group input {
             height: 35px;
             padding: 5px;
             border-radius: 5px;
         }
+
+        /* ## @PROFIL ## */
+        /* ##############################################################*/
+        /* ##############################################################*/
+
+        #singleMessage {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .messageContentBx {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            width: 100%;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 5px 2px 15px 10px;
+        }
+
+        .messageContentBx .top {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .messageContentBx .top .email {
+            color: var(--black2);
+        }
+
+        .messageContentBx .message {
+            align-self: center;
+            text-align: justify;
+            padding: 20px;
+            margin: 0.4em;
+            font-style: normal;
+            font-size: 1.2rem;
+        }
+
+        .actions {
+            display: flex;
+            width: 300px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .actions * {
+            padding: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            font-style: normal;
+            font-weight: bold;
+            box-shadow: 3px 5px 5px lightgrey;
+        }
+
+        #multipleMessages {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(300px, 400px));
+            gap: 0.5em;
+            margin: auto;
+        }
+
+        #multipleMessages .messageBx {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 5px 2px 15px;
+            box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.0.8);
+        }
+
+        #multipleMessages .messageBx .icon {
+            font-size: 2rem;
+            color: var(--green);
+        }
+
+        #multipleMessages .messageBx .message {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #multipleMessages .messageBx .message .btn {
+            max-width: 100px;
+        }
+
+        /* ## @MESSAGE ADMIN ## */
+        /* ##############################################################*/
+        /* ##############################################################*/
+
+        #singleUser {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+    }
+
+    #multipleUsers {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        width: 100%;
+        max-width: 1000px;
+        gap: 10px;
+        margin: auto;
+    }
+
+    .userContentBx,
+    .userBx {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        background: var(--white);
+        padding: 20px;
+        border-radius: 0px 15px;
+        box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .infos {
+        font-weight: bold;
+    }
+
+    .userBx .btn {
+        max-width: 100px;
+    }
+
+        /* ## @USER ADMIN ## */
+        /* ##############################################################*/
+        /* ##############################################################*/
         /* responsive */
 
-        @media (max-width:991px){
-            .navigation{
+        @media (max-width:991px) {
+            .navigation {
                 left: -300px;
             }
-            .navigation.active{
+
+            .navigation.active {
                 width: 300px;
                 left: 0;
             }
-            .main{
+
+            .main {
                 width: 100%;
                 left: 0;
             }
-            .main.active{
+
+            .main.active {
                 left: 300px;
             }
-            .cardBox{
-                grid-template-columns: repeat(2,1fr);
+
+            .cardBox {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
-        
-        @media (max-width: 768px){
-            .details{
-                grid-template-columns: repeat(1,1fr);
+
+        @media (max-width: 768px) {
+            .details {
+                grid-template-columns: repeat(1, 1fr);
             }
-            .recentOrders{
+
+            .recentOrders {
                 overflow-x: auto;
             }
         }
 
-        @media (max-width: 480px){
-            main{
+        @media (max-width: 480px) {
+            main {
                 padding: 0;
             }
 
-            main .container{
+            main .container {
                 padding: 20px;
             }
-            #postForm .group{
+
+            #postForm .group {
                 grid-template-columns: 1fr;
                 grid-gap: 10px;
             }
-            #postForm .group label{
+
+            #postForm .group label {
                 justify-content: center;
             }
-            #postForm .group .error{
+
+            #postForm .group .error {
                 text-align: center;
             }
-            .toggle{
+
+            .toggle {
                 z-index: 10001;
                 transform: rotateY(180deg);
             }
-            .cardBox{
-                grid-template-columns: repeat(1,1fr);
+
+            .cardBox {
+                grid-template-columns: repeat(1, 1fr);
             }
-            .cardHeader h2{
+
+            .cardHeader h2 {
                 font-size: 20px;
             }
-            .user{
+
+            .user {
                 min-width: 40px;
             }
-            .navigation{
+
+            .navigation {
                 width: 100%;
                 left: -100%;
                 z-index: 1000;
                 background-color: #162c3bff;
             }
-            .navigation.active{
+
+            .navigation.active {
                 width: 100%;
                 left: 0;
             }
-            .main.active .toggle{
+
+            .main.active .toggle {
                 filter: invert(1);
                 rotate: 180deg !important;
             }
-         
+
         }
     </style>
 </head>
@@ -868,49 +1050,65 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             <ul>
                 <li>
                     <a href="">
-                        <span class="icon"><ion-icon name="key"></ion-icon></span>
+                        <span class="icon">
+                            <ion-icon name="key"></ion-icon>
+                        </span>
                         <span class="title">Immoplus</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/">
-                        <span class="icon"><ion-icon name="time"></ion-icon></span>
+                        <span class="icon">
+                            <ion-icon name="time"></ion-icon>
+                        </span>
                         <span class="title">Tableau de bord</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/property">
-                        <span class="icon"><ion-icon name="home"></ion-icon></span>
+                        <span class="icon">
+                            <ion-icon name="home"></ion-icon>
+                        </span>
                         <span class="title">Propriétés</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/users">
-                        <span class="icon"><ion-icon name="people"></ion-icon></span>
+                        <span class="icon">
+                            <ion-icon name="people"></ion-icon>
+                        </span>
                         <span class="title">Utilisateurs</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/maps">
-                        <span class="icon"><ion-icon name="map"></ion-icon></span>
+                        <span class="icon">
+                            <ion-icon name="map"></ion-icon>
+                        </span>
                         <span class="title">Carte</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/messages">
-                        <span class="icon"><ion-icon name="send"></ion-icon></span>
+                        <span class="icon">
+                            <ion-icon name="send"></ion-icon>
+                        </span>
                         <span class="title">Messages</span>
                     </a>
                 </li>
                 <li>
                     <a href="/immoplus/admin/profil">
-                        <span class="icon"><ion-icon name="cog"></ion-icon></span>
+                        <span class="icon">
+                            <ion-icon name="cog"></ion-icon>
+                        </span>
                         <span class="title">Profil</span>
                     </a>
                 </li>
                 <li>
                     <a href="" id="logout">
-                        <span class="icon"><ion-icon name="log-out"></ion-icon></span>
+                        <span class="icon">
+                            <ion-icon name="log-out"></ion-icon>
+                        </span>
                         <span class="title">Déconnexion</span>
                     </a>
                 </li>
@@ -920,7 +1118,7 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
         <div class="main">
             <div class="topbar">
                 <div class="toggle">
-                <ion-icon name="caret-back-circle-outline"></ion-icon>
+                    <ion-icon name="caret-back-circle-outline"></ion-icon>
                 </div>
 
 
@@ -933,8 +1131,8 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
                 </div>
             </div>
             <script>
-                setInterval(function(){
+                setInterval(function() {
                     window.location.reload()
-                },2000)
+                }, 2000)
             </script>
             <main>

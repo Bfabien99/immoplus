@@ -12,9 +12,9 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
         $user = $class->getUserById($user_id);
         if (!$user) {
             $error = "<p class='error'>Identifiant incorrect</p>";
-        }else{
+        } else {
             $properties = new Properties();
-            $user['properties_published'] = count($properties->getAll_properties($user['id'])) ?? 0;
+            $user['properties_published'] =  $properties->getAll_properties($user['id']) ? count($properties->getAll_properties($user['id'])) : 0;
         }
     }
 } else {
@@ -26,30 +26,35 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 
 ?>
 <div class="container">
-<?php if ($error) : ?>
+    <?php if ($error) : ?>
         <?php echo $error; ?>
-        <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/admin"?>" class="back">Retour</a>
+        <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/admin" ?>" class="back">Retour</a>
     <?php else : ?>
         <?php if ($user) : ?>
             <section id="singleUser">
                 <div class="userContentBx">
-                <p>Nom & prénoms : <?php echo $user['fullname']; ?></p>
-                <p>Contact : <?php echo $user['contact']; ?></p>
-                <p>Email : <?php echo $user['email'] ?? ""; ?></p>
-                <p>Publication : <?php echo $user['properties_published'] ?? ""; ?></p>
-                <p>Inscrit le: <?php echo $user['insert_date']; ?></p>
-                    <i onclick="del(<?php echo $user['id']; ?>)" class="del">Supprimer</i>
+                    <div>
+                        <p>Nom & prénoms : <span class="infos"><?php echo $user['fullname']; ?></span></p>
+                        <p>Contact : <span class="infos"><?php echo $user['contact']; ?></span></p>
+                        <p>Email : <span class="infos"><?php echo $user['email'] ?? ""; ?></span></p>
+                        <p>Publication : <span class="infos"><?php echo $user['properties_published'] ?? ""; ?></span></p>
+                        <p>Inscrit le: <span class="infos"><?php echo $user['insert_date']; ?> ( il y a <?php echo datediff($user['insert_date']); ?> )</span></p>
+                    </div>
+
+                    <div class="actions">
+                        <i onclick="del(<?php echo $user['id']; ?>)" class="del">Supprimer</i>
+                        <a href="<?php echo "/immoplus/admin/users" ?>" class="back">Retour</a>
+                    </div>
                 </div>
             </section>
         <?php elseif ($users) : ?>
             <section id="multipleUsers">
                 <?php foreach ($users as $user) : ?>
                     <div class="userBx">
-                    <p>Nom & prénoms : <?php echo $user['fullname']; ?></p>
-                <p>Contact : <?php echo $user['contact']; ?></p>
-                        <p>Inscrit le: <?php echo $user['insert_date']; ?></p>
-                        <a href="?user_id=<?php echo $user['id']; ?>">voir</a>
-                        <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/admin/users"?>" class="back">Retour</a>
+                        <p>Nom & prénoms : <span class="infos"><?php echo $user['fullname']; ?></span></p>
+                        <p>Contact : <span class="infos"><?php echo $user['contact']; ?></span></p>
+                        <p>Inscrit le: <span class="infos"><?php echo $user['insert_date']; ?></span></p>
+                        <a class="btn" href="?user_id=<?php echo $user['id']; ?>">voir</a>
                     </div>
                 <?php endforeach; ?>
             </section>
@@ -59,7 +64,7 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 <script>
     function del(id) {
         Swal.fire({
-            title: 'Do you want to save the changes?',
+            title: "Voulez vous supprimer l'utilisateur?",
             showDenyButton: true,
             showCancelButton: true,
             confirmButtonText: 'Supprimer',
