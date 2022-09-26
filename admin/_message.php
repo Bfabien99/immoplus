@@ -31,7 +31,7 @@ if (isset($_GET['message_id']) && !empty($_GET['message_id'])) {
                 <div class="messageContentBx">
                     <p>De : <?php echo $message['fullname']; ?></p>
                     <p>Contact: <?php echo $message['contact']; ?></p>
-                    <p>Email: <?php echo $message['email']; ?></p>
+                    <p>Email: <?php echo $message['email'] ?? ""; ?></p>
                     <p>Envoyé le: <?php echo $message['date']; ?></p>
                     <p>Message : <?php echo $message['message']; ?></p>
                     <i onclick="del(<?php echo $message['id']; ?>)" class="del">Supprimer</i>
