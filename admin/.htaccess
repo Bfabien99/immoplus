@@ -17,8 +17,20 @@ RewriteRule ^property/add$ _addproperty.php [L]
 #- EDIT PROPERTY BY ID -#
 RewriteRule ^property/edit/([0-9]+)$ _editproperty.php?property_id=$1 [L]
 
+#- SHOW ALL USERS -#
+RewriteRule ^users$ users.php [L]
+
+#- SHOW USER BY ID -#
+RewriteRule ^users/([0-9]+)$ users.php?user_id=$1 [L]
+
 #- SHOW MAPS -#
 RewriteRule ^maps$ _maps.php [L]
+
+#- SHOW ALL MESSAGES -#
+RewriteRule ^messages$ _message.php [L]
+
+#- SHOW ALL MESSAGE BY ID -#
+RewriteRule ^messages/([0-9]+)$ _message.php?message_id=$1 [L]
 
 #- OTHER ROUTES -#
 RewriteRule ^profil$ profil.php [L]

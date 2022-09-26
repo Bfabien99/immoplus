@@ -298,8 +298,25 @@ class Users
         }
     }
 
-    public function deleteUsers($id)
+    public function deleteUser($user_id)
     {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'delete from users where id = :id';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id', $user_id, PDO::PARAM_INT);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function updateAdmin($fullname,$pseudo)
@@ -388,6 +405,50 @@ class Users
 
             $datas = $query->fetchAll(PDO::FETCH_ASSOC);
             return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function getMessage($id)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'select * from messages where id = :id';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id',$id,PDO::PARAM_INT);
+            $query->execute();
+            $datas = [];
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            $datas = $query->fetch(PDO::FETCH_ASSOC);
+            return $datas;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function deleteMessage($message_id)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql = 'delete from messages where id = :id';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id', $message_id, PDO::PARAM_INT);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
         } catch (PDOException $ex) {
             return $ex->getMessage();
         }
