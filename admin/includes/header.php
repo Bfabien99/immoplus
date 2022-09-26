@@ -4,7 +4,7 @@
 <?php include_once('../class/Users.php');?>
 <?php
 $users = new Users();
-if (!empty($_SESSION['immoplus_userPseudo'])) {
+if (!empty($_SESSION['immoplus_adminPseudo'])) {
     $admin = $users->getAdminByPseudo($_SESSION['immoplus_adminPseudo']);
     if (!$admin) {
         header('location:/immoplus/login');
@@ -885,7 +885,7 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="/immoplus/admin/user">
+                    <a href="/immoplus/admin/users">
                         <span class="icon"><ion-icon name="people"></ion-icon></span>
                         <span class="title">Utilisateurs</span>
                     </a>

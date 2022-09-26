@@ -42,34 +42,49 @@
 
     //see password on double click
     var pass = document.querySelector('#password');
-    if(pass != null){
+    if (pass != null) {
         pass.addEventListener('dblclick', function() {
-        if (pass.getAttribute('type') == 'password') {
-            pass.setAttribute('type', 'text')
-        } else {
-            pass.setAttribute('type', 'password')
-        }
-    })
+            if (pass.getAttribute('type') == 'password') {
+                pass.setAttribute('type', 'text')
+            } else {
+                pass.setAttribute('type', 'password')
+            }
+        })
     }
-    
+
 
     //logout
     var logout = document.querySelector('#logout');
-    console.log(logout);
-    $('#logout').on('click',function(){
-        $.ajax({
-                url: "/immoplus/admin/_logout.php",
-                method: "POST",
-                data: {
-                    input: true,
-                },
-                success: function(data) {
-                    if (data) {
-                        window.location.href = '/immoplus/admin'
-                    }
+    $('#logout').on('click', function(e) {
 
-                }
-            })
+        e.preventDefault();
+        Swal.fire({
+            title: 'Voulez-vous vous deconnecter?',
+            showDenyButton: true,
+            confirmButtonText: 'Deconnecter',
+            denyButtonText: `Annuler`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/immoplus/admin/_logout.php",
+                    method: "POST",
+                    data: {
+                        input: true,
+                    },
+                    success: function(data) {
+                        if (data) {
+                            window.location.href = '/immoplus/login'
+                        }
+                    }
+                })
+                window.location.href = '/immoplus/login'
+            }
+        })
+
+
+
+
     })
 </script>
 
