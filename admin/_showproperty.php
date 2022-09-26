@@ -24,7 +24,6 @@ if (isset($_GET['property_id'])) {
                 }
             } else {
                 $property = $data['data']['properties'][0];
-                
             }
         } else {
             $error['api'] = "<p class='error'>Désolé, le serveur ne répond pas pour l'instant... Veuillez réessayer plus tard</p>";
@@ -32,15 +31,23 @@ if (isset($_GET['property_id'])) {
     }
 }
 
-if(isset($_POST['publish'])){
-    if($_POST['property_id'] == $_GET['property_id']){
+if (isset($_POST['publish'])) {
+    if ($_POST['property_id'] == $_GET['property_id']) {
 
-        $properties =new Properties();
-        if($properties->publishProperties($_POST['property_id'])){?>
-        <script>
-            alert('Publication effectuée')
-            window.location.href = ''
-        </script>
+        $properties = new Properties();
+        if ($properties->publishProperties($_POST['property_id'])) { ?>
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Propriété mise en ligne',
+                    confirmButtonText: 'Ok',
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        window.location.href = "";
+                    }
+                })
+            </script>
 <?php
         }
     }
@@ -64,34 +71,36 @@ if(isset($_POST['publish'])){
                     </div>
                     <div class="contentBx">
                         <div class="details">
-                            <p><?php echo $property['shower']?> douche(s)</p>
-                            <p><?php echo $property['bedroom']?> chambre(s)</p>
-                            <p><?php echo $property['area']?> m2</p>
+                            <p><?php echo $property['shower'] ?> douche(s)</p>
+                            <p><?php echo $property['bedroom'] ?> chambre(s)</p>
+                            <p><?php echo $property['area'] ?> m2</p>
                         </div>
                         <div class="value">
-                            <?php echo $property['type'] == 'location' ? "<p>A Louer</p>" : "<p>En vente</p>"?>
-                            <p><?php echo number_format($property['price'],0,',','.')?> Fcfa</p>
-                            <?php echo ($property['etat'] == 0) ? "<span class='status attente'>En attente</span>" : "<span class='status confirmer'>Confirmer</span>"?>
+                            <?php echo $property['type'] == 'location' ? "<p>A Louer</p>" : "<p>En vente</p>" ?>
+                            <p><?php echo number_format($property['price'], 0, ',', '.') ?> Fcfa</p>
+                            <?php echo ($property['etat'] == 0) ? "<span class='status attente'>En attente</span>" : "<span class='status confirmer'>Confirmer</span>" ?>
                         </div>
                         <div class="informations">
-                            <h3 class="title"><?php echo $property['title']?></h3>
+                            <h3 class="title"><?php echo $property['title'] ?></h3>
                             <p class="description">
-                            <?php echo nl2br($property['description'])?>
+                                <?php echo nl2br($property['description']) ?>
                             </p>
                         </div>
                         <div class="actions">
-                            <a href="./../../property/edit/<?php echo $property['id']?>" class="edit">Modifier</a>
-                            <?php echo ($property['etat'] == 0) ? "<a href='' class='cancel'>Annuler</a><form method='post'><input hidden type='number' name='property_id' value='{$property['id']}'><input type='submit' value='publier' class='publish' name='publish'></form>" : "<i onclick='del({$property['id']})' class='del'>Supprimer</i>"?>
+                            <a href="./../../property/edit/<?php echo $property['id'] ?>" class="edit">Modifier</a>
+                            <?php echo ($property['etat'] == 0) ? "<a href='' class='cancel'>Annuler</a><form method='post'><input hidden type='number' name='property_id' value='{$property['id']}'><input type='submit' value='publier' class='publish' name='publish'></form>" : "<i onclick='del({$property['id']})' class='del'>Supprimer</i>" ?>
                         </div>
                     </div>
                 </div>
-            
 
-            <div id="map">
-            <p><ion-icon name="alert-circle"></ion-icon></p>
-                <h3>Impossible de charger la map</h3>
+
+                <div id="map">
+                    <p>
+                        <ion-icon name="alert-circle"></ion-icon>
+                    </p>
+                    <h3>Impossible de charger la map</h3>
+                </div>
             </div>
-        </div>
         <?php else : ?>
             <h4>Aucune propriété pour l'instant</h4>
         <?php endif; ?>
@@ -162,25 +171,40 @@ if (!empty($location)) {
 ?>
 <script>
     function del(id) {
-        var input = id;
+        Swal.fire({
+            title: 'Do you want to save the changes?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Supprimer',
+            denyButtonText: `Annuler`,
+            cancelButtonText: `Fermer`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                var input = id;
 
-        if (input != "") {
-            $.ajax({
-                url: "/immoplus/admin/_deleteproperty.php",
-                method: "POST",
-                data: {
-                    input: input,
-                },
-                success: function(data) {
-                    if (data) {
-                        window.location.href = '/immoplus/admin/property'
-                    }
+                if (input != "") {
+                    $.ajax({
+                        url: "/immoplus/admin/_deleteproperty.php",
+                        method: "POST",
+                        data: {
+                            input: input,
+                        },
+                        success: function(data) {
+                            if (data) {
+                                window.location.href = '/immoplus/admin/property'
+                            }
 
+                        }
+                    })
+                } else {
+                    window.location.reload()
                 }
-            })
-        } else {
-            window.location.reload()
-        }
+            } else if (result.isDenied) {
+                Swal.fire('Suppression annulée', '', 'info')
+            }
+        })
+
     }
 </script>
 <?php include('includes/footer.php'); ?>

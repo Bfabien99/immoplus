@@ -52,7 +52,17 @@ if (isset($_GET['message_id']) && !empty($_GET['message_id'])) {
 </div>
 <script>
     function del(id) {
-        var input = id;
+        Swal.fire({
+  title: 'Do you want to save the changes?',
+  showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: 'Supprimer',
+  denyButtonText: `Annuler`,
+  cancelButtonText:`Fermer`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    var input = id;
 
         if (input != "") {
             $.ajax({
@@ -71,6 +81,12 @@ if (isset($_GET['message_id']) && !empty($_GET['message_id'])) {
         } else {
             window.location.reload()
         }
+  } else if (result.isDenied) {
+    Swal.fire('Suppression annulée', '', 'info')
+  }
+})
+
+
     }
 </script>
 <?php include('includes/footer.php'); ?>
