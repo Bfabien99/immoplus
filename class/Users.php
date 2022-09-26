@@ -392,7 +392,7 @@ class Users
     {
         try {
             $connectDB = self::connectDB();
-            $sql = 'select * from messages order by date DESC';
+            $sql = 'select * from messages order by etat ASC';
             $query = $connectDB->prepare($sql);
             $query->execute();
             $datas = [];
@@ -438,6 +438,27 @@ class Users
         try {
             $connectDB = self::connectDB();
             $sql = 'delete from messages where id = :id';
+            $query = $connectDB->prepare($sql);
+            $query->bindValue(':id', $message_id, PDO::PARAM_INT);
+            $query->execute();
+
+            $rowCount = $query->rowCount();
+            if ($rowCount === 0) {
+                return false;
+                exit();
+            }
+
+            return true;
+        } catch (PDOException $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function viewMessage($message_id)
+    {
+        try {
+            $connectDB = self::connectDB();
+            $sql ="update messages set etat = 1 where id = :id";
             $query = $connectDB->prepare($sql);
             $query->bindValue(':id', $message_id, PDO::PARAM_INT);
             $query->execute();

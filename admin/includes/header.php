@@ -933,8 +933,8 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
                 </div>
             </div>
             <script>
-                // setInterval(function(){
-                //     window.location.reload()
-                // },2000)
+                setInterval(function(){
+                    window.location.reload()
+                },2000)
             </script>
             <main>

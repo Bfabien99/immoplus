@@ -12,6 +12,9 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
         $user = $class->getUserById($user_id);
         if (!$user) {
             $error = "<p class='error'>Identifiant incorrect</p>";
+        }else{
+            $properties = new Properties();
+            $user['properties_published'] = count($properties->getAll_properties($user['id'])) ?? 0;
         }
     }
 } else {
@@ -25,6 +28,7 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 <div class="container">
 <?php if ($error) : ?>
         <?php echo $error; ?>
+        <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/admin"?>" class="back">Retour</a>
     <?php else : ?>
         <?php if ($user) : ?>
             <section id="singleUser">
@@ -32,6 +36,7 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
                 <p>Nom & prénoms : <?php echo $user['fullname']; ?></p>
                 <p>Contact : <?php echo $user['contact']; ?></p>
                 <p>Email : <?php echo $user['email'] ?? ""; ?></p>
+                <p>Publication : <?php echo $user['properties_published'] ?? ""; ?></p>
                 <p>Inscrit le: <?php echo $user['insert_date']; ?></p>
                     <i onclick="del(<?php echo $user['id']; ?>)" class="del">Supprimer</i>
                 </div>
@@ -44,6 +49,7 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
                 <p>Contact : <?php echo $user['contact']; ?></p>
                         <p>Inscrit le: <?php echo $user['insert_date']; ?></p>
                         <a href="?user_id=<?php echo $user['id']; ?>">voir</a>
+                        <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/admin/users"?>" class="back">Retour</a>
                     </div>
                 <?php endforeach; ?>
             </section>
@@ -73,7 +79,7 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
                         },
                         success: function(data) {
                             if (data) {
-                                window.location.href = '/immoplus/admin/messages'
+                                window.location.href = '/immoplus/admin/users'
                             }
 
                         }
