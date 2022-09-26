@@ -38,7 +38,7 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
                         <p>Contact : <span class="infos"><?php echo $user['contact']; ?></span></p>
                         <p>Email : <span class="infos"><?php echo $user['email'] ?? ""; ?></span></p>
                         <p>Publication : <span class="infos"><?php echo $user['properties_published'] ?? ""; ?></span></p>
-                        <p>Inscrit le: <span class="infos"><?php echo $user['insert_date']; ?> ( il y a <?php echo datediff($user['insert_date']); ?> )</span></p>
+                        <p>Inscrit le: <span class="infos"><?php echo $user['insert_date']; ?> (<?php echo datediff($user['insert_date']); ?> )</span></p>
                     </div>
 
                     <div class="actions">
@@ -48,15 +48,28 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
                 </div>
             </section>
         <?php elseif ($users) : ?>
-            <section id="multipleUsers">
+            <section class="tableBx">
+            <table id="Table" class="display nowrap dataTable dtr-inline">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                    <th>Contact</th>
+                    <th>Inscrit le</th>
+                    <th>Action</th>
+                    </tr>
+                    
+                </thead>
+                <tbody>
                 <?php foreach ($users as $user) : ?>
-                    <div class="userBx">
-                        <p>Nom & prénoms : <span class="infos"><?php echo $user['fullname']; ?></span></p>
-                        <p>Contact : <span class="infos"><?php echo $user['contact']; ?></span></p>
-                        <p>Inscrit le: <span class="infos"><?php echo $user['insert_date']; ?></span></p>
-                        <a class="btn" href="?user_id=<?php echo $user['id']; ?>">voir</a>
-                    </div>
+                    <tr class="userBx">
+                        <td class="infos"><?php echo $user['fullname']; ?></td>
+                        <td class="infos"><?php echo $user['contact']; ?></td>
+                        <td class="infos"><?php echo datediff($user['insert_date']); ?></td>
+                        <td><a class="btn" href="?user_id=<?php echo $user['id']; ?>">voir</a></td>
+                    </tr>
                 <?php endforeach; ?>
+                </tbody>
+            </table>
             </section>
         <?php endif; ?>
     <?php endif; ?>
@@ -99,5 +112,10 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 
 
     }
+</script>
+<script>
+    $(document).ready( function () {
+    $('#Table').DataTable();
+} );
 </script>
 <?php include('includes/footer.php'); ?>

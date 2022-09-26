@@ -25,6 +25,10 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
     <title>Admin</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
@@ -917,17 +921,8 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
         margin: auto;
     }
 
-    #multipleUsers {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        width: 100%;
-        max-width: 1000px;
-        gap: 10px;
-        margin: auto;
-    }
-
-    .userContentBx,
-    .userBx {
+    .userContentBx
+    {
         display: flex;
         flex-direction: column;
         margin: auto;
@@ -941,10 +936,9 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
         font-weight: bold;
     }
 
-    .userBx .btn {
-        max-width: 100px;
+    .tableBx{
+        overflow: auto;
     }
-
         /* ## @USER ADMIN ## */
         /* ##############################################################*/
         /* ##############################################################*/
