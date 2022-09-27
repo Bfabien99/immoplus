@@ -61,7 +61,7 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
         }
 
         .navigation ul {
-            top:40px;
+            top: 40px;
             position: absolute;
             display: none;
             gap: 0.5em;
@@ -73,7 +73,7 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
             z-index: 2;
         }
 
-        .navigation.active ul{
+        .navigation.active ul {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -99,7 +99,7 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
             max-width: 300px;
         }
 
-        .toggle{
+        .toggle {
             font-size: 1.3rem;
             color: white;
             width: fit-content;
@@ -681,7 +681,7 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
 
-        #editprofil{
+        #editprofil {
             display: flex;
             flex-direction: column;
             gap: 2em;
@@ -691,7 +691,7 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
             margin: 0 auto;
         }
 
-        #editprofil form{
+        #editprofil form {
             width: 100%;
             max-width: 500px;
             display: flex;
@@ -704,12 +704,12 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
             margin: 0 auto;
         }
 
-        #editprofil form input{
+        #editprofil form input {
             outline: none;
             border: 1px solid #162c3bff;
         }
 
-        #editprofil form input[type='submit']{
+        #editprofil form input[type='submit'] {
             border: none;
             background: #162c3bf9;
             padding: 5px;
@@ -721,12 +721,12 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
             transition: all 0.2s;
         }
 
-        #editprofil form input[type='submit']:hover{
+        #editprofil form input[type='submit']:hover {
             border: none;
             background: var(--blue);
         }
 
-        #editprofil form .group{
+        #editprofil form .group {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -734,18 +734,53 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
             padding: 10px;
         }
 
-        #editprofil form .group label{
+        #editprofil form .group label {
             width: fit-content;
             align-self: center;
             font-weight: bold;
             border-top: 1px solid #444;
         }
 
-        #editprofil form .group input{
+        #editprofil form .group input {
             height: 35px;
             padding: 5px;
             border-radius: 5px;
         }
+
+        #searchForm {
+            padding: 10px;
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        #searchForm .inputBox {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            width: 100%;
+            gap: 10px;
+        }
+
+        #searchForm .inputBox input {
+            height: 30px;
+            padding: 5px;
+            outline: none;
+        }
+
+        #searchForm .inputBox button {
+            height: 30px;
+            padding: 5px;
+            text-align: center;
+            border: none;
+            color: #fff;
+            background-color: var(--green);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
         /* responsive */
 
         @media (max-width:991px) {
@@ -797,7 +832,7 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
 <body>
     <div class="container">
         <div class="navigation">
-        <div class="topbar">
+            <div class="topbar">
                 <div class="name">
                     <h4><?php echo $user['fullname']; ?></h4>
                 </div>
