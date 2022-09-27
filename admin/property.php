@@ -44,41 +44,6 @@ if(isset($_POST['search'])){
 }
 
 ?>
-<style>
-#searchForm{
-    padding: 10px;
-    width: 100%;
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.7);
-}
-
-.inputBox{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
-    width: 100%;
-    gap: 10px;
-}
-
-.inputBox input{
-    height: 30px;
-    padding: 5px;
-    outline: none;
-}
-
-.inputBox button{
-    height: 30px;
-    padding: 5px;
-    text-align: center;
-    border: none;
-    color: #fff;
-    background-color: var(--green);
-    border-radius: 5px;
-    font-weight: bold;
-}
-</style>
 <div class="container">
 <h3 style="text-align: center;margin:1em;color:var(--black2)">Toutes les propriétés</h3>
     <a href="./property/add" class="btn">Ajouter une nouvelle propriété</a>

@@ -26,8 +26,8 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-  
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
     <title>Admin</title>
     <style>
@@ -914,34 +914,68 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
         /* ##############################################################*/
 
         #singleUser {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        max-width: 800px;
-        margin: auto;
-    }
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+        }
 
-    .userContentBx
-    {
-        display: flex;
-        flex-direction: column;
-        margin: auto;
-        background: var(--white);
-        padding: 20px;
-        border-radius: 0px 15px;
-        box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.4);
-    }
+        .userContentBx {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 0px 15px;
+            box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.4);
+        }
 
-    .infos {
-        font-weight: bold;
-    }
+        .infos {
+            font-weight: bold;
+        }
 
-    .tableBx{
-        overflow: auto;
-    }
+        .tableBx {
+            overflow: auto;
+        }
+
         /* ## @USER ADMIN ## */
         /* ##############################################################*/
         /* ##############################################################*/
+        #searchForm {
+            padding: 10px;
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        #searchForm .inputBox {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            width: 100%;
+            gap: 10px;
+        }
+
+        #searchForm .inputBox input {
+            height: 30px;
+            padding: 5px;
+            outline: none;
+        }
+
+        #searchForm .inputBox button {
+            height: 30px;
+            padding: 5px;
+            text-align: center;
+            border: none;
+            color: #fff;
+            background-color: var(--green);
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
         /* responsive */
 
         @media (max-width:991px) {
