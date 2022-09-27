@@ -204,7 +204,6 @@ if (isset($_POST['submit'])) {
         </div>
         <input type="submit" value="Enregistrer" name="submit" id="submit">
     </form>
-    <div id="map"></div>
 </div>
 
 <script>
