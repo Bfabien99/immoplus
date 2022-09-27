@@ -404,6 +404,23 @@ if (isset($_GET['property_type'])) {
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
+
+        @media (max-width: 560px){
+        #footernav{
+                    padding: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+                #footernav ul {
+                    margin: 0 auto;
+                    text-align: left;
+                    width: 200px;
+                }
+        }
     </style>
 </head>
 

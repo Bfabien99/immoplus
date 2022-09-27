@@ -160,8 +160,28 @@
             display: flex;
             flex-direction: column;
             padding: 10px;
-            gap: 0.2em;
+            gap: 10px;
             background-color: rgba(232, 229, 229, 0.497);
+        }
+
+        .title{
+            text-align: center;
+            color: #112430;
+        }
+
+        section{
+            border-top: 2px solid rgba(0, 0, 0, 1);
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 0.2em;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.09);
+        }
+
+        section .heading{
+            color: #112430;
         }
 
         footer {
@@ -200,6 +220,23 @@
             text-decoration: underline;
             color: #ccc;
         }
+
+        @media (max-width: 560px){
+        #footernav{
+                    padding: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+                #footernav ul {
+                    margin: 0 auto;
+                    text-align: left;
+                    width: 200px;
+                }
+        }
     </style>
 </head>
 
@@ -224,20 +261,24 @@
     <div class="container">
         <h2 class="title">Qui sommes nous ?</h2>
         <section>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
+            <h3 class="heading">Qu'est ce que Immoplus ?</h3>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, quos? Quaerat rerum voluptate quo necessitatibus earum, provident nisi laboriosam velit quasi odio repellat illum expedita obcaecati reiciendis fugit aliquam. Corrupti?</p>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, quos? Quaerat rerum voluptate quo necessitatibus earum, provident nisi laboriosam velit quasi odio repellat illum expedita obcaecati reiciendis fugit aliquam. Corrupti?</p>
         </section>
-
         <section>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
+            <h3 class="heading">Que fesons nous ?</h3>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, quos? Quaerat rerum voluptate quo necessitatibus earum, provident nisi laboriosam velit quasi odio repellat illum expedita obcaecati reiciendis fugit aliquam. Corrupti?</p>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, quos? Quaerat rerum voluptate quo necessitatibus earum, provident nisi laboriosam velit quasi odio repellat illum expedita obcaecati reiciendis fugit aliquam. Corrupti?</p>
         </section>
-
         <section>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore ullam doloribus eveniet aliquam aspernatur magni, dolorum nostrum cum, eaque a corrupti deserunt nihil et quaerat omnis sequi repellendus sapiente nesciunt!</p>
+            <h3 class="heading">Sommes nous fiable ?</h3>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, quos? Quaerat rerum voluptate quo necessitatibus earum, provident nisi laboriosam velit quasi odio repellat illum expedita obcaecati reiciendis fugit aliquam. Corrupti?</p>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, quos? Quaerat rerum voluptate quo necessitatibus earum, provident nisi laboriosam velit quasi odio repellat illum expedita obcaecati reiciendis fugit aliquam. Corrupti?</p>
+        </section>
+        <section>
+            <h3 class="heading">Quels sont les critères pour mettre en vente ou acheter/louer un bien ?</h3>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, quos? Quaerat rerum voluptate quo necessitatibus earum, provident nisi laboriosam velit quasi odio repellat illum expedita obcaecati reiciendis fugit aliquam. Corrupti?</p>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, quos? Quaerat rerum voluptate quo necessitatibus earum, provident nisi laboriosam velit quasi odio repellat illum expedita obcaecati reiciendis fugit aliquam. Corrupti?</p>
         </section>
     </div>
     <?php include('_includes/footer.php'); ?>

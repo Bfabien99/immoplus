@@ -164,7 +164,15 @@
             background-color: rgba(232, 229, 229, 0.497);
         }
 
-        #contentBx{
+        .title{
+            text-align: center;
+        }
+
+        .text{
+            text-align: justify;
+        }
+
+        .contentBx {
             display: flex;
             flex-direction: column;
             padding: 10px;
@@ -173,18 +181,22 @@
         }
 
         section {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(200px, 50%));
             gap: 0.5em;
             text-align: justify;
             padding: 15px;
-            border-radius: 5px;
+            border: 1px solid lightgrey;
+            border-radius: 5px 20px 4px 11px;
             box-shadow: 5px 7px 2px rgba(0, 0, 0, 0.08);
+            background-color: white;
         }
 
-        section .heading{
+        section .heading {
             text-transform: uppercase;
             color: #162c3bff;
+            text-align: center;
+            margin: 0.3em;
         }
 
         section p {
@@ -194,13 +206,40 @@
         section a {
             color: #f11;
             font-weight: 500;
+            text-decoration: none;
+            text-transform: capitalize;
+            padding: 5px;
+            max-width: 100px;
+            background-color: #112430;
+            color: white;
+            border-radius: 5px;
+            margin: 0.2em;
+            text-align: center;
         }
 
-        .moreBx{
+        .imgBx{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .imgBx img{
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .content{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .moreBx {
             display: none;
         }
 
-        .moreBx.active{
+        .moreBx.active {
+            border-top: 1px solid #081117;
             display: block;
         }
 
@@ -240,6 +279,38 @@
             text-decoration: underline;
             color: #ccc;
         }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            section {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            section .imgBx{
+                order: 1;
+            }
+
+            section .content{
+                order: 2;
+            }
+        }
+
+        @media (max-width: 560px){
+        #footernav{
+                    padding: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+                #footernav ul {
+                    margin: 0 auto;
+                    text-align: left;
+                    width: 200px;
+                }
+        }
     </style>
 </head>
 
@@ -263,56 +334,86 @@
     </header>
     <div class="container">
         <h1 class="title">Nos services</h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum praesentium nostrum veniam provident molestiae incidunt, possimus magnam. Amet, totam, doloremque eos magni deleniti nemo deserunt est, molestias ducimus nihil quibusdam recusandae perspiciatis! Id molestias nulla error praesentium eum iste numquam ad ullam, unde aspernatur adipisci! Excepturi consectetur quasi esse officia.
+        <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum praesentium nostrum veniam provident molestiae incidunt, possimus magnam. Amet, totam, doloremque eos magni deleniti nemo deserunt est, molestias ducimus nihil quibusdam recusandae perspiciatis! Id molestias nulla error praesentium eum iste numquam ad ullam, unde aspernatur adipisci! Excepturi consectetur quasi esse officia.
         </p>
         <div class="contentBx">
-        <section>
-            <h3 class="heading">Vente de bien</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima consequatur similique veritatis quasi adipisci modi repellendus aperiam mollitia pariatur nesciunt est maxime, porro et molestias vero beatae quam provident excepturi!</p>
-            <a href="" class="show">voir</a>
-            <div class="moreBx">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
-            </div>
-        </section>
-        <section>
-            <h3 class="heading">Gestion de bien</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, quaerat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae eveniet laborum sint consequatur, architecto corrupti tempora dolores iste dolor voluptatem!</p>
-            <p>Lorem ipsum dolor sit amet.</p>
-            <a href="" class="show">voir</a>
-            <div class="moreBx">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
-            </div>
-        </section>
-        <section>
-            <h3 class="heading">Construction de bien</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt dolor provident magni, laudantium earum facilis. Aliquid molestiae quis accusantium! Corrupti ab repellat veritatis sint ipsam doloremque eligendi magnam ad impedit!</p>
-            <br>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum itaque corrupti veniam a soluta, amet necessitatibus expedita dolorem placeat officiis?</p>
-            <a href="" class="show">voir</a>
-            <div class="moreBx">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
-            </div>
-        </section>
-        <section>
-            <h3 class="heading">Promotion de bien</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At error eos dicta perspiciatis amet voluptate ab incidunt rem tenetur labore, molestias enim, eius ea quasi excepturi magnam, iste perferendis vel!</p>
-            <a href="" class="show">voir</a>
-            <div class="moreBx">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
-            </div>
-        </section>
+            <section>
+                <div class="imgBx">
+                    <img src="assets/img/rent_64px.png" alt="image">
+                </div>
+                <div class="content">
+                    <h3 class="heading">Vente de bien</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima consequatur similique veritatis quasi adipisci modi repellendus aperiam mollitia pariatur nesciunt est maxime, porro et molestias vero beatae quam provident excepturi!</p>
+                    <a href="" class="show">voir</a>
+                    <div class="moreBx">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="content">
+                    <h3 class="heading">Gestion de bien</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, quaerat.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae eveniet laborum sint consequatur, architecto corrupti tempora dolores iste dolor voluptatem!</p>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <a href="" class="show">voir</a>
+                    <div class="moreBx">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
+                    </div>
+                </div>
+                <div class="imgBx">
+                    <img src="assets/img/rent_64px.png" alt="image">
+                </div>
+            </section>
+            <section>
+                <div class="imgBx">
+                    <img src="assets/img/rent_64px.png" alt="image">
+                </div>
+                <div class="content">
+                    <h3 class="heading">Construction de bien</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt dolor provident magni, laudantium earum facilis. Aliquid molestiae quis accusantium! Corrupti ab repellat veritatis sint ipsam doloremque eligendi magnam ad impedit!</p>
+                    <br>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum itaque corrupti veniam a soluta, amet necessitatibus expedita dolorem placeat officiis?</p>
+                    <a href="" class="show">voir</a>
+                    <div class="moreBx">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="content">
+                    <h3 class="heading">Promotion de bien</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At error eos dicta perspiciatis amet voluptate ab incidunt rem tenetur labore, molestias enim, eius ea quasi excepturi magnam, iste perferendis vel!</p>
+                    <a href="" class="show">voir</a>
+                    <div class="moreBx">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
+                    </div>
+                </div>
+                <div class="imgBx">
+                    <img src="assets/img/rent_64px.png" alt="image">
+                </div>
+            </section>
         </div>
-        
+
     </div>
+    <script>
+        setInterval(function() {
+            window.location.reload()
+        }, 2000)
+    </script>
 
     <script>
         let moreBx = document.querySelectorAll('.show');
-    moreBx.forEach((item)=>{
-        item.addEventListener('click',function(e){
-            e.preventDefault()
-            this.parentElement.lastElementChild.classList.toggle('active')
+        moreBx.forEach((item) => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault()
+                this.parentElement.lastElementChild.classList.toggle('active')
+                if (this.textContent == "voir") {
+                    this.textContent = "cacher"
+                } else {
+                    this.textContent = "voir"
+                }
+            })
         })
-    })
     </script>
     <?php include('_includes/footer.php'); ?>

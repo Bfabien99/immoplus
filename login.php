@@ -63,6 +63,8 @@ if (isset($_POST['login'])) {
             display: flex;
             flex-direction: column;
             gap: 1em;
+            background-color: rgba(232, 229, 229, 0.497);
+            min-height: 90vh;
         }
 
         .heading {
@@ -166,6 +168,43 @@ if (isset($_POST['login'])) {
             background-color: #fc8d59;
         }
 
+        footer {
+            position: relative;
+            padding: 20px 10px;
+            background-color: #162c3bf9;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.3em;
+        }
+
+        #footernav{
+            width: 100%;
+            padding: 5px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #footernav ul{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+
+        #footernav ul li a{
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #footernav ul li a:hover{
+            text-decoration: underline;
+            color: #ccc;
+        }
+
         .error {
             background-color: #f22;
             margin: auto 1.2em;
@@ -181,7 +220,7 @@ if (isset($_POST['login'])) {
         }
         .back{
             background-color: #444;
-            margin: 2em 1.2em;
+            margin: 0.2em;
             padding: 5px;
             border-radius: 5px;
             text-align: center;
@@ -192,6 +231,7 @@ if (isset($_POST['login'])) {
             text-align: justify;
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
         }
 
         /* responsive */
@@ -212,6 +252,23 @@ if (isset($_POST['login'])) {
             #postForm .group .error {
                 text-align: center;
             }
+        }
+
+        @media (max-width: 560px){
+        #footernav{
+                    padding: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+                #footernav ul {
+                    margin: 0 auto;
+                    text-align: left;
+                    width: 200px;
+                }
         }
     </style>
 </head>
@@ -234,11 +291,11 @@ if (isset($_POST['login'])) {
                     <?php echo $errors['password'] ?? ""?>
                 </div>
                 <input type="submit" value="Se connecter" name="login" id="submit">
+                <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/property"?>" class="back">Retour</a>
             </form>
-            <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/property"?>" class="back">Retour</a>
         </div>
     </div>
-</body>
+
 <script>
     var pass = document.querySelector('#password');
     pass.addEventListener('dblclick', function(){
@@ -249,4 +306,4 @@ if (isset($_POST['login'])) {
         }
     })
 </script>
-</html>
+<?php include('_includes/footer.php'); ?>

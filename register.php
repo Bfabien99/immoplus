@@ -126,12 +126,14 @@ if (isset($_POST['inscrire'])) {
         }
 
         .container {
+            min-height: 90vh;
             position: relative;
             width: 100%;
             padding: 0 20px;
             display: flex;
             flex-direction: column;
             gap: 1em;
+            background-color: rgba(232, 229, 229, 0.497);
         }
 
         .heading {
@@ -264,7 +266,7 @@ if (isset($_POST['inscrire'])) {
         }
         .back{
             background-color: #444;
-            margin: 2em 1.2em;
+            margin: 0.2em;
             padding: 5px;
             border-radius: 5px;
             text-align: center;
@@ -275,6 +277,44 @@ if (isset($_POST['inscrire'])) {
             text-align: justify;
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+        }
+
+        footer {
+            position: relative;
+            padding: 20px 10px;
+            background-color: #162c3bf9;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.3em;
+        }
+
+        #footernav{
+            width: 100%;
+            padding: 5px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #footernav ul{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+
+        #footernav ul li a{
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #footernav ul li a:hover{
+            text-decoration: underline;
+            color: #ccc;
         }
         /* responsive */
         @media (max-width: 650px) {
@@ -294,7 +334,28 @@ if (isset($_POST['inscrire'])) {
             #postForm .group .error {
                 text-align: center;
             }
+
+            
         }
+
+        @media (max-width: 560px){
+        #footernav{
+                    padding: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+                #footernav ul {
+                    margin: 0 auto;
+                    text-align: left;
+                    width: 200px;
+                }
+        }
+
+        
     </style>
 </head>
 
@@ -382,11 +443,10 @@ if (isset($_POST['inscrire'])) {
                     <?php echo $error['cpassword'] ?? "" ?>
                 </div>
                 <input type="submit" value="S'inscrire" name="inscrire" id="submit">
+                <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/property"?>" class="back">Retour</a>
             </form>
-            <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/property"?>" class="back">Retour</a>
         </div>
     </div>
-</body>
 <script>
     var pass = document.querySelector('#password');
     pass.addEventListener('dblclick', function(){
@@ -397,4 +457,4 @@ if (isset($_POST['inscrire'])) {
         }
     })
 </script>
-</html>
+<?php include('_includes/footer.php'); ?>

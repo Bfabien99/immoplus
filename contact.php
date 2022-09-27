@@ -211,6 +211,32 @@ if (isset($_POST['submit'])) {
             background-color: rgba(232, 229, 229, 0.497);
         }
 
+        .title{
+            text-align: center;
+        }
+
+        .infotext{
+            text-align: justify;
+        }
+
+        #groupBx{
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(30%,1fr));
+            padding: 10px;
+            gap: 20px;
+        }
+
+        #groupBx .group{
+            margin: 0 auto;
+            text-align: center;
+            padding: 5px;
+            background-color: #fff;
+            width: 100%;
+            border-radius: 5px;
+            border-top: 2px solid #112430;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.07);
+        }
+
         footer {
             position: relative;
             padding: 20px 10px;
@@ -247,6 +273,26 @@ if (isset($_POST['submit'])) {
             text-decoration: underline;
             color: #ccc;
         }
+
+        @media (max-width: 560px) {
+            #groupBx{
+            grid-template-columns: repeat(1,1fr);
+        }
+            #footernav {
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
+
+            #footernav ul {
+                margin: 0 auto;
+                text-align: left;
+                width: 200px;
+            }
+        }
     </style>
 </head>
 
@@ -270,10 +316,23 @@ if (isset($_POST['submit'])) {
     </header>
     <div class="container">
         <h2 class="title">Contact</h2>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, omnis officiis architecto quisquam dolor reprehenderit et labore aut dolorum quibusdam molestiae fugit, consequuntur incidunt ut sed, adipisci tempore quo facere commodi reiciendis eum ipsum tenetur. Impedit voluptate illo ad recusandae.</p>
+        <p class="infotext">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, omnis officiis architecto quisquam dolor reprehenderit et labore aut dolorum quibusdam molestiae fugit, consequuntur incidunt ut sed, adipisci tempore quo facere commodi reiciendis eum ipsum tenetur. Impedit voluptate illo ad recusandae.</p>
         <hr>
-        <section>
-            <p>Adresse et contact et email</p>
+        <section id="groupBx">
+            <div class="group">
+                <h3><i>icon</i> Adresse</h3>
+                <p>08 BP ABIDJAN 04</p>
+            </div>
+            <div class="group">
+                <h3><i>icon</i> Contact</h3>
+                <p>00225 0504774183</p>
+                <p>00225 0153148864</p>
+            </div>
+            <div class="group">
+                <h3><i>icon</i> Email</h3>
+                <p>fabienbrou99@gmail.com</p>
+                <p>mytestomailer@gmail.com</p>
+            </div>
         </section>
         <section class="about">
             <?php if ($error) : ?>
@@ -281,7 +340,7 @@ if (isset($_POST['submit'])) {
                     alert("<?php echo $error; ?>");
                     location.href = "#Contactform"
                 </script>
-            <?php elseif($success) : ?>
+            <?php elseif ($success) : ?>
                 <script>
                     alert("Message Envoyé");
                     location.href = "#Contactform"
@@ -292,7 +351,7 @@ if (isset($_POST['submit'])) {
                     <p id="Contactform"></p>
                     <?php if ($error) : ?>
                         <p class="error"><?php echo $error; ?></p>
-                    <?php elseif($success) : ?>
+                    <?php elseif ($success) : ?>
                         <p class="success">Message envoyé</p>
                     <?php endif; ?>
                     <div class="inputBx">
