@@ -78,6 +78,20 @@
             font-size: 2rem;
             color: #162c3bff;
         }
+        .back{
+            background-color: #444;
+            margin: 2em 1.2em;
+            padding: 5px;
+            border-radius: 5px;
+            text-align: center;
+            height: fit-content;
+            width: fit-content;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: justify;
+            font-weight: bold;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
