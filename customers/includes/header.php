@@ -873,14 +873,6 @@ if (!empty($_SESSION['immoplus_userPseudo'])) {
                         <span class="title">Poster un bien</span>
                     </a>
                 </li>
-                <li>
-                    <a href="/immoplus/customers//maps">
-                        <span class="icon">
-                            <ion-icon name="send"></ion-icon>
-                        </span>
-                        <span class="title">Messages</span>
-                    </a>
-                </li>
 
                 <li>
                     <a href="/immoplus/customers/profil">

@@ -6,14 +6,14 @@ $all_properties = $properties->getAll_properties($user['id']);
 
 $active_properties = $inactive_properties = [];
 
-if($all_properties){
+if ($all_properties) {
     foreach ($all_properties as $property) {
-    if($property['etat'] == 1){
-        $active_properties[] = $property; 
-    }else{
-        $inactive_properties[] = $property; 
+        if ($property['etat'] == 1) {
+            $active_properties[] = $property;
+        } else {
+            $inactive_properties[] = $property;
+        }
     }
-}
 }
 
 ?>
