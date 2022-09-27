@@ -47,15 +47,6 @@ if($all_properties){
             <ion-icon name="send"></ion-icon>
         </div>
     </div>
-    <div class="card">
-        <div>
-            <div class="numbers">1000</div>
-            <div class="cardName">Messages</div>
-        </div>
-        <div class="iconBx">
-            <ion-icon name="globe"></ion-icon>
-        </div>
-    </div>
 </div>
 
 <div class="details">
