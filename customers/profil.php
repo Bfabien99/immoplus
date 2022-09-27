@@ -63,8 +63,6 @@ if (isset($_POST['editinfo'])) {
         if ($users->updateUsers($user['id'], $fullname, $contact, $email, $pseudo)) {
             $_SESSION['immoplus_userPseudo'] = $pseudo;
             $error['editinfo'] = "<p class='success'>Informations modifiées</p>";
-        } else {
-            $error['editinfo'] = "<p class='error'>Une erreur c'est produite... veuillez reéssayer plus tard</p>";
         }
     }
 }
@@ -90,8 +88,6 @@ if (isset($_POST['editpass'])) {
         $password = md5($password);
         if ($users->updateUsersPass($user['id'], $password)) {
             $error['editpass'] = "<p class='success'>Mot de passe modifié</p>";
-        } else {
-            $error['editpass'] = "<p class='error'>Une erreur c'est produite... veuillez reéssayer plus tard</p>";
         }
     }
 }
