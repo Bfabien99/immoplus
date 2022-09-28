@@ -54,7 +54,7 @@ class Property
     public function setID($id)
     {
         if (($id !== null) && (!is_numeric($id) || $id <= 0 || $id > 9223372036854775807 || $this->_id !== null)) {
-            throw new PropertyException("Property ID error");
+            throw new PropertyException("Erreur sur l'ID");
         }
         $this->_id = $id;
     }
@@ -65,8 +65,8 @@ class Property
 
     public function setTitle($title)
     {
-        if (strlen(trim($title)) <= 0 || strlen(trim($title)) > 255) {
-            throw new PropertyException("Property Title error");
+        if (strlen(trim($title)) <= 5 || strlen(trim($title)) > 255) {
+            throw new PropertyException("Erreur sur le titre, le titre doit être compris entre 5 et 255 caractères");
         }
 
         $this->_title = $title;
@@ -79,7 +79,7 @@ class Property
     public function setDescription($description)
     {
         if (($description !== null)  && (strlen($description) < 10)) {
-            throw new PropertyException("Property Description error");
+            throw new PropertyException("Erreur sur la description, la description doit contenir au moins 10 caractères");
         }
 
         $this->_description = $description;
@@ -92,7 +92,7 @@ class Property
     public function setType($type)
     {
         if (strtolower($type) !== 'location' && strtolower($type) !== 'vendre') {
-            throw new PropertyException("property type must be 'location' or 'vendre'");
+            throw new PropertyException("Le type de la propriété doit être 'location' ou 'vendre'");
         }
 
         $this->_type = $type;
@@ -105,7 +105,7 @@ class Property
     public function setAddress($address)
     {
         if (($address !== null)  && (strlen($address) < 3)) {
-            throw new PropertyException("Property Address error");
+            throw new PropertyException("Erreur sur l'adresse");
         }
 
         $this->_address = $address;
@@ -118,7 +118,7 @@ class Property
     public function setArea($area)
     {
         if (($area !== null) && $area < 50) {
-            throw new PropertyException("Property Area error");
+            throw new PropertyException("Erreur sur la superficie");
         }
         $this->_area = $area;
     }
@@ -129,8 +129,8 @@ class Property
 
     public function setPrice($price)
     {
-        if (($price !== null) && $price <= 100) {
-            throw new PropertyException("Property Price error");
+        if (($price !== null) && $price < 5000) {
+            throw new PropertyException("Erreur sur le prix, le prix doit être au moins 5000");
         }
         $this->_price = $price;
     }
@@ -142,7 +142,7 @@ class Property
     public function setShower($shower)
     {
         if (($shower !== null) && $shower <= 0) {
-            throw new PropertyException("Property shower error");
+            throw new PropertyException("Erreur sur le nombre de douche");
         }
         $this->_shower = $shower;
     }
@@ -154,7 +154,7 @@ class Property
     public function setBedroom($bedroom)
     {
         if (($bedroom !== null) && $bedroom <= 0) {
-            throw new PropertyException("Property bedroom error");
+            throw new PropertyException("Erreur sur le nombre de chambre");
         }
         $this->_bedroom = $bedroom;
     }
@@ -175,7 +175,7 @@ class Property
     public function setPostDate($post_date)
     {
         if (($post_date !== null) && date_format(date_create_from_format('Y-m-d H:i:s', $post_date), 'Y-m-d H:i:s') != $post_date) {
-            throw new PropertyException("Property post_date date time error");
+            throw new PropertyException("Erreur sur le format de la date, le format doit être 'Y-m-d H:i:s'");
         } elseif ($post_date == null) {
             $post_date = date('Y-m-d H:i:s');
         }
@@ -190,7 +190,7 @@ class Property
     public function setEtat($etat)
     {
         if (($etat !== null) && $etat !== 0 && $etat !== 1) {
-            throw new PropertyException("property etat must be 0  or 1");
+            throw new PropertyException("L'état doit être 0 ou 1");
         } elseif ($etat == null) {
             $etat = 0;
         }
