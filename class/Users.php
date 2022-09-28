@@ -15,6 +15,9 @@ class Users
         return self::$DBConnection;
     }
 
+    /**
+     * Obtenir tous les utilisateurs enregistrés
+     */
     public function getAll_users()
     {
         try {
@@ -37,11 +40,14 @@ class Users
         }
     }
 
+    /**
+     * Obtenir tous les utilisateurs recent
+     */
     public function getRecent_users()
     {
         try {
             $connectDB = self::connectDB();
-            $sql = 'select * from users order by insert_date DESC limit 10';
+            $sql = 'select * from users order by insert_date DESC limit 4';
             $query = $connectDB->prepare($sql);
             $query->execute();
             $datas = [];
@@ -59,13 +65,16 @@ class Users
         }
     }
 
-    public function getUserById($id)
+    /**
+     * Obtenir les utilisateurs par l'ID
+     */
+    public function getUserById($user_id)
     {
         try {
             $connectDB = self::connectDB();
             $sql = 'select * from users where id = :id';
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':id', $id, PDO::PARAM_INT);
+            $query->bindValue(':id', $user_id, PDO::PARAM_INT);
             $query->execute();
             $datas = [];
 
@@ -82,6 +91,9 @@ class Users
         }
     }
 
+    /**
+     * Obtenir les utilisateurs par le Pseudo
+     */
     public function getUserByPseudo($pseudo)
     {
         try {
@@ -105,6 +117,9 @@ class Users
         }
     }
 
+    /**
+     * Obtenir l'admin par son pseudo
+     */
     public function getAdminByPseudo($pseudo)
     {
         try {
@@ -128,6 +143,9 @@ class Users
         }
     }
 
+    /**
+     * Vérifie que le Pseudo n'est pas déja dans la base de donnée
+     */
     public function isPseudo($pseudo)
     {
         try {
@@ -151,6 +169,9 @@ class Users
         }
     }
 
+    /**
+     * Vérifie que l'Email n'est pas déja dans la base de donnée
+     */
     public function isEmail($email)
     {
         try {
@@ -174,6 +195,9 @@ class Users
         }
     }
 
+    /**
+     * Connection de l'utilisateur
+     */
     public function usersLogin($identifiant, $password)
     {
         try {
@@ -197,6 +221,9 @@ class Users
         }
     }
 
+    /**
+     * Connection de l'administrateur
+     */
     public function adminLogin($identifiant, $password)
     {
         try {
@@ -221,6 +248,9 @@ class Users
         }
     }
 
+    /**
+     * Insertion de l'utilisateur
+     */
     public function insertUsers($fullname, $gender, $birth, $description, $contact, $email, $pseudo, $password)
     {
         try {
@@ -249,13 +279,16 @@ class Users
         }
     }
 
-    public function updateUsers($id, $fullname, $contact, $email, $pseudo)
+    /**
+     * Modification des informations de l'utilisateur
+     */
+    public function updateUsers($user_id, $fullname, $contact, $email, $pseudo)
     {
         try {
             $connectDB = self::connectDB();
             $sql = "update users set fullname = :fullname, contact = :contact, email = :email, pseudo = :pseudo where id = :id";
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':id', $id, PDO::PARAM_INT);
+            $query->bindValue(':id', $user_id, PDO::PARAM_INT);
             $query->bindValue(':fullname', $fullname, PDO::PARAM_STR);
             $query->bindValue(':contact', $contact, PDO::PARAM_STR);
             $query->bindValue(':email', $email, PDO::PARAM_STR);
@@ -274,13 +307,16 @@ class Users
         }
     }
 
-    public function updateUsersPass($id, $password)
+    /**
+     * Modification du mot de passe de l'utilisateur
+     */
+    public function updateUsersPass($user_id, $password)
     {
         try {
             $connectDB = self::connectDB();
             $sql = "update users set password = :password where id = :id";
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':id', $id, PDO::PARAM_INT);
+            $query->bindValue(':id', $user_id, PDO::PARAM_INT);
             $query->bindValue(':password', $password, PDO::PARAM_STR);
             $query->execute();
 
@@ -296,6 +332,9 @@ class Users
         }
     }
 
+    /**
+     * Suppression de l'utilisateur
+     */
     public function deleteUser($user_id)
     {
         try {
@@ -317,6 +356,9 @@ class Users
         }
     }
 
+    /**
+     * Modification des informations de l'admin
+     */
     public function updateAdmin($fullname, $pseudo)
     {
         try {
@@ -339,6 +381,9 @@ class Users
         }
     }
 
+    /**
+     * Modification du mot de passe de l'admin
+     */
     public function updateAdminPass($password)
     {
         try {
@@ -360,6 +405,9 @@ class Users
         }
     }
 
+    /**
+     * Insertion des messages
+     */
     public function insertMessages($fullname, $contact, $email, $message)
     {
         try {
@@ -384,6 +432,9 @@ class Users
         }
     }
 
+    /**
+     * Obtenir tous les messages
+     */
     public function getAll_messages()
     {
         try {
@@ -406,13 +457,16 @@ class Users
         }
     }
 
-    public function getMessage($id)
+    /**
+     * Obtenir les messages par l'ID
+     */
+    public function getMessage($message_id)
     {
         try {
             $connectDB = self::connectDB();
             $sql = 'select * from messages where id = :id';
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':id', $id, PDO::PARAM_INT);
+            $query->bindValue(':id', $message_id, PDO::PARAM_INT);
             $query->execute();
             $datas = [];
 
@@ -429,6 +483,9 @@ class Users
         }
     }
 
+    /**
+     * Suppression des messages
+     */
     public function deleteMessage($message_id)
     {
         try {
@@ -450,6 +507,9 @@ class Users
         }
     }
 
+    /**
+     * Modifier l'etat des messages
+     */
     public function viewMessage($message_id)
     {
         try {

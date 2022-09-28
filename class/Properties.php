@@ -15,12 +15,15 @@ class Properties
         return self::$DBConnection;
     }
 
-    public function getAll_properties($id = null)
+    /**
+     * Obtenir toutes les propriétés
+     */
+    public function getAll_properties($user_id = null)
     {
         try {
             $connectDB = self::connectDB();
-            if (is_numeric($id) && $id > 0) {
-                $sql = "select * from property where _userId = $id order by post_date DESC";
+            if (is_numeric($user_id) && $user_id > 0) {
+                $sql = "select * from property where _userId = $user_id order by post_date DESC";
             } else {
                 $sql = 'select * from property order by post_date DESC';
             }
@@ -42,12 +45,15 @@ class Properties
         }
     }
 
-    public function getPropertiesById($id)
+    /**
+     * Obtenir les propriétés par l'ID
+     */
+    public function getPropertiesById($property_id)
     {
         try {
             $connectDB = self::connectDB();
 
-            $sql = "select * from property where id = $id";
+            $sql = "select * from property where id = $property_id";
 
 
             $query = $connectDB->prepare($sql);
@@ -67,12 +73,15 @@ class Properties
         }
     }
 
-    public function getRecent_properties($id = null)
+    /**
+     * Obtenir les propriétés recentes
+     */
+    public function getRecent_properties($user_id = null)
     {
         try {
             $connectDB = self::connectDB();
-            if (is_numeric($id) && $id > 0) {
-                $sql = "select * from property where _userId = $id order by post_date DESC limit 10";
+            if (is_numeric($user_id) && $user_id > 0) {
+                $sql = "select * from property where _userId = $user_id order by post_date DESC limit 10";
             } else {
                 $sql = "select * from property order by post_date DESC limit 10";
             }
@@ -93,6 +102,9 @@ class Properties
         }
     }
 
+    /**
+     * Obtenir les propriétés recentes sur la page d'acceuil classé par la date
+     */
     public function getRecent_properties_home()
     {
         try {
@@ -115,6 +127,9 @@ class Properties
         }
     }
 
+    /**
+     * Obtenir les propriétés classées par le nombre de vue
+     */
     public function getMostView_properties()
     {
         try {
@@ -137,6 +152,9 @@ class Properties
         }
     }
 
+    /**
+     * Incrementer le nombre de vue de la propriété
+     */
     public function incrementView($property_id)
     {
         try {
@@ -158,6 +176,9 @@ class Properties
         }
     }
 
+    /**
+     * Publier une propriété
+     */
     public function publishProperties($property_id)
     {
         try {
@@ -179,7 +200,9 @@ class Properties
         }
     }
 
-
+    /**
+     * Rechercher une propriété
+     */
     public function getSearched_properties($sql)
     {
         try {
@@ -201,6 +224,9 @@ class Properties
         }
     }
 
+    /**
+     * Modifier les informations d'une propriété
+     */
     public function updateProperties($property_id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture)
     {
         try {
@@ -231,6 +257,9 @@ class Properties
         }
     }
 
+    /**
+     * Supprimer une propriété
+     */
     public function deleteProperties($property_id)
     {
         try {
