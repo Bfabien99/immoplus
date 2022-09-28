@@ -1,12 +1,13 @@
 <?php
 
+// Echaper les données saisies
 function escape($data)
 {
     $data = strip_tags(trim($data));
     return $data;
 }
 
-
+// Appel à l'api de Imgur
 function callApiImgur($postFields)
 {
     // Client ID of Imgur App
@@ -24,7 +25,7 @@ function callApiImgur($postFields)
     return $response;
 }
 
-
+// Recevoir les données de mon API
 function GetDataFromMyApi($url)
 {
     $curl = curl_init();
@@ -45,7 +46,7 @@ function GetDataFromMyApi($url)
     return $response;
 }
 
-
+// Posté des données vers mon API
 function PostToMyApi($data, $url)
 {
     $curl = curl_init();
@@ -70,6 +71,7 @@ function PostToMyApi($data, $url)
     return $response;
 }
 
+// fonction pour obtenir la different entre deux date
 function datediff($date)
 {
     date_default_timezone_set('UTC');
