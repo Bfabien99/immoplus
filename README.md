@@ -70,11 +70,11 @@ Expor database immoplus.sql
 <br>
 <h4>
 {
-  title, description, type = 'location' ou 'vendre', address, area, price, shower, bedroom
+  *title, *description, *type = 'location' ou 'vendre', *address, *area, *price, *shower, *bedroom, picture
 }
 </h4>
 <br>
-<i>Tous ces champs sont requis</i>
+<i>Tous ces champs(*) sont requis</i>
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
