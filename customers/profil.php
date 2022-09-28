@@ -93,45 +93,45 @@ if (isset($_POST['editpass'])) {
 }
 ?>
 <div class="container">
-<section id="editprofil">
-    <form action="" method="post">
-        <?php echo $error['editinfo'] ?? "" ?>
-        <div class="group">
-            <label for="fullname">Nom & Prénoms</label>
-            <input type="text" name="fullname" value="<?php echo $fullname ?? '' ?>">
-            <?php echo $error['fullname'] ?? "" ?>
-        </div>
-        <div class="group">
-            <label for="email">Adresse E-mail</label>
-            <input type="text" name="email" value="<?php echo $email ?? '' ?>">
-            <?php echo $error['email'] ?? "" ?>
-        </div>
-        <div class="group">
-            <label for="contact">Contact</label>
-            <input type="tel" name="contact" value="<?php echo $contact ?? '' ?>">
-            <?php echo $error['contact'] ?? "" ?>
-        </div>
-        <div class="group">
-            <label for="pseudo">Pseudo</label>
-            <input type="text" name="pseudo" value="<?php echo $pseudo ?? '' ?>">
-            <?php echo $error['pseudo'] ?? "" ?>
-        </div>
-        <input type="submit" value="modifier" name="editinfo">
-    </form>
-    <form action="" method="post">
-        <?php echo $error['editpass'] ?? "" ?>
-        <div class="group">
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" value="<?php echo $_POST['password'] ?? ''?>" >
-            <?php echo $error['password'] ?? "" ?>
-        </div>
-        <div class="group">
-            <label for="cpassword">Confirmer le Mot de passe</label>
-            <input type="password" name="cpassword" value="<?php echo $_POST['cpassword'] ?? ''?>">
-            <?php echo $error['cpassword'] ?? "" ?>
-        </div>
-        <input type="submit" value="modifier mot de passe" name="editpass">
-    </form>
-</section>
+    <section id="editprofil">
+        <form action="" method="post">
+            <?php echo $error['editinfo'] ?? "" ?>
+            <div class="group">
+                <label for="fullname">Nom & Prénoms</label>
+                <input type="text" name="fullname" value="<?php echo $fullname ?? '' ?>">
+                <?php echo $error['fullname'] ?? "" ?>
+            </div>
+            <div class="group">
+                <label for="email">Adresse E-mail</label>
+                <input type="text" name="email" value="<?php echo $email ?? '' ?>">
+                <?php echo $error['email'] ?? "" ?>
+            </div>
+            <div class="group">
+                <label for="contact">Contact</label>
+                <input type="tel" name="contact" value="<?php echo $contact ?? '' ?>">
+                <?php echo $error['contact'] ?? "" ?>
+            </div>
+            <div class="group">
+                <label for="pseudo">Pseudo</label>
+                <input type="text" name="pseudo" value="<?php echo $pseudo ?? '' ?>">
+                <?php echo $error['pseudo'] ?? "" ?>
+            </div>
+            <input type="submit" value="modifier" name="editinfo">
+        </form>
+        <form action="" method="post">
+            <?php echo $error['editpass'] ?? "" ?>
+            <div class="group">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password" value="<?php echo $_POST['password'] ?? '' ?>">
+                <?php echo $error['password'] ?? "" ?>
+            </div>
+            <div class="group">
+                <label for="cpassword">Confirmer le Mot de passe</label>
+                <input type="password" name="cpassword" value="<?php echo $_POST['cpassword'] ?? '' ?>">
+                <?php echo $error['cpassword'] ?? "" ?>
+            </div>
+            <input type="submit" value="modifier mot de passe" name="editpass">
+        </form>
+    </section>
 </div>
 <?php include('includes/footer.php'); ?>

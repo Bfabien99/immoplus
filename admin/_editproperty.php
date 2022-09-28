@@ -135,17 +135,17 @@ if (isset($_POST['edit'])) {
             }
         } else {
             $errors['image'] = "<p class='error'>Désolé, seule les images png, jpeg, jpg sont acceptées</p>";
-        }}
-        
-
-        if ((!$errors) && !empty($title) && !empty($description) && !empty($type) && !empty($address) && !empty($area) && !empty($price) && !empty($shower) && !empty($bedroom)) {
-            
-            $_properties = new Properties();
-            if ($_properties->updateProperties($id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture)) {
-                $error = "<p class='success'>Informations modifiées</p>";
-            }
         }
-    
+    }
+
+
+    if ((!$errors) && !empty($title) && !empty($description) && !empty($type) && !empty($address) && !empty($area) && !empty($price) && !empty($shower) && !empty($bedroom)) {
+
+        $_properties = new Properties();
+        if ($_properties->updateProperties($id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture)) {
+            $error = "<p class='success'>Informations modifiées</p>";
+        }
+    }
 }
 
 ?>

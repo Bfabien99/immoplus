@@ -35,15 +35,15 @@ if (isset($_GET['property_id'])) {
     }
 }
 
-if(isset($_POST['publish'])){
-    if($_POST['property_id'] == $_GET['property_id']){
+if (isset($_POST['publish'])) {
+    if ($_POST['property_id'] == $_GET['property_id']) {
 
-        $properties =new Properties();
-        if($properties->publishProperties($_POST['property_id'])){?>
-        <script>
-            alert('Publication effectuée')
-            window.location.href = ''
-        </script>
+        $properties = new Properties();
+        if ($properties->publishProperties($_POST['property_id'])) { ?>
+            <script>
+                alert('Publication effectuée')
+                window.location.href = ''
+            </script>
 <?php
         }
     }
@@ -67,34 +67,36 @@ if(isset($_POST['publish'])){
                     </div>
                     <div class="contentBx">
                         <div class="details">
-                            <p><?php echo $property['shower']?> douche(s)</p>
-                            <p><?php echo $property['bedroom']?> chambre(s)</p>
-                            <p><?php echo $property['area']?> m2</p>
+                            <p><?php echo $property['shower'] ?> douche(s)</p>
+                            <p><?php echo $property['bedroom'] ?> chambre(s)</p>
+                            <p><?php echo $property['area'] ?> m2</p>
                         </div>
                         <div class="value">
-                            <?php echo $property['type'] == 'location' ? "<p>A Louer</p>" : "<p>En vente</p>"?>
-                            <p><?php echo number_format($property['price'],0,',','.')?> Fcfa</p>
-                            <?php echo ($property['etat'] == 0) ? "<span class='status attente'>En attente</span>" : "<span class='status confirmer'>Confirmer</span>"?>
+                            <?php echo $property['type'] == 'location' ? "<p>A Louer</p>" : "<p>En vente</p>" ?>
+                            <p><?php echo number_format($property['price'], 0, ',', '.') ?> Fcfa</p>
+                            <?php echo ($property['etat'] == 0) ? "<span class='status attente'>En attente</span>" : "<span class='status confirmer'>Confirmer</span>" ?>
                         </div>
                         <div class="informations">
-                            <h3 class="title"><?php echo $property['title']?></h3>
+                            <h3 class="title"><?php echo $property['title'] ?></h3>
                             <p class="description">
-                            <?php echo nl2br($property['description'])?>
+                                <?php echo nl2br($property['description']) ?>
                             </p>
                         </div>
                         <div class="actions">
-                            <a href="./../../property/edit/<?php echo $property['id']?>" class="edit">Modifier</a>
-                            <i onclick="del(<?php echo $property['id']?>)" class='del'>Supprimer</i>
+                            <a href="./../../property/edit/<?php echo $property['id'] ?>" class="edit">Modifier</a>
+                            <i onclick="del(<?php echo $property['id'] ?>)" class='del'>Supprimer</i>
                         </div>
                     </div>
                 </div>
-            
 
-            <div id="map">
-            <p><ion-icon name="alert-circle"></ion-icon></p>
-                <h3>Impossible de charger la map</h3>
+
+                <div id="map">
+                    <p>
+                        <ion-icon name="alert-circle"></ion-icon>
+                    </p>
+                    <h3>Impossible de charger la map</h3>
+                </div>
             </div>
-        </div>
         <?php else : ?>
             <h4>Aucune propriété pour l'instant</h4>
         <?php endif; ?>

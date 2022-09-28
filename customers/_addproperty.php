@@ -3,15 +3,14 @@
 $message = false;
 $errors = false;
 if (isset($_POST['submit'])) {
-    
+
     if (empty(escape($_POST['title']))) {
         $errors['title'] = "<p class='error'>Le titre est obligatoire</p>";
     } elseif (strlen($_POST['title']) < 6) {
         $errors['title'] = "<p class='error'>Le titre doit comporter au moins 6 caractères</p>";
-    }elseif (!ctype_alpha(str_replace(' ','',$_POST['title']))){
+    } elseif (!ctype_alpha(str_replace(' ', '', $_POST['title']))) {
         $errors['title'] = "<p class='error'>Le titre ne doit comporter que des lettres</p>";
-    } 
-    else {
+    } else {
         $title = $_POST['title'];
     }
 
@@ -71,7 +70,7 @@ if (isset($_POST['submit'])) {
 
     if (!empty(escape($_POST['raison'])) && (strlen($_POST['description']) < 10 || strlen($_POST['description']) > 2000)) {
         $errors['raison'] = "<p class='error'>La raison doit comporter entre 10 et 2000 caractères</p>";
-    }else {
+    } else {
         $raison = $_POST['raison'] ?? "";
     }
 
@@ -91,19 +90,18 @@ if (isset($_POST['submit'])) {
             // API post parameters
             $postFields = array('image' => base64_encode($image_source));
 
-            if(!$errors){
+            if (!$errors) {
                 // Post image to Imgur via API
-            $response = callApiImgur($postFields);
-            // Decode API response to array
-            $responseArr = json_decode($response);
-            // Check image upload status
-            if (!empty($responseArr)) {
-                $imgurData = $responseArr;
-            } else {
-                $errors['image'] = "<p class='error'>L'image n'a pas pu être téléchargé</p>";
+                $response = callApiImgur($postFields);
+                // Decode API response to array
+                $responseArr = json_decode($response);
+                // Check image upload status
+                if (!empty($responseArr)) {
+                    $imgurData = $responseArr;
+                } else {
+                    $errors['image'] = "<p class='error'>L'image n'a pas pu être téléchargé</p>";
+                }
             }
-            }
-            
         } else {
             $errors['image'] = "<p class='error'>Désolé, seule les images png, jpeg, jpg sont acceptées</p>";
         }
@@ -156,7 +154,7 @@ if (isset($_POST['submit'])) {
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgwEcOb6n37QfBvC5JuTGKxV9QQUBxgs8&libraries=places&callback=initAutocomplete" async defer>
 </script>
 <div class="container">
-<h3 style="text-align: center;margin:1em;color:var(--black2)">Ajouter une nouvelle propriété</h3>
+    <h3 style="text-align: center;margin:1em;color:var(--black2)">Ajouter une nouvelle propriété</h3>
     <?php echo $errors['api'] ?? "" ?>
     <form method="post" enctype="multipart/form-data" id="postForm">
         <div class="group">

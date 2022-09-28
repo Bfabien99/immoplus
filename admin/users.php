@@ -49,27 +49,27 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
             </section>
         <?php elseif ($users) : ?>
             <section class="tableBx">
-            <table id="Table" class="display nowrap dataTable dtr-inline">
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                    <th>Contact</th>
-                    <th>Inscrit le</th>
-                    <th>Action</th>
-                    </tr>
-                    
-                </thead>
-                <tbody>
-                <?php foreach ($users as $user) : ?>
-                    <tr class="userBx">
-                        <td class="infos"><?php echo $user['fullname']; ?></td>
-                        <td class="infos"><?php echo $user['contact']; ?></td>
-                        <td class="infos"><?php echo datediff($user['insert_date']); ?></td>
-                        <td><a class="btn" href="?user_id=<?php echo $user['id']; ?>">voir</a></td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
+                <table id="Table" class="display nowrap dataTable dtr-inline">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Contact</th>
+                            <th>Inscrit le</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <?php foreach ($users as $user) : ?>
+                            <tr class="userBx">
+                                <td class="infos"><?php echo $user['fullname']; ?></td>
+                                <td class="infos"><?php echo $user['contact']; ?></td>
+                                <td class="infos"><?php echo datediff($user['insert_date']); ?></td>
+                                <td><a class="btn" href="?user_id=<?php echo $user['id']; ?>">voir</a></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </section>
         <?php endif; ?>
     <?php endif; ?>
@@ -114,8 +114,8 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
     }
 </script>
 <script>
-    $(document).ready( function () {
-    $('#Table').DataTable();
-} );
+    $(document).ready(function() {
+        $('#Table').DataTable();
+    });
 </script>
 <?php include('includes/footer.php'); ?>

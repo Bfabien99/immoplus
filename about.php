@@ -164,12 +164,12 @@
             background-color: rgba(232, 229, 229, 0.497);
         }
 
-        .title{
+        .title {
             text-align: center;
             color: #112430;
         }
 
-        section{
+        section {
             border-top: 2px solid rgba(0, 0, 0, 1);
             background-color: #fff;
             padding: 20px;
@@ -180,7 +180,7 @@
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.09);
         }
 
-        section .heading{
+        section .heading {
             color: #112430;
         }
 
@@ -196,46 +196,46 @@
             gap: 0.3em;
         }
 
-        #footernav{
+        #footernav {
             width: 100%;
             padding: 5px;
             display: flex;
             justify-content: space-around;
         }
 
-        #footernav ul{
+        #footernav ul {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
         }
 
-        #footernav ul li a{
+        #footernav ul li a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             transition: all 0.3s;
         }
 
-        #footernav ul li a:hover{
+        #footernav ul li a:hover {
             text-decoration: underline;
             color: #ccc;
         }
 
-        @media (max-width: 560px){
-        #footernav{
-                    padding: 5px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 20px;
-                }
+        @media (max-width: 560px) {
+            #footernav {
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
 
-                #footernav ul {
-                    margin: 0 auto;
-                    text-align: left;
-                    width: 200px;
-                }
+            #footernav ul {
+                margin: 0 auto;
+                text-align: left;
+                width: 200px;
+            }
         }
     </style>
 </head>

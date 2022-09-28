@@ -211,22 +211,22 @@ if (isset($_POST['submit'])) {
             background-color: rgba(232, 229, 229, 0.497);
         }
 
-        .title{
+        .title {
             text-align: center;
         }
 
-        .infotext{
+        .infotext {
             text-align: justify;
         }
 
-        #groupBx{
+        #groupBx {
             display: grid;
-            grid-template-columns: repeat(auto-fill,minmax(30%,1fr));
+            grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
             padding: 10px;
             gap: 20px;
         }
 
-        #groupBx .group{
+        #groupBx .group {
             margin: 0 auto;
             text-align: center;
             padding: 5px;
@@ -275,9 +275,10 @@ if (isset($_POST['submit'])) {
         }
 
         @media (max-width: 560px) {
-            #groupBx{
-            grid-template-columns: repeat(1,1fr);
-        }
+            #groupBx {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
             #footernav {
                 padding: 5px;
                 display: flex;

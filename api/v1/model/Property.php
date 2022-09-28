@@ -204,7 +204,7 @@ class Property
 
     public function setUserId($userId)
     {
-        
+
         $this->_userId = $userId;
     }
     public function getUserId()
@@ -214,7 +214,7 @@ class Property
 
     public function setRaison($raison)
     {
-        
+
 
         $this->_raison = $raison;
     }

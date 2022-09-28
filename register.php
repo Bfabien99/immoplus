@@ -57,7 +57,7 @@ if (isset($_POST['inscrire'])) {
         $error['email'] = "<p class='error'>L'email n'est pas valide</p>";
     } else {
         $email = escape(mb_strtolower($_POST['email']));
-        if($users->isEmail($email)){
+        if ($users->isEmail($email)) {
             $error['email'] = "<p class='error'>L'Email existe déja!</p>";
         }
     }
@@ -70,7 +70,7 @@ if (isset($_POST['inscrire'])) {
         $error['pseudo'] = "<p class='error'>Le pseudonyme ne doit comporter que des lettres et/ou des chiffres</p>";
     } else {
         $pseudo = escape(mb_strtolower($_POST['pseudo']));
-        if($users->isPseudo($pseudo)){
+        if ($users->isPseudo($pseudo)) {
             $error['pseudo'] = "<p class='error'>Le pseudonyme existe déja!</p>";
         }
     }
@@ -264,7 +264,8 @@ if (isset($_POST['inscrire'])) {
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
-        .back{
+
+        .back {
             background-color: #444;
             margin: 0.2em;
             padding: 5px;
@@ -292,30 +293,31 @@ if (isset($_POST['inscrire'])) {
             gap: 0.3em;
         }
 
-        #footernav{
+        #footernav {
             width: 100%;
             padding: 5px;
             display: flex;
             justify-content: space-around;
         }
 
-        #footernav ul{
+        #footernav ul {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
         }
 
-        #footernav ul li a{
+        #footernav ul li a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             transition: all 0.3s;
         }
 
-        #footernav ul li a:hover{
+        #footernav ul li a:hover {
             text-decoration: underline;
             color: #ccc;
         }
+
         /* responsive */
         @media (max-width: 650px) {
             .container {
@@ -335,27 +337,25 @@ if (isset($_POST['inscrire'])) {
                 text-align: center;
             }
 
-            
+
         }
 
-        @media (max-width: 560px){
-        #footernav{
-                    padding: 5px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 20px;
-                }
+        @media (max-width: 560px) {
+            #footernav {
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
 
-                #footernav ul {
-                    margin: 0 auto;
-                    text-align: left;
-                    width: 200px;
-                }
+            #footernav ul {
+                margin: 0 auto;
+                text-align: left;
+                width: 200px;
+            }
         }
-
-        
     </style>
 </head>
 
@@ -364,33 +364,35 @@ if (isset($_POST['inscrire'])) {
         <h1 class="heading">Inscription</h1>
         <p class="urgent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat inventore eum doloremque dolores praesentium a nulla minima hic omnis. Amet.</p>
         <div id="contentBx">
-        <?php if (isset($error['error'])) : ?>
-            <script>
-                Swal.fire({
-  icon: 'error',
-  title: 'Erreur',
-  confirmButtonText: 'OK',
-  text: "<?php echo $error['error']?>",
-}).then((result) => {
-  /* Read more about isConfirmed, isDenied below */
-  if (result.isConfirmed) {
-    location.href = "#Contactform"
-  }})
-            </script>
-        <?php elseif(isset($error['success'])) : ?>
-            <script>
-                Swal.fire({
-  icon: 'success',
-  title: 'Super!',
-  confirmButtonText: 'OK',
-  text: "<?php echo $error['success']?>",
-}).then((result) => {
-  /* Read more about isConfirmed, isDenied below */
-  if (result.isConfirmed) {
-    location.href = "#Contactform"
-  }})
-            </script>
-        <?php endif; ?>
+            <?php if (isset($error['error'])) : ?>
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erreur',
+                        confirmButtonText: 'OK',
+                        text: "<?php echo $error['error'] ?>",
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                            location.href = "#Contactform"
+                        }
+                    })
+                </script>
+            <?php elseif (isset($error['success'])) : ?>
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Super!',
+                        confirmButtonText: 'OK',
+                        text: "<?php echo $error['success'] ?>",
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                            location.href = "#Contactform"
+                        }
+                    })
+                </script>
+            <?php endif; ?>
             <form action="" method="post" id="postForm">
                 <div class="group">
                     <label for="fullname">Nom & Prénoms</label>
@@ -443,18 +445,18 @@ if (isset($_POST['inscrire'])) {
                     <?php echo $error['cpassword'] ?? "" ?>
                 </div>
                 <input type="submit" value="S'inscrire" name="inscrire" id="submit">
-                <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/property"?>" class="back">Retour</a>
+                <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/property" ?>" class="back">Retour</a>
             </form>
         </div>
     </div>
-<script>
-    var pass = document.querySelector('#password');
-    pass.addEventListener('dblclick', function(){
-        if(pass.getAttribute('type') == 'password'){
-            pass.setAttribute('type','text')
-        }else{
-            pass.setAttribute('type','password')
-        }
-    })
-</script>
-<?php include('_includes/footer.php'); ?>
+    <script>
+        var pass = document.querySelector('#password');
+        pass.addEventListener('dblclick', function() {
+            if (pass.getAttribute('type') == 'password') {
+                pass.setAttribute('type', 'text')
+            } else {
+                pass.setAttribute('type', 'password')
+            }
+        })
+    </script>
+    <?php include('_includes/footer.php'); ?>

@@ -30,10 +30,9 @@ if (isset($_GET['property_id'])) {
                 if ($property['etat'] == 0) {
                     $property = false;
                     $errors['property'] = "<p class='error'>Désolé, aucune propriété ne correspond</p>";
-                }else{
-                   $properties->incrementView($_GET['property_id']); 
+                } else {
+                    $properties->incrementView($_GET['property_id']);
                 }
-                
             }
         } else {
             $errors['api'] = "<p class='error'>Désolé, le serveur ne répond pas pour l'instant... Veuillez réessayer plus tard</p>";
@@ -48,7 +47,7 @@ if (isset($_GET['property_id'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propriété <?php echo $property['id'] ?? ""?></title>
+    <title>Propriété <?php echo $property['id'] ?? "" ?></title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
 
@@ -343,38 +342,39 @@ if (isset($_GET['property_id'])) {
             gap: 0.3em;
         }
 
-        #footernav{
+        #footernav {
             width: 100%;
             padding: 5px;
             display: flex;
             justify-content: space-around;
         }
 
-        #footernav ul{
+        #footernav ul {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
         }
 
-        #footernav ul li a{
+        #footernav ul li a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             transition: all 0.3s;
         }
 
-        #footernav ul li a:hover{
+        #footernav ul li a:hover {
             text-decoration: underline;
             color: #ccc;
         }
 
-        .errorbox{
+        .errorbox {
             display: flex;
             flex-direction: column;
             gap: 0.2em;
             padding: 5px 0;
         }
-        .error{
+
+        .error {
             background-color: #f22;
             margin: auto 1.2em;
             padding: 10px;
@@ -387,7 +387,8 @@ if (isset($_GET['property_id'])) {
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
-        .success{
+
+        .success {
             background-color: green;
             margin: auto 1.2em;
             padding: 10px;
@@ -400,7 +401,8 @@ if (isset($_GET['property_id'])) {
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
-        .back{
+
+        .back {
             background-color: #444;
             margin: 2em 1.2em;
             padding: 5px;
@@ -415,21 +417,21 @@ if (isset($_GET['property_id'])) {
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
 
-        @media (max-width: 560px){
-        #footernav{
-                    padding: 5px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 20px;
-                }
+        @media (max-width: 560px) {
+            #footernav {
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
 
-                #footernav ul {
-                    margin: 0 auto;
-                    text-align: left;
-                    width: 200px;
-                }
+            #footernav ul {
+                margin: 0 auto;
+                text-align: left;
+                width: 200px;
+            }
         }
     </style>
 </head>
@@ -455,10 +457,10 @@ if (isset($_GET['property_id'])) {
 
     <?php if (!empty($errors)) : ?>
         <div class="errorbox">
-        <?php foreach ($errors as $error) : ?>
-            <?php echo $error ?>
-        <?php endforeach; ?>
-        <a href="/immoplus/property" class="back">Retour</a>
+            <?php foreach ($errors as $error) : ?>
+                <?php echo $error ?>
+            <?php endforeach; ?>
+            <a href="/immoplus/property" class="back">Retour</a>
         </div>
     <?php else : ?>
         <?php if (!empty($property)) : ?>

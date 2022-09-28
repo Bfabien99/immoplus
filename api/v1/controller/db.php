@@ -7,9 +7,8 @@ class DB
 
     public static function connectDB()
     {
-        if (self::$DBConnection === null) 
-        {
-            self::$DBConnection = new PDO('mysql:host=localhost;dbname=immoplus;charset=utf8','root','');
+        if (self::$DBConnection === null) {
+            self::$DBConnection = new PDO('mysql:host=localhost;dbname=immoplus;charset=utf8', 'root', '');
             self::$DBConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$DBConnection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         }

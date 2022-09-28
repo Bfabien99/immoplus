@@ -90,7 +90,7 @@ if (empty($_GET)) {
             }
 
             // On crée une nouvelle propriété
-            $newProperty = new Property(null, $jsonData->title, $jsonData->description, $jsonData->type, $jsonData->address, $jsonData->area, $jsonData->price, $jsonData->shower, $jsonData->bedroom,$jsonData->picture,null,null,$jsonData->userId ?? null,$jsonData->raison ?? null);
+            $newProperty = new Property(null, $jsonData->title, $jsonData->description, $jsonData->type, $jsonData->address, $jsonData->area, $jsonData->price, $jsonData->shower, $jsonData->bedroom, $jsonData->picture, null, null, $jsonData->userId ?? null, $jsonData->raison ?? null);
 
             $title = $newProperty->getTitle();
             $description = $newProperty->getDescription();
@@ -263,7 +263,7 @@ if (empty($_GET)) {
     }
     if ($_SERVER['REQUEST_METHOD'] == 'PATCH') {
     }
-}elseif (array_key_exists("property_type", $_GET)) {
+} elseif (array_key_exists("property_type", $_GET)) {
     $property_type = strtolower($_GET["property_type"]);
 
     if ($property_type !== 'location' && $property_type !== 'vendre') {

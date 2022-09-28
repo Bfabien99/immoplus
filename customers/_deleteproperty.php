@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <?php include_once('../_includes/functions.php'); ?>
 <?php include_once('../class/Properties.php'); ?>
 <?php include_once('../class/Users.php'); ?>

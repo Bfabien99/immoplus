@@ -65,7 +65,7 @@ class Users
             $connectDB = self::connectDB();
             $sql = 'select * from users where id = :id';
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':id',$id,PDO::PARAM_INT);
+            $query->bindValue(':id', $id, PDO::PARAM_INT);
             $query->execute();
             $datas = [];
 
@@ -88,7 +88,7 @@ class Users
             $connectDB = self::connectDB();
             $sql = 'select * from users where pseudo = :pseudo';
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':pseudo',$pseudo,PDO::PARAM_STR);
+            $query->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
             $query->execute();
             $datas = [];
 
@@ -111,7 +111,7 @@ class Users
             $connectDB = self::connectDB();
             $sql = 'select * from admin where pseudo = :pseudo';
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':pseudo',$pseudo,PDO::PARAM_STR);
+            $query->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
             $query->execute();
             $datas = [];
 
@@ -134,7 +134,7 @@ class Users
             $connectDB = self::connectDB();
             $sql = 'select * from users where pseudo = :pseudo';
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':pseudo',$pseudo,PDO::PARAM_STR);
+            $query->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
             $query->execute();
             $datas = [];
 
@@ -157,7 +157,7 @@ class Users
             $connectDB = self::connectDB();
             $sql = 'select * from users where email = :email';
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':email',$email,PDO::PARAM_STR);
+            $query->bindValue(':email', $email, PDO::PARAM_STR);
             $query->execute();
             $datas = [];
 
@@ -180,8 +180,8 @@ class Users
             $connectDB = self::connectDB();
             $sql = 'select * from users where pseudo = :identifiant and password = :password';
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':identifiant',$identifiant,PDO::PARAM_STR);
-            $query->bindValue(':password',$password,PDO::PARAM_STR);
+            $query->bindValue(':identifiant', $identifiant, PDO::PARAM_STR);
+            $query->bindValue(':password', $password, PDO::PARAM_STR);
             $query->execute();
             $datas = [];
 
@@ -193,7 +193,7 @@ class Users
             $datas = $query->fetch(PDO::FETCH_ASSOC);
             return $datas;
         } catch (PDOException $ex) {
-            return $ex->getMessage().$ex->getLine();
+            return $ex->getMessage() . $ex->getLine();
         }
     }
 
@@ -203,8 +203,8 @@ class Users
             $connectDB = self::connectDB();
             $sql = 'select * from admin where pseudo = :identifiant and password = :password';
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':identifiant',$identifiant,PDO::PARAM_STR);
-            $query->bindValue(':password',$password,PDO::PARAM_STR);
+            $query->bindValue(':identifiant', $identifiant, PDO::PARAM_STR);
+            $query->bindValue(':password', $password, PDO::PARAM_STR);
             $query->execute();
             $datas = [];
 
@@ -247,15 +247,13 @@ class Users
         } catch (PDOException $ex) {
             return $ex->getMessage();
         }
-        
-
     }
 
     public function updateUsers($id, $fullname, $contact, $email, $pseudo)
     {
         try {
             $connectDB = self::connectDB();
-            $sql ="update users set fullname = :fullname, contact = :contact, email = :email, pseudo = :pseudo where id = :id";
+            $sql = "update users set fullname = :fullname, contact = :contact, email = :email, pseudo = :pseudo where id = :id";
             $query = $connectDB->prepare($sql);
             $query->bindValue(':id', $id, PDO::PARAM_INT);
             $query->bindValue(':fullname', $fullname, PDO::PARAM_STR);
@@ -280,7 +278,7 @@ class Users
     {
         try {
             $connectDB = self::connectDB();
-            $sql ="update users set password = :password where id = :id";
+            $sql = "update users set password = :password where id = :id";
             $query = $connectDB->prepare($sql);
             $query->bindValue(':id', $id, PDO::PARAM_INT);
             $query->bindValue(':password', $password, PDO::PARAM_STR);
@@ -319,11 +317,11 @@ class Users
         }
     }
 
-    public function updateAdmin($fullname,$pseudo)
+    public function updateAdmin($fullname, $pseudo)
     {
         try {
             $connectDB = self::connectDB();
-            $sql ="update admin set fullname = :fullname, pseudo = :pseudo";
+            $sql = "update admin set fullname = :fullname, pseudo = :pseudo";
             $query = $connectDB->prepare($sql);
             $query->bindValue(':fullname', $fullname, PDO::PARAM_STR);
             $query->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
@@ -345,7 +343,7 @@ class Users
     {
         try {
             $connectDB = self::connectDB();
-            $sql ="update admin set password = :password";
+            $sql = "update admin set password = :password";
             $query = $connectDB->prepare($sql);
             $query->bindValue(':password', $password, PDO::PARAM_STR);
             $query->execute();
@@ -384,8 +382,6 @@ class Users
         } catch (PDOException $ex) {
             return $ex->getMessage();
         }
-        
-
     }
 
     public function getAll_messages()
@@ -416,7 +412,7 @@ class Users
             $connectDB = self::connectDB();
             $sql = 'select * from messages where id = :id';
             $query = $connectDB->prepare($sql);
-            $query->bindValue(':id',$id,PDO::PARAM_INT);
+            $query->bindValue(':id', $id, PDO::PARAM_INT);
             $query->execute();
             $datas = [];
 
@@ -458,7 +454,7 @@ class Users
     {
         try {
             $connectDB = self::connectDB();
-            $sql ="update messages set etat = 1 where id = :id";
+            $sql = "update messages set etat = 1 where id = :id";
             $query = $connectDB->prepare($sql);
             $query->bindValue(':id', $message_id, PDO::PARAM_INT);
             $query->execute();

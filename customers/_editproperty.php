@@ -24,21 +24,20 @@ if (isset($_GET['property_id'])) {
                 }
             } else {
                 $property = $data['data']['properties'][0];
-                if($property['_userId'] == $user['id']){
+                if ($property['_userId'] == $user['id']) {
                     $id = $property['id'];
-                $title = $property['title'];
-                $description = $property['description'];
-                $type = $property['type'];
-                $address = $property['address'];
-                $area = $property['area'];
-                $price = $property['price'];
-                $shower = $property['shower'];
-                $bedroom = $property['bedroom'];
-                $picture = $property['picture'];
-                }else {
+                    $title = $property['title'];
+                    $description = $property['description'];
+                    $type = $property['type'];
+                    $address = $property['address'];
+                    $area = $property['area'];
+                    $price = $property['price'];
+                    $shower = $property['shower'];
+                    $bedroom = $property['bedroom'];
+                    $picture = $property['picture'];
+                } else {
                     $errors['id'] =  "<p class='error'>Aucune propriété trouvée</p>";
                 }
-                
             }
         } else {
             $error['api'] = "<p class='error'>Désolé, le serveur ne répond pas pour l'instant... Veuillez réessayer plus tard</p>";
@@ -140,17 +139,17 @@ if (isset($_POST['edit'])) {
             }
         } else {
             $errors['image'] = "<p class='error'>Désolé, seule les images png, jpeg, jpg sont acceptées</p>";
-        }}
-        
-
-        if ((!$errors) && !empty($title) && !empty($description) && !empty($type) && !empty($address) && !empty($area) && !empty($price) && !empty($shower) && !empty($bedroom)) {
-            
-            $_properties = new Properties();
-            if ($_properties->updateProperties($id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture)) {
-                $error = "<p class='success'>Informations modifiées</p>";
-            }
         }
-    
+    }
+
+
+    if ((!$errors) && !empty($title) && !empty($description) && !empty($type) && !empty($address) && !empty($area) && !empty($price) && !empty($shower) && !empty($bedroom)) {
+
+        $_properties = new Properties();
+        if ($_properties->updateProperties($id, $title, $description, $type, $address, $area, $price, $shower, $bedroom, $picture)) {
+            $error = "<p class='success'>Informations modifiées</p>";
+        }
+    }
 }
 
 ?>

@@ -85,15 +85,15 @@ if (isset($_POST['editpass'])) {
             <?php echo $error['editpass'] ?? "" ?>
             <div class="group">
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password" value="<?php echo $_POST['password'] ?? ''?>">
+                <input type="password" name="password" id="password" value="<?php echo $_POST['password'] ?? '' ?>">
                 <?php echo $error['password'] ?? "" ?>
             </div>
             <div class="group">
                 <label for="cpassword">Confirmer le Mot de passe</label>
-                <input type="password" name="cpassword" value="<?php echo $_POST['cpassword'] ?? ''?>">
+                <input type="password" name="cpassword" value="<?php echo $_POST['cpassword'] ?? '' ?>">
                 <?php echo $error['cpassword'] ?? "" ?>
             </div>
-            <input type="submit" value="modifier mot de passe" name="editpass" >
+            <input type="submit" value="modifier mot de passe" name="editpass">
         </form>
     </section>
 </div>

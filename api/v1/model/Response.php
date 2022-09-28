@@ -9,7 +9,8 @@ class Response
     private $_data;
     private $_responseData = [];
 
-    public function __construct($httpStatusCode, $success, $message = "",  $data = null){
+    public function __construct($httpStatusCode, $success, $message = "",  $data = null)
+    {
         $this->setHttpStatusCode($httpStatusCode);
         $this->setSuccess($success);
         $this->addMessage($message);
@@ -48,7 +49,7 @@ class Response
             $this->_responseData['success'] = false;
             $this->addMessage("Response creation error");
             $this->_responseData['messages'] = $this->_messages;
-        }else{
+        } else {
             http_response_code($this->_httpStatusCode);
             $this->_responseData['statusCode'] = $this->_httpStatusCode;
             $this->_responseData['success'] = $this->_success;

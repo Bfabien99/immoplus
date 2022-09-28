@@ -374,32 +374,32 @@ if (isset($_POST['search'])) {
             gap: 0.3em;
         }
 
-        #footernav{
+        #footernav {
             width: 100%;
             padding: 5px;
             display: flex;
             justify-content: space-around;
         }
 
-        #footernav ul{
+        #footernav ul {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
         }
 
-        #footernav ul li a{
+        #footernav ul li a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             transition: all 0.3s;
         }
 
-        #footernav ul li a:hover{
+        #footernav ul li a:hover {
             text-decoration: underline;
             color: #ccc;
         }
 
-        .error{
+        .error {
             background-color: #f22;
             margin: auto 1.2em;
             padding: 10px;
@@ -411,7 +411,8 @@ if (isset($_POST['search'])) {
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
-        .success{
+
+        .success {
             background-color: green;
             margin: auto 1.2em;
             padding: 10px;
@@ -424,21 +425,21 @@ if (isset($_POST['search'])) {
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
 
-        @media (max-width: 560px){
-        #footernav{
-                    padding: 5px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 20px;
-                }
+        @media (max-width: 560px) {
+            #footernav {
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
 
-                #footernav ul {
-                    margin: 0 auto;
-                    text-align: left;
-                    width: 200px;
-                }
+            #footernav ul {
+                margin: 0 auto;
+                text-align: left;
+                width: 200px;
+            }
         }
     </style>
 </head>

@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
 
     if (empty(escape($_POST['password']))) {
         $errors['password'] = "<p class='error'>Le mot de passe est obligatoire</p>";
-    }else {
+    } else {
         $password = md5($_POST['password']);
     }
 
@@ -27,7 +27,7 @@ if (isset($_POST['login'])) {
             $user = $users->usersLogin($identifiant, $password);
             $_SESSION['immoplus_userPseudo'] = $user['pseudo'];
             header('location:/immoplus/customers');
-        }else{
+        } else {
             $errors['result'] = "<p class='error'>Utilisateur inconnu</p>";
         }
     }
@@ -180,27 +180,27 @@ if (isset($_POST['login'])) {
             gap: 0.3em;
         }
 
-        #footernav{
+        #footernav {
             width: 100%;
             padding: 5px;
             display: flex;
             justify-content: space-around;
         }
 
-        #footernav ul{
+        #footernav ul {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
         }
 
-        #footernav ul li a{
+        #footernav ul li a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
             transition: all 0.3s;
         }
 
-        #footernav ul li a:hover{
+        #footernav ul li a:hover {
             text-decoration: underline;
             color: #ccc;
         }
@@ -218,7 +218,8 @@ if (isset($_POST['login'])) {
             font-weight: bold;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
-        .back{
+
+        .back {
             background-color: #444;
             margin: 0.2em;
             padding: 5px;
@@ -254,21 +255,21 @@ if (isset($_POST['login'])) {
             }
         }
 
-        @media (max-width: 560px){
-        #footernav{
-                    padding: 5px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 20px;
-                }
+        @media (max-width: 560px) {
+            #footernav {
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
 
-                #footernav ul {
-                    margin: 0 auto;
-                    text-align: left;
-                    width: 200px;
-                }
+            #footernav ul {
+                margin: 0 auto;
+                text-align: left;
+                width: 200px;
+            }
         }
     </style>
 </head>
@@ -278,32 +279,32 @@ if (isset($_POST['login'])) {
         <h1 class="heading">Connexion</h1>
         <p class="urgent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat inventore eum doloremque dolores praesentium a nulla minima hic omnis. Amet.</p>
         <div class="contentBx">
-        <?php echo $errors['result'] ?? ""?>
+            <?php echo $errors['result'] ?? "" ?>
             <form action="" method="post" id="postForm">
                 <div class="group">
                     <label for="identifiant">Pseudonyme</label>
                     <input type="text" name="identifiant">
-                    <?php echo $errors['identifiant'] ?? ""?>
+                    <?php echo $errors['identifiant'] ?? "" ?>
                 </div>
                 <div class="group">
                     <label for="password">Mot de passe</label>
-                    <input type="password" name="password" id="password"> 
-                    <?php echo $errors['password'] ?? ""?>
+                    <input type="password" name="password" id="password">
+                    <?php echo $errors['password'] ?? "" ?>
                 </div>
                 <input type="submit" value="Se connecter" name="login" id="submit">
-                <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/property"?>" class="back">Retour</a>
+                <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/property" ?>" class="back">Retour</a>
             </form>
         </div>
     </div>
 
-<script>
-    var pass = document.querySelector('#password');
-    pass.addEventListener('dblclick', function(){
-        if(pass.getAttribute('type') == 'password'){
-            pass.setAttribute('type','text')
-        }else{
-            pass.setAttribute('type','password')
-        }
-    })
-</script>
-<?php include('_includes/footer.php'); ?>
+    <script>
+        var pass = document.querySelector('#password');
+        pass.addEventListener('dblclick', function() {
+            if (pass.getAttribute('type') == 'password') {
+                pass.setAttribute('type', 'text')
+            } else {
+                pass.setAttribute('type', 'password')
+            }
+        })
+    </script>
+    <?php include('_includes/footer.php'); ?>
