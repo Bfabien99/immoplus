@@ -26,7 +26,7 @@ if (empty($_GET)) {
             $propertyArray = [];
 
             if ($rowCount === 0) {
-                $response = new Response(404, false, "Property not found");
+                $response = new Response(404, false, "Aucune propriété correspondante");
                 $response->send();
                 exit();
             }
@@ -50,7 +50,7 @@ if (empty($_GET)) {
             exit();
         } catch (PDOException $ex) {
             error_log("Database query error -" . $ex, 0);
-            $response = new Response(500, false, "Failed to get Property");
+            $response = new Response(500, false, "Echec de la récupération de la propriété");
             $response->send();
             exit();
         }
@@ -77,14 +77,14 @@ if (empty($_GET)) {
             if (!isset($jsonData->title) || !isset($jsonData->description) || !isset($jsonData->type) || !isset($jsonData->address) || !isset($jsonData->area) || !isset($jsonData->price) || !isset($jsonData->shower) || !isset($jsonData->bedroom)) {
                 $response = new Response(400, false, "");
                 $response->setSuccess(false);
-                !isset($jsonData->title) ? $response->addMessage("Title field is mandatory and must be provided") : false;
-                !isset($jsonData->description) ? $response->addMessage("Description field is mandatory and must be provided") : false;
-                !isset($jsonData->type) ? $response->addMessage("Type field is mandatory and must be provided") : false;
-                !isset($jsonData->address) ? $response->addMessage("Address field is mandatory and must be provided") : false;
-                !isset($jsonData->area) ? $response->addMessage("Area field is mandatory and must be provided") : false;
-                !isset($jsonData->price) ? $response->addMessage("Price field is mandatory and must be provided") : false;
-                !isset($jsonData->shower) ? $response->addMessage("Shower field is mandatory and must be provided") : false;
-                !isset($jsonData->bedroom) ? $response->addMessage("Bedroom field is mandatory and must be provided") : false;
+                !isset($jsonData->title) ? $response->addMessage("Le titre est requis et doit être rempli") : false;
+                !isset($jsonData->description) ? $response->addMessage("La description est requise et doit être rempli") : false;
+                !isset($jsonData->type) ? $response->addMessage("Le type est requis et doit être rempli") : false;
+                !isset($jsonData->address) ? $response->addMessage("L' adresse est requise et doit être rempli") : false;
+                !isset($jsonData->area) ? $response->addMessage("La superficie est requise et doit être rempli") : false;
+                !isset($jsonData->price) ? $response->addMessage("Le prix est requis et doit être rempli") : false;
+                !isset($jsonData->shower) ? $response->addMessage("Le nombre de douche est requis et doit être rempli") : false;
+                !isset($jsonData->bedroom) ? $response->addMessage("Le nombre de chambre est requis et doit être rempli") : false;
                 $response->send();
                 exit();
             }
@@ -114,7 +114,7 @@ if (empty($_GET)) {
             $rowCount = $query->rowCount();
 
             if ($rowCount === 1) {
-                $response = new Response(403, false, "Property with the same title exist");
+                $response = new Response(403, false, "Une propriété avec le même titre existe");
                 $response->send();
                 exit();
             }
@@ -137,7 +137,7 @@ if (empty($_GET)) {
 
             $rowCount = $query->rowCount();
             if ($rowCount === 0) {
-                $response = new Response(500, false, "Failed to add property");
+                $response = new Response(500, false, "Ajout de la propriété echoué");
                 $response->send();
                 exit();
             }
@@ -154,7 +154,7 @@ if (empty($_GET)) {
             $propertyArray = [];
 
             if ($rowCount === 0) {
-                $response = new Response(500, false, "Failed to retrieve property after added");
+                $response = new Response(500, false, "Echec de la récupération des données de la propriété");
                 $response->send();
                 exit();
             }
@@ -169,7 +169,7 @@ if (empty($_GET)) {
             $returnData['rows_returned'] = $rowCount;
             $returnData['properties'] = $propertyArray;
 
-            $response = new Response(201, true, "Property added successfully", $returnData);
+            $response = new Response(201, true, "Propriété ajoutée", $returnData);
             $response->send();
             exit();
         } catch (PropertyException $ex) {
@@ -178,12 +178,12 @@ if (empty($_GET)) {
             exit();
         } catch (PDOException $ex) {
             error_log("Database query error -" . $ex, 0);
-            $response = new Response(500, false, "Failed to post Property");
+            $response = new Response(500, false, "Echec de l'ajout de la propriété");
             $response->send();
             exit();
         }
     } else {
-        $response = new Response(405, false, "Method Not Allowed");
+        $response = new Response(405, false, "La méthode n'est pas permise");
         $response->send();
         exit();
     }
@@ -201,7 +201,7 @@ if (empty($_GET)) {
             $propertyArray = [];
 
             if ($rowCount === 0) {
-                $response = new Response(404, false, "Property not found");
+                $response = new Response(404, false, "Aucune propriété correspondante");
                 $response->send();
                 exit();
             }
@@ -225,7 +225,7 @@ if (empty($_GET)) {
             exit();
         } catch (PDOException $ex) {
             error_log("Database query error -" . $ex, 0);
-            $response = new Response(500, false, "Failed to get Property");
+            $response = new Response(500, false, "Echec de la récupération de la propriété");
             $response->send();
             exit();
         }
@@ -242,12 +242,12 @@ if (empty($_GET)) {
             $propertyArray = [];
 
             if ($rowCount === 0) {
-                $response = new Response(404, false, "Property not found");
+                $response = new Response(404, false, "Aucune propriété correspondante");
                 $response->send();
                 exit();
             }
 
-            $response = new Response(200, true, "Property deleted");
+            $response = new Response(200, true, "Propriété supprimée");
             $response->send();
             exit();
         } catch (PropertyException $ex) {
@@ -256,7 +256,7 @@ if (empty($_GET)) {
             exit();
         } catch (PDOException $ex) {
             error_log("Database query error -" . $ex, 0);
-            $response = new Response(500, false, "Failed to delete Property");
+            $response = new Response(500, false, "Echec de la suppression de la propriété");
             $response->send();
             exit();
         }
@@ -267,7 +267,7 @@ if (empty($_GET)) {
     $property_type = strtolower($_GET["property_type"]);
 
     if ($property_type !== 'location' && $property_type !== 'vendre') {
-        $response = new Response(400, false, "Property type must be 'location' or 'vendre'");
+        $response = new Response(400, false, "Le type de la propriété doit être 'location' ou 'vendre'");
         $response->send();
         exit();
     }
@@ -284,7 +284,7 @@ if (empty($_GET)) {
             $propertyArray = [];
 
             if ($rowCount === 0) {
-                $response = new Response(404, false, "Property not found");
+                $response = new Response(404, false, "Aucune propriété correspondante");
                 $response->send();
                 exit();
             }
@@ -308,12 +308,12 @@ if (empty($_GET)) {
             exit();
         } catch (PDOException $ex) {
             error_log("Database query error -" . $ex, 0);
-            $response = new Response(500, false, "Failed to get property");
+            $response = new Response(500, false, "Echec de la récupération de la propriété");
             $response->send();
             exit();
         }
     } else {
-        $response = new Response(405, false, "Request method not allowed");
+        $response = new Response(405, false, "La méthode n'est pas permise");
         $response->send();
         exit();
     }
