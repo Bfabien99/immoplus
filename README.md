@@ -3,7 +3,7 @@
  <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">Immoplus</h3>
 
 <div align="center">
 
@@ -16,8 +16,11 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> 
+    Immoplus est une plateforme de vente et de gestion de bien immobilier en ligne.
     <br> 
+    Immoplus permet aux personnes dans le besoin de pouvoir trouver la maison de leurs rêve.
+    <br>
 </p>
 
 ## 📝 Table of Contents
@@ -34,7 +37,8 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+<p>Grâce à Immoplus, vous pourrez mettre en vente ou en location votre bien. Avec un personnel qualifié, vous serrez soutenu durant tout le processus.</p>
+<p>Immoplus ne se limit pas à cela, elle met à votre dispositions bien d'autres services.</p>
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -42,33 +46,35 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
-
 ```
-XAMMP OR WAMMP
+XAMMP OR WAMMP OR OTHER SERVER WITCH ALLOW PHP
 ```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
-
+Expor database immoplus.sql
 ```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
 
 ## 🎈 Usage <a name="usage"></a>
 
-Add notes about how to use the system.
+<p>Les propriétés sont gérées grâce à une API.</p>
+<p>Route : <h3>/directory_name/api/v1/property</h3></p>
+<ul>
+  ## <li><h3>GET api/v1/property</h3> => <i>obtenir toutes les propriétés</i></li>
+  ## <li><h3>GET api/v1/property/:id</h3> => <i>obtenir une propriété par l'id</i></li>
+  ## <li><h3>POST api/v1/property</h3> => <i>ajouter une nouvelle propriété</i></li>
+  ## <li><h3>GET api/v1/property/location</h3> => <i>obtenir toutes les propriétés en location</i></li>
+  ## <li><h3>GET api/v1/property/vente</h3> => <i>obtenir toutes les propriétés en vente</i></li>
+</ul>
+
+## Comment poster
+<p>Les données postées doivent être sous le format JSON</p>
+<p>Les champs de l'api </p>
+<br>
+<h4>
+{
+  title, description, type = 'location' ou 'vendre', address, area, price, shower, bedroom
+}
+</h4>
+<br>
+<i>Tous ces champs sont requis</i>
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
