@@ -16,6 +16,7 @@ if (isset($_GET['property_type'])) {
     if ($data) {
         if ($data['statusCode'] == 200) {
             foreach ($data['data']['properties'] as $property) {
+                // Vérifie si la propriété a été publiée
                 if ($property['etat'] == 1) {
                     $properties[] = $property;
                 }

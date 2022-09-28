@@ -24,6 +24,7 @@ if (isset($_GET['property_id'])) {
                 }
             } else {
                 $property = $data['data']['properties'][0];
+                // Vérifie si la propriété appartien à l'utilisateur
                 if ($property['_userId'] != $user['id']) {
                     $property = false;
                     $errors['property'] = "<p class='error'>Désolé, aucune propriété ne correspond</p>";

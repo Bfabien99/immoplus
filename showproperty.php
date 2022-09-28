@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once('_includes/functions.php');
 include_once('class/Properties.php');
 $properties = new Properties();
@@ -31,7 +32,13 @@ if (isset($_GET['property_id'])) {
                     $property = false;
                     $errors['property'] = "<p class='error'>Désolé, aucune propriété ne correspond</p>";
                 } else {
-                    $properties->incrementView($_GET['property_id']);
+                    if(isset($_SESSION['immoplus_view']) && !empty($_SESSION['immoplus_view']) && ($_SESSION['immoplus_view'] != $_GET['property_id'])){
+                        $properties->incrementView($_GET['property_id']);
+                        $_SESSION['immoplus_view'] = $_GET['property_id'];
+                    }elseif(!$_SESSION['immoplus_view']){
+                        $properties->incrementView($_GET['property_id']);
+                        $_SESSION['immoplus_view'] = $_GET['property_id'];
+                    }
                 }
             }
         } else {
