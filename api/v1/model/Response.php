@@ -57,6 +57,6 @@ class Response
             $this->_responseData['data'] = $this->_data;
         }
 
-        echo json_encode($this->_responseData);
+        echo json_encode($this->_responseData, JSON_UNESCAPED_UNICODE);
     }
 }

@@ -90,7 +90,7 @@ if (empty($_GET)) {
             }
 
             // On crée une nouvelle propriété
-            $newProperty = new Property(null, $jsonData->title, $jsonData->description, $jsonData->type, $jsonData->address, $jsonData->area, $jsonData->price, $jsonData->shower, $jsonData->bedroom, $jsonData->picture, null, null, $jsonData->userId ?? null, $jsonData->raison ?? null);
+            $newProperty = new Property(null, $jsonData->title, $jsonData->description, $jsonData->type, $jsonData->address, $jsonData->area, $jsonData->price, $jsonData->shower, $jsonData->bedroom, $jsonData->picture ?? null, null, null, $jsonData->userId ?? null, $jsonData->raison ?? null);
 
             $title = $newProperty->getTitle();
             $description = $newProperty->getDescription();
