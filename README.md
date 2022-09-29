@@ -57,15 +57,15 @@ Run composer install (you need composer packagist)
 ## 🎈 Usage <a name="usage"></a>
 
 <p>Les propriétés sont gérées grâce à une API.</p>
-<p>Route : <span>/directory_name/api/v1/property</span> ou <span>allmysite.000webhostapp.com/immoplus/api/v1/property</span></p>
+<p>Route : <span>/directory_name/api/v1/property</span> ou <span><a href="allmysite.000webhostapp.com/immoplus/api/v1/property">allmysite.000webhostapp.com/immoplus/api/v1/property</a></span></p>
 <ul>
-  ## <li><h3>GET api/v1/property</h3> => <i>obtenir toutes les propriétés</i></li>
-  ## <li><h3>GET api/v1/property/:id</h3> => <i>obtenir une propriété par l'id</i></li>
-  ## <li><h3>POST api/v1/property</h3> => <i>ajouter une nouvelle propriété</i></li>
-  ## <li><h3>GET api/v1/property/location</h3> => <i>obtenir toutes les propriétés en location</i></li>
-  ## <li><h3>GET api/v1/property/vente</h3> => <i>obtenir toutes les propriétés en vente</i></li>
+  <li><h3>GET api/v1/property</h3> => <i>obtenir toutes les propriétés</i></li>
+  <li><h3>GET api/v1/property/:id</h3> => <i>obtenir une propriété par l'id</i></li>
+  <li><h3>POST api/v1/property</h3> => <i>ajouter une nouvelle propriété</i></li>
+  <li><h3>GET api/v1/property/location</h3> => <i>obtenir toutes les propriétés en location</i></li>
+  <li><h3>GET api/v1/property/vente</h3> => <i>obtenir toutes les propriétés en vente</i></li>
 </ul>
-## <h2>Accéder à la plateforme en ligne</h2>
+## Accéder à la plateforme en ligne
 <p>Lien <a href='allmysite.000webhostapp.com/immoplus'>allmysite.000webhostapp.com/immoplus</a></p>
 
 ## Comment poster
