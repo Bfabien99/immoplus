@@ -14,7 +14,7 @@ if (isset($_POST['editinfo'])) {
     } elseif (strlen(escape($_POST['fullname'])) < 5) {
         $error['fullname'] = "<p class='error'>Le nom doit comporter au moins 5 caractères</p>";
     } elseif (!ctype_alpha(str_replace(' ', '', escape($_POST['fullname'])))) {
-        $error['fullname'] = "<p class='error'>Le titre ne doit comporter que des lettres</p>";
+        $error['fullname'] = "<p class='error'>Le nom ne doit comporter que des lettres</p>";
     } else {
         $fullname = escape(mb_strtoupper($_POST['fullname']));
     }

@@ -93,7 +93,20 @@ if (isset($_POST['publish'])) {
                 }
             } else {
                 if ($properties->deleteProperties($property['id'])) {
-                    header('Location:/immoplus/admin/property');
+                    ?>
+                    <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Publication annulée',
+                    confirmButtonText: 'Ok',
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        window.location.href = "/immoplus/admin/property";
+                    }
+                })
+            </script>
+                    <?php
                 } else {
                     return false;
                 }
