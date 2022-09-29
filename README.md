@@ -38,7 +38,7 @@
 ## 🧐 About <a name = "about"></a>
 
 <p>Grâce à Immoplus, vous pourrez mettre en vente ou en location votre bien. Avec un personnel qualifié, vous serrez soutenu durant tout le processus.</p>
-<p>Immoplus ne se limit pas à cela, elle met à votre dispositions bien d'autres services.</p>
+<p>Immoplus ne se limite pas à cela, elle met à votre dispositions bien d'autres services.</p>
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -49,13 +49,15 @@ These instructions will get you a copy of the project up and running on your loc
 ```
 XAMMP OR WAMMP OR OTHER SERVER WITCH ALLOW PHP
 ```
-Expor database immoplus.sql
+Export database immoplus.sql
+```
+Run composer install (you need composer packagist)
 ```
 
 ## 🎈 Usage <a name="usage"></a>
 
 <p>Les propriétés sont gérées grâce à une API.</p>
-<p>Route : <h3>/directory_name/api/v1/property</h3></p>
+<p>Route : <span>/directory_name/api/v1/property</span> ou <span>allmysite.000webhostapp.com/immoplus/api/v1/property</span></p>
 <ul>
   ## <li><h3>GET api/v1/property</h3> => <i>obtenir toutes les propriétés</i></li>
   ## <li><h3>GET api/v1/property/:id</h3> => <i>obtenir une propriété par l'id</i></li>
@@ -63,22 +65,27 @@ Expor database immoplus.sql
   ## <li><h3>GET api/v1/property/location</h3> => <i>obtenir toutes les propriétés en location</i></li>
   ## <li><h3>GET api/v1/property/vente</h3> => <i>obtenir toutes les propriétés en vente</i></li>
 </ul>
+## <h2>Accéder à la plateforme en ligne</h2>
+<p>Lien <a href='allmysite.000webhostapp.com/immoplus'>allmysite.000webhostapp.com/immoplus</a></p>
 
 ## Comment poster
 <p>Les données postées doivent être sous le format JSON</p>
 <p>Les champs de l'api </p>
 <br>
 <h4>
+```
 {
   *title, *description, *type = 'location' ou 'vendre', *address, *area, *price, *shower, *bedroom, picture
 }
+```
 </h4>
 <br>
 <i>Tous ces champs(*) sont requis</i>
 
 ## 🚀 Deployment <a name = "deployment"></a>
-
+```
 Just use your server.
+```
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
