@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <title>Nos Services</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
@@ -243,6 +245,21 @@
             display: block;
         }
 
+        .contactBx{
+            display: flex;
+            align-items: center;
+        }
+
+        .contacts{
+            color: #f11;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: fit-content;
+        }
+
         footer {
             position: relative;
             padding: 20px 10px;
@@ -339,14 +356,17 @@
         <div class="contentBx">
             <section>
                 <div class="imgBx">
-                    <img src="assets/img/rent_64px.png" alt="image">
+                    <img src="assets/img/icons8-panier-chargé-100.png" alt="image">
                 </div>
                 <div class="content">
                     <h3 class="heading">Vente de bien</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima consequatur similique veritatis quasi adipisci modi repellendus aperiam mollitia pariatur nesciunt est maxime, porro et molestias vero beatae quam provident excepturi!</p>
                     <a href="" class="show">voir</a>
                     <div class="moreBx">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
+                    <p><ion-icon name="caret-forward-sharp"></ion-icon> Achat de bien</p>
+                        <p><ion-icon name="caret-forward-sharp"></ion-icon> Location de bien</p>
+                        <p><ion-icon name="caret-forward-sharp"></ion-icon> Vente de bien</p>
+                        <p class="contactBx">Contactez-nous : <a class="contacts" href="./contact"><ion-icon name="call-sharp"></ion-icon></a></p>
                     </div>
                 </div>
             </section>
@@ -358,16 +378,20 @@
                     <p>Lorem ipsum dolor sit amet.</p>
                     <a href="" class="show">voir</a>
                     <div class="moreBx">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
+                        <p><ion-icon name="caret-forward-sharp"></ion-icon> Agents immobiliers</p>
+                        <p><ion-icon name="caret-forward-sharp"></ion-icon> Gestionnaire d'actifs immobiliers</p>
+                        <p><ion-icon name="caret-forward-sharp"></ion-icon> Juriste immobilier</p>
+                        <p><ion-icon name="caret-forward-sharp"></ion-icon> Chasseurs de biens immobiliers</p>
+                        <p class="contactBx">Contactez-nous : <a class="contacts" href="./contact"><ion-icon name="call-sharp"></ion-icon></a></p>
                     </div>
                 </div>
                 <div class="imgBx">
-                    <img src="assets/img/rent_64px.png" alt="image">
+                    <img src="assets/img/icons8-affaire-100.png" alt="image">
                 </div>
             </section>
             <section>
                 <div class="imgBx">
-                    <img src="assets/img/rent_64px.png" alt="image">
+                    <img src="https://img.icons8.com/external-house-maxicons/100/000000/external-construction-build-a-house-outline-house-maxicons.png"/>
                 </div>
                 <div class="content">
                     <h3 class="heading">Construction de bien</h3>
@@ -376,32 +400,17 @@
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum itaque corrupti veniam a soluta, amet necessitatibus expedita dolorem placeat officiis?</p>
                     <a href="" class="show">voir</a>
                     <div class="moreBx">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
+                        <p><ion-icon name="caret-forward-sharp"></ion-icon> Confection des plans de maison</p>
+                        <p><ion-icon name="caret-forward-sharp"></ion-icon> Recherche de terrain adéquat pour la construction</p>
+                        <p><ion-icon name="caret-forward-sharp"></ion-icon> Achat et livraison du matériel</p>
+                        <p><ion-icon name="caret-forward-sharp"></ion-icon> Ouvriers et architectes disponibles</p>
+                        <p class="contactBx">Contactez-nous : <a class="contacts" href="./contact"><ion-icon name="call-sharp"></ion-icon></a></p>
                     </div>
-                </div>
-            </section>
-            <section>
-                <div class="content">
-                    <h3 class="heading">Promotion de bien</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At error eos dicta perspiciatis amet voluptate ab incidunt rem tenetur labore, molestias enim, eius ea quasi excepturi magnam, iste perferendis vel!</p>
-                    <a href="" class="show">voir</a>
-                    <div class="moreBx">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius ipsam, ad maxime facilis recusandae commodi exercitationem, similique provident, modi perspiciatis saepe deserunt expedita necessitatibus!</p>
-                    </div>
-                </div>
-                <div class="imgBx">
-                    <img src="assets/img/rent_64px.png" alt="image">
                 </div>
             </section>
         </div>
 
     </div>
-    <script>
-        setInterval(function() {
-            window.location.reload()
-        }, 2000)
-    </script>
-
     <script>
         let moreBx = document.querySelectorAll('.show');
         moreBx.forEach((item) => {

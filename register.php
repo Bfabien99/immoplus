@@ -379,7 +379,7 @@ if (isset($_POST['inscrire'])) {
                     }).then((result) => {
                         /* Read more about isConfirmed, isDenied below */
                         if (result.isConfirmed) {
-                            location.href = "#Contactform"
+                            location.href = ""
                         }
                     })
                 </script>
@@ -393,7 +393,7 @@ if (isset($_POST['inscrire'])) {
                     }).then((result) => {
                         /* Read more about isConfirmed, isDenied below */
                         if (result.isConfirmed) {
-                            location.href = "#Contactform"
+                            location.href = ""
                         }
                     })
                 </script>

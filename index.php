@@ -155,10 +155,10 @@ if (isset($_POST['submit'])) {
             Nous sommes soutenues par des partenaires de confiance qui nous offres leur assistance dans le but de pouvoir repondre à vos attentes.
         </p>
         <div class="imgBx">
-            <img src="./assets/img/pexels-expect-best-323780.jpg">
-            <img src="./assets/img/pexels-expect-best-323780.jpg">
-            <img src="./assets/img/pexels-expect-best-323780.jpg">
-            <img src="./assets/img/pexels-expect-best-323780.jpg">
+            <img src="https://img.icons8.com/color/480/000000/windows-logo.png" title="Windows" alt="partenaire1"/>
+            <img src="https://img.icons8.com/color/480/000000/mac-logo.png" title="MacOs" alt="partenaire2"/>
+            <img src="https://img.icons8.com/color/480/000000/google-logo.png" title="powerSchool" alt="partenaire3"/>
+            <img src="https://img.icons8.com/fluency/480/000000/telegram-app.png" alt="partenaire4"/>
         </div>
     </section>
 

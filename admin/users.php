@@ -15,6 +15,7 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
         } else {
             $properties = new Properties();
             $user['properties_published'] =  $properties->getAll_properties($user['id']) ? count($properties->getAll_properties($user['id'])) : 0;
+            $_properties = $properties->getAll_properties($user['id']);
         }
     }
 } else {
@@ -46,6 +47,21 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
                         <a href="<?php echo "/immoplus/admin/users" ?>" class="back">Retour</a>
                     </div>
                 </div>
+                <?php if(!empty($_properties)):?>
+                    <div id="user_properties">
+                    <?php foreach ($_properties as $property) : ?>
+                        <div class="contentProperty">
+                        <img src="<?php echo $property['picture']?>" alt="">
+                        <div>
+                        <?php echo $property['etat'] == 0 ? "<p>En attente</p>" : "<p>Confirmer</p>"; ?>
+                            <p>Prix : <?php echo number_format($property['price'], 0, ',', '.') ?> FCFA</p>
+                            <p>Vue : <?php echo $property['view']?></p>
+                            <?php echo $property['type'] == 'location' ? "<p>En location</p>" : "<p>En vente</p>"; ?>
+                        </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif;?>
             </section>
         <?php elseif ($users) : ?>
             <section class="tableBx">

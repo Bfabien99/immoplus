@@ -63,7 +63,7 @@ $all_properties = $properties->getAll_properties();
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
-            infowindow.setContent("<div style='display:flex'><img style='max-width:100px;max-heigth:50px;object-fit:cover;' src='" + locations[i][3] + "'></div><div style='float:right; padding: 10px;'><b>" + locations[i][0] + "</b><br>" + locations[i][4] + "fcfa</div>");
+            infowindow.setContent("<div style='display:flex;flex-direction:column;max-width:200px;word-wrap:break-word;text-align:center'><img style='width:200px;heigth:200px;object-fit:cover;' src='" + locations[i][3] + "'><div style='padding: 10px;'><b>" + locations[i][0] + "</b><br>" + locations[i][4] + "fcfa</div></div>");
             infowindow.open(Map, marker);
           }
         })(marker, i));

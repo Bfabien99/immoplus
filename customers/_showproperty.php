@@ -66,6 +66,7 @@ if (isset($_GET['property_id'])) {
                         </div>
                         <div class="informations">
                             <h3 class="title"><?php echo $property['title'] ?></h3>
+                            <p><ion-icon name="location-outline"></ion-icon><small><?php echo $property['address'] ?></small></p>
                             <p class="description">
                                 <?php echo nl2br($property['description']) ?>
                             </p>
@@ -119,7 +120,7 @@ if (!empty($location)) {
             // Initialize and add the map
             function initMap() {
                 var infoWindow = new google.maps.InfoWindow({
-                    content: "<div style='display:flex'><img style='max-width:100px;max-heigth:50px;object-fit:cover;' src='<?php echo $property['picture']; ?>'></div><div style='float:right; padding: 10px;'><b><?php echo $property['title']; ?></b><br/><?php echo $property['address']; ?><br/> <?php echo $property['price']; ?> fcfa</div>"
+                    content: "<div style='display:flex;flex-direction:column;max-width:200px;word-wrap:break-word;text-align:center'><img style='width:200px;heigth:200px;object-fit:cover;' src='<?php echo $property['picture']; ?>'><div style='padding: 10px;'><b><?php echo $property['title']; ?></b><br/><?php echo $property['address']; ?><br/> <?php echo $property['price']; ?> fcfa</div></div>"
                 });
                 // The location of Uluru
                 const propertyLocated = {

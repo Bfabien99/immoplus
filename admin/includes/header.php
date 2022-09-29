@@ -917,10 +917,37 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
 
         #singleUser {
             display: flex;
+            flex-direction: column;
             align-items: center;
             width: 100%;
             max-width: 800px;
             margin: auto;
+            gap: 10px;
+        }
+
+        #user_properties{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            width: 100%;
+            max-width: 800px;
+            align-items: center;
+        }
+
+        #user_properties .contentProperty{
+            max-width: 200px;
+            background-color: var(--white);
+            overflow: hidden;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.0.8);
+        }
+
+        #user_properties .contentProperty img{
+            width: 100%;
+            height: 200px;
+        }
+
+        #user_properties .contentProperty div{
+            padding: 5px;
+            word-wrap: break-word;
         }
 
         .userContentBx {
@@ -1002,6 +1029,15 @@ if (!empty($_SESSION['immoplus_adminPseudo'])) {
             .cardBox {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            #user_properties{
+            display: grid;
+            grid-template-columns: repeat(1,1fr);
+            width: 100%;
+            max-width: 200px;
+            gap: 20px;
+            align-items: center;
+        }
         }
 
         @media (max-width: 768px) {

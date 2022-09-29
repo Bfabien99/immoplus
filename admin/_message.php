@@ -56,9 +56,9 @@ if (isset($_GET['message_id']) && !empty($_GET['message_id'])) {
                     <div class="messageBx">
                         <div class="icon">
                             <?php if ($message['etat'] == 0) : ?>
-                                <ion-icon name="chatbox"></ion-icon>
+                                <ion-icon name="mail-unread"></ion-icon>
                             <?php else : ?>
-                                <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                                <ion-icon name="mail-open-outline"></ion-icon>
                             <?php endif; ?>
                         </div>
                         <div class="message">
@@ -75,7 +75,7 @@ if (isset($_GET['message_id']) && !empty($_GET['message_id'])) {
 <script>
     function del(id) {
         Swal.fire({
-            title: 'Do you want to save the changes?',
+            title: 'Voulez vous supprimer ce message?',
             showDenyButton: true,
             showCancelButton: true,
             confirmButtonText: 'Supprimer',

@@ -19,6 +19,6 @@ function sendMail($objet,$message,$to){
             return $result;
         } 
         catch(Exception $e) {
-            echo $e->getMessage();
+            return $e->getMessage();
         }
     }

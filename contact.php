@@ -54,6 +54,9 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/index.css" type="text/css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Nos Contacts</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
@@ -321,32 +324,50 @@ if (isset($_POST['submit'])) {
         <hr>
         <section id="groupBx">
             <div class="group">
-                <h3><i>icon</i> Adresse</h3>
+                <h3><ion-icon name="location-sharp"></ion-icon> Adresse</h3>
                 <p>08 BP ABIDJAN 04</p>
             </div>
             <div class="group">
-                <h3><i>icon</i> Contact</h3>
+                <h3><ion-icon name="call-sharp"></ion-icon> Contact</h3>
                 <p>00225 0504774183</p>
                 <p>00225 0153148864</p>
             </div>
             <div class="group">
-                <h3><i>icon</i> Email</h3>
+                <h3><ion-icon name="mail-sharp"></ion-icon> Email</h3>
                 <p>fabienbrou99@gmail.com</p>
                 <p>mytestomailer@gmail.com</p>
             </div>
         </section>
         <section class="about">
             <?php if ($error) : ?>
-                <script>
-                    alert("<?php echo $error; ?>");
-                    location.href = "#Contactform"
-                </script>
-            <?php elseif ($success) : ?>
-                <script>
-                    alert("Message Envoyé");
-                    location.href = "#Contactform"
-                </script>
-            <?php endif; ?>
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erreur',
+                    confirmButtonText: 'OK',
+                    text: "<?php echo $error ?>",
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        location.href = "#Contactform"
+                    }
+                })
+            </script>
+        <?php elseif ($success) : ?>
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Super!',
+                    confirmButtonText: 'OK',
+                    text: 'Message Envoyé',
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        location.href = "#Contactform"
+                    }
+                })
+            </script>
+        <?php endif; ?>
             <div class="contentBx redbg">
                 <form action="" method="post" class="form" autocomplete="off" autocapitalize="on">
                     <p id="Contactform"></p>

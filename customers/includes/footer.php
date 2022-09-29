@@ -60,12 +60,11 @@
                         input: true,
                     },
                     success: function(data) {
-                        if (data) {
+                        
                             window.location.href = '/immoplus/login'
-                        }
+                        
                     }
                 })
-                window.location.href = '/immoplus/login'
             }
         })
     })

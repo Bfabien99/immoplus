@@ -32,10 +32,10 @@ if (isset($_GET['property_id'])) {
                     $property = false;
                     $errors['property'] = "<p class='error'>Désolé, aucune propriété ne correspond</p>";
                 } else {
-                    if(isset($_SESSION['immoplus_view']) && !empty($_SESSION['immoplus_view']) && ($_SESSION['immoplus_view'] != $_GET['property_id'])){
+                    if (isset($_SESSION['immoplus_view']) && !empty($_SESSION['immoplus_view']) && ($_SESSION['immoplus_view'] != $_GET['property_id'])) {
                         $properties->incrementView($_GET['property_id']);
                         $_SESSION['immoplus_view'] = $_GET['property_id'];
-                    }elseif(!$_SESSION['immoplus_view']){
+                    } elseif (!$_SESSION['immoplus_view']) {
                         $properties->incrementView($_GET['property_id']);
                         $_SESSION['immoplus_view'] = $_GET['property_id'];
                     }
@@ -54,6 +54,8 @@ if (isset($_GET['property_id'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <title>Propriété <?php echo $property['id'] ?? "" ?></title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;600;800;900&family=Rajdhani&family=Roboto:wght@100;300;400;500;900&display=swap');
@@ -324,6 +326,22 @@ if (isset($_GET['property_id'])) {
             text-decoration: underline;
         }
 
+        .contactBx{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .contactBx h3{
+            text-decoration: underline;
+        }
+
+        .contactBx p{
+            font-size: 1.2rem;
+        }
+
         #map {
             position: relative;
             margin: 3em auto;
@@ -484,7 +502,9 @@ if (isset($_GET['property_id'])) {
                     <div class="property_informations">
                         <div class="imgBx">
                             <img class="property_picture" src="<?php echo $property['picture'] ?? '../../assets/img/pexels-expect-best-323780.jpg' ?>" alt="image_propriete">
-                            <p class="property_address"><?php echo $property['address'] ?></p>
+                            <p class="property_address">
+                                <ion-icon name="location-outline"></ion-icon><?php echo $property['address'] ?>
+                            </p>
                         </div>
                         <div class="content">
                             <h4 class="property_title"><?php echo $property['title'] ?></h4>
@@ -492,9 +512,22 @@ if (isset($_GET['property_id'])) {
                                 <?php echo nl2br($property['description']) ?>
                             </p>
                             <div class="details">
-                                <p class="property_price"><span>Prix :</span> <?php echo number_format($property['price'], 0, ',', '.') ?> FCFA</p>
+                                <p class="property_price"><span>
+                                        <ion-icon name="cash-outline"></ion-icon>
+                                    </span> <?php echo number_format($property['price'], 0, ',', '.') ?> FCFA</p>
                                 <p class="property_type"><span>Type :</span> <?php echo ($property['type'] == "location") ? 'A Louer' : 'En Vente' ?></p>
-                                <p class="property_date"><span>Date :</span><?php echo datediff($property['post_date']) ?></p>
+                                <p class="property_date"><span>
+                                        <ion-icon name="timer-outline"></ion-icon>
+                                    </span><?php echo datediff($property['post_date']) ?></p>
+                            </div>
+                            <div class="contactBx">
+                                <h3> Interressez ? Contactez-nous</h3>
+                                <p>
+                                    <ion-icon name="call-sharp"></ion-icon> 00225 0504774183
+                                </p>
+                                <p>
+                                    <ion-icon name="call-sharp"></ion-icon> 00225 0153148864
+                                </p>
                             </div>
                         </div>
 
