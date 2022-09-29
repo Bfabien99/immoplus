@@ -371,6 +371,7 @@ if (isset($_POST['submit'])) {
             <div class="contentBx redbg">
                 <form action="" method="post" class="form" autocomplete="off" autocapitalize="on">
                     <p id="Contactform"></p>
+                    <p style="color: #fff;font-size:1.2rem;margin:2em">Ecrivez-nous</p>
                     <?php if ($error) : ?>
                         <p class="error"><?php echo $error; ?></p>
                     <?php elseif ($success) : ?>
