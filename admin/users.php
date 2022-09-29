@@ -28,7 +28,7 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 <div class="container">
     <?php if ($error) : ?>
         <?php echo $error; ?>
-        <a href="<?php echo $_SERVER['HTTP_REFERER'] ?? "/immoplus/admin" ?>" class="back">Retour</a>
+        <a href="<?php echo "/immoplus/admin" ?>" class="back">Retour</a>
     <?php else : ?>
         <?php if ($user) : ?>
             <section id="singleUser">

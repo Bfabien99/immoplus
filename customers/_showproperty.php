@@ -36,19 +36,6 @@ if (isset($_GET['property_id'])) {
     }
 }
 
-if (isset($_POST['publish'])) {
-    if ($_POST['property_id'] == $_GET['property_id']) {
-
-        $properties = new Properties();
-        if ($properties->publishProperties($_POST['property_id'])) { ?>
-            <script>
-                alert('Publication effectuée')
-                window.location.href = ''
-            </script>
-<?php
-        }
-    }
-}
 ?>
 <div class="container">
 

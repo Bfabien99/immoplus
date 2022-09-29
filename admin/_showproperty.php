@@ -35,6 +35,7 @@ if (isset($_POST['publish'])) {
     if ($_POST['property_id'] == $_GET['property_id']) {
 
         $properties = new Properties();
+        $property = $properties->getPropertiesById($_POST['property_id']);
         if ($properties->publishProperties($_POST['property_id'])) { ?>
             <script>
                 Swal.fire({
@@ -44,11 +45,59 @@ if (isset($_POST['publish'])) {
                 }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                        window.location.href = "";
+                        window.location.href = "/immoplus/admin/property";
                     }
                 })
             </script>
 <?php
+            if ($property['_userId'] !== null) {
+                $users = new Users();
+                $user = $users->getUserById($property['_userId']);
+                if ($user) {
+                    $smessage = "<div><h3>Publication effectuée!</h3><strong>Votre propriété vient d'être publiée sur la plateforme immoplus</strong></div>";
+                    sendmail('Publication Immoplus', $smessage, $user['email']);
+                }
+            }
+        }
+    }
+}
+?>
+<?php if (isset($_POST['cancel'])) {
+    if ($_POST['property_id'] == $_GET['property_id']) {
+
+        $properties = new Properties();
+        $property = $properties->getPropertiesById($_POST['property_id']);
+
+        if ($property) {
+            if ($property['_userId'] !== null) {
+                $users = new Users();
+                $user = $users->getUserById($property['_userId']);
+                if ($user) {
+                    if ($properties->deleteProperties($property['id'])) {
+                        $smessage = "<div><h3>Publication annulée!</h3><strong>Publication d'une de vos propriétés annulée sur la plateforme immoplus</strong></div>";
+                    sendmail('Publication Immoplus', $smessage, $user['email']);?>
+                    <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Publication annulée',
+                    confirmButtonText: 'Ok',
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        window.location.href = "/immoplus/admin/property";
+                    }
+                })
+            </script>
+                    <?php
+                    }
+                }
+            } else {
+                if ($properties->deleteProperties($property['id'])) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
     }
 }
@@ -88,7 +137,7 @@ if (isset($_POST['publish'])) {
                         </div>
                         <div class="actions">
                             <a href="./../../property/edit/<?php echo $property['id'] ?>" class="edit">Modifier</a>
-                            <?php echo ($property['etat'] == 0) ? "<a href='' class='cancel'>Annuler</a><form method='post'><input hidden type='number' name='property_id' value='{$property['id']}'><input type='submit' value='publier' class='publish' name='publish'></form>" : "<i onclick='del({$property['id']})' class='del'>Supprimer</i>" ?>
+                            <?php echo ($property['etat'] == 0) ? "<form method='post'><input hidden type='number' name='property_id' value='{$property['id']}'><input type='submit' value='publier' class='publish' name='publish'><input type='submit' value='annuler' class='cancel' name='cancel'></form>" : "<i onclick='del({$property['id']})' class='del'>Supprimer</i>" ?>
                         </div>
                     </div>
                 </div>
@@ -172,7 +221,7 @@ if (!empty($location)) {
 <script>
     function del(id) {
         Swal.fire({
-            title: 'Do you want to save the changes?',
+            title: 'Voulez vous supprimer la propriété?',
             showDenyButton: true,
             showCancelButton: true,
             confirmButtonText: 'Supprimer',

@@ -83,7 +83,8 @@ if (isset($_POST['submit'])) {
         <img src="./assets/img/pexels-expect-best-323780.jpg">
         <div class="content">
             <h2>Immo plus</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores vitae impedit sint sapiente quo excepturi dolore sunt aperiam tempora. Eius vel perferendis aspernatur qui rerum nemo corrupti, quisquam odit animi!</p>
+            <p>Achetez ou louez la maison qui vous convient sur notre plateforme</p>
+            <p>Vous avez une maison en votre possession, vous pouvez la vendre...</p>
         </div>
     </div>
 
@@ -91,8 +92,11 @@ if (isset($_POST['submit'])) {
         <div class="contentBx">
             <h2 class="heading">A propos</h2>
             <p class="text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam assumenda voluptatum deleniti provident laboriosam sequi tempore impedit aperiam sit commodi maiores et eum saepe iusto vitae illo, optio animi eaque! <br>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, voluptates id aperiam repellat est veritatis eveniet culpa eius, iste, dolor sint nostrum delectus amet quos accusantium porro necessitatibus quam sapiente minus fuga magnam libero laudantium! Ea eius fugit hic ex voluptate quidem, expedita quaerat? Cum omnis quos debitis doloribus reiciendis.
+                Immoplus est une agence de gestion immobilière. Elle permet aux personnes en quête de maison de retrouver ce qu'il leur faut. 
+            </p>
+            <p class="text">
+                Selon votre budget, vos convenances, vous trouverez sur notre plateforme ce qu'il vous faut.
+                grâce à Immoplus, vous pouvez mettre en vente votre maison sans risque.
             </p>
         </div>
         <div class="imgBx"></div>
@@ -101,14 +105,14 @@ if (isset($_POST['submit'])) {
     <section class="services" id="services">
         <h2 class="heading">Nos services</h2>
         <p class="text">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore maiores quae doloribus quos quibusdam dolorum accusamus dicta excepturi aperiam ducimus placeat sunt ea modi nobis, officia nostrum enim esse sequi!
+            Nous mettons à votre disposition plusieurs services dans le but de faire votre bonheur
         </p>
         <div class="container">
             <div class="serviceBx">
                 <div>
                     <img src="./assets/img/real_estate_128px.png">
                     <h2>Achat & Location</h2>
-                    <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deserunt commodi fugit, eaque ducimus vel numquam mollitia dolorem qui veritatis!</small>
+                    <small>Achetez ou louez la maison qui vous convient</small>
                     <br>
                     <a href="property" class="btn-link">Accéder</a>
                 </div>
@@ -117,7 +121,7 @@ if (isset($_POST['submit'])) {
                 <div>
                     <img src="./assets/img/rent_64px.png">
                     <h2>Mettre un bien sur le marché</h2>
-                    <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deserunt commodi fugit, eaque ducimus vel numquam mollitia dolorem qui veritatis!</small>
+                    <small>Vous voulez vendre vendre vos maison, vous êtes à la bonne place</small>
                     <br>
                     <a href="sell" class="btn-link">Accéder</a>
                 </div>
@@ -125,10 +129,10 @@ if (isset($_POST['submit'])) {
             <div class="serviceBx">
                 <div>
                     <img src="./assets/img/loader_60px.png">
-                    <h2>Aide à la construction de bien</h2>
-                    <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates deserunt commodi fugit, eaque ducimus vel numquam mollitia dolorem qui veritatis!</small>
+                    <h2>Plus de service</h2>
+                    <small>Nous ne nous limitons pas qu'à la vente et l'achat, nous avons d'autres services qui pourraient vous interresser</small>
                     <br>
-                    <a href="#" class="btn-link">Accéder</a>
+                    <a href="./service" class="btn-link">Accéder</a>
                 </div>
             </div>
         </div>
@@ -137,7 +141,8 @@ if (isset($_POST['submit'])) {
     <section class="technology" id="technology">
         <div class="contentBx">
             <h2 class="heading">100% fiable</h2>
-            <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, voluptates id aperiam repellat est veritatis eveniet culpa eius, iste, dolor sint nostrum delectus amet quos accusantium porro necessitatibus quam sapiente minus fuga magnam libero laudantium! Ea eius fugit hic ex voluptate quidem, expedita quaerat? Cum omnis quos debitis doloribus reiciendis.</p>
+            <p class="text">Nous sommes une agence fiable. Avec nous, aucune mauvaise suprise.</p>
+            <p class="text">Entre nos mains votre bien est en sécurité. Guarantie 100%</p>
         </div>
         <div class="imgBx">
             <img src="./assets/img/immoplus.png">
@@ -146,7 +151,9 @@ if (isset($_POST['submit'])) {
 
     <section class="client" id="client">
         <h2 class="heading">Nos partenaires</h2>
-        <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, voluptates id aperiam repellat est veritatis eveniet culpa eius, iste, dolor sint nostrum delectus amet quos accusantium porro necessitatibus quam sapiente minus fuga magnam libero laudantium! Ea eius fugit hic ex voluptate quidem, expedita quaerat? Cum omnis quos debitis doloribus reiciendis.</p>
+        <p class="text">
+            Nous sommes soutenues par des partenaires de confiance qui nous offres leur assistance dans le but de pouvoir repondre à vos attentes.
+        </p>
         <div class="imgBx">
             <img src="./assets/img/pexels-expect-best-323780.jpg">
             <img src="./assets/img/pexels-expect-best-323780.jpg">
@@ -161,21 +168,21 @@ if (isset($_POST['submit'])) {
             <div class="contentBx">
                 <div>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis minus quisquam inventore vero velit error veritatis quod iure est facere, laborum reprehenderit, quis soluta minima laboriosam dolorum cum vel deserunt odio ipsum officiis aliquid optio, culpa debitis! Ut natus error esse tempore ratione nam libero quasi, distinctio tenetur sunt illum voluptas, repudiandae aliquam illo, odio enim iusto totam consequuntur deserunt.</p>
-                    <h3>Nom & prenoms</h3>
+                    <h3>Brou Fabien</h3>
                 </div>
             </div>
 
             <div class="contentBx">
                 <div>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis minus quisquam inventore vero velit error veritatis quod iure est facere, laborum reprehenderit, quis soluta minima laboriosam dolorum cum vel deserunt odio ipsum officiis aliquid optio, culpa debitis! Ut natus error esse tempore ratione nam libero quasi, distinctio tenetur sunt illum voluptas, repudiandae aliquam illo, odio enim iusto totam consequuntur deserunt.</p>
-                    <h3>Nom & prenoms</h3>
+                    <h3>Pen Js</h3>
                 </div>
             </div>
 
             <div class="contentBx">
                 <div>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis minus quisquam inventore vero velit error veritatis quod iure est facere, laborum reprehenderit, quis soluta minima laboriosam dolorum cum vel deserunt odio ipsum officiis aliquid optio, culpa debitis! Ut natus error esse tempore ratione nam libero quasi, distinctio tenetur sunt illum voluptas, repudiandae aliquam illo, odio enim iusto totam consequuntur deserunt.</p>
-                    <h3>Nom & prenoms</h3>
+                    <h3>Chris Onesiphore</h3>
                 </div>
             </div>
         </div>
@@ -184,7 +191,7 @@ if (isset($_POST['submit'])) {
     <section class="contact" id="contact">
         <h2 class="heading">Nous contacter</h2>
         <p class="text">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt sunt deleniti eligendi numquam iusto repudiandae nisi? Nulla quaerat ducimus assumenda aspernatur omnis deserunt nesciunt tempore dicta laborum, consequatur sapiente fugit.
+            Besoin de plus d'informations, avez vous une préocupation... Ecrivez nous!
         </p>
     </section>
 

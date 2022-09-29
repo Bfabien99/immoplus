@@ -20,7 +20,7 @@ if (isset($_POST['search'])) {
     if (!empty($_POST['searchprice']) || !empty($_POST['searcharea']) || !empty($_POST['searchaddress'])) {
         $sql = substr($sql, 0, -3);
         $sql = rtrim($sql);
-        $sql .= " AND _userId = " . $user['id'] . " etat = 1 order by price ASC";
+        $sql .= " AND _userId = " . $user['id'] . " order by price ASC";
         $results = $_properties->getSearched_properties($sql);
         if (!$results) {
             $search_error = "<i style='color:red'>Aucun resultat trouvé</i>";

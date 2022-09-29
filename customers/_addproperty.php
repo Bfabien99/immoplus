@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
     } elseif (strlen($_POST['title']) < 6) {
         $errors['title'] = "<p class='error'>Le titre doit comporter au moins 6 caractères</p>";
     } elseif (!ctype_alpha(str_replace(' ', '', $_POST['title']))) {
-        $errors['title'] = "<p class='error'>Le titre ne doit comporter que des lettres</p>";
+        $errors['title'] = "<p class='error'>Le titre ne doit comporter que des lettres, sans accents</p>";
     } else {
         $title = $_POST['title'];
     }
@@ -141,6 +141,8 @@ if (isset($_POST['submit'])) {
                         }
                     }
                 } else {
+                    $smessage = "<div><h3>Ajout d'une nouvelle propriété effectuée!</h3><strong>Vous venez de soumettre une propriété sur la plateforme immoplus, vous serez contacter pour la vérification avant sa publication</strong></div>";
+            sendmail("Ajout d'une nouvelle propriété Immoplus",$smessage,$user['email']);
                     $errors['api'] = "<p class='success'>Propriété ajoutée</p>";
                 }
             } else {

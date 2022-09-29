@@ -402,7 +402,7 @@ a {
 }
 
 .footer ul li img {
-    /*filter: invert(1);*/
+    filter: invert(1);
     max-width: 20px;
 }
 

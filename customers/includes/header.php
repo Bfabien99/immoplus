@@ -1,6 +1,8 @@
 <?php
 session_start();
-include_once('../_includes/functions.php'); ?>
+include_once('../_includes/functions.php'); 
+include_once('../mail.php');
+?>
 <?php include_once('../class/Properties.php'); ?>
 <?php include_once('../class/Users.php'); ?>
 <?php

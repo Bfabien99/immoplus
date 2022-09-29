@@ -1,6 +1,8 @@
 <?php
 include_once('_includes/functions.php');
 include_once('class/Users.php');
+include_once('mail.php');
+
 
 $error = false;
 $users = new Users();
@@ -11,7 +13,7 @@ if (isset($_POST['inscrire'])) {
     } elseif (strlen(escape($_POST['fullname'])) < 5) {
         $error['fullname'] = "<p class='error'>Le nom doit comporter au moins 5 caractères</p>";
     } elseif (!ctype_alpha(str_replace(' ', '', escape($_POST['fullname'])))) {
-        $error['fullname'] = "<p class='error'>Le titre ne doit comporter que des lettres</p>";
+        $error['fullname'] = "<p class='error'>Le nom ne doit comporter que des lettres, sans accents</p>";
     } else {
         $fullname = escape(mb_strtoupper($_POST['fullname']));
     }
@@ -93,6 +95,9 @@ if (isset($_POST['inscrire'])) {
 
     if (!$error && !empty($fullname) && !empty($gender) && !empty($birth) && !empty($description) && !empty($contact) && !empty($email) && !empty($pseudo) && !empty($password)) {
         if ($users->insertUsers($fullname, $gender, $birth, $description, $contact, $email, $pseudo, md5($password))) {
+            $smessage = "<div><h2>Inscription réussie!</h2>";
+            $smessage .= "<strong>Vous recevez ce mail car vous venez de vous incrire sur la plateforme Immoplus</strong></div>"; 
+            sendmail('Inscription Immoplus',$smessage,$email);
             $error['success'] = "Inscription réussie";
         } else {
             $error['error'] = "Inscription échoué, veuillez reéssayer plus tard";

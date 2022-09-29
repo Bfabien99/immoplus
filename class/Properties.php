@@ -81,9 +81,9 @@ class Properties
         try {
             $connectDB = self::connectDB();
             if (is_numeric($user_id) && $user_id > 0) {
-                $sql = "select * from property where _userId = $user_id order by post_date DESC limit 4";
+                $sql = "select * from property where _userId = $user_id order by post_date DESC limit 5";
             } else {
-                $sql = "select * from property order by post_date DESC limit 10";
+                $sql = "select * from property order by post_date DESC limit 5";
             }
             $query = $connectDB->prepare($sql);
             $query->execute();
