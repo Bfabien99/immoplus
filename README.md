@@ -59,7 +59,8 @@ Run composer install (you need composer packagist)
 <p>Les propriétés sont gérées grâce à une API.</p>
 <p>Route : <span>/directory_name/api/v1/property</span> ou <span><a href="https://allmysite.000webhostapp.com/immoplus/api/v1/property">allmysite.000webhostapp.com/immoplus/api/v1/property</a></span></p>
 <ul>
-  <li><h3>GET api/v1/property</h3> => <i>obtenir toutes les propriétés</i></li>
+  <li><h3>GET api/v1/property</h3></li>
+  ``` obtenir toutes les propriétés ```
   <li><h3>GET api/v1/property/:id</h3></li>
   ```
   obtenir une propriété par l'id
@@ -77,6 +78,7 @@ Run composer install (you need composer packagist)
   obtenir toutes les propriétés en vente
   ```
 </ul>
+
 ## Accéder à la plateforme en ligne
 <p>Lien <a href='https://allmysite.000webhostapp.com/immoplus'>allmysite.000webhostapp.com/immoplus</a></p>
 
